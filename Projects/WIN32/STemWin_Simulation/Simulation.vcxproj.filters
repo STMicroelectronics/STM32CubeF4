@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Simulation">
+      <UniqueIdentifier>{59c5a398-8b9e-4c28-a346-5b8cd5616bc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STemWin">
+      <UniqueIdentifier>{56fe8a86-cef4-4a5d-a4b8-c09e1f58a89d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STemWin\Include">
+      <UniqueIdentifier>{91deae29-abef-4a69-bb10-c6de4777b49b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STemWin\Library">
+      <UniqueIdentifier>{f7d16985-0061-4dce-8d2b-c1a961bbb2b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STemWin\Target">
+      <UniqueIdentifier>{7adf334f-8405-4cc4-835c-84f94179dcc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{5b1c51de-480f-4e6c-808f-f27f5d5f6ea8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Config\LCDConf.c">
+      <Filter>STemWin\Target</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\SIMConf.c">
+      <Filter>STemWin\Target</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\GUIConf.c">
+      <Filter>STemWin\Target</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\MainTask.c">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Middlewares\ST\STemWin\Simulation\WinMain.c">
+      <Filter>Simulation</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Program Files\Microsoft Visual Studio\VC98\Include\BASETSD.H">
+      <Filter>Simulation</Filter>
+    </ClInclude>
+    <ClInclude Include="Config\GUIConf.h">
+      <Filter>STemWin\Target</Filter>
+    </ClInclude>
+    <ClInclude Include="Config\LCDConf.h">
+      <Filter>STemWin\Target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\BUTTON.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\BUTTON_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\CALENDAR.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\CHECKBOX.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\CHECKBOX_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\CHOOSECOLOR.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\CHOOSEFILE.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\DIALOG.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\DIALOG_Intern.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\DROPDOWN.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\DROPDOWN_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\EDIT.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\EDIT_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\FRAMEWIN.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\FRAMEWIN_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\Global.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GRAPH.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GRAPH_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI__BiDi2_Brackets_800.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI__BiDi2_Types_800.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_ARRAY.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_ARRAY_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_BMP_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_ConfDefaults.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_Debug.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_FontIntern.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_GCache_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_GIF_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_HOOK.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_JPEG_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_SetOrientation.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_SetOrientationCX.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_SIM_Win32.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_SPRITE_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_Type.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_Version.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUI_VNC.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_DCache.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_DCache_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_Dist.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_FlexColor.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_FlexColor_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_Lin.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_Lin_Opt_8.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_Lin_Opt_16.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_Lin_Opt_24.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_Lin_Opt_32.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_Lin_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_NoOpt_1_8.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_Template.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_TemplateI.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIDRV_TemplateI_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUIMTDRV_TangoC32.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\GUITDRV_ADS7846.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\HEADER.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\HEADER_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\ICONVIEW.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\ICONVIEW_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\IMAGE.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\IMAGE_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\IP_FS.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\KNOB.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\KNOB_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\LCD.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\LCD_ConfDefaults.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\LCD_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\LCD_Protected.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\LCD_SIM.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\LISTBOX.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\LISTBOX_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\LISTVIEW.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\LISTVIEW_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\LISTWHEEL.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\LISTWHEEL_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\MENU.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\MENU_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\MESSAGEBOX.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\MULTIEDIT.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\MULTIPAGE.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\MULTIPAGE_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\PROGBAR.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\PROGBAR_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\RADIO.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\RADIO_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\SCROLLBAR.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\SCROLLBAR_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\SEGGER.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\SLIDER.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\SLIDER_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\SPINBOX.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\SPINBOX_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\SWIPELIST.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\SWIPELIST_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\TEXT.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\TEXT_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\TREEVIEW.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\TREEVIEW_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\WIDGET.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\WINDOW_Private.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\WM.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\WM_GUI.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Middlewares\ST\STemWin\inc\WM_Intern.h">
+      <Filter>STemWin\Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\Middlewares\ST\STemWin\Simulation\GUISim.lib">
+      <Filter>Simulation</Filter>
+    </Library>
+    <Library Include="..\..\..\Middlewares\ST\STemWin\Lib\STemWin_WIN32.lib">
+      <Filter>STemWin\Library</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\..\..\Middlewares\ST\STemWin\Simulation\SimulationMinGW.res">
+      <Filter>Simulation</Filter>
+    </Resource>
+  </ItemGroup>
+</Project>

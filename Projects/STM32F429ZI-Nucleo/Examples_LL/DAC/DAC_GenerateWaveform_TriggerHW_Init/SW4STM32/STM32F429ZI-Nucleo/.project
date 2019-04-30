@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>STM32F429ZI-Nucleo</name>
+	<comment />
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
+			<triggers>clean,full,incremental,</triggers>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder</name>
+			<triggers>full,incremental,</triggers>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.cdt.core.cnature</nature>
+		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
+		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
+		<nature>fr.ac6.mcu.ide.core.MCUProjectNature</nature>
+	</natures>
+	<linkedResources><link>
+			<name>Example/User/stm32f4xx_it.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Src/stm32f4xx_it.c</location>
+		</link><link>
+			<name>Example/User/main.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Src/main.c</location>
+		</link><link>
+			<name>Drivers/STM32F4xx_LL_Driver/stm32f4xx_ll_utils.c</name>
+			<type>1</type>
+			<location>PARENT-7-PROJECT_LOC/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_utils.c</location>
+		</link><link>
+			<name>Drivers/CMSIS/system_stm32f4xx.c</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/Src/system_stm32f4xx.c</location>
+		</link><link>
+			<name>Drivers/STM32F4xx_LL_Driver/stm32f4xx_ll_dac.c</name>
+			<type>1</type>
+			<location>PARENT-7-PROJECT_LOC/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_dac.c</location>
+		</link><link>
+			<name>Doc/readme.txt</name>
+			<type>1</type>
+			<location>PARENT-2-PROJECT_LOC/readme.txt</location>
+		</link><link>
+			<name>Example/SW4STM32/startup_stm32f429xx.s</name>
+			<type>1</type>
+			<location>PARENT-1-PROJECT_LOC/startup_stm32f429xx.s</location>
+		</link>
+		<link>
+			<name />
+			<type />
+			<location />
+		</link>
+	</linkedResources>
+</projectDescription>

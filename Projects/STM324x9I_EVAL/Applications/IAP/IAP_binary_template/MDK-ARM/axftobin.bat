@@ -1,0 +1,2 @@
+SET FROM_ELF_PATH="C:\Keil_v5\ARM\ARMCC\Bin\fromelf.exe"
+%FROM_ELF_PATH% ".\STM324x9I_EVAL\STM324x9I_EVAL.axf" --bin --output ".\STM324x9I_EVAL\STM324x9I_EVAL.bin"

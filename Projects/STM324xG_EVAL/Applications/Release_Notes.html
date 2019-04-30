@@ -1,0 +1,1464 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns="http://www.w3.org/TR/REC-html40"><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<link rel="File-List" href="Release_Notes_for_STM32F45x_StdPeriph_Driver_files/filelist.xml">
+<link rel="Edit-Time-Data" href="Release_Notes_for_STM32F45x_StdPeriph_Driver_files/editdata.mso"><!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]--><title>Release Notes for STM324xG_EVAL Applications</title><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>STMicroelectronics</o:Author>
+  <o:LastAuthor>Raouf Hosni</o:LastAuthor>
+  <o:Revision>39</o:Revision>
+  <o:TotalTime>137</o:TotalTime>
+  <o:Created>2009-02-27T19:26:00Z</o:Created>
+  <o:LastSaved>2010-10-15T11:07:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>973</o:Words>
+  <o:Characters>5548</o:Characters>
+  <o:Company>STMicroelectronics</o:Company>
+  <o:Lines>46</o:Lines>
+  <o:Paragraphs>13</o:Paragraphs>
+  <o:CharactersWithSpaces>6508</o:CharactersWithSpaces>
+  <o:Version>12.00</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+
+
+
+<link rel="themeData" href="Release_Notes_for_STM32F45x_StdPeriph_Driver_files/themedata.thmx">
+<link rel="colorSchemeMapping" href="Release_Notes_for_STM32F45x_StdPeriph_Driver_files/colorschememapping.xml"><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>110</w:Zoom>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" LatentStyleCount="267">
+  <w:LsdException Locked="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="99" Name="No List"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true"
+   Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:1;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610611985 1073750139 0 0 159 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:1627400839 -2147483648 8 0 66047 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:536871559 0 0 0 415 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 1 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	font-weight:bold;}
+h2
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 2 Char";
+	mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:"Arial","sans-serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	font-weight:bold;
+	font-style:italic;}
+h3
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 3 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:3;
+	font-size:13.5pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{mso-style-unhide:no;
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-unhide:no;
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-style-unhide:no;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-unhide:no;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-font-family:"Times New Roman";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 1";
+	mso-ansi-font-size:14.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#365F91;
+	mso-themecolor:accent1;
+	mso-themeshade:191;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 2";
+	mso-ansi-font-size:13.0pt;
+	mso-bidi-font-size:13.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#4F81BD;
+	mso-themecolor:accent1;
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 3";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Cambria","serif";
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#4F81BD;
+	mso-themecolor:accent1;
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Balloon Text";
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-ascii-font-family:Tahoma;
+	mso-hansi-font-family:Tahoma;
+	mso-bidi-font-family:Tahoma;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:62067358;
+	mso-list-template-ids:-174943062;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1
+	{mso-list-id:128015942;
+	mso-list-template-ids:-90681214;}
+@list l1:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2
+	{mso-list-id:216556000;
+	mso-list-template-ids:925924412;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l2:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3
+	{mso-list-id:562446694;
+	mso-list-template-ids:913898366;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l3:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4
+	{mso-list-id:797802132;
+	mso-list-template-ids:-1971191336;}
+@list l4:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l4:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5
+	{mso-list-id:907304066;
+	mso-list-template-ids:1969781532;}
+@list l5:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l5:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6
+	{mso-list-id:1050613616;
+	mso-list-template-ids:-1009886748;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l6:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7
+	{mso-list-id:1234970193;
+	mso-list-template-ids:2055904002;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l7:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l8
+	{mso-list-id:1846092290;
+	mso-list-template-ids:-768590846;}
+@list l8:level1
+	{mso-level-start-at:2;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l8:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l8:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l8:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l8:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l8:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l8:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l8:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l8:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9
+	{mso-list-id:1894656566;
+	mso-list-template-ids:1199983812;}
+@list l9:level1
+	{mso-level-start-at:2;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style><!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="7170"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+  <meta content="MCD Application Team" name="author"></head>
+<body link="blue" vlink="blue">
+
+<div class="WordSection1">
+
+<p class="MsoNormal"><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;"><o:p>&nbsp;</o:p></span></p>
+
+<div align="center">
+
+<table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+ <tbody><tr style="">
+  <td style="padding: 0in;" valign="top">
+  <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" cellspacing="0" width="900">
+   <tbody><tr style="">
+    <td style="padding: 0in 5.4pt;" valign="top">
+    <p class="MsoNormal"><span style="font-size: 8pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; color: blue;"><a href="../../../Release_Notes.html">Back to Release page</a></span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+    </td>
+   </tr>
+   <tr style="">
+    <td style="padding: 1.5pt;">
+    <h1 style="margin-bottom: 0.25in; text-align: center;" align="center"><span style="font-size: 20pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: rgb(51, 102, 255);">Release Notes for STM324xG_EVAL Applications</span><span style="font-size: 20pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><o:p></o:p></span></h1>
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; color: black;">Copyright
+    2017 STMicroelectronics</span><span style="color: black;"><u1:p></u1:p><o:p></o:p></span></p>
+    <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; color: black;"><img style="border: 0px solid ; width: 112px; height: 83px;" alt="" id="_x0000_i1026" src="../../../_htmresc/st_logo.png"></span><span style="font-size: 10pt;"><o:p></o:p></span></p>
+    </td>
+   </tr>
+  </tbody></table>
+  <p class="MsoNormal"><span style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;; display: none;"><o:p>&nbsp;</o:p></span></p>
+  <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" width="900">
+   <tbody><tr style="">
+    <td style="padding: 0in;" valign="top">
+    
+            <h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><a name="History"></a><span style="font-size: 12pt; color: white;">Update History</span></h2>
+            <h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 207px;"><span style="color: white; font-family: Arial; font-size: 10pt;">V1.6.0 /&nbsp;26-October-2018</span><b><u><span style="color: black; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;"></span></u></b></h3><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="color: black; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">Main Changes</span></u></b><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;; font-size: 12pt;"><o:p></o:p></span></p><span style="font-family: Verdana; font-size: 10pt;"></span><ul style="margin-top: 0cm;" type="square"><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-family: Verdana; font-size: 10pt;">Fix warnings generated with&nbsp;version v 2.6 of SW4STM32</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-family: Verdana; font-size: 10pt;">Fix IAP applicattions<br></span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-family: Verdana; font-size: 10pt;">Update STemWin EWARM Projects&nbsp;</span><span style="font-family: Verdana; font-size: 10pt;">to be compliant with&nbsp;IARv8.x</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-family: Verdana; font-size: 10pt;">Update STemWin applications with new STemWin libraries</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-family: Verdana; font-size: 10pt;">Update projects with new PDM V3.1.0 lib</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-family: Verdana; font-size: 10pt;">Fix misalignement on USB_Device projects with MDK-ARM.</span></li></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 207px;"><span style="color: white; font-family: Arial; font-size: 10pt;">V1.5.1 / 29-December-2017</span></h3><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="color: black; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">Main Changes</span></u></b><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;; font-size: 12pt;"><o:p></o:p></span></p><ul style="margin-top: 0cm;" type="square"><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-family: Verdana; font-size: 10pt;">Update stm32f4xx_hal_conf.h files to add support to HAL CAN Legacy Module.</span></li></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 207px;"><span style="color: white; font-family: Arial; font-size: 10pt;">V1.5.0 / 06-October-2017</span></h3><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="color: black; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-size: 10pt;">Main Changes</span></u></b><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;; font-size: 12pt;"><o:p></o:p></span></p><ul style="margin-top: 0cm;" type="square"><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-family: Verdana; font-size: 10pt;">Remove DATE and VERSION from the header of all the files.</span></li><li><span style="font-size: 10pt; font-family: Verdana;">Fix compilation issues with Linux</span></li><li><span style="color: rgb(0, 0, 0); font-family: Verdana,sans-serif; font-size: 13.3333px; font-style: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; display: inline ! important; float: none;">Remove support of TrueSTUDIO toolchain</span></li><li><span style="font-size: 10pt; font-family: Verdana;">Update applications based on FatFS stack to use new fatfs release 0.12c</span></li><li><span style="font-size: 10pt; font-family: Verdana;">Add new FreeRTOS application : FreeRTOS_MPU project</span></li><li><span style="font-size: 10pt; font-family: Verdana;">Upgrade STemWin applications from 5.32 to 5.40</span></li><li><span style="font-size: 10pt; font-family: Verdana;">Update DFU projects to fix wrong mask value : Update mask depending on SRAM size</span></li><li><span style="font-size: 10pt; font-family: Verdana;">Update USB Host projects to to use the FATFS_LinkDriver API to link the USB disk to fatfs</span></li><li><span style="font-size: 10pt; font-family: Verdana;">Update&nbsp;applications using SD : Update SD_initialize() API to initialize SD card before checking the SD status</span></li><li><span style="font-size: 10pt; font-family: Verdana;">Update encode.c under LibJPEG_Encoding application : BMP header is not always 54 bytes</span></li><li><span style="font-size: 10pt; font-family: Verdana;">Update LwIP_IAP applications to fix a bug in httpserver protocol</span></li></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.4.0 / 17-February-2017</span></h3><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b></p>
+
+
+
+
+            
+            
+            <ul style="margin-top: 0cm;" type="square"><li class="MsoNormal" style="margin: 4.5pt 0in; font-size: 12pt; font-family: &quot;Times New Roman&quot;,serif; color: black;"><span style="font-size: 10pt; font-family: Verdana;">General applications projects update to be aligned with new HAL SD and BSP Drivers implementation</span></li><li class="MsoNormal" style="margin: 4.5pt 0in; font-size: 12pt; font-family: &quot;Times New Roman&quot;,serif; color: black;"><span style="font-size: 10pt; font-family: Verdana;">Update&nbsp;applications projects to support latest version of FatFS, LibJPEG and LwIP middleware</span></li><li class="MsoNormal" style="margin: 4.5pt 0in; font-size: 12pt; font-family: &quot;Times New Roman&quot;,serif; color: black;"><span style="font-size: 10pt; font-family: Verdana;">Add new applications SSL_Server and SSL_Client for mbedTLS middleware&nbsp;</span></li><li class="MsoNormal" style="margin: 4.5pt 0in; font-size: 12pt; font-family: &quot;Times New Roman&quot;,serif; color: black;"><span style="font-size: 10pt; font-family: Verdana;">Remove the PolarSSL applications: no more supported within the STM32Cube_FW_F4 and replaced by mbedTLS applications</span></li><li class="MsoNormal" style="margin: 4.5pt 0in; font-size: 12pt; font-family: &quot;Times New Roman&quot;,serif; color: black;"><span style="font-size: 10pt; font-family: Verdana;">USB_Device/CDC_Standalone application</span></li><ul style="margin-bottom: 0in;"><li class="MsoNormal" style="margin: 4.5pt 0in; font-size: 12pt; font-family: &quot;Times New Roman&quot;,serif; color: black;"><span style="font-size: 10pt; font-family: Verdana;"></span><span style="font-size: 10pt; font-family: Verdana;">Update CDC descriptor to support Windows 10</span></li></ul><li class="MsoNormal" style="margin: 4.5pt 0in; font-size: 12pt; font-family: &quot;Times New Roman&quot;,serif; color: black;"><span style="font-size: 10pt; font-family: Verdana;">USB_HOST/FWUpgrade_Standalone</span></li><ul style="margin-bottom: 0in;"><li class="MsoNormal" style="margin: 4.5pt 0in; font-size: 12pt; font-family: &quot;Times New Roman&quot;,serif; color: black;"><span style="font-size: 10pt; font-family: Verdana;">Update to support non 32-bits aligned firmware binaries</span></li></ul></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; margin-left: 0in; font-size: 13.5pt; font-family: &quot;Times New Roman&quot;,serif; font-weight: bold; color: rgb(0, 0, 0); font-style: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.0.6 / 04-November-2016</span></h3><ul style="margin-top: 0cm;" type="square"><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Update system_stm32f4xx.c file </span><span style="font-size: 10pt; font-family: Verdana;">in all projects </span><span style="font-size: 10pt; font-family: Verdana;">to be aligned with latest version of CMSIS STM32F4xx device implementation</span></li></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.3.6 / 04-November-2016</span></h3><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b></p>
+
+
+
+
+            
+            
+            <ul style="margin-top: 0cm;" type="square"><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Update system_stm32f4xx.c file </span><span style="font-size: 10pt; font-family: Verdana;">in all projects </span><span style="font-size: 10pt; font-family: Verdana;">to be aligned with latest version of CMSIS STM32F4xx device implementation</span></li></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.3.5 / 03-June-2016</span></h3><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b></p>
+
+
+
+
+            
+            
+            <ul style="margin-top: 0cm;" type="square"><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Update applications related to STemWin library to support STemWin 5.32 version</span></li></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.3.4 / 06-May-2016</span></h3>
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            
+            <ul style="list-style-type: square;"><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Add new define USE_SPI_CRC in stm32f4xx_hal_conf.h
+file for code cleanup when the CRC calculation is disabled</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Update applications using FreeRTOS to use TIM HW as
+time base source</span></li><li><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Update LwIP and PolarSSL applications to use the
+latest lwIP version</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">usbh_conf.c</span></li><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Remove adding delay in the HAL_HCD_Connect_Callback()</span></li></ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif; color: black;">Fix encoded JPEG file color and orientation for LibJPEG_Encoding application<br></span></li><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.3.3 / 29-January-2016</span></h3>
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            
+            <ul style="list-style-type: square;"><li class="MsoNormal" style="margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman',serif; color: black;"><span style="font-size: 10pt; font-family: Verdana,sans-serif;">stm32f4xx_hal_conf.h:</span></li><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US">Adjust the HSE Start-up Timeout
+      value: 100ms instead of 5s</span></li><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US">Add new define for the LSE start-up
+      Timeout: LSE_STARTUP_TIMEOUT</span></li></ul><li class="MsoNormal" style="color: black;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">USB_HOST\HID_Standalone:</span></li><ul><li class="MsoNormal" style="color: black;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US">Correct a misbehavior of the
+      backspace key&nbsp;</span></li></ul><li class="MsoNormal" style="color: black;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;">LwIP_TCP_Echo_Server:</span></li><ul><li class="MsoNormal" style="color: black;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,sans-serif;" lang="EN-US">Update to fix memory
+      management issue<o:p></o:p></span></li></ul></ul>
+
+
+
+
+
+<h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.3.2 / 13-November-2015</span></h3>
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            
+            <ul style="list-style-type: square;"><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt; font-weight: bold;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">system_stm32f4xx.c update to allow SDRAM &amp; SRAM config at the same time</span></span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt; font-weight: bold;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">Add 2 new&nbsp;applications: EEPROM_Emulation and IAP</span></span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt; font-weight: bold;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">Update to use&nbsp;slash "/" instead of backslash "\" in the include path to avoid the Unix compilation errors</span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;"></span><span style="font-weight: normal;"></span></span><br><span style="font-size: 10pt; font-family: Arial; color: white;"></span></li></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.3.1 / 09-October-2015</span></h3>
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span></p>
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            
+            <ul style="list-style-type: square;"><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt; font-weight: bold;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">Update SW4STM32 projects</span></span></li><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt; font-weight: bold;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">Fix in accordance with latest version of SW4STM32 toolchain</span></span></li></ul></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.3.0 / 14-August-2015</span></h3>
+
+
+
+
+
+
+
+            
+            
+            
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span></p>
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            <ul style="list-style-type: square;"><li style="margin-top: 4.5pt; margin-bottom: 4.5pt; color: black;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">Update to 
+use latest version of FreeRTOS, FatFs, STemWin and USB Libraries</span>
+</li><li style="margin-top: 4.5pt; margin-bottom: 4.5pt; color: black;" class="MsoNormal"><span style="font-family: Verdana; font-size: 10pt;">Optimize 
+Heap size in FreeRTOS based applications</span></li></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.2.2 / 25-May-2015</span></h3>
+
+
+
+
+
+
+
+            
+            
+            
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span></p>
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            <ul style="list-style-type: square;">
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">&nbsp;LwIP
+and PolarSSL Applications: fix issue of handling Ethernet Rx DMA
+descriptors (the application don't give the Rx descriptors ownership to
+DMA if it fails to allocate memory for a received packet)</span></span></li>
+            </ul>
+
+
+
+            <h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.2.1 / 13-March-2015</span></h3>
+
+
+
+
+
+
+
+            
+            
+            
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span></p>
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            <ul style="list-style-type: square;">
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt; font-weight: bold;"><span style="font-size: 10pt; font-family: Verdana; font-weight: normal;">All projects updated following changes in latest version of HAL and Middlewares</span></li>
+              <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt; font-weight: bold;"><span style="font-size: 10pt; font-family: Verdana; font-weight: normal;">Miscellaneous enhancements</span></li>
+            </ul>
+
+            <h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.2.0 / 26-December-2014</span></h3>
+
+
+
+
+
+
+            
+            
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span></p>
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            <ul style="list-style-type: square;">
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;"><span style="font-weight: normal;">All projects updated following changes in latest version of HAL and Middlewares</span></span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt; font-weight: bold;"><span style="font-size: 10pt; font-family: Verdana; font-weight: normal;">Miscellaneous enhancements<br>
+</span></li><li><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">PolarSSL
+applications and LwIP applications based on FreeRTOS: fix Ethernet
+reception deadlock issue, it was due to unavailable RX descriptors
+owned by DMA caused when receiving many frames with the same interrupt</span></span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">USB_Host projects: remove vbus_sensing_enable from USBH_LL_Init()</span></span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">Force </span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">initialization of </span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">all PPP Init structure's field before calling <span style="font-style: italic;">HAL_PPP_Init()</span> API</span></span></li><li><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">Fix the known limitations in previous V1.1.0 release</span></span></li><ul><li><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">PolarSSL applications: SSL_Server and SSL_Client doesn’t work correctly with MDK-ARM v5.10<br>
+      </span></li></ul><ul><li><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">LwIP applications: LwIP_IAP and LwIP_TFTP_Server doesn’t work correctly with EWARM v7.10</span></li></ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-weight: normal;">Validation using latest toolchains version: EWARM v7.30 and TrueSTUDIO v5.1.1<span style="font-weight: bold;"></span></span></span></li>
+            </ul>
+
+<h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.1.0 / 26-June-2014</span></h3>
+
+
+
+
+
+            
+            
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span></p>
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            <ul style="list-style-type: square;">
+              <li class="MsoNormal" style="text-align: justify;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Common update for all Applications</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li>
+              <ul>
+<li class="MsoNormal" style="text-align: justify;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Update EWARM startup
+      file for all projects to cope with compiler enhancement of the V7.x version</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li>
+              </ul>
+              <ul>
+<li class="MsoNormal" style="text-align: justify;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Update
+      “stm32f4xx_hal_conf.h” to be in line with HAL V1.1.0: add new defines LSI_VALUE, LSE_VALUE and
+      TICK_INT_PRIORITY</span></li>
+              </ul>
+              <ul>
+<li class="MsoNormal" style="text-align: justify;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Update “stm32f4xx_it.c”
+      : add the include of “main.h” before the “stm32f4xx_it.h”, in order to
+      provide access to CMSIS device file via “stm32f4xx_hal.h” </span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li>
+              </ul>
+              <ul>
+<li class="MsoNormal" style="text-align: justify;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Miscellaneous source code comments update</span></li>
+              </ul>
+</ul><ul style="list-style-type: square;"><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">&nbsp;</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Add reference to STM32Cube User Manuals in all readme.txt files:</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><o:p></o:p></span></li><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">UM1743 STM32CubeF4
+      Demonstration<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">UM1721 Developing
+      Applications on STM32Cube with FatFs<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">UM1722 Developing
+      Applications on STM32Cube with RTOS<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">UM1734 STM32Cube USB
+      Device library<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">UM1720 STM32Cube USB
+      Host library<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">UM1723 STM32Cube
+      PolarSSL example<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">UM1709 STM32Cube
+      Ethernet IAP example<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">UM1713 STM32Cube
+      interfacing with LwIP and examples</span></li></ul></ul><ul style="list-style-type: square;"><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">All <span style="font-weight: bold;">FreeRTOS</span> based applications: </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">update SysTick_Handler() ISR function in “stm32f4xx_it.c”
+     and update the value of INCLUDE_xTaskGetSchedulerState to 1 in “FreeRTOSConfig.h”. &nbsp;</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">This update is needed to avoid conflict between the HAL action on the SysTick when
+the FreeRTOS is used; we need to ensure that FreeRTOS scheduler has started before incrementing the tick.</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"> Below the updated applications:</span><span style="font-size: 10pt; font-family: Wingdings;" lang="EN-US"><span style=""></span></span></li><ul style="font-style: italic;"><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Wingdings;" lang="EN-US"><span style=""><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;</span></span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; font-style: italic;" lang="EN-US">FatFs\FatFs_RAMDisk_RTOS<o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">FatFs\FatFs_USBDisk_MultipleAccess_RTOS<o:p></o:p></span>&nbsp;<span style="font-size: 10pt; font-family: Wingdings;" lang="EN-US"><span style=""></span></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: Wingdings;" lang="EN-US"><span style=""><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;</span></span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">FatFs\FatFs_USBDisk_RTOS<o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">FatFs\FatFs_uSD_RTOS<o:p></o:p></span>&nbsp;<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">FreeRTOS\FreeRTOS_LowPower</span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">FreeRTOS\FreeRTOS_Mutexes</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 7pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><span style="">&nbsp;</span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">FreeRTOS\FreeRTOS_Queues</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">FreeRTOS\FreeRTOS_Semaphore</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">FreeRTOS_SemaphoreFromISR</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">FreeRTOS\FreeRTOS_ThreadCreation</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 7pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><span style="">&nbsp;</span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">FreeRTOS\FreeRTOS_Timers</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 7pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><span style="">&nbsp;</span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">LwIP\LwIP_HTTP_Server_Netconn_RTOS</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">LwIP\LwIP_HTTP_Server_Socket_RTOS</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">LwIP\LwIP_UDPTCP_Echo_Server_Netconn_RTOS</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">PolarSSL\SSL_Client</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">PolarSSL\SSL_Server</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">USB_Host\HID_RTOS</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style="font-style: italic;"><span style="font-size: 7pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><span style="">&nbsp;</span></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">USB_Host\MSC_RTOS</span></li></ul></ul><ul style="list-style-type: square;"><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Add <b>LibJPEG</b> applications</span><span style="background: white none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; font-size: 9pt; font-family: &quot;Helvetica&quot;,&quot;sans-serif&quot;; color: rgb(98, 98, 98);" lang="EN-US"> </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">for JPEG images decoding and encoding</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><ul><li class="MsoNormal" style=""><i><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">LibJPEG\LibJPEG_Decoding</span></i><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span></li><li class="MsoNormal" style=""><i><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">LibJPEG\LibJPEG_Encoding</span></i></li></ul></ul><ul style="list-style-type: square;"><li class="MsoNormal" style=""><b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">LwIP</span></b><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"> applications Update</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Add TrueSTUDIO workspaces for the
+      following LwIP applications :</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span><span style="font-size: 10pt; font-family: Wingdings;" lang="EN-US"></span></li></ul><ul><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Wingdings;" lang="EN-US"></span><span style="font-size: 7pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US">&nbsp;</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">LwIP_HTTP_Server_Netconn_RTOS</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span><span style="font-size: 10pt; font-family: Wingdings;" lang="EN-US"></span></li></ul><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Wingdings;" lang="EN-US"></span><span style="font-size: 7pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US">&nbsp;</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">LwIP_HTTP_Server_Socket_RTOS</span><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US"><o:p></o:p></span><span style="font-size: 10pt; font-family: Wingdings;" lang="EN-US"></span></li></ul><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: Wingdings;" lang="EN-US"></span><span style="font-size: 7pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;" lang="EN-US">&nbsp;</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">LwIP_IAP</span></li></ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Remove ARP timer initialization and callback from “ethernetif.c” file
+for the following applications using RTOS</span></li><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">LwIP_HTTP_Server_Netconn_RTOS<o:p></o:p></span>&nbsp;<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">LwIP_HTTP_Server_Socket_RTOS<o:p></o:p></span></li></ul><ul><li class="MsoNormal" style="">
+<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">LwIP_UDPTCP_Echo_Server_Netconn_RTOS</span></li></ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Add the management of timeout based on systick for polling process in “ethernetif.c” file for all LwIP applications</span></li><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Remove the MCO configuration (PA8) from HAL_ETH_MspInit() function for&nbsp;all
+LwIP applications</span></li></ul></ul><ul style="list-style-type: square;"><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><span style="font-weight: bold;">PolarSSL</span> applications Update</span></li><ul>
+                <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Add </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">the management of timeout based on systick for polling process in “ethernetif.c” file for all PolarSSL applications</span></li>
+</ul></ul><ul style="list-style-type: square;"><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><span style="font-weight: bold;">STemWin</span> applications Update</span></li><ul>
+                <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Update all STemWin applications following the use of new version V5.24b</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"> (update path and files names and miscellaneous update in the application sources)</span></li>
+<li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Update touch process in all applications, use different timer instead of SysTick for the BSP_Background task</span><br>
+<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li>
+                <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Add “stm32f4xx_hal_flash_ex.c” file in project tree for EWARM workspace</span></li>
+</ul></ul><ul style="list-style-type: square;"><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><span style="font-weight: bold;">USB_HOST</span> applications Update</span>&nbsp;<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Update the value of stack and heap in all workspaces<o:p></o:p></span>&nbsp;<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Following latest update in USB Host Library V3.1.0; in all RTOS based application, “usbh_conf.h” file has been added as follows:</span></li></ul></ul>
+
+<p class="MsoNormal" style="margin-left: 91.6pt;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><span style="font-style: italic;">#if (USBH_USE_OS == 1)</span><br style="font-style: italic;"><span style="font-style: italic;">&nbsp; #include "cmsis_os.h"</span><br style="font-style: italic;"><span style="font-style: italic;">&nbsp; #define USBH_PROCESS_PRIO osPriorityNormal</span><br style="font-style: italic;"><span style="font-style: italic;">&nbsp; #define USBH_PROCESS_STACK_SIZE (8 * configMINIMAL_STACK_SIZE)</span><br style="font-style: italic;"><span style="font-style: italic;">
+#endif</span><o:p></o:p></span></p>
+<ul type="square"><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><span style="font-weight: bold;">MTP_Standalone</span> application <o:p></o:p></span>&nbsp;<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Update the readme to clarify the version of supported OS and how to
+power up the board/smartphone for correct operation<o:p></o:p></span></li><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Uses the buffer size in byte instead of half-word when
+calling the BSP_AUDIO_OUT_Play() function</span>&nbsp;<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li></ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><span style="font-weight: bold;">MSC_RTOS</span> application <o:p></o:p></span>&nbsp;<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">&nbsp;In “menu.c” file: increase the stack size of
+"Menu_Thread" task to fix hardfault issue detected w/ TrueSTUDIO</span></li></ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><span style="font-weight: bold;">HID_Standalone</span> application<o:p></o:p></span>&nbsp;<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">In “usbd_conf.c” file: add a delay in connection callback to avoid
+connection issue when using old mouse</span></li></ul></ul></ul><ul type="square"><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><span style="font-weight: bold;">USB_DEVICE</span> applications Update</span>&nbsp;<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Update the value of stack and heap in all workspaces<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Following latest change in HAL V1.1.0, add “stm32f4xx_hal_pcd_ex.c” file in the files list of all projects</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"> <o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Update done in all applications</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><ul>
+                  <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">All the processes using PCD handle are moved to” usbd_conf.c”<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li>
+                  <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Align with latest change in HAL Delay management: remove SysTick IT
+priority setting and set instead TICK_INT_PRIORITY to 0 in “stm32f4xx_hal_conf.h”<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li>
+                  <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Use device unique number to compute the USB serial number string
+descriptor<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li>
+                  <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">In “main.c” file : when calling USBD_RegisterClass() function use
+USBD_XXX_CLASS instead &amp;USBD_XXX (XXX refer to the name of Class)</span></li>
+<li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span><br>
+</li></ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><span style="font-weight: bold;">CustomHID_Standalone</span> application <o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Update following change done in USB Device Library V2.1.0</span><br>
+<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li>
+                  <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Add Custom HID interface file to handle BSP and user processes<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li>
+                  <li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Remove Custom HID hardware configuration from” main.c” file and
+handle it in the interface file</span></li>
+<li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span><br>
+</li></ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><span style="font-weight: bold;">HID_Standalone</span> application<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Move EXTI callback function to “usbd_conf.c” file<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">In MspInit() function; remove wakeup line configuration, since it’s
+done in latest version of HAL V1.1.0 drivers</span></li></ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"><span style="font-weight: bold;">AUDIO_Standalone</span>&nbsp;application<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"></span></li><ul><ul><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Add &nbsp;LED initialization after SystemClock_Config() function</span></li><li class="MsoNormal" style=""><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US">Uses the buffer size in byte instead of half-word when
+calling the BSP_AUDIO_OUT_Play() function</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;" lang="EN-US"> <br>
+</span></li></ul></ul></ul></ul><br>
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 23px; width: 868px;"><b><u><span style="font-size: 10pt; color: black; font-family: Verdana;">Known 
+Limitations<br>
+</span></u></b></p>
+
+
+
+
+            
+            
+            
+            
+            <ul style="list-style-type: square;">
+<li><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">PolarSSL applications<br>
+</span></li><ul><li><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">SSL_Server and SSL_Client doesn’t work correctly with MDK-ARM v5.10, the provided projects works only with MDK-ARM v4.7</span></li></ul><li><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">LwIP applications</span></li><ul><li><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">LwIP_IAP and LwIP_TFTP_Server doesn’t work correctly with EWARM v7.10, the provided projects works only with EWARM v6.7</span></li></ul>
+            </ul>
+<h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.0.1 / 26-February-2014</span></h3>
+
+
+
+
+
+            
+            
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span></p>
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            <ul style="list-style-type: square;">
+              <li><span style="font-size: 10pt; font-family: Verdana;">All LwIP and PolarSSL applications, readme.txt: add reference to the SW tools needed to run each application</span><br>
+<span style="font-size: 10pt; font-family: Verdana;"></span></li>
+              <li><span style="font-size: 10pt; font-family: Verdana;">USB_Device\CustomHID_Standalone: disable USB HS DMA mode<br>
+  </span></li>
+              <li><span style="font-size: 10pt; font-family: Verdana;">USB_Host\MTP_Standalone: add project for MDK-ARM toolchain</span></li>
+            </ul>
+            <br>
+
+            
+            <h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.0.0 / 18-February-2014</span></h3>
+
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b><u><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">Main Changes</span></u></b><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><o:p></o:p></span></p>
+
+
+
+
+            
+            
+            <ul style="margin-top: 0cm;" type="square">
+              <li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">First official release</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li></ul><h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><a name="License"></a><span style="font-size: 12pt; color: white;">License<o:p></o:p></span></h2>
+            <div style="text-align: justify;">
+            <div style="text-align: justify;"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;"><span style="font-family: Verdana;">Redistribution</span> and use in source and binary 
+forms, with or without modification, are permitted, provided that the following 
+conditions are met:</span><br>
+<ol><li><font size="-1"><span style="font-size: 10pt; font-family: Verdana; color: black;">Redistribution of 
+source code must retain the above copyright notice, this list of conditions and 
+the following disclaimer.</span></font>
+</li><li><font size="-1"><span style="font-family: Verdana;">Redistributions in binary 
+form must reproduce the above copyright notice, this list of conditions and the 
+following disclaimer in the documentation and/or other materials provided with 
+the distribution.</span></font>
+</li><li><font size="-1"><span style="font-family: Verdana;">Neither the name of 
+STMicroelectronics nor the names of other contributors to this software may be 
+used to endorse or promote products derived from this software without specific 
+written permission.</span></font>
+</li><li><font size="-1"><span style="font-family: Verdana;">This software, including 
+modifications and/or derivative works of this software, must execute solely and 
+exclusively on microcontroller or microprocessor devices manufactured by or for 
+STMicroelectronics.</span></font>
+</li><li><span style="font-family: Verdana;"><font size="-1">Redistribution and use of 
+this software other than as permitted under this license is void and will 
+automatically terminate your rights under this license</font>. 
+</span></li></ol><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;"><br>THIS 
+SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS" AND ANY 
+EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY RIGHTS ARE DISCLAIMED TO 
+THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT SHALL STMICROELECTRONICS OR 
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, 
+OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING&nbsp; NEGLIGENCE OR OTHERWISE) ARISING 
+IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+OF SUCH DAMAGE.</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;"></span><font size="-1"><span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></font>
+            
+            </div>
+<span style="font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></div>
+<span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;"></span>
+    <div class="MsoNormal" style="text-align: center;" align="center"><span style="color: black;">
+    <hr align="center" size="2" width="100%">
+    </span></div>
+    <p class="MsoNormal" style="margin: 4.5pt 0in 4.5pt 0.25in; text-align: center;" align="center"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;; color: black;">For
+    complete documentation on </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">STM32<span style="color: black;">
+    Microcontrollers visit </span><u><span style="color: blue;"><a href="http://www.st.com/internet/mcu/family/141.jsp" target="_blank">www.st.com/STM32</a></span></u></span><span style="color: black;"><o:p></o:p></span></p>
+    </td>
+   </tr>
+  </tbody></table>
+  <p class="MsoNormal"><span style="font-size: 10pt;"><o:p></o:p></span></p>
+  </td>
+ </tr>
+</tbody></table>
+
+</div>
+
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body></html>
