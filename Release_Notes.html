@@ -65,10 +65,63 @@
 <div class="col-sm-12 col-lg-8">
 <h1 id="update-history">Update History</h1>
 <div class="collapse">
-<input type="checkbox" id="collapse-section24_1" checked aria-hidden="true"> <label for="collapse-section24_1" aria-hidden="true"><strong>V1.24.1 / 12-April-2019</strong></label>
+<input type="checkbox" id="collapse-section24_2" checked aria-hidden="true"> <label for="collapse-section24_2" aria-hidden="true"><strong>V1.24.2 / 06-December-2019</strong></label>
 <div>
 <h1 id="maintenance-release">Maintenance release</h1>
 <h2 id="main-changes">Main Changes</h2>
+<ul>
+<li><p><strong>Patch release to fix known defects and enhancements implementation</strong></p></li>
+<li><strong>HAL</strong>
+<ul>
+<li>Update GPIO initialization sequence to avoid unwanted pulse on GPIO Pin’s</li>
+<li>General update to enhance HAL EXTI driver robustness</li>
+<li>MISRAC-2012 rule R.5.1 (identifiers shall be distinct in the first 31 characters) deployed on HAL HASH diriver</li>
+<li>Rename the defined MMC card capacity type to be more meaningful</li>
+<li>Implement SDIO hardware flow control Errata Sheet limitation</li>
+<li>Fix USART baudrate calculation error for clock higher than 172Mhz</li>
+<li>Update HAL_I2C_Init() API to force software reset before setting new I2C configuration</li>
+<li>Update I2C_DMAXferCplt(), I2C_DMAError() and I2C_DMAAbort() APIs to fix hardfault issue when hdmatx and hdmarx parameters in i2c handle aren’t initialized (NULL pointer).</li>
+</ul></li>
+<li><strong>CMSIS</strong>
+<ul>
+<li>Update stm32f446xx.h file to support HW flow control on UART4 and UART5 instances</li>
+<li>Update SystemInit() API in system_stm32f4xx.c file to don’t reset RCC registers to its reset values</li>
+</ul></li>
+<li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
+</ul>
+<h2 id="contents">Contents</h2>
+<table>
+<caption>Drivers</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">Version</th>
+<th style="text-align: center;">Licence</th>
+<th style="text-align: center;">Release note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>STM32F4xx CMSIS</strong></td>
+<td style="text-align: center;"><strong>V2.6.4</strong></td>
+<td style="text-align: center;"><a href="https://opensource.org/licenses/Apache-2.0">Apache License 2.0</a></td>
+<td style="text-align: center;"><a href="Drivers/CMSIS/Device/ST/STM32F4xx/Release_Notes.html">release notes</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>STM32F4xx HAL</strong></td>
+<td style="text-align: center;"><strong>V1.7.7</strong></td>
+<td style="text-align: center;"><a href="https://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause</a></td>
+<td style="text-align: center;"><a href="Drivers/STM32F4xx_HAL_Driver/Release_Notes.html">release notes</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section24_1" aria-hidden="true"> <label for="collapse-section24_1" aria-hidden="true"><strong>V1.24.1 / 12-April-2019</strong></label>
+<div>
+<h1 id="maintenance-release-1">Maintenance release</h1>
+<h2 id="main-changes-1">Main Changes</h2>
 <ul>
 <li><strong>Patch release to fix mainly the I2C send break issue with IT processes API’s</strong></li>
 <li><strong>HAL I2C</strong> update
@@ -100,7 +153,7 @@
 <li>Software Quality improvement with a fix ofCodeSonar warning on PCD_Port_IRQHandler() and HCD_Port_IRQHandler()interrupt handlers</li>
 </ul></li>
 </ul>
-<h2 id="contents">Contents</h2>
+<h2 id="contents-1">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -123,10 +176,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section24" checked aria-hidden="true"> <label for="collapse-section24" aria-hidden="true"><strong>V1.24.0 / 08-February-2019</strong></label>
+<input type="checkbox" id="collapse-section24" aria-hidden="true"> <label for="collapse-section24" aria-hidden="true"><strong>V1.24.0 / 08-February-2019</strong></label>
 <div>
-<h1 id="maintenance-release-1">Maintenance release</h1>
-<h2 id="main-changes-1">Main Changes</h2>
+<h1 id="maintenance-release-2">Maintenance release</h1>
+<h2 id="main-changes-2">Main Changes</h2>
 <ul>
 <li><strong>HAL</strong>
 <ul>
@@ -209,7 +262,7 @@
 </ul></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-1">Contents</h2>
+<h2 id="contents-2">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -641,10 +694,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section23" checked aria-hidden="true"> <label for="collapse-section23" aria-hidden="true"><strong>V1.23.0 / 23-November-2018</strong></label>
+<input type="checkbox" id="collapse-section23" aria-hidden="true"> <label for="collapse-section23" aria-hidden="true"><strong>V1.23.0 / 23-November-2018</strong></label>
 <div>
-<h1 id="maintenance-release-2">Maintenance release</h1>
-<h2 id="main-changes-2">Main Changes</h2>
+<h1 id="maintenance-release-3">Maintenance release</h1>
+<h2 id="main-changes-3">Main Changes</h2>
 <ul>
 <li><strong>Maintenance release:</strong>
 <ul>
@@ -654,10 +707,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section22" checked aria-hidden="true"> <label for="collapse-section22" aria-hidden="true"><strong>V1.22.0 / 26-October-2018</strong></label>
+<input type="checkbox" id="collapse-section22" aria-hidden="true"> <label for="collapse-section22" aria-hidden="true"><strong>V1.22.0 / 26-October-2018</strong></label>
 <div>
-<h1 id="maintenance-release-3">Maintenance release</h1>
-<h2 id="main-changes-3">Main Changes</h2>
+<h1 id="maintenance-release-4">Maintenance release</h1>
+<h2 id="main-changes-4">Main Changes</h2>
 <ul>
 <li>Thanks to the acquisition of <strong>Draupner Graphics A/S</strong>, ST is extending the STM32 ecosystem with advanced and easy to use graphic software solution enabling stunning GUI additions to embedded devices. <strong>TouchGFX</strong> solution is now fully part of STM32CubeF4.</li>
 <li><p>TouchGFX examples and demonstrations can be accessed directly through the TouchGFX Designer tool. Here you simply create a new project, select the appropriate ST board in the Application Template section and select whatever demonstration or example you want in the UI Template selector. After this you will have a TouchGFX application ready to compile and flash to the selected ST board. More information are available <a href="https://touchgfx.zendesk.com/hc/en-us/articles/206159259-Step-1-Installation-of-TouchGFX">here</a></p></li>
@@ -684,7 +737,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-2">Contents</h2>
+<h2 id="contents-3">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -1120,10 +1173,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section21" checked aria-hidden="true"> <label for="collapse-section21" aria-hidden="true"><strong>V1.21.0 / 23-February-2018</strong></label>
+<input type="checkbox" id="collapse-section21" aria-hidden="true"> <label for="collapse-section21" aria-hidden="true"><strong>V1.21.0 / 23-February-2018</strong></label>
 <div>
-<h1 id="maintenance-release-4">Maintenance release</h1>
-<h2 id="main-changes-4">Main Changes</h2>
+<h1 id="maintenance-release-5">Maintenance release</h1>
+<h2 id="main-changes-5">Main Changes</h2>
 <ul>
 <li><p>General updates to fix known defects and enhancements implementation</p></li>
 <li><strong>HAL</strong>
@@ -1153,7 +1206,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-3">Contents</h2>
+<h2 id="contents-4">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -1580,14 +1633,14 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section18" checked aria-hidden="true"> <label for="collapse-section18" aria-hidden="true"><strong>V1.18.0 / 07-November-2017</strong></label>
+<input type="checkbox" id="collapse-section18" aria-hidden="true"> <label for="collapse-section18" aria-hidden="true"><strong>V1.18.0 / 07-November-2017</strong></label>
 <div>
-<h1 id="maintenance-release-5">Maintenance release</h1>
-<h2 id="main-changes-5">Main Changes</h2>
+<h1 id="maintenance-release-6">Maintenance release</h1>
+<h2 id="main-changes-6">Main Changes</h2>
 <ul>
 <li>Package Clean-up: remove unwanted project folders</li>
 </ul>
-<h2 id="contents-4">Contents</h2>
+<h2 id="contents-5">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -2014,10 +2067,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section17" checked aria-hidden="true"> <label for="collapse-section17" aria-hidden="true"><strong>V1.17.0 / 06-October-2017</strong></label>
+<input type="checkbox" id="collapse-section17" aria-hidden="true"> <label for="collapse-section17" aria-hidden="true"><strong>V1.17.0 / 06-October-2017</strong></label>
 <div>
-<h1 id="maintenance-release-6">Maintenance release</h1>
-<h2 id="main-changes-6">Main Changes</h2>
+<h1 id="maintenance-release-7">Maintenance release</h1>
+<h2 id="main-changes-7">Main Changes</h2>
 <ul>
 <li>General updates to be compliant with Linux platforms</li>
 <li>General update to fix known defects and several implementations enhancement</li>
@@ -2076,7 +2129,7 @@
 </ul></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-5">Contents</h2>
+<h2 id="contents-6">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -2503,10 +2556,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section16" checked aria-hidden="true"> <label for="collapse-section16" aria-hidden="true"><strong>V1.16.0 / 14-April-2017</strong></label>
+<input type="checkbox" id="collapse-section16" aria-hidden="true"> <label for="collapse-section16" aria-hidden="true"><strong>V1.16.0 / 14-April-2017</strong></label>
 <div>
-<h1 id="maintenance-release-7">Maintenance release</h1>
-<h2 id="main-changes-7">Main Changes</h2>
+<h1 id="maintenance-release-8">Maintenance release</h1>
+<h2 id="main-changes-8">Main Changes</h2>
 <ul>
 <li><p>General update to fix known defects and several implementations enhancement</p></li>
 <li><strong>HAL</strong>
@@ -2539,7 +2592,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-6">Contents</h2>
+<h2 id="contents-7">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -2956,10 +3009,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section15" checked aria-hidden="true"> <label for="collapse-section15" aria-hidden="true"><strong>V1.15.0 / 17-February-2017</strong></label>
+<input type="checkbox" id="collapse-section15" aria-hidden="true"> <label for="collapse-section15" aria-hidden="true"><strong>V1.15.0 / 17-February-2017</strong></label>
 <div>
-<h1 id="maintenance-release-8">Maintenance release</h1>
-<h2 id="main-changes-8">Main Changes</h2>
+<h1 id="maintenance-release-9">Maintenance release</h1>
+<h2 id="main-changes-9">Main Changes</h2>
 <ul>
 <li>Add the support of the STM32F413H-Discovery board
 <ul>
@@ -3034,7 +3087,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-7">Contents</h2>
+<h2 id="contents-8">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -3451,10 +3504,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section14" checked aria-hidden="true"> <label for="collapse-section14" aria-hidden="true"><strong>V1.14.0 / 04-November-2016</strong></label>
+<input type="checkbox" id="collapse-section14" aria-hidden="true"> <label for="collapse-section14" aria-hidden="true"><strong>V1.14.0 / 04-November-2016</strong></label>
 <div>
-<h1 id="maintenance-release-9">Maintenance release</h1>
-<h2 id="main-changes-9">Main Changes</h2>
+<h1 id="maintenance-release-10">Maintenance release</h1>
+<h2 id="main-changes-10">Main Changes</h2>
 <ul>
 <li>Official release to add the support of <strong>STM32F413xx and STM32F423xx</strong> devices</li>
 <li><p>Fix known defects and several implementation enhancement</p></li>
@@ -3504,7 +3557,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-8">Contents</h2>
+<h2 id="contents-9">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -3921,14 +3974,14 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section13_1" checked aria-hidden="true"> <label for="collapse-section13_1" aria-hidden="true"><strong>V1.13.1 / 22-September-2016</strong></label>
+<input type="checkbox" id="collapse-section13_1" aria-hidden="true"> <label for="collapse-section13_1" aria-hidden="true"><strong>V1.13.1 / 22-September-2016</strong></label>
 <div>
-<h1 id="maintenance-release-10">Maintenance release</h1>
-<h2 id="main-changes-10">Main Changes</h2>
+<h1 id="maintenance-release-11">Maintenance release</h1>
+<h2 id="main-changes-11">Main Changes</h2>
 <ul>
 <li><strong>Patch release to fix issues in I2C/FMPI2C HAL drivers</strong></li>
 </ul>
-<h2 id="contents-9">Contents</h2>
+<h2 id="contents-10">Contents</h2>
 <table>
 <thead>
 <tr class="header">
@@ -3950,10 +4003,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section13" checked aria-hidden="true"> <label for="collapse-section13" aria-hidden="true"><strong>V1.13.0 / 01-July-2016</strong></label>
+<input type="checkbox" id="collapse-section13" aria-hidden="true"> <label for="collapse-section13" aria-hidden="true"><strong>V1.13.0 / 01-July-2016</strong></label>
 <div>
-<h1 id="maintenance-release-11">Maintenance release</h1>
-<h2 id="main-changes-11">Main Changes</h2>
+<h1 id="maintenance-release-12">Maintenance release</h1>
+<h2 id="main-changes-12">Main Changes</h2>
 <ul>
 <li>Fix known defects and enhancements implementation</li>
 <li><strong>HAL</strong>
@@ -4000,7 +4053,7 @@
 </ul></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-10">Contents</h2>
+<h2 id="contents-11">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -4415,10 +4468,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section12" checked aria-hidden="true"> <label for="collapse-section12" aria-hidden="true"><strong>V1.12.0 / 01-July-2016</strong></label>
+<input type="checkbox" id="collapse-section12" aria-hidden="true"> <label for="collapse-section12" aria-hidden="true"><strong>V1.12.0 / 01-July-2016</strong></label>
 <div>
-<h1 id="maintenance-release-12">Maintenance release</h1>
-<h2 id="main-changes-12">Main Changes</h2>
+<h1 id="maintenance-release-13">Maintenance release</h1>
+<h2 id="main-changes-13">Main Changes</h2>
 <ul>
 <li>Official release to add the support of <strong>STM32F412cx, STM32F412rx, STM32F412vx and STM32F412zx</strong> devices</li>
 <li><p>Fix known defects and several implementation enhancement</p></li>
@@ -4459,7 +4512,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-11">Contents</h2>
+<h2 id="contents-12">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -4873,10 +4926,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section11" checked aria-hidden="true"> <label for="collapse-section11" aria-hidden="true"><strong>V1.11.0 / 29-January-2016</strong></label>
+<input type="checkbox" id="collapse-section11" aria-hidden="true"> <label for="collapse-section11" aria-hidden="true"><strong>V1.11.0 / 29-January-2016</strong></label>
 <div>
-<h1 id="maintenance-release-13">Maintenance release</h1>
-<h2 id="main-changes-13">Main Changes</h2>
+<h1 id="maintenance-release-14">Maintenance release</h1>
+<h2 id="main-changes-14">Main Changes</h2>
 <ul>
 <li><strong>Fix known defects and enhancements implementation</strong></li>
 <li><strong>HAL</strong>
@@ -4913,7 +4966,7 @@
 </ul></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-12">Contents</h2>
+<h2 id="contents-13">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -5326,14 +5379,14 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section10_1" checked aria-hidden="true"> <label for="collapse-section10_1" aria-hidden="true"><strong>V1.10.1 / 11-December-2015</strong></label>
+<input type="checkbox" id="collapse-section10_1" aria-hidden="true"> <label for="collapse-section10_1" aria-hidden="true"><strong>V1.10.1 / 11-December-2015</strong></label>
 <div>
-<h1 id="maintenance-release-14">Maintenance release</h1>
-<h2 id="main-changes-14">Main Changes</h2>
+<h1 id="maintenance-release-15">Maintenance release</h1>
+<h2 id="main-changes-15">Main Changes</h2>
 <ul>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-13">Contents</h2>
+<h2 id="contents-14">Contents</h2>
 <table>
 <thead>
 <tr class="header">
@@ -5355,10 +5408,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section10" checked aria-hidden="true"> <label for="collapse-section10" aria-hidden="true"><strong>V1.10.0 / 13-November-2015</strong></label>
+<input type="checkbox" id="collapse-section10" aria-hidden="true"> <label for="collapse-section10" aria-hidden="true"><strong>V1.10.0 / 13-November-2015</strong></label>
 <div>
-<h1 id="maintenance-release-15">Maintenance release</h1>
-<h2 id="main-changes-15">Main Changes</h2>
+<h1 id="maintenance-release-16">Maintenance release</h1>
+<h2 id="main-changes-16">Main Changes</h2>
 <ul>
 <li><strong>Support new boards: STM32F411E-Discovery, STM32F446ZE NUCLEO144 and STM32F429ZI NUCLEO144</strong></li>
 <li><p><strong>Fix known defects and enhancements implementation</strong></p></li>
@@ -5394,7 +5447,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-14">Contents</h2>
+<h2 id="contents-15">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -5795,10 +5848,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section9" checked aria-hidden="true"> <label for="collapse-section9" aria-hidden="true"><strong>V1.9.0 / 09-October-2015</strong></label>
+<input type="checkbox" id="collapse-section9" aria-hidden="true"> <label for="collapse-section9" aria-hidden="true"><strong>V1.9.0 / 09-October-2015</strong></label>
 <div>
-<h1 id="maintenance-release-16">Maintenance release</h1>
-<h2 id="main-changes-16">Main Changes</h2>
+<h1 id="maintenance-release-17">Maintenance release</h1>
+<h2 id="main-changes-17">Main Changes</h2>
 <ul>
 <li>Maintenance release to fix known defects and enhancements implementation</li>
 <li><strong>HAL</strong>
@@ -5840,7 +5893,7 @@
 </ul></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-15">Contents</h2>
+<h2 id="contents-16">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -6232,10 +6285,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section8" checked aria-hidden="true"> <label for="collapse-section8" aria-hidden="true"><strong>V1.8.0 / 14-August-2015</strong></label>
+<input type="checkbox" id="collapse-section8" aria-hidden="true"> <label for="collapse-section8" aria-hidden="true"><strong>V1.8.0 / 14-August-2015</strong></label>
 <div>
-<h1 id="maintenance-release-17">Maintenance release</h1>
-<h2 id="main-changes-17">Main Changes</h2>
+<h1 id="maintenance-release-18">Maintenance release</h1>
+<h2 id="main-changes-18">Main Changes</h2>
 <ul>
 <li><strong>Official release to support STM32F469xx, STM32F479xx, STM32F410Cx, STM32F410Rx</strong> and <strong>STM32F410Tx devices</strong></li>
 <li><p><strong>Fix known defects and several enhancements implementation</strong></p></li>
@@ -6274,7 +6327,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware components</p></li>
 </ul>
-<h2 id="contents-16">Contents</h2>
+<h2 id="contents-17">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -6669,10 +6722,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section7" checked aria-hidden="true"> <label for="collapse-section7" aria-hidden="true"><strong>V1.7.0 / 01-July-2015</strong></label>
+<input type="checkbox" id="collapse-section7" aria-hidden="true"> <label for="collapse-section7" aria-hidden="true"><strong>V1.7.0 / 01-July-2015</strong></label>
 <div>
-<h1 id="maintenance-release-18">Maintenance release</h1>
-<h2 id="main-changes-18">Main Changes</h2>
+<h1 id="maintenance-release-19">Maintenance release</h1>
+<h2 id="main-changes-19">Main Changes</h2>
 <ul>
 <li><strong>Official release to support STM32446E-Nucleo board</strong></li>
 <li><p><strong>Maintenance release to fix known defects</strong></p></li>
@@ -6709,7 +6762,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware components</p></li>
 </ul>
-<h2 id="contents-17">Contents</h2>
+<h2 id="contents-18">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -7126,10 +7179,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section6" checked aria-hidden="true"> <label for="collapse-section6" aria-hidden="true"><strong>V1.6.0 / 25-May-2015</strong></label>
+<input type="checkbox" id="collapse-section6" aria-hidden="true"> <label for="collapse-section6" aria-hidden="true"><strong>V1.6.0 / 25-May-2015</strong></label>
 <div>
-<h1 id="maintenance-release-19">Maintenance release</h1>
-<h2 id="main-changes-19">Main Changes</h2>
+<h1 id="maintenance-release-20">Maintenance release</h1>
+<h2 id="main-changes-20">Main Changes</h2>
 <ul>
 <li><strong>Add support of System Workbench for STM32 (SW4STM32) toolchain</strong></li>
 <li><p><strong>Maintenance release to fix known defects</strong></p></li>
@@ -7169,7 +7222,7 @@
 </ul></li>
 <li><p>Fix compile issue in some projects (9 in total), mainly due to bad project settings</p></li>
 </ul>
-<h2 id="contents-18">Contents</h2>
+<h2 id="contents-19">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -7577,10 +7630,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section5" checked aria-hidden="true"> <label for="collapse-section5" aria-hidden="true"><strong>V1.5.0 / 25-May-2015</strong></label>
+<input type="checkbox" id="collapse-section5" aria-hidden="true"> <label for="collapse-section5" aria-hidden="true"><strong>V1.5.0 / 25-May-2015</strong></label>
 <div>
-<h1 id="maintenance-release-20">Maintenance release</h1>
-<h2 id="main-changes-20">Main Changes</h2>
+<h1 id="maintenance-release-21">Maintenance release</h1>
+<h2 id="main-changes-21">Main Changes</h2>
 <ul>
 <li><strong>Official release to support STM32F446xx devices</strong></li>
 <li><p><strong>Fix known defects and several enhancements implementation</strong></p></li>
@@ -7618,7 +7671,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware components</p></li>
 </ul>
-<h2 id="contents-19">Contents</h2>
+<h2 id="contents-20">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -8025,10 +8078,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section4" checked aria-hidden="true"> <label for="collapse-section4" aria-hidden="true"><strong>V1.4.0 / 25-May-2015</strong></label>
+<input type="checkbox" id="collapse-section4" aria-hidden="true"> <label for="collapse-section4" aria-hidden="true"><strong>V1.4.0 / 25-May-2015</strong></label>
 <div>
-<h1 id="maintenance-release-21">Maintenance release</h1>
-<h2 id="main-changes-21">Main Changes</h2>
+<h1 id="maintenance-release-22">Maintenance release</h1>
+<h2 id="main-changes-22">Main Changes</h2>
 <ul>
 <li><strong>Maintenance release to fix known defects and several enhancements implementation</strong></li>
 <li><strong>HAL</strong>
@@ -8077,7 +8130,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware components</p></li>
 </ul>
-<h2 id="contents-20">Contents</h2>
+<h2 id="contents-21">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -8475,10 +8528,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section3" checked aria-hidden="true"> <label for="collapse-section3" aria-hidden="true"><strong>V1.3.0 / 26-June-2014</strong></label>
+<input type="checkbox" id="collapse-section3" aria-hidden="true"> <label for="collapse-section3" aria-hidden="true"><strong>V1.3.0 / 26-June-2014</strong></label>
 <div>
-<h1 id="maintenance-release-22">Maintenance release</h1>
-<h2 id="main-changes-22">Main Changes</h2>
+<h1 id="maintenance-release-23">Maintenance release</h1>
+<h2 id="main-changes-23">Main Changes</h2>
 <ul>
 <li><p><strong>Full features release, containing all projects sources for the supported boards</strong></p></li>
 <li><strong>Projects</strong>
@@ -8498,7 +8551,7 @@
 </ul></li>
 <li><p>Use STM32CubeUpdater.exe utility V4.2.0</p></li>
 </ul>
-<h2 id="contents-21">Contents</h2>
+<h2 id="contents-22">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -8884,10 +8937,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section2" checked aria-hidden="true"> <label for="collapse-section2" aria-hidden="true"><strong>V1.2.0 / 19-June-2014</strong></label>
+<input type="checkbox" id="collapse-section2" aria-hidden="true"> <label for="collapse-section2" aria-hidden="true"><strong>V1.2.0 / 19-June-2014</strong></label>
 <div>
-<h1 id="maintenance-release-23">Maintenance release</h1>
-<h2 id="main-changes-23">Main Changes</h2>
+<h1 id="maintenance-release-24">Maintenance release</h1>
+<h2 id="main-changes-24">Main Changes</h2>
 <ul>
 <li><strong>Patch release for STM32CubeF4, adding support of STM32F411xE devices with several enhancements and bugs fix</strong>
 <ul>
@@ -8909,7 +8962,7 @@
 </ul></li>
 <li>Note: for the complete list of changes, please refer to the release notes of each Firmware component</li>
 </ul>
-<h2 id="contents-22">Contents</h2>
+<h2 id="contents-23">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -9274,10 +9327,10 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section1_1" checked aria-hidden="true"> <label for="collapse-section1_1" aria-hidden="true"><strong>V1.1.0 / 26-February-2014</strong></label>
+<input type="checkbox" id="collapse-section1_1" aria-hidden="true"> <label for="collapse-section1_1" aria-hidden="true"><strong>V1.1.0 / 26-February-2014</strong></label>
 <div>
-<h1 id="maintenance-release-24">Maintenance release</h1>
-<h2 id="main-changes-24">Main Changes</h2>
+<h1 id="maintenance-release-25">Maintenance release</h1>
+<h2 id="main-changes-25">Main Changes</h2>
 <ul>
 <li><strong>Add sources of STM324x9I-EVAL (both references MB1046 and MB1063), STM324xG-EVAL and STM32F429I-Discovery Demonstration</strong> (only for EWARM and MDK-ARM)
 <ul>
@@ -9287,7 +9340,7 @@
 <li>Miscellaneous update on Examples, Applications, Demonstrations and Templates projects for some boards; for more details refer to the associated release notes</li>
 <li>Minor update in STM324x9I-EVAL, STM324xG-EVAL and STM32F429I-Discovery uSD and EEPROM BSP drivers</li>
 </ul>
-<h2 id="contents-23">Contents</h2>
+<h2 id="contents-24">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -9636,14 +9689,14 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section1" checked aria-hidden="true"> <label for="collapse-section1" aria-hidden="true"><strong>V1.0.0 / 18-February-2014</strong></label>
+<input type="checkbox" id="collapse-section1" aria-hidden="true"> <label for="collapse-section1" aria-hidden="true"><strong>V1.0.0 / 18-February-2014</strong></label>
 <div>
-<h1 id="maintenance-release-25">Maintenance release</h1>
-<h2 id="main-changes-25">Main Changes</h2>
+<h1 id="maintenance-release-26">Maintenance release</h1>
+<h2 id="main-changes-26">Main Changes</h2>
 <ul>
 <li><strong>First official release of STM32CubeF4 (STM32Cube for STM32F4 Series)</strong></li>
 </ul>
-<h2 id="contents-24">Contents</h2>
+<h2 id="contents-25">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
