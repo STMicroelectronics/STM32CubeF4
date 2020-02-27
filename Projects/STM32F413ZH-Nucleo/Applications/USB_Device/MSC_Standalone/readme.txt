@@ -83,7 +83,12 @@ LED2 and LED3 toggle in a forever loop.
       
 For more details about the STM32Cube USB Device library, please refer to UM1734 
 "STM32Cube USB Device library".
-      
+     
+@par Keywords
+
+Connectivity, USB Host, MSC, Mass Storage, Full Speed, High Speed, BOT, SCSI, Removable drive, FatFs,
+File system, Write, Read, Format
+ 
 @par Directory contents
 
   - USB_Device/MSC_Standalone/Src/main.c                  Main program

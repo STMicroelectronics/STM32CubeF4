@@ -86,7 +86,7 @@
 /* UserID and Password definition *********************************************/
 #define USERID       "user"
 #define PASSWORD     "stm32"
-#define LOGIN_SIZE   (20+ sizeof(USERID) + sizeof(PASSWORD))
+#define LOGIN_SIZE   (17+ sizeof(USERID) + sizeof(PASSWORD))
  
 /* Static IP Address definition ***********************************************/
 #define IP_ADDR0   (uint8_t) 192

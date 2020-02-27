@@ -86,6 +86,9 @@ position of the transmitted data.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, UART, Baud rate, RS-232, Full-duplex, DMA, Parity, Stop bit, Transmission, Reception,
 
 @par Directory contents 
 
@@ -108,13 +111,13 @@ position of the transmitted data.
   - STM32F4-Discovery RevB & RevC set-up
     - Connect a wire between 1st board PA2 pin (UART Tx) to 2nd board PA3 pin (UART Rx)
     - Connect a wire between 1st board PA3 pin (UART Rx) to 2nd board PA2 pin (UART Tx)
-
+    - Connect 1st board GND to 2nd Board GND 
 
 @par How to use it ? 
 
 In order to make the program work, you must do the following :
 - Open your preferred toolchain 
- - Rebuild all files and load your image into target memory
+- Rebuild all files and load your image into target memory
 - Run the example
 
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>

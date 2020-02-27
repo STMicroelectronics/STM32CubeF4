@@ -98,6 +98,9 @@ and aShowDate variables.
        case the Backup domain will be reset in order to modify the RTC Clock source, as consequence RTC  
        registers (including the backup registers) and RCC_BDCR register are set to their reset values.
 
+@par Keywords
+
+System, RTC, Calendar, Backup Domain, Reset
 
 @par Directory contents 
 

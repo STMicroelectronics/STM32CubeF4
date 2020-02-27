@@ -49,8 +49,8 @@
 #if defined(USE_STM32446E_EVAL_REVA)
 #ifndef USE_IOEXPANDER
 #define USE_IOEXPANDER
-#endif // USE_IOEXPANDER
-#endif // USE_STM32446E_EVAL_REVA
+#endif /* USE_IOEXPANDER */
+#endif /* USE_STM32446E_EVAL_REVA */
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
@@ -169,7 +169,7 @@ typedef enum
 #define LED2_PIN                         IO_PIN_21
 #define LED4_PIN                         IO_PIN_23
 
-#endif // !USE_STM32446E_EVAL_REVA
+#endif /* !USE_STM32446E_EVAL_REVA */
 
 
 /**
@@ -311,6 +311,7 @@ typedef enum
 
 
 #define CAMERA_I2C_ADDRESS               ((uint16_t)0x5A)
+#define CAMERA_I2C_ADDRESS_2             ((uint16_t)0x78)
 #define AUDIO_I2C_ADDRESS                ((uint16_t)0x34)
 #define EEPROM_I2C_ADDRESS_A01           ((uint16_t)0xA0)
 #define EEPROM_I2C_ADDRESS_A02           ((uint16_t)0xA6)  

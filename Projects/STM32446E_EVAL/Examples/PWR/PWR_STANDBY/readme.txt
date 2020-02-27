@@ -81,6 +81,9 @@ These Steps are repeated in an infinite loop.
        case the Backup domain will be reset in order to modify the RTC Clock source, as consequence RTC  
        registers (including the backup registers) and RCC_BDCR register are set to their reset values.
 
+@par Keywords
+
+Power, PWR, Standby mode, Interrupt, EXTI, Wakeup, Low Power, RTC, External reset, LSI,
 
 @par Directory contents 
 

@@ -76,6 +76,9 @@ LEDs are used to indicate the system state as following:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Memory, FMC, SDRAM, Read, Write, Initialization, Access, Low power, Self Refresh, Stop mode
 
 @par Directory contents
 

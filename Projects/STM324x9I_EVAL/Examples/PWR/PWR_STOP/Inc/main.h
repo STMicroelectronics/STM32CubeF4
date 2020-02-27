@@ -45,8 +45,8 @@
 /* Exported constants --------------------------------------------------------*/
 /* Defines related to Clock configuration */    
 /* Uncomment the corresponding line to select the STM32F4xx Low Power mode */
-#define STOP_MODE
-/* #define STOP_UNDERDRIVE_MODE */
+//#define STOP_MODE
+#define STOP_UNDERDRIVE_MODE 
 
 /* Uncomment to enable the adaquate Clock Source */
 /*#define RTC_CLOCK_SOURCE_LSE*/

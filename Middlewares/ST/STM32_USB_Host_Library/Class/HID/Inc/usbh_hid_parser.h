@@ -12,7 +12,7 @@
   * This software component is licensed by ST under Ultimate Liberty license
   * SLA0044, the "License"; You may not use this file except in compliance with
   * the License. You may obtain a copy of the License at:
-  *                      http://www.st.com/SLA0044
+  *                      www.st.com/SLA0044
   *
   ******************************************************************************
   */
@@ -22,7 +22,7 @@
 #define __USBH_HID_PARSER_H
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
@@ -66,7 +66,7 @@ typedef struct
 HID_Report_ItemTypedef;
 
 
-uint32_t HID_ReadItem (HID_Report_ItemTypedef *ri, uint8_t ndx);
+uint32_t HID_ReadItem(HID_Report_ItemTypedef *ri, uint8_t ndx);
 uint32_t HID_WriteItem(HID_Report_ItemTypedef *ri, uint32_t value, uint8_t ndx);
 
 

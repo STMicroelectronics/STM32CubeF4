@@ -29,9 +29,13 @@
 #include "mbedtls/platform.h"
 #else
 #include <stdio.h>
-#define mbedtls_snprintf   snprintf
-#define mbedtls_printf     printf
-#endif
+#include <stdlib.h>
+#define mbedtls_snprintf        snprintf
+#define mbedtls_printf          printf
+#define mbedtls_exit            exit
+#define MBEDTLS_EXIT_SUCCESS    EXIT_SUCCESS
+#define MBEDTLS_EXIT_FAILURE    EXIT_FAILURE
+#endif /* MBEDTLS_PLATFORM_C */
 
 #if !defined(MBEDTLS_MD_C) || !defined(MBEDTLS_ENTROPY_C) ||  \
     !defined(MBEDTLS_RSA_C) || !defined(MBEDTLS_SHA256_C) ||        \
@@ -51,16 +55,28 @@ int main( void )
 #include "mbedtls/ctr_drbg.h"
 #include "mbedtls/md.h"
 #include "mbedtls/rsa.h"
-#include "mbedtls/md.h"
 #include "mbedtls/x509.h"
 
 #include <stdio.h>
 #include <string.h>
 
+#if defined(MBEDTLS_CHECK_PARAMS)
+#include "mbedtls/platform_util.h"
+void mbedtls_param_failed( const char *failure_condition,
+                           const char *file,
+                           int line )
+{
+    mbedtls_printf( "%s:%i: Input param failed - %s\n",
+                    file, line, failure_condition );
+    mbedtls_exit( MBEDTLS_EXIT_FAILURE );
+}
+#endif
+
 int main( int argc, char *argv[] )
 {
     FILE *f;
     int ret = 1;
+    int exit_code = MBEDTLS_EXIT_FAILURE;
     mbedtls_pk_context pk;
     mbedtls_entropy_context entropy;
     mbedtls_ctr_drbg_context ctr_drbg;
@@ -101,7 +117,6 @@ int main( int argc, char *argv[] )
 
     if( ( ret = mbedtls_pk_parse_keyfile( &pk, argv[1], "" ) ) != 0 )
     {
-        ret = 1;
         mbedtls_printf( " failed\n  ! Could not read key from '%s'\n", argv[1] );
         mbedtls_printf( "  ! mbedtls_pk_parse_public_keyfile returned %d\n\n", ret );
         goto exit;
@@ -109,7 +124,6 @@ int main( int argc, char *argv[] )
 
     if( !mbedtls_pk_can_do( &pk, MBEDTLS_PK_RSA ) )
     {
-        ret = 1;
         mbedtls_printf( " failed\n  ! Key is not an RSA key\n" );
         goto exit;
     }
@@ -145,7 +159,6 @@ int main( int argc, char *argv[] )
 
     if( ( f = fopen( filename, "wb+" ) ) == NULL )
     {
-        ret = 1;
         mbedtls_printf( " failed\n  ! Could not create %s\n\n", filename );
         goto exit;
     }
@@ -161,6 +174,8 @@ int main( int argc, char *argv[] )
 
     mbedtls_printf( "\n  . Done (created \"%s\")\n\n", filename );
 
+    exit_code = MBEDTLS_EXIT_SUCCESS;
+
 exit:
     mbedtls_pk_free( &pk );
     mbedtls_ctr_drbg_free( &ctr_drbg );
@@ -171,7 +186,7 @@ exit:
     fflush( stdout ); getchar();
 #endif
 
-    return( ret );
+    return( exit_code );
 }
 #endif /* MBEDTLS_BIGNUM_C && MBEDTLS_ENTROPY_C && MBEDTLS_RSA_C &&
           MBEDTLS_SHA256_C && MBEDTLS_PK_PARSE_C && MBEDTLS_FS_IO &&

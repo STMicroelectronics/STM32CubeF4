@@ -75,6 +75,9 @@ Note that the following user files may need to be updated:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Display, STemWin, Acceleration, DMA2D, GUI, Demonstration
 
 @par Directory contents 
 

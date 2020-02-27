@@ -29,9 +29,13 @@
 #include "mbedtls/platform.h"
 #else
 #include <stdio.h>
-#define mbedtls_fprintf    fprintf
-#define mbedtls_printf     printf
-#endif
+#include <stdlib.h>
+#define mbedtls_fprintf         fprintf
+#define mbedtls_printf          printf
+#define mbedtls_exit            exit
+#define MBEDTLS_EXIT_SUCCESS    EXIT_SUCCESS
+#define MBEDTLS_EXIT_FAILURE    EXIT_FAILURE
+#endif /* MBEDTLS_PLATFORM_C */
 
 #if defined(MBEDTLS_MD_C) && defined(MBEDTLS_FS_IO)
 #include "mbedtls/md.h"
@@ -47,6 +51,19 @@ int main( void )
     return( 0 );
 }
 #else
+
+#if defined(MBEDTLS_CHECK_PARAMS)
+#include "mbedtls/platform_util.h"
+void mbedtls_param_failed( const char *failure_condition,
+                           const char *file,
+                           int line )
+{
+    mbedtls_printf( "%s:%i: Input param failed - %s\n",
+                    file, line, failure_condition );
+    mbedtls_exit( MBEDTLS_EXIT_FAILURE );
+}
+#endif
+
 static int generic_wrapper( const mbedtls_md_info_t *md_info, char *filename, unsigned char *sum )
 {
     int ret = mbedtls_md_file( md_info, filename, sum );
@@ -169,7 +186,8 @@ static int generic_check( const mbedtls_md_info_t *md_info, char *filename )
 
 int main( int argc, char *argv[] )
 {
-    int ret, i;
+    int ret = 1, i;
+    int exit_code = MBEDTLS_EXIT_FAILURE;
     const mbedtls_md_info_t *md_info;
     mbedtls_md_context_t md_ctx;
 
@@ -196,7 +214,7 @@ int main( int argc, char *argv[] )
         fflush( stdout ); getchar();
 #endif
 
-        return( 1 );
+        return( exit_code );
     }
 
     /*
@@ -206,12 +224,12 @@ int main( int argc, char *argv[] )
     if( md_info == NULL )
     {
         mbedtls_fprintf( stderr, "Message Digest '%s' not found\n", argv[1] );
-        return( 1 );
+        return( exit_code );
     }
     if( mbedtls_md_setup( &md_ctx, md_info, 0 ) )
     {
         mbedtls_fprintf( stderr, "Failed to initialize context.\n" );
-        return( 1 );
+        return( exit_code );
     }
 
     ret = 0;
@@ -224,9 +242,12 @@ int main( int argc, char *argv[] )
     for( i = 2; i < argc; i++ )
         ret |= generic_print( md_info, argv[i] );
 
+    if ( ret == 0 )
+        exit_code = MBEDTLS_EXIT_SUCCESS;
+
 exit:
     mbedtls_md_free( &md_ctx );
 
-    return( ret );
+    return( exit_code );
 }
 #endif /* MBEDTLS_MD_C && MBEDTLS_FS_IO */

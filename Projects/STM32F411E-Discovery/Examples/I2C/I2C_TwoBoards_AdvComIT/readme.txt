@@ -136,6 +136,11 @@ by pushing the user button of the Master board.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, Communication, I2C, Interrupt, Master, Slave, Transmission, Reception, Fast mode,
+Command, Acknowledge
+
 @par Directory contents 
 
   - I2C/I2C_TwoBoards_AdvComIT/Inc/stm32f4xx_hal_conf.h    HAL configuration file

@@ -12,7 +12,7 @@
   * This software component is licensed by ST under Ultimate Liberty license
   * SLA0044, the "License"; You may not use this file except in compliance with
   * the License. You may obtain a copy of the License at:
-  *                      http://www.st.com/SLA0044
+  *                      www.st.com/SLA0044
   *
   ******************************************************************************
   */
@@ -22,7 +22,7 @@
 #define __USBH_MSC_BOT_H
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
@@ -50,7 +50,8 @@
   * @{
   */
 
-typedef enum {
+typedef enum
+{
   BOT_OK          = 0,
   BOT_FAIL        = 1,
   BOT_PHASE_ERROR = 2,
@@ -58,7 +59,8 @@ typedef enum {
 }
 BOT_StatusTypeDef;
 
-typedef enum {
+typedef enum
+{
   BOT_CMD_IDLE  = 0,
   BOT_CMD_SEND,
   BOT_CMD_WAIT,
@@ -69,13 +71,14 @@ BOT_CMDStateTypeDef;
 typedef enum
 {
 
-   BOT_CSW_CMD_PASSED   =        0x00,
-   BOT_CSW_CMD_FAILED   =        0x01,
-   BOT_CSW_PHASE_ERROR  =        0x02,
+  BOT_CSW_CMD_PASSED   =        0x00,
+  BOT_CSW_CMD_FAILED   =        0x01,
+  BOT_CSW_PHASE_ERROR  =        0x02,
 }
 BOT_CSWStatusTypeDef;
 
-typedef enum {
+typedef enum
+{
   BOT_SEND_CBW  = 1,
   BOT_SEND_CBW_WAIT,
   BOT_DATA_IN,
@@ -101,7 +104,7 @@ typedef union
     uint8_t  LUN;
     uint8_t  CBLength;
     uint8_t  CB[16];
-  }field;
+  } field;
   uint8_t data[31];
 }
 BOT_CBWTypeDef;
@@ -114,7 +117,7 @@ typedef union
     uint32_t Tag;
     uint32_t DataResidue;
     uint8_t  Status;
-  }field;
+  } field;
   uint8_t data[13];
 }
 BOT_CSWTypeDef;
@@ -194,7 +197,7 @@ USBH_StatusTypeDef USBH_MSC_BOT_REQ_Reset(USBH_HandleTypeDef *phost);
 USBH_StatusTypeDef USBH_MSC_BOT_REQ_GetMaxLUN(USBH_HandleTypeDef *phost, uint8_t *Maxlun);
 
 USBH_StatusTypeDef USBH_MSC_BOT_Init(USBH_HandleTypeDef *phost);
-USBH_StatusTypeDef USBH_MSC_BOT_Process (USBH_HandleTypeDef *phost, uint8_t lun);
+USBH_StatusTypeDef USBH_MSC_BOT_Process(USBH_HandleTypeDef *phost, uint8_t lun);
 USBH_StatusTypeDef USBH_MSC_BOT_Error(USBH_HandleTypeDef *phost, uint8_t lun);
 
 

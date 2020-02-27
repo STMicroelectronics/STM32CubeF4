@@ -105,6 +105,10 @@ Note: After save operation, the touch positions are not cleared from STMPE811 FI
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Display, DSI, LCD, Image slider, GRAM, Touch screen, 
+
 @par Directory contents
 
     - Display/LCD_Paint/Inc/main.h                      Main program header file

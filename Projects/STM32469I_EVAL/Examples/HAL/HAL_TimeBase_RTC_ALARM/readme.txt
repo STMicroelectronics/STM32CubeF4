@@ -72,6 +72,9 @@ In an infinite loop, LED1, LED2, LED3 and LED4 toggles spaced out over 500ms del
 @note The application needs to ensure that the HAL time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, RTC Alarm, Time base, HAL
 
 @par Directory contents
 

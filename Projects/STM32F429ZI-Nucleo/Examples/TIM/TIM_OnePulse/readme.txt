@@ -81,6 +81,10 @@ Configuration of TIM5 in One Pulse Mode
   
 
 
+@par Keywords
+
+Timers, Output, signals, One Pulse, PWM, Oscilloscope, External signal, Autoreload, Waveform
+
 @par Directory contents 
 
   - TIM/TIM_OnePulse/Inc/stm32f4xx_hal_conf.h    HAL configuration file

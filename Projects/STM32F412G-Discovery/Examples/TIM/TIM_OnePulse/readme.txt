@@ -80,6 +80,9 @@ Configuration of TIM4 in One Pulse Mode
                                <---Delay----><------Pulse--------------->
   
 
+@par Keywords
+
+Timers, Output, signals, One Pulse, PWM, Oscilloscope, External signal, Autoreload, Waveform
 
 @par Directory contents 
 

@@ -52,6 +52,10 @@ In case the MD5 digest is computed correctly the blue LED (LED4) is turned ON.
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+System, Security, HASH, SHA1, MD5, digest, DMA
+
 @par Directory contents 
 
   - HASH/HASH_SHA1MD5_DMA/Inc/stm32f4xx_hal_conf.h    HAL configuration file

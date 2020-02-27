@@ -92,6 +92,9 @@ The following Table describes the TIM1 Channels states:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Timers, 6 steps, PWM, Duty Cycle, Waveform, Oscilloscope, Output, Signal, commutation, timing mode
 
 @par Directory contents 
 

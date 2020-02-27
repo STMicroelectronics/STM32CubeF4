@@ -54,6 +54,10 @@ The HCLK is configured at 100 MHz for STM32F410xx Devices.
 
 @note The clock setting is configured to have the max product performance (max clock frequency) 
       so not optimized in term of power consumption.
+
+@par Keywords
+
+System, GPIO, Output, Alternate function, Push-pull, Toggle
       
 @par Directory contents 
 

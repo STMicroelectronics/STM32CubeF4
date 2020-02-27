@@ -126,6 +126,10 @@ Device's end address is the end address of the flash memory and it is dependent 
 @note The connection of the LCD reset pin to a dedicated GPIO PH7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+USB Device, DFU, Firmware upgrade
+
 @par Directory contents 
 
   - USB_Device/DFU_Standalone/Src/main.c                  Main program

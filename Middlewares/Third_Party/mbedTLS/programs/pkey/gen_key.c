@@ -29,8 +29,12 @@
 #include "mbedtls/platform.h"
 #else
 #include <stdio.h>
-#define mbedtls_printf     printf
-#endif
+#include <stdlib.h>
+#define mbedtls_printf          printf
+#define mbedtls_exit            exit
+#define MBEDTLS_EXIT_SUCCESS    EXIT_SUCCESS
+#define MBEDTLS_EXIT_FAILURE    EXIT_FAILURE
+#endif /* MBEDTLS_PLATFORM_C */
 
 #if defined(MBEDTLS_PK_WRITE_C) && defined(MBEDTLS_FS_IO) && \
     defined(MBEDTLS_ENTROPY_C) && defined(MBEDTLS_CTR_DRBG_C)
@@ -132,6 +136,19 @@ int main( void )
     return( 0 );
 }
 #else
+
+#if defined(MBEDTLS_CHECK_PARAMS)
+#include "mbedtls/platform_util.h"
+void mbedtls_param_failed( const char *failure_condition,
+                           const char *file,
+                           int line )
+{
+    mbedtls_printf( "%s:%i: Input param failed - %s\n",
+                    file, line, failure_condition );
+    mbedtls_exit( MBEDTLS_EXIT_FAILURE );
+}
+#endif
+
 /*
  * global options
  */
@@ -186,7 +203,8 @@ static int write_private_key( mbedtls_pk_context *key, const char *output_file )
 
 int main( int argc, char *argv[] )
 {
-    int ret = 0;
+    int ret = 1;
+    int exit_code = MBEDTLS_EXIT_FAILURE;
     mbedtls_pk_context key;
     char buf[1024];
     int i;
@@ -214,7 +232,6 @@ int main( int argc, char *argv[] )
     if( argc == 0 )
     {
     usage:
-        ret = 1;
         mbedtls_printf( USAGE );
 #if defined(MBEDTLS_ECP_C)
         mbedtls_printf( " available ec_curve values:\n" );
@@ -222,7 +239,7 @@ int main( int argc, char *argv[] )
         mbedtls_printf( "    %s (default)\n", curve_info->name );
         while( ( ++curve_info )->name != NULL )
             mbedtls_printf( "    %s\n", curve_info->name );
-#endif
+#endif /* MBEDTLS_ECP_C */
         goto exit;
     }
 
@@ -319,7 +336,8 @@ int main( int argc, char *argv[] )
     mbedtls_printf( "\n  . Generating the private key ..." );
     fflush( stdout );
 
-    if( ( ret = mbedtls_pk_setup( &key, mbedtls_pk_info_from_type( opt.type ) ) ) != 0 )
+    if( ( ret = mbedtls_pk_setup( &key,
+            mbedtls_pk_info_from_type( (mbedtls_pk_type_t) opt.type ) ) ) != 0 )
     {
         mbedtls_printf( " failed\n  !  mbedtls_pk_setup returned -0x%04x", -ret );
         goto exit;
@@ -341,7 +359,8 @@ int main( int argc, char *argv[] )
 #if defined(MBEDTLS_ECP_C)
     if( opt.type == MBEDTLS_PK_ECKEY )
     {
-        ret = mbedtls_ecp_gen_key( opt.ec_curve, mbedtls_pk_ec( key ),
+        ret = mbedtls_ecp_gen_key( (mbedtls_ecp_group_id) opt.ec_curve,
+                                   mbedtls_pk_ec( key ),
                                    mbedtls_ctr_drbg_random, &ctr_drbg );
         if( ret != 0 )
         {
@@ -411,9 +430,11 @@ int main( int argc, char *argv[] )
 
     mbedtls_printf( " ok\n" );
 
+    exit_code = MBEDTLS_EXIT_SUCCESS;
+
 exit:
 
-    if( ret != 0 && ret != 1)
+    if( exit_code != MBEDTLS_EXIT_SUCCESS )
     {
 #ifdef MBEDTLS_ERROR_C
         mbedtls_strerror( ret, buf, sizeof( buf ) );
@@ -436,7 +457,7 @@ exit:
     fflush( stdout ); getchar();
 #endif
 
-    return( ret );
+    return( exit_code );
 }
 #endif /* MBEDTLS_PK_WRITE_C && MBEDTLS_PEM_WRITE_C && MBEDTLS_FS_IO &&
         * MBEDTLS_ENTROPY_C && MBEDTLS_CTR_DRBG_C */

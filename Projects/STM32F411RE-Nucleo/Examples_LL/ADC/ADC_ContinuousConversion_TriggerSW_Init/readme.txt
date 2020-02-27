@@ -74,6 +74,9 @@ Other peripherals used:
   1 GPIO for LED2
   1 GPIO for analog input: PA.04 (Arduino connector CN8 pin A2, Morpho connector CN7 pin 32)
 
+@par Keywords
+
+ADC, ADC channel, conversion, single channel, single conversion mode, interrupt,
 
 @par Directory contents 
 

@@ -100,6 +100,9 @@ STM32 Eval board's LED can be used to monitor the transfer status:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Display, LTDC, Display Controller, TFT, LCD, Graphic, RGB888, 2 Layers, BMP
 
 @par Directory contents
 

@@ -41,6 +41,7 @@
 # number does not need to be updated often.
 
 set confirm off
+
 file ./programs/test/zeroize
 break zeroize.c:100
 

@@ -71,6 +71,10 @@ The minimum frequency value to measure is (TIM1 counter clock / CCR MAX)
 @note The clock setting is configured to have the max product performance (max clock frequency) 
       so not optimized in term of power consumption.
 
+@par Keywords
+
+Timers, Input, signals, PWM, External signal, Frequency, Duty cycle, Measure
+
 @par Directory contents 
 
   - TIM/TIM_PWMInput/Inc/stm32f4xx_hal_conf.h    HAL configuration file

@@ -51,6 +51,10 @@ failure is detected (through NMI IT).
        at 8 MHz. To use MCO from ST_LINK you need to check the Board
        User Manual to know how to connect the MCO pin to the STM32 device.
 
+@par Keywords
+
+System, RCC, PLL, PLLCLK, SYSCLK, HSE, Clock, Oscillator, HSI
+
 @par Directory contents 
 
   - RCC/RCC_UseHSEasSystemClock/Inc/stm32f4xx_it.h          Interrupt handlers header file

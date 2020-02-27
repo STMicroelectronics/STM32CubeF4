@@ -67,6 +67,10 @@ STM32 Eval board's LEDs can be used to monitor the example status:
       to have correct HAL operation.
 
 
+@par Keywords
+
+Security, CRC, CRC Polynomial, IEC 60870-5, hardware CRC, 
+
 @par Directory contents 
   
   - CRC/CRC_Example/Inc/stm32f4xx_hal_conf.h    HAL configuration file

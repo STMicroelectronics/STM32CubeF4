@@ -1,9 +1,9 @@
 /**
-  @page TIM_PWMOutput TIM_PWMOutput example
+  @page TIM_PrescalerSelection TIM Prescaler Selection example
 
   @verbatim
   ******************** (C) COPYRIGHT 2017 STMicroelectronics *******************
-  * @file    TIM/TIM_PWMOutput/readme.txt 
+  * @file    TIM/TIM_PrescalerSelection/readme.txt 
   * @author  MCD Application Team
   * @brief   Description of the PWM signals generation using Timer3 Example
   ******************************************************************************
@@ -74,16 +74,19 @@ The PWM waveform can be displayed using an oscilloscope.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Timers, PWM, Prescaler, Duty Cycle, Waveform, Oscilloscope, Output, Signal
 
 @par Directory contents 
 
-  - TIM/TIM_PWMOutput/Inc/stm32f4xx_hal_conf.h     HAL configuration file
-  - TIM/TIM_PWMOutput/Inc/stm32f4xx_it.h           Interrupt handlers header file
-  - TIM/TIM_PWMOutput/Inc/main.h                   Main program header file  
-  - TIM/TIM_PWMOutput/Src/stm32f4xx_it.c           Interrupt handlers
-  - TIM/TIM_PWMOutput/Src/main.c                   Main program
-  - TIM/TIM_PWMOutput/Src/stm32f4xx_hal_msp.c      HAL MSP module
-  - TIM/TIM_PWMOutput/Src/system_stm32f4xx.c       STM32F4xx system clock configuration file
+  - TIM/TIM_PrescalerSelection/Inc/stm32f4xx_hal_conf.h     HAL configuration file
+  - TIM/TIM_PrescalerSelection/Inc/stm32f4xx_it.h           Interrupt handlers header file
+  - TIM/TIM_PrescalerSelection/Inc/main.h                   Main program header file  
+  - TIM/TIM_PrescalerSelection/Src/stm32f4xx_it.c           Interrupt handlers
+  - TIM/TIM_PrescalerSelection/Src/main.c                   Main program
+  - TIM/TIM_PrescalerSelection/Src/stm32f4xx_hal_msp.c      HAL MSP module
+  - TIM/TIM_PrescalerSelection/Src/system_stm32f4xx.c       STM32F4xx system clock configuration file
 
 
 @par Hardware and Software environment 

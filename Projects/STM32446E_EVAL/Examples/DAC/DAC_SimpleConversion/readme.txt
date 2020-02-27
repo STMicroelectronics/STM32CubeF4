@@ -56,6 +56,10 @@ STM32446E-EVAL board's LEDs can be used to monitor the process status:
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Analog, DAC, Conversion, Voltage output, Oscilloscope
+
 @par Directory contents 
 
   - DAC/DAC_Simple_Conversion/Inc/stm32f4xx_hal_conf.h    HAL configuration file

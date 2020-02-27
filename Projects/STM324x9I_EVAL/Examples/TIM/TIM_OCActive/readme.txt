@@ -74,6 +74,9 @@
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Timers, Output, Compare, Active, Signals
 
 @par Directory contents 
 

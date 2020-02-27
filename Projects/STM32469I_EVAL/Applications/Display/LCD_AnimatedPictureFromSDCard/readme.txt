@@ -96,6 +96,9 @@
 
   -  LED3 is ON when the uSD disk I/O driver is not Linked;
 
+@par Keywords
+
+Display, LCD, Pictures, SD Card, BMP, Background, Foreground, Layers,
 
 @par Directory contents
 

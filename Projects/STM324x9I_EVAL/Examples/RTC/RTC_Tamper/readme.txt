@@ -82,6 +82,9 @@ The associated firmware performs the following:
        case the Backup domain will be reset in order to modify the RTC Clock source, as consequence RTC  
        registers (including the backup registers) and RCC_BDCR register are set to their reset values.
        
+@par Keywords
+
+System, RTC, Tamper, Reset, LSE, LSI
        
 @par Directory contents 
 

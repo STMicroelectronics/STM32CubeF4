@@ -1,5 +1,5 @@
 /**
-  @page HAL_TimeBase_RTC_Alarm HAL TimeBase RTC Alarm
+  @page HAL_TimeBase_RTC_Alarm HAL TimeBase RTC Alarm example
   
   @verbatim
   ******************** (C) COPYRIGHT 2017 STMicroelectronics *******************
@@ -72,6 +72,9 @@ In an infinite loop, LEDs 1, 2, 3 and 4 toggle with a 500ms delay.
 @note The application needs to ensure that the HAL time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, RTC Alarm, Time base, HAL
 
 @par Directory contents
 

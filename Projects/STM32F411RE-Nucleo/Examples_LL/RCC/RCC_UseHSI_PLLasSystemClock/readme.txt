@@ -51,6 +51,10 @@ To detect a problem with PLL configuration, switch USE_TIMEOUT can be enabled. T
 LED2 will toggle every 1 second.
 Note: "uwFrequency" variable can be added in LiveWatch to monitor the system clock frequency.
 
+@par Keywords
+
+System, RCC, PLL, PLLCLK, SYSCLK, HSE, Clock, Oscillator, HSI
+
 @par Directory contents 
 
   - RCC/RCC_UseHSI_PLLasSystemClock/Inc/stm32f4xx_it.h          Interrupt handlers header file

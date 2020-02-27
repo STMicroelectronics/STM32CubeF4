@@ -101,6 +101,9 @@ application is built by the following configuration settings:
 	- Relocate the vector table to address APPLICATION_ADDRESS using the VECT_TAB_OFFSET definition  
 	  inside the system_stm32f4xx.c file.
 
+@par Keywords
+
+Firmware upgrade, USB Host, IAP, Binary
 
 @par Directory contents 
 

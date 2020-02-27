@@ -11,13 +11,53 @@
   *
   * Copyright (c) 2017 STMicroelectronics. All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                       opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
   @endverbatim
+
+### V2.1.4/18-10-2019 ###
+============================
++ Fix wrong usage of the "memcpy" in the SD_Write() function
+  - drivers/sd_diskio_dma_template_bspv1.c
+  - drivers/sd_diskio_dma_template_bspv2.c
+  - drivers/sd_diskio_dma_rtos_template_bspv1.c
+  - drivers/sd_diskio_dma_rtos_template_bspv2.c
+
++ correct the usage of the "_USE_MUTEX" config flag
+  - syscall.c
+
+### V2.1.3/26-07-2019 ###
+============================
++ add new BSPv2 templates:
+  - drivers/sd_diskio_dma_rtos_template_bspv2.c
+  - drivers/sd_diskio_dma_template_bspv2.c
+  - drivers/sd_diskio_template_bspv2.c
+  - drivers/sdram_diskio_template_bspv2.c
+
++ rename old template to "xxxx_diskio_template_bspv1.c":
+  - drivers/sd_diskio_dma_rtos_template_bspv1.c
+  - drivers/sd_diskio_dma_template_bspv1.c
+  - drivers/sd_diskio_template_bspv1.c
+  - drivers/sdram_diskio_template_bspv1.c
+
++ Add CMSIS-OSv2 support in templates, syscall.c and ff_conf_template.h
+  - syscall.c
+  - ff_conf_template.h
+  - drivers/sd_diskio_dma_rtos_template_bspv2.c
+
++ support usage of "osMutex" alongside "osSemaphore" as _SYNC_t type in fatfs
+  - syscall.c
+  - ff_conf_template.h
+
+
+### V2.1.2/29-03-2019 ###
+============================
++ add st_license.txt in the root directory
++ src/drivers/xxx_diskio_template.[c/h], src/ff_gen_drv.[c/h], src/option/syscall.c: update the license terms to BSD-3-Clause
 
 ### V2.1.1/25-01-2019 ###
 ============================

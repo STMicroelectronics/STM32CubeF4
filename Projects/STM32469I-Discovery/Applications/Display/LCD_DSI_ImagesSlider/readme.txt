@@ -80,6 +80,10 @@ The program runs in infinite loop.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Display, DSI, LCD, Image slider, GRAM, Touch screen, 
+
 @par Directory contents
 
   - Display/LCD_DSI_ImagesSlider/Inc/stm32f4xx_hal_conf.h          HAL configuration file

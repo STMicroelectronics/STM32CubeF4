@@ -46,6 +46,14 @@
   *
   ******************************************************************************
   @endverbatim
+### 15-March-2019 ###
+========================
+  + Upgrade to use LwIP V2.1.2 version
+     - For more details about new features and bug fixes please refer to CHANGELOG.txt and UPGRADING files
+  + sys_arch.c:
+     - Add new API sys_mbox_trypost_fromisr to post preallocated messages from an ISR to the tcpip thread
+     - Remove check on Flag LWIP_SOCKET_SET_ERRNO: this flag has been removed since LwIP 2.1.0
+
 ### 13-August-2018 ###
 ========================
   + Add support to CMSIS-RTOS V2 API

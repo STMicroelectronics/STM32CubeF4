@@ -29,9 +29,13 @@
 #include "mbedtls/platform.h"
 #else
 #include <stdio.h>
-#define mbedtls_snprintf   snprintf
-#define mbedtls_printf     printf
-#endif
+#include <stdlib.h>
+#define mbedtls_snprintf        snprintf
+#define mbedtls_printf          printf
+#define mbedtls_exit            exit
+#define MBEDTLS_EXIT_SUCCESS    EXIT_SUCCESS
+#define MBEDTLS_EXIT_FAILURE    EXIT_FAILURE
+#endif /* MBEDTLS_PLATFORM_C */
 
 #if !defined(MBEDTLS_BIGNUM_C) || !defined(MBEDTLS_MD_C) || \
     !defined(MBEDTLS_SHA256_C) || !defined(MBEDTLS_PK_PARSE_C) ||   \
@@ -52,10 +56,23 @@ int main( void )
 #include <stdio.h>
 #include <string.h>
 
+#if defined(MBEDTLS_CHECK_PARAMS)
+#include "mbedtls/platform_util.h"
+void mbedtls_param_failed( const char *failure_condition,
+                           const char *file,
+                           int line )
+{
+    mbedtls_printf( "%s:%i: Input param failed - %s\n",
+                    file, line, failure_condition );
+    mbedtls_exit( MBEDTLS_EXIT_FAILURE );
+}
+#endif
+
 int main( int argc, char *argv[] )
 {
     FILE *f;
     int ret = 1;
+    int exit_code = MBEDTLS_EXIT_FAILURE;
     size_t i;
     mbedtls_pk_context pk;
     unsigned char hash[32];
@@ -87,7 +104,6 @@ int main( int argc, char *argv[] )
     /*
      * Extract the signature from the file
      */
-    ret = 1;
     mbedtls_snprintf( filename, sizeof(filename), "%s.sig", argv[2] );
 
     if( ( f = fopen( filename, "rb" ) ) == NULL )
@@ -125,13 +141,13 @@ int main( int argc, char *argv[] )
 
     mbedtls_printf( "\n  . OK (the signature is valid)\n\n" );
 
-    ret = 0;
+    exit_code = MBEDTLS_EXIT_SUCCESS;
 
 exit:
     mbedtls_pk_free( &pk );
 
 #if defined(MBEDTLS_ERROR_C)
-    if( ret != 0 )
+    if( exit_code != MBEDTLS_EXIT_SUCCESS )
     {
         mbedtls_strerror( ret, (char *) buf, sizeof(buf) );
         mbedtls_printf( "  !  Last error was: %s\n", buf );
@@ -143,7 +159,7 @@ exit:
     fflush( stdout ); getchar();
 #endif
 
-    return( ret );
+    return( exit_code );
 }
 #endif /* MBEDTLS_BIGNUM_C && MBEDTLS_SHA256_C &&
           MBEDTLS_PK_PARSE_C && MBEDTLS_FS_IO */

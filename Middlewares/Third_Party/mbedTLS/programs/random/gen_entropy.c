@@ -29,9 +29,13 @@
 #include "mbedtls/platform.h"
 #else
 #include <stdio.h>
-#define mbedtls_fprintf    fprintf
-#define mbedtls_printf     printf
-#endif
+#include <stdlib.h>
+#define mbedtls_fprintf         fprintf
+#define mbedtls_printf          printf
+#define mbedtls_exit            exit
+#define MBEDTLS_EXIT_SUCCESS    EXIT_SUCCESS
+#define MBEDTLS_EXIT_FAILURE    EXIT_FAILURE
+#endif /* MBEDTLS_PLATFORM_C */
 
 #if defined(MBEDTLS_ENTROPY_C) && defined(MBEDTLS_FS_IO)
 #include "mbedtls/entropy.h"
@@ -46,23 +50,37 @@ int main( void )
     return( 0 );
 }
 #else
+
+#if defined(MBEDTLS_CHECK_PARAMS)
+#include "mbedtls/platform_util.h"
+void mbedtls_param_failed( const char *failure_condition,
+                           const char *file,
+                           int line )
+{
+    mbedtls_printf( "%s:%i: Input param failed - %s\n",
+                    file, line, failure_condition );
+    mbedtls_exit( MBEDTLS_EXIT_FAILURE );
+}
+#endif
+
 int main( int argc, char *argv[] )
 {
     FILE *f;
-    int i, k, ret;
+    int i, k, ret = 1;
+    int exit_code = MBEDTLS_EXIT_FAILURE;
     mbedtls_entropy_context entropy;
     unsigned char buf[MBEDTLS_ENTROPY_BLOCK_SIZE];
 
     if( argc < 2 )
     {
         mbedtls_fprintf( stderr, "usage: %s <output filename>\n", argv[0] );
-        return( 1 );
+        return( exit_code );
     }
 
     if( ( f = fopen( argv[1], "wb+" ) ) == NULL )
     {
         mbedtls_printf( "failed to open '%s' for writing.\n", argv[1] );
-        return( 1 );
+        return( exit_code );
     }
 
     mbedtls_entropy_init( &entropy );
@@ -72,7 +90,8 @@ int main( int argc, char *argv[] )
         ret = mbedtls_entropy_func( &entropy, buf, sizeof( buf ) );
         if( ret != 0 )
         {
-            mbedtls_printf("failed!\n");
+            mbedtls_printf( "  failed\n  !  mbedtls_entropy_func returned -%04X\n",
+                            ret );
             goto cleanup;
         }
 
@@ -83,7 +102,7 @@ int main( int argc, char *argv[] )
         fflush( stdout );
     }
 
-    ret = 0;
+    exit_code = MBEDTLS_EXIT_SUCCESS;
 
 cleanup:
     mbedtls_printf( "\n" );
@@ -91,6 +110,6 @@ cleanup:
     fclose( f );
     mbedtls_entropy_free( &entropy );
 
-    return( ret );
+    return( exit_code );
 }
 #endif /* MBEDTLS_ENTROPY_C */

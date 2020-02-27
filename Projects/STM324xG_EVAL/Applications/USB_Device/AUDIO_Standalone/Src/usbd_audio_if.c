@@ -55,7 +55,7 @@ static int8_t Audio_DeInit(uint32_t options);
 static int8_t Audio_PlaybackCmd(uint8_t* pbuf, uint32_t size, uint8_t cmd);
 static int8_t Audio_VolumeCtl(uint8_t vol);
 static int8_t Audio_MuteCtl(uint8_t cmd);
-static int8_t Audio_PeriodicTC(uint8_t cmd);
+static int8_t Audio_PeriodicTC(uint8_t *pbuf, uint32_t size, uint8_t cmd);
 static int8_t Audio_GetState(void);
 
 /* Private variables ---------------------------------------------------------*/
@@ -145,7 +145,7 @@ static int8_t Audio_MuteCtl(uint8_t cmd)
   * @param  cmd: Command opcode
   * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
   */
-static int8_t Audio_PeriodicTC(uint8_t cmd)
+static int8_t Audio_PeriodicTC(uint8_t *pbuf, uint32_t size, uint8_t cmd)
 {
   return 0;
 }

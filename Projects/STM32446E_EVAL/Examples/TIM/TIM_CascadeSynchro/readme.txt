@@ -80,6 +80,9 @@ The TIM2 counter clock is 180 MHz.
 
 The PWM waveform can be displayed using an oscilloscope.
 
+@par Keywords
+
+Timers, PWM, Cascade Synchronization, Master, Slave, Duty Cycle, Waveform, Oscilloscope, Output, Signal
 
 @par Directory contents 
 

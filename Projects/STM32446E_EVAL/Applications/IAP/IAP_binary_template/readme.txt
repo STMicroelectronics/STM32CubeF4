@@ -66,6 +66,9 @@ To build such application, some special configuration has to be performed:
       
 LED1 and LED3 are toggled with a timing defined by the Delay function.
 
+@par Keywords
+
+In-Application Programming, IAP, USART, Binary, flash
 
 @par Directory contents 
 

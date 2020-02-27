@@ -90,6 +90,10 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_HS" when using USB High Speed (HS) Core
       - "USE_USB_FS" when using USB Full Speed (FS) Core 
 
+@par Keywords
+
+Connectivity, USB Host, MSC, Mass Storage, Full Speed, High Speed, BOT, SCSI, Removable drive, FatFs,
+File system, Write, Read, Format
 
 @par Directory contents
 

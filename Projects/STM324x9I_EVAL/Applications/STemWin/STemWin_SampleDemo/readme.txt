@@ -75,6 +75,9 @@ LEDs 1 to 4 are continuously toggling to indicate that the Demo runs properly.
       case the Backup domain will be reset in order to modify the RTC Clock source, as consequence RTC  
       registers (including the backup registers) and RCC_BDCR register are set to their reset values.
 	   
+@par Keywords
+
+Display, STemWin, HelloWorld, LCD, GUI, Demonstration, Touch screen
      
 @par Directory contents 
 

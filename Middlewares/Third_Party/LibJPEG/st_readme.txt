@@ -7,16 +7,19 @@
   *          LibJPEG for integration with STM32Cube solution.
   ******************************************************************************
   * @attention
-  *
   * Copyright (c) 2019 STMicroelectronics. All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty License
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                       opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
   @endverbatim
+
+### 29-March-2019 ###
+========================
+   + include/jdata_conf_template.h, source/jdata_conf_template.c: update license to the BSD-3-Clause
 
 ### 01-February-2019 ###
 ========================

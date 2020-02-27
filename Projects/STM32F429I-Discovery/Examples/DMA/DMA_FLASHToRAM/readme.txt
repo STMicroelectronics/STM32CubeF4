@@ -76,6 +76,10 @@ Note that only DMA2 Streams are able to perform Memory-to-Memory transfers.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, DMA, Data Transfer, Memory to memory, Stream, Flash, RAM
+
 @par Directory contents 
 
   - DMA/DMA_FLASHToRAM/Src/stm32f4xx_it.c        Interrupt handlers

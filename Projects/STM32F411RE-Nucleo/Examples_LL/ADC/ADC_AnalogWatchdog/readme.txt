@@ -73,6 +73,9 @@ Other peripherals used:
   1 GPIO for LED2
   1 GPIO for analog input: PA.04 (Arduino connector CN8 pin A2, Morpho connector CN7 pin 32)
 
+@par Keywords
+
+Analog, ADC, Analog to Digital, Dual mode, Continuous conversion mode, DMA, Analog watchdog
 
 @par Directory contents 
 

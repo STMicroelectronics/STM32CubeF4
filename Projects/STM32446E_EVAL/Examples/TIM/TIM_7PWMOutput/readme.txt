@@ -63,6 +63,10 @@ The TIM1 waveforms can be displayed using an oscilloscope.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Timers, PWM, Duty Cycle, Waveform, Oscilloscope, Output, Signal, commutation, timing mode
+
 @par Directory contents 
 
   - TIM/TIM_7PWMOutput/Inc/stm32f4xx_hal_conf.h    HAL configuration file

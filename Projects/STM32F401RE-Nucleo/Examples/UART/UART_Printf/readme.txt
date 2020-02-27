@@ -86,6 +86,9 @@ on your serial terminal:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, UART, Printf, Baud rate, RS-232, HyperTerminal, full-duplex
 
 @par Directory contents 
 

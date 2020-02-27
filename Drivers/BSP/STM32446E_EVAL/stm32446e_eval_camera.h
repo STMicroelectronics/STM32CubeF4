@@ -45,7 +45,8 @@
 /* Includes ------------------------------------------------------------------*/
 /* Include Camera component Driver */
 #include "../Components/s5k5cag/s5k5cag.h"
-
+#include "../Components/ov5640/ov5640.h"
+  
 /* Include IO Driver */
 #include "stm32446e_eval_io.h"
 

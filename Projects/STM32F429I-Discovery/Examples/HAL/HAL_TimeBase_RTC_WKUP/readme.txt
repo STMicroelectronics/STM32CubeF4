@@ -72,6 +72,9 @@ In an infinite loop, LED3 and LED4 toggles spaced out over 500ms delay
 @note The application needs to ensure that the HAL time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, RTC Wakeup, Time base, HAL
 
 @par Directory contents
 

@@ -149,6 +149,9 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_HS" when using USB High Speed (HS) Core
       - "USE_USB_FS" when using USB Full Speed (FS) Core 
       
+@par Keywords
+
+Connectivity, USB Host, Full Speed, High Speed, CDC, PSTN, HyperTerminal, VCP, Com port, 
 
 @par Directory contents 
 

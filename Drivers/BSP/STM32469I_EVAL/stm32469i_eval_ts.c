@@ -184,7 +184,7 @@ uint8_t BSP_TS_Init(uint16_t ts_SizeX, uint16_t ts_SizeY)
   
   /* Scan FT6xx6 TouchScreen IC controller ID register by I2C Read       */
   /* Verify this is a FT6206 or FT6336G, otherwise this is an error case */
-  if((ts_id1 == FT6206_ID_VALUE) || (ts_id2 == FT6206_ID_VALUE))
+  if((ts_id1 == FT6206_ID_VALUE) || (ts_id2 == FT6x36_ID_VALUE))
   {
     /* Found FT6206 : Initialize the TS driver structure */
     ts_driver = &ft6x06_ts_drv;

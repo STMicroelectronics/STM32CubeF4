@@ -71,6 +71,9 @@ values which should be equal to "0x640xxxxx".
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Memory, FSMC, SRAM, Data Memory, Read, Write, Initialization, Access
 
 @par Directory contents
  

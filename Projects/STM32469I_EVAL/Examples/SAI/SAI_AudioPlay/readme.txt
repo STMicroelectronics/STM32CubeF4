@@ -55,6 +55,10 @@ Once started, LED1 is toggling on STM32469I-EVAL.
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+Audio, SAI, DMA, Buffer update, play, headphone, audio protocol
+
 @par Directory contents  
 
   - SAI/SAI_AudioPlay/Src/main.c                  Main program

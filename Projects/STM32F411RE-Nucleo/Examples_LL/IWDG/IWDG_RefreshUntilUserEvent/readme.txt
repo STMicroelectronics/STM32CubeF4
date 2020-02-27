@@ -52,6 +52,10 @@ will be switch ON.
 
 Waiting a new user button pressed to re-activate the IWDG
 
+@par Keywords
+
+System, IWDG, Timeout, MCU Reset, Downcounter, Timer, Measure Frequency
+
 @par Directory contents 
 
   - IWDG/IWDG_RefreshUntilUserEvent/Inc/stm32f4xx_it.h          Interrupt handlers header file

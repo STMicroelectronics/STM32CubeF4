@@ -70,6 +70,9 @@ with CPU or with DMA2D. Uncomment "USE_DMA2D" define for DMA2D transfer and
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Display, Graphic, LibJPEG, Decoding, Flash memory, DMA2D, ARGB8888, LCD, RGB, BMP, JPG, SD Card
 
 @par Directory contents
 

@@ -1,5 +1,5 @@
 /**
-  @page TIM_TimeBase TIM_TimeBase example
+  @page TIM_TimeBase Time Base example
 
   @verbatim
   ******************** (C) COPYRIGHT 2017 STMicroelectronics *******************
@@ -53,11 +53,7 @@ Update rate = TIM3 counter clock / (Period + 1) = 1 Hz,
 So the TIM3 generates an interrupt each 1 s
 
 When the counter value reaches the auto-reload register value, the TIM upadate 
-interrupt is generated and, in the handler routine, PD.12 is toggled with the 
-following frequency: 
-
-- PD.12: 0.5Hz 
-
+interrupt is generated and, in the handler routine, PD.12 is toggled at the following frequency: 0.5Hz.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
@@ -67,6 +63,10 @@ following frequency:
       
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
+@par Keywords
+
+Timer, TIM, Time Base, Interrupt, Clock source
 
 @par Directory contents
 

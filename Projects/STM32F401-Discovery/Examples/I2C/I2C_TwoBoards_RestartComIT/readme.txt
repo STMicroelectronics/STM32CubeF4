@@ -113,7 +113,7 @@ check buffers correctness.
 LED5 is turned ON when there is an error in transmission/reception process,
 or buffers compared error. (communication is stopped if any, using infinite loop)
 
- @note I2Cx instance used and associated resources can be updated in "main.h"
+@note I2Cx instance used and associated resources can be updated in "main.h"
        file depending hardware configuration used.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -124,6 +124,10 @@ or buffers compared error. (communication is stopped if any, using infinite loop
 
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
+@par Keywords
+
+Connectivity, I2C, Communication, Trasmission, Reception, SCL, SDA, Interrupt
 
 @par Directory contents 
 
@@ -143,7 +147,7 @@ or buffers compared error. (communication is stopped if any, using infinite loop
   - This example has been tested with STM32F401C-DISCO RevB and RevC board and can be
     easily tailored to any other supported device and development board.    
 
-  -STM32F401C-DISCO RevB and RevC Set-up
+  - STM32F401C-DISCO RevB and RevC Set-up
     - Connect I2C_SCL line of Master board (PB6, P2) to I2C_SCL line of Slave Board (PB6, P2).
     - Connect I2C_SDA line of Master board (PB9, P2) to I2C_SDA line of Slave Board (PB9, P2).
     - Connect GND of Master board to GND of Slave Board.

@@ -75,6 +75,10 @@ If uwTabAddr and MSPValue values are in the external SDRAM memory, LED1 is ON, o
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Memory, FMC, SDRAM, Read, Write, Initialization, Access, Data Memory, Heap, Stack
+
 @par Directory contents 
 
   - FMC/FMC_SDRAM_DataMemory/Inc/stm32f4xx_hal_conf.h    HAL configuration file

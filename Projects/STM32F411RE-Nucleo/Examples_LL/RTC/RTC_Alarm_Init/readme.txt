@@ -68,6 +68,10 @@ and aShowDate variables (watch or live watch).
 
 In case of error, LED2 is toggling.
 
+@par Keywords
+
+System, RTC, Alarm, wakeup timer, Backup domain, Counter, LSE, LSI
+
 @par Directory contents 
 
   - RTC/RTC_Alarm_Init/Inc/stm32f4xx_it.h          Interrupt handlers header file

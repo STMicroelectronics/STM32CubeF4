@@ -77,6 +77,9 @@ Below are the steps to run this example:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Memory, Flash, Dual boot, Dual Bank, Execute, Binary, Option bytes
 
 @par Directory contents 
 

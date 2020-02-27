@@ -2,7 +2,7 @@
   @verbatim
   ******************************************************************************
   *
-  *           Portions Copyright © 2016 STMicroelectronics International N.V. All rights reserved.
+  *           Portions Copyright © 2019 STMicroelectronics International N.V. All rights reserved.
   *           Portions Copyright (C) 2016 Real Time Engineers Ltd, All rights reserved
   *
   * @file    st_readme.txt
@@ -13,41 +13,61 @@
   *          to UM1722 "Developing Applications on STM32Cube with FreeRTOS"
   ******************************************************************************
   *
-  * Redistribution and use in source and binary forms, with or without
-  * modification, are permitted, provided that the following conditions are met:
+  * Copyright (c) 2019 STMicroelectronics. All rights reserved.
   *
-  * 1. Redistribution of source code must retain the above copyright notice,
-  *    this list of conditions and the following disclaimer.
-  * 2. Redistributions in binary form must reproduce the above copyright notice,
-  *    this list of conditions and the following disclaimer in the documentation
-  *    and/or other materials provided with the distribution.
-  * 3. Neither the name of STMicroelectronics nor the names of other
-  *    contributors to this software may be used to endorse or promote products
-  *    derived from this software without specific written permission.
-  * 4. This software, including modifications and/or derivative works of this
-  *    software, must execute solely and exclusively on microcontroller or
-  *    microprocessor devices manufactured by or for STMicroelectronics.
-  * 5. Redistribution and use of this software other than as permitted under
-  *    this license is void and will automatically terminate your rights under
-  *    this license.
-  *
-  * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT
-  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-  * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
-  * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT
-  * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
-  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                       opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
   @endverbatim
 
 =======
+
+### 17-January-2020 ###
+=========================
+  + Fix compile error in the GCC CM7_MPU port caused by a duplicated variable declaration
+      - Source/portable/GCC/ARM_CM7_MPU/r0p1/port.c
+
+### 13-December-2019 ###
+=========================
+  + Remove warnings thrown by EWARM for CM33/CM23 ports
+      - IAR/ARM_CM23/non_secure/portmacro.h
+      - IAR/ARM_CM23_NTZ/non_secure/portmacro.h
+      - IAR/ARM_CM33/non_secure/portmacro.h
+      - IAR/ARM_CM33_NTZ/non_secure/portmacro.h
+
+### 19-July-2019 ###
+=========================
+  + Fix runtime error in the  IAR/CM4_MPU port
+       - IAR/ARM_CM4_MPU/port.c
+
+### 12-July-2019 ###
+=========================
+  + FreeRTOS: Update against the FreeRTOS v10.2.1 release
+    - support for the CM33 and CM23 cores
+
+  + CMSIS_RTOS_V2: update against the latest CMSIS-FreeRTOS v10.2.0 release
+
+  + Add MPU support for the CM7/r0p1:
+       - GCC/ARM_CM7_MPU/r0p1/port.c
+       - GCC/ARM_CM7_MPU/r0p1/portmacro.h
+       - IAR/ARM_CM7_MPU/r0p1/port.c
+       - IAR/ARM_CM7_MPU/r0p1/portasm.s
+       - IAR/ARM_CM7_MPU/r0p1/portmacro.h
+       - RVDS/ARM_CM7_MPU/r0p1/port.c
+       - RVDS/ARM_CM7_MPU/r0p1/portmacro.h
+
+  + cmsis_os.c: Fix compile errors by using the correct TimerCallbackFunction_t type for timer creation
+
+### 29-Mars-2019 ###
+=========================
+  + cmsis_os.c : Fix bug in osPoolAlloc(): memory blocks can't be reused after being free'd
+  + Source/CMSIS_RTOS_V2/cmsis_os, Source/CMSIS_RTOS_V2/cmsis_os1.c, Source/CMSIS_RTOS_V2/cmsis_os2.c, Source/CMSIS_RTOS_V2/cmsis_os2.h: restore original Apache license terms
+  + st_readme.txt: update license terms to BSD-3-Clause
+
+
 ### 13-August-2018 ###
 =========================
   + Add empty implementation for the missing function osThreadGetStackSize()

@@ -87,6 +87,10 @@ and aShowDate variables (watch or live watch).
 
 - LED2 is toggling : This indicates that the system generates an error.
 
+@par Keywords
+
+System, RTC, Calendar, Backup Domain, Reset
+
 @par Directory contents 
 
   - RTC/RTC_Calendar/Inc/stm32f4xx_it.h          Interrupt handlers header file

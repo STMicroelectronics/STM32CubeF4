@@ -82,6 +82,10 @@
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Timers, PWM, External Trigger, Synchronization, Cascade mode, Master, Slave, Duty Cycle, Waveform,
+Oscilloscope, Output, Signal
 
 @par Directory contents 
 

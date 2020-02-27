@@ -114,6 +114,10 @@ file depending hardware configuration used.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, Communication, I2C, Interrupt, Master, Slave, Transmission, Reception, Fast mode plus
+
 @par Directory contents 
 
   - I2C/I2C_TwoBoards_ComIT/Inc/stm32f4xx_hal_conf.h    HAL configuration file

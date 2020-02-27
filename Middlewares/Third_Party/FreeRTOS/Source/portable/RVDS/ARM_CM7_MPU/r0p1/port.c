@@ -1,6 +1,6 @@
 /*
- * FreeRTOS Kernel V10.0.1
- * Copyright (C) 2017 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ * FreeRTOS Kernel V10.2.1
+ * Copyright (C) 2019 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -52,6 +52,24 @@ task.h is included from an application file. */
 #define portNVIC_SYSPRI1_REG					( * ( ( volatile uint32_t * ) 0xe000ed1c ) )
 #define portNVIC_SYS_CTRL_STATE_REG				( * ( ( volatile uint32_t * ) 0xe000ed24 ) )
 #define portNVIC_MEM_FAULT_ENABLE				( 1UL << 16UL )
+#define portNVIC_SYSTICK_INT_BIT			( 1UL << 1UL )
+#define portNVIC_SYSTICK_ENABLE_BIT			( 1UL << 0UL )
+#define portNVIC_SYSTICK_COUNT_FLAG_BIT		( 1UL << 16UL )
+#define portNVIC_PENDSVCLEAR_BIT 			( 1UL << 27UL )
+#define portNVIC_PEND_SYSTICK_CLEAR_BIT		( 1UL << 25UL )
+
+#ifndef configSYSTICK_CLOCK_HZ
+	#define configSYSTICK_CLOCK_HZ configCPU_CLOCK_HZ
+	/* Ensure the SysTick is clocked at the same frequency as the core. */
+	#define portNVIC_SYSTICK_CLK_BIT	( 1UL << 2UL )
+#else
+	/* The way the SysTick is clocked is not modified in case it is not the same
+	as the core. */
+	#define portNVIC_SYSTICK_CLK_BIT	( 0 )
+#endif
+
+#define portMAX_24_BIT_NUMBER       ( 0xffffffUL )
+#define portMISSED_COUNTS_FACTOR    ( 45UL )
 
 /* Constants required to access and manipulate the MPU. */
 #define portMPU_TYPE_REG						( * ( ( volatile uint32_t * ) 0xe000ed90 ) )
@@ -71,7 +89,6 @@ task.h is included from an application file. */
 #define portNVIC_SYSTICK_CLK					( 0x00000004UL )
 #define portNVIC_SYSTICK_INT					( 0x00000002UL )
 #define portNVIC_SYSTICK_ENABLE					( 0x00000001UL )
-#define portNVIC_SYSTICK_COUNT_FLAG		( 1UL << 16UL )
 #define portNVIC_PENDSV_PRI						( ( ( uint32_t ) configKERNEL_INTERRUPT_PRIORITY ) << 16UL )
 #define portNVIC_SYSTICK_PRI					( ( ( uint32_t ) configKERNEL_INTERRUPT_PRIORITY ) << 24UL )
 #define portNVIC_SVC_PRI						( ( ( uint32_t ) configMAX_SYSCALL_INTERRUPT_PRIORITY - 1UL ) << 24UL )
@@ -82,7 +99,7 @@ task.h is included from an application file. */
 
 /* Constants required to set up the initial stack. */
 #define portINITIAL_XPSR						( 0x01000000UL )
-#define portINITIAL_EXEC_RETURN					( 0xfffffffdUL )
+#define portINITIAL_EXC_RETURN					( 0xfffffffdUL )
 #define portINITIAL_CONTROL_IF_UNPRIVILEGED		( 0x03 )
 #define portINITIAL_CONTROL_IF_PRIVILEGED		( 0x02 )
 
@@ -99,14 +116,6 @@ task.h is included from an application file. */
 /* Offsets in the stack to the parameters when inside the SVC handler. */
 #define portOFFSET_TO_PC						( 6 )
 
-/* The systick is a 24-bit counter. */
-#define portMAX_24_BIT_NUMBER		( 0xffffffUL )
-
-/* A fiddle factor to estimate the number of SysTick counts that would have
-occurred while the SysTick counter is stopped during tickless idle
-calculations. */
-#define portMISSED_COUNTS_FACTOR	( 45UL )
-
 /* For strict compliance with the Cortex-M spec the task start address should
 have bit-0 clear, as it is loaded into the PC on exit from an ISR. */
 #define portSTART_ADDRESS_MASK				( ( StackType_t ) 0xfffffffeUL )
@@ -116,12 +125,30 @@ variable.  Note this is not saved as part of the task context as context
 switches can only occur when uxCriticalNesting is zero. */
 static UBaseType_t uxCriticalNesting = 0xaaaaaaaa;
 
+#if( configUSE_TICKLESS_IDLE == 1 )
 /*
- * Setup the timer to generate the tick interrupts.  The implementation in this
- * file is weak to allow application writers to change the timer used to
- * generate the tick interrupt.
+ * The number of SysTick increments that make up one tick period.
  */
-void vPortSetupTimerInterrupt( void );
+	static uint32_t ulTimerCountsForOneTick = 0;
+
+/*
+ * The maximum number of tick periods that can be suppressed is limited by the
+ * 24 bit resolution of the SysTick timer.
+ */
+	static uint32_t xMaximumPossibleSuppressedTicks = 0;
+
+/*
+ * Compensate for the CPU cycles that pass while the SysTick is stopped (low
+ * power functionality only.
+ */
+	static uint32_t ulStoppedTimerCompensation = 0;
+#endif /* configUSE_TICKLESS_IDLE */
+
+
+/*
+ * Setup the timer to generate the tick interrupts.
+ */
+static void prvSetupTimerInterrupt( void ) PRIVILEGED_FUNCTION;
 
 /*
  * Configure a number of standard MPU regions that are used by all tasks.
@@ -139,13 +166,6 @@ static void prvStartFirstTask( void ) PRIVILEGED_FUNCTION;
  * into the region attribute register for that region.
  */
 static uint32_t prvGetMPURegionSizeSetting( uint32_t ulActualSizeInBytes ) PRIVILEGED_FUNCTION;
-
-/*
- * Checks to see if being called from the context of an unprivileged task, and
- * if so raises the privilege level and returns false - otherwise does nothing
- * other than return true.
- */
-BaseType_t xPortRaisePrivilege( void );
 
 /*
  * Standard FreeRTOS exception handlers.
@@ -176,29 +196,6 @@ static void vPortEnableVFP( void );
 static uint32_t prvPortGetIPSR( void );
 
 /*
- * The number of SysTick increments that make up one tick period.
- */
-#if configUSE_TICKLESS_IDLE == 1
-	static uint32_t ulTimerCountsForOneTick = 0;
-#endif /* configUSE_TICKLESS_IDLE */
-
-/*
- * The maximum number of tick periods that can be suppressed is limited by the
- * 24 bit resolution of the SysTick timer.
- */
-#if configUSE_TICKLESS_IDLE == 1
-	static uint32_t xMaximumPossibleSuppressedTicks = 0;
-#endif /* configUSE_TICKLESS_IDLE */
-
-/*
- * Compensate for the CPU cycles that pass while the SysTick is stopped (low
- * power functionality only.
- */
-#if configUSE_TICKLESS_IDLE == 1
-	static uint32_t ulStoppedTimerCompensation = 0;
-#endif /* configUSE_TICKLESS_IDLE */
-	
-/*
  * Used by the portASSERT_IF_INTERRUPT_PRIORITY_INVALID() macro to ensure
  * FreeRTOS API functions are not called from interrupts that have been assigned
  * a priority above configMAX_SYSCALL_INTERRUPT_PRIORITY.
@@ -209,6 +206,35 @@ static uint32_t prvPortGetIPSR( void );
 	 static const volatile uint8_t * const pcInterruptPriorityRegisters = ( const uint8_t * ) portNVIC_IP_REGISTERS_OFFSET_16;
 #endif /* configASSERT_DEFINED */
 
+/**
+ * @brief Checks whether or not the processor is privileged.
+ *
+ * @return 1 if the processor is already privileged, 0 otherwise.
+ */
+BaseType_t xIsPrivileged( void );
+
+/**
+ * @brief Lowers the privilege level by setting the bit 0 of the CONTROL
+ * register.
+ *
+ * Bit 0 of the CONTROL register defines the privilege level of Thread Mode.
+ *  Bit[0] = 0 --> The processor is running privileged
+ *  Bit[0] = 1 --> The processor is running unprivileged.
+ */
+void vResetPrivilege( void );
+
+/**
+ * @brief Calls the port specific code to raise the privilege.
+ *
+ * @return pdFALSE if privilege was raised, pdTRUE otherwise.
+ */
+extern BaseType_t xPortRaisePrivilege( void );
+
+/**
+ * @brief If xRunningPrivileged is not pdTRUE, calls the port specific
+ * code to reset the privilege, otherwise does nothing.
+ */
+extern void vPortResetPrivilege( BaseType_t xRunningPrivileged );
 /*-----------------------------------------------------------*/
 
 /*
@@ -230,7 +256,7 @@ StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t px
 	/* A save method is being used that requires each task to maintain its
 	own exec return value. */
 	pxTopOfStack--;
-	*pxTopOfStack = portINITIAL_EXEC_RETURN;
+	*pxTopOfStack = portINITIAL_EXC_RETURN;
 
 	pxTopOfStack -= 9;	/* R11, R10, R9, R8, R7, R6, R5 and R4. */
 
@@ -371,6 +397,24 @@ BaseType_t xPortStartScheduler( void )
 			ucMaxPriorityValue <<= ( uint8_t ) 0x01;
 		}
 
+		#ifdef __NVIC_PRIO_BITS
+		{
+			/* Check the CMSIS configuration that defines the number of
+			priority bits matches the number of priority bits actually queried
+			from the hardware. */
+			configASSERT( ( portMAX_PRIGROUP_BITS - ulMaxPRIGROUPValue ) == __NVIC_PRIO_BITS );
+		}
+		#endif
+
+		#ifdef configPRIO_BITS
+		{
+			/* Check the FreeRTOS configuration that defines the number of
+			priority bits matches the number of priority bits actually queried
+			from the hardware. */
+			configASSERT( ( portMAX_PRIGROUP_BITS - ulMaxPRIGROUPValue ) == configPRIO_BITS );
+		}
+		#endif
+
 		/* Shift the priority group value back to its position within the AIRCR
 		register. */
 		ulMaxPRIGROUPValue <<= portPRIGROUP_SHIFT;
@@ -393,7 +437,7 @@ BaseType_t xPortStartScheduler( void )
 
 	/* Start the timer that generates the tick ISR.  Interrupts are disabled
 	here already. */
-	vPortSetupTimerInterrupt();
+	prvSetupTimerInterrupt();
 
 	/* Initialise the critical nesting count ready for the first task. */
 	uxCriticalNesting = 0;
@@ -415,12 +459,21 @@ BaseType_t xPortStartScheduler( void )
 __asm void prvStartFirstTask( void )
 {
 	PRESERVE8
-	
-	ldr r0, =0xE000ED08	/* Use the NVIC offset register to locate the stack. */
+
+	/* Use the NVIC offset register to locate the stack. */
+	ldr r0, =0xE000ED08
 	ldr r0, [r0]
 	ldr r0, [r0]
-	msr msp, r0			/* Set the msp back to the start of the stack. */
-	cpsie i				/* Globally enable interrupts. */
+	/* Set the msp back to the start of the stack. */
+	msr msp, r0
+	/* Clear the bit that indicates the FPU is in use in case the FPU was used
+	before the scheduler was started - which would otherwise result in the
+	unnecessary leaving of space in the SVC stack for lazy saving of FPU
+	registers. */
+	mov r0, #0
+	msr control, r0
+	/* Globally enable interrupts. */
+	cpsie i
 	cpsie f
 	dsb
 	isb
@@ -472,8 +525,8 @@ __asm void xPortPendSVHandler( void )
 
 	mrs r0, psp
 
-	ldr	r3, =pxCurrentTCB			/* Get the location of the current TCB. */
-	ldr	r2, [r3]
+	ldr r3, =pxCurrentTCB			/* Get the location of the current TCB. */
+	ldr r2, [r3]
 
 	tst r14, #0x10					/* Is the task using the FPU context?  If so, push high vfp registers. */
 	it eq
@@ -483,9 +536,8 @@ __asm void xPortPendSVHandler( void )
 	stmdb r0!, {r1, r4-r11, r14}	/* Save the remaining registers. */
 	str r0, [r2]					/* Save the new top of stack into the first member of the TCB. */
 
-	stmdb sp!, {r3}
+	stmdb sp!, {r0, r3}
 	mov r0, #configMAX_SYSCALL_INTERRUPT_PRIORITY
-  cpsid i
 	msr basepri, r0
 	dsb
 	isb
@@ -493,7 +545,7 @@ __asm void xPortPendSVHandler( void )
 	bl vTaskSwitchContext
 	mov r0, #0
 	msr basepri, r0
-	ldmia sp!, {r3}
+	ldmia sp!, {r0, r3}
 									/* Restore the context. */
 	ldr r1, [r3]
 	ldr r0, [r1]					/* The first item in the TCB is the task top of stack. */
@@ -511,29 +563,16 @@ __asm void xPortPendSVHandler( void )
 	msr psp, r0
 	bx r14
 	nop
+	nop
 }
+
 /*-----------------------------------------------------------*/
 
-void xPortSysTickHandler( void )
-{
-uint32_t ulDummy;
+#if( configUSE_TICKLESS_IDLE == 1 )
 
-	ulDummy = portSET_INTERRUPT_MASK_FROM_ISR();
-	{
-		/* Increment the RTOS tick. */
-		if( xTaskIncrementTick() != pdFALSE )
-		{
-			/* Pend a context switch. */
-			portNVIC_INT_CTRL_REG = portNVIC_PENDSVSET_BIT;
-		}
-	}
-	portCLEAR_INTERRUPT_MASK_FROM_ISR( ulDummy );
-}
-/*-----------------------------------------------------------*/
-#if configUSE_TICKLESS_IDLE == 1
 	__weak void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
 	{
-	uint32_t ulReloadValue, ulCompleteTickPeriods, ulCompletedSysTickDecrements, ulSysTickCTRL;
+	uint32_t ulReloadValue, ulCompleteTickPeriods, ulCompletedSysTickDecrements;
 	TickType_t xModifiableIdleTime;
 
 		/* Make sure the SysTick reload value does not overflow the counter. */
@@ -546,7 +585,7 @@ uint32_t ulDummy;
 		is accounted for as best it can be, but using the tickless mode will
 		inevitably result in some tiny drift of the time maintained by the
 		kernel with respect to calendar time. */
-		portNVIC_SYSTICK_CTRL_REG &= ~portNVIC_SYSTICK_ENABLE;
+		portNVIC_SYSTICK_CTRL_REG &= ~portNVIC_SYSTICK_ENABLE_BIT;
 
 		/* Calculate the reload value required to wait xExpectedIdleTime
 		tick periods.  -1 is used because this code will execute part way
@@ -572,7 +611,7 @@ uint32_t ulDummy;
 			portNVIC_SYSTICK_LOAD_REG = portNVIC_SYSTICK_CURRENT_VALUE_REG;
 
 			/* Restart SysTick. */
-			portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE;
+			portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE_BIT;
 
 			/* Reset the reload register to the value required for normal tick
 			periods. */
@@ -592,7 +631,7 @@ uint32_t ulDummy;
 			portNVIC_SYSTICK_CURRENT_VALUE_REG = 0UL;
 
 			/* Restart SysTick. */
-			portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE;
+			portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE_BIT;
 
 			/* Sleep until something happens.  configPRE_SLEEP_PROCESSING() can
 			set its parameter to 0 to indicate that its implementation contains
@@ -609,23 +648,41 @@ uint32_t ulDummy;
 			}
 			configPOST_SLEEP_PROCESSING( &xExpectedIdleTime );
 
-			/* Stop SysTick.  Again, the time the SysTick is stopped for is
-			accounted for as best it can be, but using the tickless mode will
-			inevitably result in some tiny drift of the time maintained by the
-			kernel with respect to calendar time. */
-			ulSysTickCTRL = portNVIC_SYSTICK_CTRL_REG;
-			portNVIC_SYSTICK_CTRL_REG = ( ulSysTickCTRL & ~portNVIC_SYSTICK_ENABLE );
-
-			/* Re-enable interrupts - see comments above __disable_irq() call
-			above. */
+			/* Re-enable interrupts to allow the interrupt that brought the MCU
+			out of sleep mode to execute immediately.  see comments above
+			__disable_interrupt() call above. */
 			__enable_irq();
+			__dsb( portSY_FULL_READ_WRITE );
+			__isb( portSY_FULL_READ_WRITE );
 
-			if( ( ulSysTickCTRL & portNVIC_SYSTICK_COUNT_FLAG ) != 0 )
+			/* Disable interrupts again because the clock is about to be stopped
+			and interrupts that execute while the clock is stopped will increase
+			any slippage between the time maintained by the RTOS and calendar
+			time. */
+			__disable_irq();
+			__dsb( portSY_FULL_READ_WRITE );
+			__isb( portSY_FULL_READ_WRITE );
+
+			/* Disable the SysTick clock without reading the
+			portNVIC_SYSTICK_CTRL_REG register to ensure the
+			portNVIC_SYSTICK_COUNT_FLAG_BIT is not cleared if it is set.  Again,
+			the time the SysTick is stopped for is accounted for as best it can
+			be, but using the tickless mode will inevitably result in some tiny
+			drift of the time maintained by the kernel with respect to calendar
+			time*/
+			portNVIC_SYSTICK_CTRL_REG = ( portNVIC_SYSTICK_CLK_BIT | portNVIC_SYSTICK_INT_BIT );
+
+			/* Determine if the SysTick clock has already counted to zero and
+			been set back to the current reload value (the reload back being
+			correct for the entire expected idle time) or if the SysTick is yet
+			to count to zero (in which case an interrupt other than the SysTick
+			must have brought the system out of sleep mode). */
+			if( ( portNVIC_SYSTICK_CTRL_REG & portNVIC_SYSTICK_COUNT_FLAG_BIT ) != 0 )
 			{
 				uint32_t ulCalculatedLoadValue;
 
-				/* The tick interrupt has already executed, and the SysTick
-				count reloaded with ulReloadValue.  Reset the
+				/* The tick interrupt is already pending, and the SysTick count
+				reloaded with ulReloadValue.  Reset the
 				portNVIC_SYSTICK_LOAD_REG with whatever remains of this tick
 				period. */
 				ulCalculatedLoadValue = ( ulTimerCountsForOneTick - 1UL ) - ( ulReloadValue - portNVIC_SYSTICK_CURRENT_VALUE_REG );
@@ -640,11 +697,9 @@ uint32_t ulDummy;
 
 				portNVIC_SYSTICK_LOAD_REG = ulCalculatedLoadValue;
 
-				/* The tick interrupt handler will already have pended the tick
-				processing in the kernel.  As the pending tick will be
-				processed as soon as this function exits, the tick value
-				maintained by the tick is stepped forward by one less than the
-				time spent waiting. */
+				/* As the pending tick will be processed as soon as this
+				function exits, the tick value maintained by the tick is stepped
+				forward by one less than the time spent waiting. */
 				ulCompleteTickPeriods = xExpectedIdleTime - 1UL;
 			}
 			else
@@ -666,63 +721,75 @@ uint32_t ulDummy;
 
 			/* Restart SysTick so it runs from portNVIC_SYSTICK_LOAD_REG
 			again, then set portNVIC_SYSTICK_LOAD_REG back to its standard
-			value.  The critical section is used to ensure the tick interrupt
-			can only execute once in the case that the reload register is near
-			zero. */
+			value. */
 			portNVIC_SYSTICK_CURRENT_VALUE_REG = 0UL;
-			portENTER_CRITICAL();
-			{
-				portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE;
-				vTaskStepTick( ulCompleteTickPeriods );
-				portNVIC_SYSTICK_LOAD_REG = ulTimerCountsForOneTick - 1UL;
-			}
-			portEXIT_CRITICAL();
+			portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE_BIT;
+			vTaskStepTick( ulCompleteTickPeriods );
+			portNVIC_SYSTICK_LOAD_REG = ulTimerCountsForOneTick - 1UL;
+
+			/* Exit with interrpts enabled. */
+			__enable_irq();
 		}
 	}
 
 #endif /* #if configUSE_TICKLESS_IDLE */
 
+void xPortSysTickHandler( void )
+{
+uint32_t ulDummy;
+
+	ulDummy = portSET_INTERRUPT_MASK_FROM_ISR();
+	{
+		/* Increment the RTOS tick. */
+		if( xTaskIncrementTick() != pdFALSE )
+		{
+			/* Pend a context switch. */
+			portNVIC_INT_CTRL_REG = portNVIC_PENDSVSET_BIT;
+		}
+	}
+	portCLEAR_INTERRUPT_MASK_FROM_ISR( ulDummy );
+}
 /*-----------------------------------------------------------*/
 
 /*
  * Setup the systick timer to generate the tick interrupts at the required
  * frequency.
  */
-#if configOVERRIDE_DEFAULT_TICK_CONFIGURATION == 0
+static void prvSetupTimerInterrupt( void )
+{
+    /* Calculate the constants required to configure the tick interrupt. */
+#if( configUSE_TICKLESS_IDLE == 1 )
+    ulTimerCountsForOneTick = ( configSYSTICK_CLOCK_HZ / configTICK_RATE_HZ );
+    xMaximumPossibleSuppressedTicks = portMAX_24_BIT_NUMBER / ulTimerCountsForOneTick;
+    ulStoppedTimerCompensation = portMISSED_COUNTS_FACTOR / ( configCPU_CLOCK_HZ / configSYSTICK_CLOCK_HZ );
+#endif /* configUSE_TICKLESS_IDLE */
 
-	void vPortSetupTimerInterrupt( void )
-	{
-		/* Calculate the constants required to configure the tick interrupt. */
-		#if configUSE_TICKLESS_IDLE == 1
-		{
-			ulTimerCountsForOneTick = ( configCPU_CLOCK_HZ / configTICK_RATE_HZ );
-			xMaximumPossibleSuppressedTicks = portMAX_24_BIT_NUMBER / ulTimerCountsForOneTick;
-			ulStoppedTimerCompensation = portMISSED_COUNTS_FACTOR / ( configCPU_CLOCK_HZ / configSYSTICK_CLOCK_HZ );
-		}
-		#endif /* configUSE_TICKLESS_IDLE */
-		/* Configure SysTick to interrupt at the requested rate. */
-		portNVIC_SYSTICK_LOAD_REG = ( configCPU_CLOCK_HZ / configTICK_RATE_HZ ) - 1UL;
-		portNVIC_SYSTICK_CTRL_REG = portNVIC_SYSTICK_CLK | portNVIC_SYSTICK_INT | portNVIC_SYSTICK_ENABLE;
-	}
-#endif /* configOVERRIDE_DEFAULT_TICK_CONFIGURATION */
 
+	/* Reset the SysTick. */
+	portNVIC_SYSTICK_CTRL_REG = 0UL;
+	portNVIC_SYSTICK_CURRENT_VALUE_REG = 0UL;
+
+	/* Configure SysTick to interrupt at the requested rate. */
+	portNVIC_SYSTICK_LOAD_REG = ( configCPU_CLOCK_HZ / configTICK_RATE_HZ ) - 1UL;
+	portNVIC_SYSTICK_CTRL_REG = portNVIC_SYSTICK_CLK | portNVIC_SYSTICK_INT | portNVIC_SYSTICK_ENABLE;
+}
 /*-----------------------------------------------------------*/
 
 __asm void vPortSwitchToUserMode( void )
 {
 	PRESERVE8
-	
+
 	mrs r0, control
 	orr r0, #1
 	msr control, r0
 	bx r14
 }
 /*-----------------------------------------------------------*/
-	
+
 __asm void vPortEnableVFP( void )
 {
 	PRESERVE8
-	
+
 	ldr.w r0, =0xE000ED88		/* The FPU enable bits are in the CPACR. */
 	ldr r1, [r0]
 
@@ -742,6 +809,9 @@ extern uint32_t __FLASH_segment_end__;
 extern uint32_t __privileged_data_start__;
 extern uint32_t __privileged_data_end__;
 
+	/* Check the expected MPU is present. */
+	if( portMPU_TYPE_REG == portEXPECTED_MPU_TYPE_VALUE )
+	{
 		/* First setup the entire flash for unprivileged read only access. */
 		portMPU_REGION_BASE_ADDRESS_REG =	( ( uint32_t ) __FLASH_segment_start__ ) | /* Base address. */
 											( portMPU_REGION_VALID ) |
@@ -790,6 +860,7 @@ extern uint32_t __privileged_data_end__;
 
 		/* Enable the MPU with the background region configured. */
 		portMPU_CTRL_REG |= ( portMPU_ENABLE | portMPU_BACKGROUND_ENABLE );
+	}
 }
 /*-----------------------------------------------------------*/
 
@@ -817,15 +888,27 @@ uint32_t ulRegionSize, ulReturnValue = 4;
 }
 /*-----------------------------------------------------------*/
 
-__asm BaseType_t xPortRaisePrivilege( void )
+__asm BaseType_t xIsPrivileged( void )
 {
-	mrs r0, control
-	tst r0, #1						/* Is the task running privileged? */
-	itte ne
-	movne r0, #0					/* CONTROL[0]!=0, return false. */
-	svcne portSVC_RAISE_PRIVILEGE	/* Switch to privileged. */
-	moveq r0, #1					/* CONTROL[0]==0, return true. */
-	bx lr
+	PRESERVE8
+
+	mrs r0, control		/* r0 = CONTROL. */
+	tst r0, #1			/* Perform r0 & 1 (bitwise AND) and update the conditions flag. */
+	ite ne
+	movne r0, #0		/* CONTROL[0]!=0. Return false to indicate that the processor is not privileged. */
+	moveq r0, #1		/* CONTROL[0]==0. Return true to indicate that the processor is privileged. */
+	bx lr				/* Return. */
+}
+/*-----------------------------------------------------------*/
+
+__asm void vResetPrivilege( void )
+{
+	PRESERVE8
+
+	mrs r0, control		/* r0 = CONTROL. */
+	orrs r0, #1			/* r0 = r0 | 1. */
+	msr control, r0		/* CONTROL = r0. */
+	bx lr				/* Return. */
 }
 /*-----------------------------------------------------------*/
 

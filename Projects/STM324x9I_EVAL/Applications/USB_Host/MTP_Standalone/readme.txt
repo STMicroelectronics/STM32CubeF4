@@ -120,6 +120,9 @@ requirements, such as:
    By default debug messages are displayed on the debugger IO terminal; to redirect the Library
    messages on the LCD screen, lcd_log.c driver need to be added to the application sources.
    
+@par Keywords
+
+Connectivity, USB Host, MTP, Android, Full Speed, High Speed, LCD, Enumeration, Removable drive, Audio, Wav
 
 @par Directory contents
 

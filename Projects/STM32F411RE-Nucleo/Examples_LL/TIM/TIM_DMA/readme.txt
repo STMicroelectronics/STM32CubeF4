@@ -65,6 +65,10 @@ Whenever a DMA transfer fails LED2 flashes with a frequency of 1 Hz.
       clock frequency may vary from one board to another observed PWM signal
       frequency might be slightly different.
 
+@par Keywords
+
+Timers, DMA, PWM, Frequency, Duty Cycle, Waveform, Oscilloscope, Output, Signal
+
 @par Directory contents 
 
   - TIM/TIM_DMA/Inc/stm32f4xx_it.h          Interrupt handlers header file

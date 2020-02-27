@@ -84,6 +84,10 @@ on second half of playback buffer.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Audio, DFSDM, Audio record, Digital Microphone, Stereo, MP34DT01, DMA, PDM, Filter, Playback, Audio codec, SAI
+
 @par Directory contents  
 
   - DFSDM/DFSDM_AudioRecord/Src/main.c                  Main program

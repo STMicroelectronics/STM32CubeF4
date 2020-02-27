@@ -72,6 +72,10 @@ In case of HAL initialization issue, LED3 will be ON.
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+Memory, FMC, SRAM, Read, Write, Initialization, Access
+
 @par Directory contents 
 
  - FMC/FMC_SRAM/Inc/stm32f4xx_hal_conf.h        HAL Configuration file

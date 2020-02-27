@@ -85,7 +85,7 @@ For more details about this application, refer to UM1723 "STM32Cube mbedTLS appl
 
 @par Keywords
 
-Security, Middleware, mbedTLS, SSL Client, Crypto, TCP/IP, LwIP, AES 128,
+Security, mbedTLS, SSL Client, Crypto, TCP/IP, LwIP, AES 128,
 AES 192, AES 256, Triple DES, MD5, SHA-1, RNG
 
 @par Directory contents

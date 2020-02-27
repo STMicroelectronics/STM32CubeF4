@@ -69,6 +69,9 @@ like rotations, shifts and zoom.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Display, STemWin, Memory device, LCD, GUI, Demonstration, Touch screen
 
 @par Directory contents 
 

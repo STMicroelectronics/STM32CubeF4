@@ -118,6 +118,9 @@ and communication is stopped (using infinite loop)
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, Communicatin, I2C, SDA, SCL, Slave, 7 bits, 10 Bits, Interrupt, Transmission, Reception, Acknowledge
 
 @par Directory contents 
 

@@ -70,6 +70,9 @@ LED5 will turn ON, if any error is occurred.
 @note The application needs to ensure that the TIM6 time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, General purpose Timer, Time base, HAL
 
 @par Directory contents
 
@@ -83,8 +86,7 @@ LED5 will turn ON, if any error is occurred.
 
 @par Hardware and Software environment
 
-  - This example runs on STM32F407xx devices.
-  
+  - This example runs on STM32F407xx devices.  
   - This example has been tested with STMicroelectronics STM32F4-Discovery RevB & RevC 
     boards and can be easily tailored to any other supported device 
     and development board.

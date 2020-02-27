@@ -79,10 +79,11 @@ The project is splitted in two parts the Master Board and the Slave Board
   The HAL_I2C_Slave_Receive_IT() and the HAL_I2C_Slave_Transmit_IT() functions 
   allow respectively the reception and the transmission of a predefined data buffer
   in Slave mode.
+
 The user can choose between Master and Slave through "#define MASTER_BOARD"
-in the "main.c" file.
-If the Master board is used, the "#define MASTER_BOARD" must be uncommented.
-If the Slave board is used the "#define MASTER_BOARD" must be commented.
+in the "main.c" file:
+- Uncomment "#define MASTER_BOARD" to select Master board.
+- Comment "#define MASTER_BOARD" to select Slave board.
 
 For this example the aTxBuffer is predefined and the aRxBuffer size is same as aTxBuffer.
 
@@ -102,12 +103,11 @@ STM32 Discovery board's LEDs can be used to monitor the transfer status:
  - LED6 is ON when the reception process is complete.
  - LED5 is ON when there is an error in transmission/reception process.  
 
- @note I2Cx instance used and associated resources can be updated in "main.h"
+@note I2Cx instance used and associated resources can be updated in "main.h"
        file depending hardware configuration used.
        
- @note Timeout is set to 10 Seconds which means that if no communication occurs 
+@note Timeout is set to 10 Seconds which means that if no communication occurs 
        during 10 Seconds, a Timeout Error will be generated.
-
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
@@ -118,6 +118,9 @@ STM32 Discovery board's LEDs can be used to monitor the transfer status:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, Communication, I2C, Interrupt, Master, Slave, Transmission, Reception, Fast mode plus
 
 @par Directory contents 
 

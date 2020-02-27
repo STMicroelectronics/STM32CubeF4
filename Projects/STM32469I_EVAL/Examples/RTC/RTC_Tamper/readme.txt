@@ -85,6 +85,10 @@ The associated firmware performs the following:
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+System, RTC, Tamper, Reset, LSE, LSI
+
 @par Directory contents 
 
   - RTC/RTC_Tamper/Inc/stm32f4xx_hal_conf.h    HAL configuration file

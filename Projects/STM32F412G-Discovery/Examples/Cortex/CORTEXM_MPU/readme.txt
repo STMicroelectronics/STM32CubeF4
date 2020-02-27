@@ -55,6 +55,10 @@ the following line "PrivilegedReadOnlyArray[0] = 'e';" in the "stm32_mpu.c" file
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, Cortex, Memory regions, Privileged area, permitted access, memory management fault, MPU memory fault
+
 @par Directory contents 
 
   - CortexM/MPU/Inc/stm32f4xx_hal_conf.h    HAL configuration file

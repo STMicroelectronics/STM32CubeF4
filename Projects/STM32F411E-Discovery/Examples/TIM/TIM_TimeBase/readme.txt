@@ -68,6 +68,10 @@ following frequency:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Timer, TIM, Time Base, Interrupt, Clock source
+
 @par Directory contents
 
   - TIM/TIM_TimeBase/Inc/stm32f4xx_hal_conf.h    HAL configuration file

@@ -119,6 +119,10 @@ requirements, such as:
 Since this is an RTOS based application, built around FreeRTOS and CMSIS-OS wrapping layer common APIs,
 the RTOS is enabled by setting, #define USBH_USE_OS 
 
+@par Keywords
+
+Connectivity, USB Host, HID, Full Speed, High Speed, Joystick, Mouse, Keyboard, enumerate, FreeRTOS, 
+
 @par Directory contents
 
   - USB_Host/HID_RTOS/Src/main.c                  Main program

@@ -91,6 +91,9 @@ The RTOS tick is suppressed while the MCU is in its low power state.
 For more details about FreeRTOS implementation on STM32Cube, please refer to UM1722 "Developing Applications 
 on STM32Cube with RTOS".
 
+@par Keywords
+
+RTOS, FreeRTOS, Low power, MPU
 
 @par Directory contents
 

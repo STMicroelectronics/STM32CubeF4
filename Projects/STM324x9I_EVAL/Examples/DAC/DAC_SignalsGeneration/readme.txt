@@ -57,6 +57,9 @@ STM32 Eval board's LEDs can be used to monitor the transfer status:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Analog, DAC, Signals generation, DMA, Triangle, Escalator, Waveform, Amplitude
 
 @par Directory contents 
 

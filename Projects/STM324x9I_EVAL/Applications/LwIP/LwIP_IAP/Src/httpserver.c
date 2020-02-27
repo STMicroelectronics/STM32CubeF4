@@ -207,7 +207,7 @@ static err_t http_recv(void *arg, struct tcp_pcb *pcb,  struct pbuf *p, err_t er
 {
   int32_t i,len=0;
   uint32_t DataOffset, FilenameOffset;
-  char *data, *ptr, filename[40], login[LOGIN_SIZE];
+  char *data, *ptr, filename[40], login[LOGIN_SIZE+1];
   struct fs_file file = {0, 0};
   struct http_state *hs;
 

@@ -61,7 +61,6 @@ because the semaphore is already taken by the low
 priority thread, which will toggle the LED2 for 5 seconds before releasing 
 the semaphore and begin a new cycle
 
-
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in HAL time base ISR. This implies that if HAL_Delay() is called from
       a peripheral ISR process, then the HAL time base interrupt must have higher priority (numerically lower)
@@ -76,6 +75,9 @@ the semaphore and begin a new cycle
 For more details about FreeRTOS implementation on STM32Cube, please refer to UM1722 "Developing Applications 
 on STM32Cube with RTOS".
 
+@par Keywords
+
+RTOS, FreeRTOS, Thread, Semaphore, Priorities
 
 @par Directory contents
 
@@ -85,7 +87,6 @@ on STM32Cube with RTOS".
     - FreeRTOS/FreeRTOS_Semaphore/Inc/FreeRTOSConfig.h      FreeRTOS Configuration file
     - FreeRTOS/FreeRTOS_Semaphore/Src/main.c                Main program
     - FreeRTOS/FreeRTOS_Semaphore/Src/stm32f4xx_it.c        Interrupt handlers
-
 
 @par Hardware and Software environment
 

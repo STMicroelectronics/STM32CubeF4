@@ -104,6 +104,11 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_HS" when using USB High Speed (HS) Core
       - "USE_USB_FS" when using USB Full Speed (FS) Core 
 
+@par Keywords
+
+Connectivity, USB Device, HID, Full Speed, High Speed, Joystick, Mouse, Power Management, LPM, LPM-L1,
+ECN, Suspend mode, Stop mode,
+
 @par Directory contents
 
   - USB_Device/HID_LPM_Standalone/Src/main.c                  Main program

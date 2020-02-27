@@ -329,6 +329,7 @@ typedef enum
   * @brief Camera I2C Slave address
   */
 #define CAMERA_I2C_ADDRESS               ((uint16_t)0x5A)
+#define CAMERA_I2C_ADDRESS_2             ((uint16_t)0x78)
 
 /**
   * @brief Audio I2C Slave address

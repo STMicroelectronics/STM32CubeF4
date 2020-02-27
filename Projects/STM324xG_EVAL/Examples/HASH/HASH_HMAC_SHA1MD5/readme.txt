@@ -61,6 +61,9 @@ In case the MD5 digest is computed correctly the blue LED (LED4) is turned ON.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, Security, HASH, HMAC, SHA1, MD5, DMA, digest, 
 
 @par Directory contents 
 

@@ -79,6 +79,9 @@ Three LEDs are toggled with a timing defined by the HAL_Delay() API.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+RCC, System, Clock Configuration, HSE bypass mode, HSI, System clock, Oscillator, PLL
 
 @par Directory contents 
 

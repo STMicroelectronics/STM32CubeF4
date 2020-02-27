@@ -102,10 +102,10 @@ STM32 Discovery board's LEDs can be used to monitor the transfer status:
  - LED6 is ON when the reception process is complete.
  - LED5 is ON when there is an error in transmission/reception process.  
 
- @note I2Cx instance used and associated resources can be updated in "main.h"
+@note I2Cx instance used and associated resources can be updated in "main.h"
        file depending hardware configuration used.
 
- @note Timeout is set to 10 Seconds which means that if no communication occurs 
+@note Timeout is set to 10 Seconds which means that if no communication occurs 
        during 10 Seconds, a Timeout Error will be generated.
 
 

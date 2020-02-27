@@ -86,6 +86,11 @@ For more details about the STM32Cube USB Device library, please refer to UM1734
 @note The connection of the LCD reset pin to a dedicated GPIO PH7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+Connectivity, USB Host, MSC, Mass Storage, Full Speed, High Speed, BOT, SCSI, Removable drive, FatFs,
+File system, Write, Read, Format
+
 @par Directory contents
 
   - USB_Device/MSC_Standalone/Src/main.c                  Main program

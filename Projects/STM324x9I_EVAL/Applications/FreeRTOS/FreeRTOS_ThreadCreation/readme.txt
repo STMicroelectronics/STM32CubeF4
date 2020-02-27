@@ -60,7 +60,6 @@ continue toggling LED2
 In the last 5 seconds, the thread 2 resume execution of thread 1 then 
 suspend itself, the thread 1 toggles the LED1 each 400 ms    
 
-
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in HAL time base ISR. This implies that if HAL_Delay() is called from
       a peripheral ISR process, then the HAL time base interrupt must have higher priority (numerically lower)
@@ -75,6 +74,9 @@ suspend itself, the thread 1 toggles the LED1 each 400 ms
 For more details about FreeRTOS implementation on STM32Cube, please refer to UM1722 "Developing Applications 
 on STM32Cube with RTOS".
 
+@par Keywords
+
+RTOS, FreeRTOS, Thread
 
 @par Directory contents
 

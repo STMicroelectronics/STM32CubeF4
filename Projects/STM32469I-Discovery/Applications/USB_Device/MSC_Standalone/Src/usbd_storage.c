@@ -101,6 +101,19 @@ USBD_StorageTypeDef USBD_DISK_fops = {
 int8_t STORAGE_Init(uint8_t lun)
 {
   BSP_SD_Init();
+  
+  /* NVIC configuration for SDIO interrupts */
+  HAL_NVIC_SetPriority(SDIO_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(SDIO_IRQn);
+  
+  /* NVIC configuration for DMA Rx transfer complete interrupt */
+  HAL_NVIC_SetPriority(SD_DMAx_Rx_IRQn, 6, 0);
+  HAL_NVIC_EnableIRQ(SD_DMAx_Rx_IRQn);
+
+  /* NVIC configuration for DMA Tx transfer complete interrupt */
+  HAL_NVIC_SetPriority(SD_DMAx_Tx_IRQn, 6, 0);
+  HAL_NVIC_EnableIRQ(SD_DMAx_Tx_IRQn);
+
   return 0;
 }
 
@@ -248,6 +261,7 @@ void BSP_SD_ReadCpltCallback(void)
 {
   readstatus = 1;
 }
+
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
 

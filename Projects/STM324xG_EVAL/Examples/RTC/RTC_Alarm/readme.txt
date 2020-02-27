@@ -77,6 +77,9 @@ The current time is updated and displayed on the debugger in aShowTime variable.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, RTC, Alarm, wakeup timer, Backup domain, Counter, LSE, LSI
 
 @par Directory contents 
 

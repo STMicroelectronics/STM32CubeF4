@@ -80,6 +80,9 @@ STM32469I-EVAL board's LEDs can be used to monitor the transfer status:
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Display, Graphic, DMA2D, LCD, SRAM, ARGB4444, Blending, Memory to memory, LTDC, Pixel
 
 @par Directory contents
 

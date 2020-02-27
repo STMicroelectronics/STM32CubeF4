@@ -79,6 +79,9 @@ to begin a new cycle.
 For more details about FreeRTOS implementation on STM32Cube, please refer to UM1722 "Developing Applications 
 on STM32Cube with RTOS".
 
+@par Keywords
+
+RTOS, FreeRTOS, Thread, Semaphore, Priorities
 
 @par Directory contents
     - FreeRTOS/FreeRTOS_Semaphore/Src/main.c                Main program

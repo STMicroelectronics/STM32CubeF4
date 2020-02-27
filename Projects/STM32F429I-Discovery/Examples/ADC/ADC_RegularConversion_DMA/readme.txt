@@ -64,6 +64,10 @@ STM32 Discovery board's LEDs can be used to monitor the transfer status:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Analog, ADC, Analog to Digital Converter, Regular Conversion, DMA, Continuous Conversion
+
 @par Directory contents 
 
   - ADC/ADC_RegularConversion_DMA/Inc/stm32f4xx_hal_conf.h    HAL configuration file

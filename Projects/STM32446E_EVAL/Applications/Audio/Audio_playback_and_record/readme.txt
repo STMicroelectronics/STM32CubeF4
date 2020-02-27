@@ -139,6 +139,10 @@ this application. For IAR EWARM toolchain, the library is labeled
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Audio, Playback, Record, MEMS, Microphone, Touch screen, USB, WAV, FatFS, SRAM, audio codec,
+DMA, SAI
 
 @par Directory contents 
 

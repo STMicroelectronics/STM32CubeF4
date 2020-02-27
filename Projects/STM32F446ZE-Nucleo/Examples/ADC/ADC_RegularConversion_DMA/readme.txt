@@ -57,6 +57,10 @@ STM32 Nucleo board's LEDs can be used to monitor the transfer status:
   - LED2 is ON when there is an error in ADC initialization, in ADC channel configuration 
     or during conversion process.
 
+@par Keywords
+
+Analog, ADC, Analog to Digital Converter, Regular Conversion, DMA, Continuous Conversion
+
 @par Directory contents 
 
   - ADC/ADC_RegularConversion_DMA/Inc/stm32f4xx_hal_conf.h    HAL configuration file

@@ -80,6 +80,9 @@ The PWM waveforms can be displayed using an oscilloscope.
 
 @note LED4 is turned ON, because it's sharing the same GPIO pin with the TIM3 channel 2.
 
+@par Keywords
+
+Timers, Output, signal, PWM, Oscilloscope, Frequency, Duty cycle, Waveform
 
 @par Directory contents 
 

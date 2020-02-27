@@ -73,6 +73,10 @@ SB94 must be closed to use the potentiometer.
 STM32 Eval board's LEDs can be used to monitor the transfer status:
   - LED3 is ON when there are an error in initialization.
 
+@par Keywords
+
+Analog, ADC, Analog to Digital, Injected mode, Continuous conversion, Interrupt, Measurement,
+
 @par Directory contents 
 
   - ADC/ADC_InjectedConversion_Interrupt/Inc/stm32f4xx_hal_conf.h    HAL configuration file

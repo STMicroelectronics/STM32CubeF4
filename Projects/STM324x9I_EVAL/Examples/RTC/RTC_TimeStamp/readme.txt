@@ -102,6 +102,9 @@ LED3 is turned ON in  the case of error.
   - RTC/RTC_TimeStamp/Src/stm32f4xx_hal_msp.c     HAL MSP module
   - RTC/RTC_TimeStamp/Src/system_stm32f4xx.c      STM32F4xx system clock configuration file
 
+@par Keywords
+
+RTC, Timer, Timestamp, Counter, LSE, LSI, Current time, Real Time Clock
 
 @par Hardware and Software environment
 

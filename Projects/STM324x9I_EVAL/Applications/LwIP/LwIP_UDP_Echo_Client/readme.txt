@@ -93,6 +93,9 @@ function in the ethernetif.c file
       
 For more details about this application, refer to UM1713 "STM32Cube interfacing with LwIP and applications"
 
+@par Keywords
+
+Connectivity, LwIP, Ethernet, UDP, Echo Client, TCP/IP, DHCP
 
 @par Directory contents
 

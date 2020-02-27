@@ -116,6 +116,10 @@ to the beginning (first examples).
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+BSP, LCD, Touchscreen, PSRAM, DMA, QSPI, Erase, Read, Write, Audio play, Record, MEMS, Audio Codec, DFSDM,
+I2S, Microphone, Headphones
 
 @par Directory contents 
 

@@ -58,6 +58,10 @@ In this example, HCLK is configured at 100 MHz.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Memory, QSPI, Execute in place, Erase, section, sector, memory-mapped mode
+
 @par Directory contents 
 
   - QSPI/QSPI_ExecuteInPlace/Inc/stm32f4xx_hal_conf.h HAL configuration file

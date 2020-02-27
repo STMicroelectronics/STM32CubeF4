@@ -60,6 +60,10 @@ possible to use the 'Cortex register' window of the debugger.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, Cortex, Process Stack, HCLK, Thread mode Stack, main stack, process stack, ISR
+
 @par Directory contents 
 
   - CORTEXM/CORTEXM_ProcessStack/Inc/stm32f4xx_hal_conf.h    HAL configuration file

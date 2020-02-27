@@ -61,9 +61,9 @@ uint32_t AESKey128[4] = {0x2B7E1516 ,0x28AED2A6 ,0xABF71588 ,0x09CF4F3C};
 uint32_t AESKey192[6] = {0x8E73B0F7 ,0xDA0E6452 ,0xC810F32B ,0x809079E5 ,0x62F8EAD2 ,0x522C6B7B};
 uint32_t AESKey256[8] = {0x603DEB10 ,0x15CA71BE ,0x2B73AEF0 ,0x857D7781 ,0x1F352C07 ,0x3B6108D7 ,0x2D9810A3 ,0x0914DFF4};
 
-/*Initialization Vector*/ 
+/*Initialization Vector*/
 uint32_t AESIV_CBC[4]  = {0x00010203 , 0x04050607 , 0x08090A0B , 0x0C0D0E0F};
-uint32_t AESIV_CTR[4]  = {0xF0F1F2F3 , 0xF4F5F6F7 , 0xF8F9FAFB , 0xFCFDFEFF};  
+uint32_t AESIV_CTR[4]  = {0xF0F1F2F3 , 0xF4F5F6F7 , 0xF8F9FAFB , 0xFCFDFEFF};
 
 /* Plaintext */
  uint32_t Plaintext[16]          =  {0x6BC1BEE2 ,0x2E409F96 ,0xE93D7E11 ,0x7393172A ,
@@ -90,10 +90,10 @@ uint32_t CiphertextAESCTR256[16] = {0x601EC313 ,0x775789A5 ,0xB7A7F504 ,0xBBF3D2
                                     0xDFC9C58D ,0xB67AADA6 ,0x13C2DD08 ,0x457941A6};
 
 /* Used for storing Encrypted text */
-static uint32_t Encryptedtext[16]={0}; 
+static uint32_t Encryptedtext[16]={0};
 
 /* Used for storing Decrypted text */
-static uint32_t Decryptedtext[16]={0}; 
+static uint32_t Decryptedtext[16]={0};
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
@@ -115,69 +115,70 @@ int main(void)
        - Global MSP (MCU Support Package) initialization
      */
   HAL_Init();
-  
+
   /* Configure the system clock to 180 MHz */
   SystemClock_Config();
-  
+
   /* Configure LED1 and LED3 */
   BSP_LED_Init(LED1);
   BSP_LED_Init(LED3);
-  
-  /*## Initialize the CRYP IP  ###############################################*/ 
-  
+
+  /*## Initialize the CRYP IP  ###############################################*/
+
   /* Set the CRYP parameters */
-  hcryp.Instance        = CRYP;
-  hcryp.Init.DataType   = CRYP_DATATYPE_32B;
-  hcryp.Init.KeySize    = CRYP_KEYSIZE_128B;
-  hcryp.Init.pKey       = AESKey128; 
-  hcryp.Init.Algorithm  = CRYP_AES_ECB; 
-  
+  hcryp.Instance             = CRYP;
+  hcryp.Init.DataType        = CRYP_DATATYPE_32B;
+  hcryp.Init.KeySize         = CRYP_KEYSIZE_128B;
+  hcryp.Init.pKey            = AESKey128;
+  hcryp.Init.Algorithm       = CRYP_AES_ECB;
+  hcryp.Init.KeyIVConfigSkip = CRYP_KEYIVCONFIG_ALWAYS;
+
   /* Initialize the CRYP  */
   HAL_CRYP_Init(&hcryp);
-  
-  /*##-1- AES ECB Encryption/Decryption in polling mode ######################*/ 
-  
-  /* Encryption, result in  Encryptedtext buffer */ 
+
+  /*##-1- AES ECB Encryption/Decryption in polling mode ######################*/
+
+  /* Encryption, result in  Encryptedtext buffer */
   HAL_CRYP_Encrypt(&hcryp, Plaintext, 16, Encryptedtext, TIMEOUT_VALUE);
-  
+
   /*compare with expected result */
   if(memcmp(Encryptedtext, CiphertextAESECB128, 64) != 0)
   {
     /* not expected result, wrong on Encryptedtext buffer: Turn LED3 on */
     Error_Handler();
   }
-  
-  /* Decryption, result in  Decryptedtext buffer */ 
+
+  /* Decryption, result in  Decryptedtext buffer */
   HAL_CRYP_Decrypt(&hcryp, CiphertextAESECB128 , 16, Decryptedtext, TIMEOUT_VALUE);
-  
+
   /*compare with expected result */
   if(memcmp(Decryptedtext, Plaintext, 64) != 0)
   {
     /* not expected result, wrong on Decryptedtext buffer: Turn LED3 on */
     Error_Handler();
   }
-  
-  /*##-2- AES CBC Encryption/Decryption in DMA mode  #########################*/   
-  
-  /* Get the CRYP parameters */  
-  HAL_CRYP_GetConfig(&hcryp, &Conf); 
-  
+
+  /*##-2- AES CBC Encryption/Decryption in DMA mode  #########################*/
+
+  /* Get the CRYP parameters */
+  HAL_CRYP_GetConfig(&hcryp, &Conf);
+
   /* Set the CRYP parameters */
-  Conf.DataType = CRYP_DATATYPE_32B;
-  Conf.KeySize  = CRYP_KEYSIZE_192B;
-  Conf.pKey     = AESKey192;
+  Conf.DataType  = CRYP_DATATYPE_32B;
+  Conf.KeySize   = CRYP_KEYSIZE_192B;
+  Conf.pKey      = AESKey192;
   Conf.Algorithm = CRYP_AES_CBC;
-  Conf.pInitVect=AESIV_CBC;
-  
+  Conf.pInitVect = AESIV_CBC;
+
   /* Configure the CRYP  */
   HAL_CRYP_SetConfig(&hcryp, &Conf);
-  
+
   /* Encryption, result in  Encryptedtext buffer */
   HAL_CRYP_Encrypt_DMA(&hcryp, Plaintext, 16, Encryptedtext);
-  
+
   /*wait until output transfer complete*/
-  while(CrypCompleteDetected == 0) 
-  { 
+  while(CrypCompleteDetected == 0)
+  {
   }
 
   /*compare with expected result */
@@ -187,77 +188,77 @@ int main(void)
     Error_Handler();
   }
   /* Reset Output Transfer Complete Detect */
-  CrypCompleteDetected = 0;    
-  
+  CrypCompleteDetected = 0;
+
   /* Decryption, result in  Decryptedtext buffer */
   HAL_CRYP_Decrypt_DMA(&hcryp, CiphertextAESCBC192, 16, Decryptedtext);
-  
+
   /*wait until output transfer complete*/
-  while(CrypCompleteDetected == 0) 
-  { 
+  while(CrypCompleteDetected == 0)
+  {
   }
   /* Reset Output Transfer Complete Detect */
-  CrypCompleteDetected = 0;  
-  
+  CrypCompleteDetected = 0;
+
   /*compare with expected result */
   if(memcmp(Decryptedtext, Plaintext, 64) != 0)
   {
     /* not expected result, wrong on Decryptedtext buffer: Turn LED3 on */
     Error_Handler();
   }
-  
-  /*##-3- AES CTR Encryption/Decryption in Interrupt mode  ###################*/ 
-  
+
+  /*##-3- AES CTR Encryption/Decryption in Interrupt mode  ###################*/
+
   /* Set the CRYP parameters */
-  Conf.pInitVect=AESIV_CTR;
-  Conf.KeySize  = CRYP_KEYSIZE_256B;
-  Conf.pKey     = AESKey256;
+  Conf.pInitVect = AESIV_CTR;
+  Conf.KeySize   = CRYP_KEYSIZE_256B;
+  Conf.pKey      = AESKey256;
   Conf.Algorithm = CRYP_AES_CTR;
-  
+
   /* Configure the CRYP  */
   HAL_CRYP_SetConfig(&hcryp, &Conf);
-  
+
   /* Encryption, result in  Encryptedtext buffer */
   HAL_CRYP_Encrypt_IT(&hcryp, Plaintext, 16, Encryptedtext);
-  
+
   /*wait until output transfer complete*/
-  while(CrypCompleteDetected == 0) 
-  { 
-  }  
-  
+  while(CrypCompleteDetected == 0)
+  {
+  }
+
   /* Reset Output Transfer Complete Detect */
-  CrypCompleteDetected = 0;  
-  
-  /*compare with expected result */ 
+  CrypCompleteDetected = 0;
+
+  /*compare with expected result */
   if(memcmp(Encryptedtext, CiphertextAESCTR256, 64) != 0)
   {
     /* not expected result, wrong on Encryptedtext buffer: Turn LED3 on */
     Error_Handler();
   }
-  
+
   /* Decryption, result in  Decryptedtext buffer */
   HAL_CRYP_Decrypt_IT(&hcryp, CiphertextAESCTR256, 16, Decryptedtext);
-  
+
   /*wait until output transfer complete*/
-  while(CrypCompleteDetected == 0) 
-  { } 
-  
+  while(CrypCompleteDetected == 0)
+  { }
+
   /* Reset Output Transfer Complete Detect */
-  CrypCompleteDetected = 0; 
-  
-  /*compare with expected result */ 
+  CrypCompleteDetected = 0;
+
+  /*compare with expected result */
   if(memcmp(Decryptedtext, Plaintext, 64) != 0)
   {
     /* not expected result, wrong on Decryptedtext buffer: Turn LED3 on */
     Error_Handler();
   }
-  
+
   else
   {
     /* Right Encryptedtext & Decryptedtext buffer : Turn LED1 on */
     BSP_LED_On(LED1);
   }
-  
+
   /* Infinite loop */
   while (1)
   {
@@ -266,7 +267,7 @@ int main(void)
 
 /**
   * @brief  System Clock Configuration
-  *         The system Clock is configured as follow : 
+  *         The system Clock is configured as follow :
   *            System Clock source            = PLL (HSE)
   *            SYSCLK(Hz)                     = 180000000
   *            HCLK(Hz)                       = 180000000
@@ -292,8 +293,8 @@ static void SystemClock_Config(void)
   /* Enable Power Control clock */
   __HAL_RCC_PWR_CLK_ENABLE();
 
-  /* The voltage scaling allows optimizing the power consumption when the device is 
-     clocked below the maximum system frequency, to update the voltage scaling value 
+  /* The voltage scaling allows optimizing the power consumption when the device is
+     clocked below the maximum system frequency, to update the voltage scaling value
      regarding system frequency refer to product datasheet.  */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
@@ -310,14 +311,14 @@ static void SystemClock_Config(void)
 
   /* Activate the Over-Drive mode */
   HAL_PWREx_EnableOverDrive();
-    
-  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
+
+  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2
      clocks dividers */
   RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;  
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;  
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
   HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5);
 }
 
@@ -343,7 +344,7 @@ static void Error_Handler(void)
   BSP_LED_On(LED3);
   while (1)
   {
-  }  
+  }
 
 }
 

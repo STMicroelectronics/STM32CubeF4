@@ -156,6 +156,10 @@ Here below a detailed description of the example code:
       and USB PHYs. So, to reach the correct current consumption values, this example configures the Ethernet
       and USB PHYs in Low power mode.
 
+@par Keywords
+
+Power, STOP, Sleep, Standby, Current Consumption, Low Power, LSI, Backup SRAM, Voltage range
+
 @par Directory contents 
 
   - PWR/PWR_CurrentConsumption/Inc/stm32f4xx_hal_conf.h         HAL configuration file

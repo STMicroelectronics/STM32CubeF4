@@ -99,6 +99,9 @@ STM32 Eval board's LEDs can be used to monitor the application status:
 For more details about FatFs implementation on STM32Cube, please refer to UM1721 "Developing Applications 
 on STM32Cube with FatFs".
 
+@par Keywords
+
+RAMDisk, SRAM, FatFS, FAT, File system, Mount, Format, FreeRTOS, RTOS
 
 @par Directory contents
  
@@ -110,8 +113,7 @@ on STM32Cube with FatFs".
   - FatFs/FatFs_RAMDisk_RTOS/Src/stm32f4xx_it.c          Interrupt handlers
   - FatFs/FatFs_RAMDisk_RTOS/Src/main.c                  Main program
   - FatFs/FatFs_RAMDisk_RTOS/Src/sdram_diskio.c          FatFS sdram diskio driver implementation
-  - FatFs/FatFs_RAMDisk_RTOS/Src/system_stm32f4xx.c      STM32F4xx system clock configuration file
-         
+  - FatFs/FatFs_RAMDisk_RTOS/Src/system_stm32f4xx.c      STM32F4xx system clock configuration file      
  
 @par Hardware and Software environment
 

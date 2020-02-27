@@ -71,6 +71,10 @@ The PWM waveforms can be displayed using an oscilloscope.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Timers, Output, signal, PWM, Oscilloscope, Frequency, Duty cycle, Waveform
+
 @par Directory contents 
 
   - TIM/TIM_PWMOutput/Inc/stm32f4xx_hal_conf.h    HAL configuration file

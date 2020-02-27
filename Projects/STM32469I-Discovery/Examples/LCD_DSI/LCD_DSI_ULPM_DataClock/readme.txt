@@ -78,6 +78,11 @@ LED3 ON: an error occured.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Graphic, Display, LCD, DSI, MIPI Alliance, Ultra low power mode, Tearing effect, Partial refresh, Single buffer,
+LTDC, WVGA, ARGB8888, SDRAM, Burst mode, Data lane, clock lane
+
 @par Directory contents
 
   - LCD_DSI/LCD_DSI_ULPM_Data/Inc/stm32f4xx_hal_conf.h          HAL configuration file

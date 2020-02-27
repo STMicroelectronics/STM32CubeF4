@@ -1,24 +1,32 @@
  /**
   *
-  * Portions COPYRIGHT 2018 STMicroelectronics
+  * Portions COPYRIGHT 2018 STMicroelectronics, All Rights Reserved
   * Copyright (C) 2006-2015, ARM Limited, All Rights Reserved
   *
   ******************************************************************************
-  * @file    timing_alt_template.c[
+  * @file    timing_alt_template.c
   * @author  MCD Application Team
   * @brief   mbedtls alternate timing functions implementation.
   *          mbedtls timing API is implemented using the CMSIS-RTOS v1/v2 API
-  *          this file has to be reamed to timing_alt.c and copied under
+  *          this file has to be renamed to timing_alt.c and copied under
   *          the project tree.
   ******************************************************************************
+  * @attention
   *
-  * Licensed under the Apache License, Version 2.0 (the "License"); you may
-  * not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  * http://www.apache.org/licenses/LICENSE-2.0
+  * <h2><center>&copy; Copyright (c) 2018 STMicroelectronics
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under Apache 2.0 license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  * https://opensource.org/licenses/Apache-2.0
+  *
+  ******************************************************************************
   */
 
 #include "timing_alt.h"
+
+#if defined(MBEDTLS_TIMING_ALT)
 
 /* include the appropriate header file */
 #include "stm32<xxxxx>_hal.h"
@@ -139,3 +147,4 @@ int mbedtls_timing_get_delay( void *data )
 
   return( 0 );
 }
+#endif /* MBEDTLS_TIMING_ALT */

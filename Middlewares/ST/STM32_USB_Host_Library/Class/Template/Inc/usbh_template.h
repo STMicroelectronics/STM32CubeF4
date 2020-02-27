@@ -12,7 +12,7 @@
   * This software component is licensed by ST under Ultimate Liberty license
   * SLA0044, the "License"; You may not use this file except in compliance with
   * the License. You may obtain a copy of the License at:
-  *                      http://www.st.com/SLA0044
+  *                      www.st.com/SLA0044
   *
   ******************************************************************************
   */
@@ -22,7 +22,7 @@
 #define __USBH_TEMPLATE_H
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
@@ -90,8 +90,8 @@ extern USBH_ClassTypeDef  TEMPLATE_Class;
 /** @defgroup USBH_TEMPLATE_CLASS_Exported_FunctionsPrototype
 * @{
 */
-USBH_StatusTypeDef USBH_TEMPLATE_IOProcess (USBH_HandleTypeDef *phost);
-USBH_StatusTypeDef USBH_TEMPLATE_Init (USBH_HandleTypeDef *phost);
+USBH_StatusTypeDef USBH_TEMPLATE_IOProcess(USBH_HandleTypeDef *phost);
+USBH_StatusTypeDef USBH_TEMPLATE_Init(USBH_HandleTypeDef *phost);
 /**
 * @}
 */

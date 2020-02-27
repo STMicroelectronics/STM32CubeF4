@@ -65,6 +65,10 @@ STM32 board LEDs are used to monitor the example status:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Security, CRC, CRC Polynomial, IEC 60870-5, hardware CRC
+
 @par Directory contents 
   
   - CRC/CRC_Example/Inc/stm32f4xx_hal_conf.h    HAL configuration file

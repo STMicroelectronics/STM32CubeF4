@@ -71,6 +71,9 @@ If the data is read correctly from SRAM, the LED1 is ON, otherwise the LED2 is O
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Memory, FMC, SRAM, Read, Write, Initialization, Access
 
 @par Directory contents
                         

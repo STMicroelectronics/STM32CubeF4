@@ -69,6 +69,10 @@ These steps are repeated in an infinite loop.
       that the Cortex-M4 core is no longer clocked during low power mode 
       so debugging features are disabled.
 
+@par Keywords
+
+Power, PWR, Standby mode, Interrupt, EXTI, Wakeup, Low Power, External reset,
+
 @par Directory contents 
 
   - PWR/PWR_EnterStandbyMode/Inc/stm32f4xx_it.h          Interrupt handlers header file

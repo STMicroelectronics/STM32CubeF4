@@ -51,6 +51,10 @@ LED2 is used to monitor the system state as follows:
       that the Cortex-M4 core is no longer clocked during low power mode 
       so debugging features are disabled.
 
+@par Keywords
+
+Power, PWR, stop mode, Interrupt, Low Power
+
 @par Directory contents 
 
   - PWR/PWR_EnterStopMode/Inc/stm32f4xx_it.h          Interrupt handlers header file

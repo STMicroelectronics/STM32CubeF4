@@ -82,6 +82,9 @@ When the tamper button is pressed an image is saved under USBdisk.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Display, Camera, USB Disk, DCMI, LCD, DMA, Frame buffer, WVGA
 
 @par Directory contents
 

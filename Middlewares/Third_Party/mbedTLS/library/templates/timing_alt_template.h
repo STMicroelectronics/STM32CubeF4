@@ -112,4 +112,4 @@ int mbedtls_timing_get_delay( void *data );
 #ifdef __cplusplus
 }
 #endif
-#endif /* timing.h */
+#endif /* MBEDTLS_TIMING_ALT_H */

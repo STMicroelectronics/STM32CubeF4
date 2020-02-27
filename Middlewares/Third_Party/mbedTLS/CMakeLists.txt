@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 2.6)
-project("mbed TLS" C)
+if(TEST_CPP)
+    project("mbed TLS" C CXX)
+else()
+    project("mbed TLS" C)
+endif()
 
 option(USE_PKCS11_HELPER_LIBRARY "Build mbed TLS with the pkcs11-helper library." OFF)
 option(ENABLE_ZLIB_SUPPORT "Build mbed TLS with zlib library." OFF)
@@ -32,8 +36,26 @@ set(NULL_ENTROPY_WARNING "${WARNING_BORDER}"
                          "${NULL_ENTROPY_WARN_L3}"
                          "${WARNING_BORDER}")
 
+set(CTR_DRBG_128_BIT_KEY_WARN_L1 "****  WARNING!  MBEDTLS_CTR_DRBG_USE_128_BIT_KEY defined!\n")
+set(CTR_DRBG_128_BIT_KEY_WARN_L2 "****  Using 128-bit keys for CTR_DRBG limits the security of generated\n")
+set(CTR_DRBG_128_BIT_KEY_WARN_L3 "****  keys and operations that use random values generated to 128-bit security\n")
+
+set(CTR_DRBG_128_BIT_KEY_WARNING "${WARNING_BORDER}"
+                         "${CTR_DRBG_128_BIT_KEY_WARN_L1}"
+                         "${CTR_DRBG_128_BIT_KEY_WARN_L2}"
+                         "${CTR_DRBG_128_BIT_KEY_WARN_L3}"
+                         "${WARNING_BORDER}")
+
+find_package(PythonInterp)
 find_package(Perl)
 if(PERL_FOUND)
+
+    # If 128-bit keys are configured for CTR_DRBG, display an appropriate warning
+    execute_process(COMMAND ${PERL_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/scripts/config.pl -f ${CMAKE_CURRENT_SOURCE_DIR}/include/mbedtls/config.h get MBEDTLS_CTR_DRBG_USE_128_BIT_KEY
+                        RESULT_VARIABLE result)
+    if(${result} EQUAL 0)
+        message(WARNING ${CTR_DRBG_128_BIT_KEY_WARNING})
+    endif()
 
     # If NULL Entropy is configured, display an appropriate warning
     execute_process(COMMAND ${PERL_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/scripts/config.pl -f ${CMAKE_CURRENT_SOURCE_DIR}/include/mbedtls/config.h get MBEDTLS_TEST_NULL_ENTROPY
@@ -65,8 +87,14 @@ set(CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE}
 # to the corresponding path in the source directory.
 function(link_to_source base_name)
     # Get OS dependent path to use in `execute_process`
-    file(TO_NATIVE_PATH "${CMAKE_CURRENT_BINARY_DIR}/${base_name}" link)
-    file(TO_NATIVE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/${base_name}" target)
+    if (CMAKE_HOST_WIN32)
+        #mklink is an internal command of cmd.exe it can only work with \
+        string(REPLACE "/" "\\" link "${CMAKE_CURRENT_BINARY_DIR}/${base_name}")
+        string(REPLACE "/" "\\" target "${CMAKE_CURRENT_SOURCE_DIR}/${base_name}")
+    else()
+        set(link "${CMAKE_CURRENT_BINARY_DIR}/${base_name}")
+        set(target "${CMAKE_CURRENT_SOURCE_DIR}/${base_name}")
+    endif()
 
     if (NOT EXISTS ${link})
         if (CMAKE_HOST_UNIX)
@@ -200,13 +228,13 @@ if(ENABLE_TESTING)
             COMMAND mv DartConfiguration.tcl.bak DartConfiguration.tcl
         )
     endif(UNIX)
-endif()
 
-# Make scripts needed for testing available in an out-of-source build.
-if (NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
-    link_to_source(scripts)
-    # Copy (don't link) DartConfiguration.tcl, needed for memcheck, to
-    # keep things simple with the sed commands in the memcheck target.
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/DartConfiguration.tcl
-                   ${CMAKE_CURRENT_BINARY_DIR}/DartConfiguration.tcl COPYONLY)
+    # Make scripts needed for testing available in an out-of-source build.
+    if (NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+        link_to_source(scripts)
+        # Copy (don't link) DartConfiguration.tcl, needed for memcheck, to
+        # keep things simple with the sed commands in the memcheck target.
+        configure_file(${CMAKE_CURRENT_SOURCE_DIR}/DartConfiguration.tcl
+                    ${CMAKE_CURRENT_BINARY_DIR}/DartConfiguration.tcl COPYONLY)
+    endif()
 endif()

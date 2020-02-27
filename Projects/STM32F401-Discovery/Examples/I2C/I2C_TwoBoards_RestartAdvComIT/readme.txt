@@ -211,7 +211,7 @@ Also only on Master board side, Terminal I/O can be used to watch the Request Co
  In Debug configuration window\ Startup, in addition to "monitor reset halt" add the command "monitor arm semihosting enable"
  Command Code is displayed on debugger as follows: Window--> Show View--> Console.
 
- @note I2Cx instance used and associated resources can be updated in "main.h"
+@note I2Cx instance used and associated resources can be updated in "main.h"
        file depending hardware configuration used.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -222,6 +222,10 @@ Also only on Master board side, Terminal I/O can be used to watch the Request Co
 
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
+@par Keywords
+
+Connectivity, I2C, Communication, Trasmission, Reception, SCL, SDA, Interrupt, Request, Sequential
 
 @par Directory contents 
 

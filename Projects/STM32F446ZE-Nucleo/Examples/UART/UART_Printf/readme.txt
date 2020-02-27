@@ -72,9 +72,6 @@ Rx Pin: PD.09
   and all data sent from this terminal will be received by the same terminal in loopback mode.
   This mode is useful for test and performance measurements.
 
-
-
-
 LED2 is ON when there is an error occurrence.
 
 The USART is configured as follows:
@@ -99,6 +96,10 @@ position of the transmitted data.
       
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
+@par Keywords
+
+Connectivity, UART, Printf, Baud rate, RS-232, HyperTerminal, full-duplex
 
 @par Directory contents 
 

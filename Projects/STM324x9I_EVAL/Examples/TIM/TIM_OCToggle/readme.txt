@@ -70,6 +70,9 @@ so the TIM3 channel 4 generates a periodic signal with a frequency equal to 1757
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Timers, Output, signals, Outpur compare toggle, PWM, Oscilloscope
 
 @par Directory contents 
 

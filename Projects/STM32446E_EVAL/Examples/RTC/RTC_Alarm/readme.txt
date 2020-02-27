@@ -80,6 +80,10 @@ In case of error, LED3 is toggled with a period of one second.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, RTC, Alarm, wakeup timer, Backup domain, Counter, LSE, LSI
+
 @par Directory contents 
 
   - RTC/RTC_Alarm/Inc/stm32f4xx_hal_conf.h    HAL configuration file

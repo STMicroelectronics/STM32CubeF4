@@ -41,7 +41,7 @@
 
 #include "cmsis_os.h"
 
-#if defined(LWIP_SOCKET_SET_ERRNO) && defined(LWIP_PROVIDE_ERRNO)
+#if defined(LWIP_PROVIDE_ERRNO)
 int errno;
 #endif
 
@@ -135,6 +135,14 @@ err_t sys_mbox_trypost(sys_mbox_t *mbox, void *msg)
   }
 
   return result;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+//   Try to post the "msg" to the mailbox.
+err_t sys_mbox_trypost_fromisr(sys_mbox_t *mbox, void *msg)
+{
+  return sys_mbox_trypost(mbox, msg);
 }
 
 /*-----------------------------------------------------------------------------------*/

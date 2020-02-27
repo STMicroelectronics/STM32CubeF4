@@ -92,7 +92,6 @@ on first half of playback buffer.
 When left and right buffers will be full filled, we put second parts of left and right channels data 
 on second half of playback buffer.
 
-
 @note Care must be taken when using HAL_Delay(), this function provides accurate
       delay (in milliseconds) based on variable incremented in SysTick ISR. This
       implies that if HAL_Delay() is called from a peripheral ISR process, then 
@@ -102,6 +101,10 @@ on second half of playback buffer.
       
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
+@par Keywords
+
+Audio, DFSDM, Pulse skipper, Audio record, Digital Microphone, MP34DT01, Playback, Audio codec
 
 @par Directory contents  
 

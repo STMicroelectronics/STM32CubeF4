@@ -1,5 +1,5 @@
 /**
-  @page FLASH_EraseProgram FLASH Erase and Program
+  @page FLASH_EraseProgram FLASH Erase and Program application
 
   @verbatim
   ******************** (C) COPYRIGHT 2017 STMicroelectronics *******************
@@ -68,6 +68,10 @@ STM32 Discovery board's LEDs can be used to monitor the transfer status:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Memory, FLASH, Erase, Program, Sector, Mass Erase
+
 @par Directory contents 
 
   - FLASH/FLASH_EraseProgram/Src/stm32f4xx_it.c       Interrupt handlers
@@ -89,7 +93,7 @@ STM32 Discovery board's LEDs can be used to monitor the transfer status:
 In order to make the program work, you must do the following :
  - Open your preferred toolchain 
  - Rebuild all files and load your image into target memory
- - Run the example
+ - Run the application
 
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */

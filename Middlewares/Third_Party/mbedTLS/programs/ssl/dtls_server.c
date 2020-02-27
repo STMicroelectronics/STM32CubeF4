@@ -32,6 +32,18 @@
 #define mbedtls_printf     printf
 #define mbedtls_fprintf    fprintf
 #define mbedtls_time_t     time_t
+#define mbedtls_exit            exit
+#define MBEDTLS_EXIT_SUCCESS    EXIT_SUCCESS
+#define MBEDTLS_EXIT_FAILURE    EXIT_FAILURE
+#endif
+
+/* Uncomment out the following line to default to IPv4 and disable IPv6 */
+//#define FORCE_IPV4
+
+#ifdef FORCE_IPV4
+#define BIND_IP     "0.0.0.0"     /* Forces IPv4 */
+#else
+#define BIND_IP     "::"
 #endif
 
 #if !defined(MBEDTLS_SSL_SRV_C) || !defined(MBEDTLS_SSL_PROTO_DTLS) ||    \
@@ -78,6 +90,18 @@ int main( void )
 
 #define READ_TIMEOUT_MS 10000   /* 5 seconds */
 #define DEBUG_LEVEL 0
+
+#if defined(MBEDTLS_CHECK_PARAMS)
+#include "mbedtls/platform_util.h"
+void mbedtls_param_failed( const char *failure_condition,
+                           const char *file,
+                           int line )
+{
+    mbedtls_printf( "%s:%i: Input param failed - %s\n",
+                    file, line, failure_condition );
+    mbedtls_exit( MBEDTLS_EXIT_FAILURE );
+}
+#endif
 
 static void my_debug( void *ctx, int level,
                       const char *file, int line,
@@ -170,7 +194,7 @@ int main( void )
     printf( "  . Bind on udp/*/4433 ..." );
     fflush( stdout );
 
-    if( ( ret = mbedtls_net_bind( &listen_fd, NULL, "4433", MBEDTLS_NET_PROTO_UDP ) ) != 0 )
+    if( ( ret = mbedtls_net_bind( &listen_fd, BIND_IP, "4433", MBEDTLS_NET_PROTO_UDP ) ) != 0 )
     {
         printf( " failed\n  ! mbedtls_net_bind returned %d\n\n", ret );
         goto exit;

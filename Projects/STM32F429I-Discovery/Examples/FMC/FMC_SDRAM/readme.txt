@@ -80,6 +80,9 @@ If the data is read correctly from SDRAM, the LED3 is on, otherwise the LED4 is 
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Memory, FMC, PSRAM, Read, Write, Initialization, Access
 
 @par Directory contents
                         

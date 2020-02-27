@@ -73,6 +73,10 @@ The STM32469I-DISCOVERY board LEDs can be used to monitor the transfer status:
 @note The connection of the LCD reset pin to a dedicated GPIO PH7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+Memory, FLASH, Erase, Program, Sector, Mass Erase
+
 @par Directory contents 
 
   - FLASH/FLASH_EraseProgram/Inc/stm32f4xx_hal_conf.h        HAL Configuration file  

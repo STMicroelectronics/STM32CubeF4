@@ -69,9 +69,6 @@ uint8_t *USBD_DFU_ProductStrDescriptor (USBD_SpeedTypeDef speed, uint16_t *lengt
 uint8_t *USBD_DFU_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
 uint8_t *USBD_DFU_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
 uint8_t *USBD_DFU_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length);
-#ifdef USB_SUPPORT_USER_STRING_DESC
-uint8_t *USBD_DFU_USRStringDesc (USBD_SpeedTypeDef speed, uint8_t idx, uint16_t *length);  
-#endif /* USB_SUPPORT_USER_STRING_DESC */  
 
 /* Private variables ---------------------------------------------------------*/
 USBD_DescriptorsTypeDef DFU_Desc = {

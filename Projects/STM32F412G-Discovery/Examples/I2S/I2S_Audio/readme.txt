@@ -74,6 +74,10 @@ The provided sample Audio file (stored in internal Flash memory) is extracted fr
   - Title: Partita E major, Gavotte en rondeau  
   - Artist/Composer: J.-S. Bach
 
+@par Keywords
+
+Connectivity, I2S, DMA, Audio codec, Joystick
+
 @par Directory contents 
 
   - I2S/I2S_Audio/Inc/stm32f4xx_hal_conf.h    HAL configuration file

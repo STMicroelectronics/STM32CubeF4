@@ -99,6 +99,9 @@ LED3 will turn ON, if any error is occurred.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, IWDG, Timeout, Reload Counter, MCU Reset, Downcounter, LSI, Timer, Measure Frequency
 
 @par Directory contents 
  

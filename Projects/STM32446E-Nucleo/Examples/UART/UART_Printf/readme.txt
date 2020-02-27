@@ -89,6 +89,10 @@ on your serial terminal:
 @note The clock setting is configured to have the max product performance (max clock frequency) 
       so not optimized in term of power consumption.
 
+@par Keywords
+
+Connectivity, UART, Printf, Baud rate, RS-232, HyperTerminal, full-duplex
+
 @par Directory contents 
 
   - UART/UART_Printf/Inc/stm32f4xx_hal_conf.h    HAL configuration file

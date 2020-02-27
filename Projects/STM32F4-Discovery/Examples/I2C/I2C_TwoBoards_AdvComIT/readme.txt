@@ -119,11 +119,11 @@ In Slave board side:
 These operations are repeated periodically and the start of communication is triggered 
 by pushing the user button of the Master board.       
 
- @note In Master side, only Acknowledge failure error is handled. When this error
+@note In Master side, only Acknowledge failure error is handled. When this error
        occurs Master restart the current operation until Slave acknowledges it's
        address.
         
- @note I2Cx instance used and associated resources can be updated in "main.h"
+@note I2Cx instance used and associated resources can be updated in "main.h"
        file depending hardware configuration used.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -135,6 +135,10 @@ by pushing the user button of the Master board.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, Communication, I2C, Interrupt, Master, Slave, Transmission, Reception, Fast mode,
+Command, Acknowledge
 
 @par Directory contents 
 
@@ -158,7 +162,6 @@ by pushing the user button of the Master board.
     - Connect Master board PB6 to Slave Board PB6
     - Connect Master board PB9 to Slave Board PB9
     - Connect Master board GND to Slave Board GND
-
 
 @par How to use it ? 
 

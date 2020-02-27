@@ -126,12 +126,13 @@ int main(void)
   /*## Initialize the CRYP IP  ###############################################*/ 
   
   /* Set the CRYP parameters */
-  hcryp.Instance        = CRYP;
-  hcryp.Init.DataType   = CRYP_DATATYPE_32B;
-  hcryp.Init.KeySize    = CRYP_KEYSIZE_128B;
-  hcryp.Init.pKey       = AESKey128; 
-  hcryp.Init.Algorithm  = CRYP_AES_ECB; 
-  
+  hcryp.Instance             = CRYP;
+  hcryp.Init.DataType        = CRYP_DATATYPE_32B;
+  hcryp.Init.KeySize         = CRYP_KEYSIZE_128B;
+  hcryp.Init.pKey            = AESKey128; 
+  hcryp.Init.Algorithm       = CRYP_AES_ECB; 
+  hcryp.Init.KeyIVConfigSkip = CRYP_KEYIVCONFIG_ALWAYS;
+
   /* Initialize the CRYP  */
   HAL_CRYP_Init(&hcryp);
   

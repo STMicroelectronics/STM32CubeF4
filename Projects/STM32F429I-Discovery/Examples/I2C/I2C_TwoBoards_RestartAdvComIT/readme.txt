@@ -223,6 +223,10 @@ Also only on Master board side, Terminal I/O can be used to watch the Request Co
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, I2C, Communication, Trasmission, Reception, SCL, SDA, Interrupt, Request, Sequential
+
 @par Directory contents 
 
   - I2C/I2C_TwoBoards_RestartAdvComIT/Inc/stm32f4xx_hal_conf.h    HAL configuration file

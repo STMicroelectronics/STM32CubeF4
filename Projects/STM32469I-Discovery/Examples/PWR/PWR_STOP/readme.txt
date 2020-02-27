@@ -97,6 +97,10 @@ This behavior is repeated in an infinite loop.
 @note The connection of the LCD reset pin to a dedicated GPIO PH7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+Power, PWR, Stop mode, Interrupt, EXTI, Wakeup, Low Power, External reset
+
 @par Directory contents 
 
   - PWR/PWR_STOP/Inc/stm32f4xx_conf.h         HAL Configuration file

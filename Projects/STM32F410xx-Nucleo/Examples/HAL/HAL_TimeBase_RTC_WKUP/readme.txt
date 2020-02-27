@@ -1,5 +1,5 @@
 /**
-  @page HAL_TimeBase_RTC_WKUP HAL TimeBase RTC WKUP
+  @page HAL_TimeBase_RTC_WKUP HAL TimeBase RTC WKUP example
   
   @verbatim
   ******************** (C) COPYRIGHT 2017 STMicroelectronics *******************
@@ -72,6 +72,9 @@ In an infinite loop, LED2 toggles spaced out over 500ms delay
 @note The application needs to ensure that the HAL time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, RTC Wakeup, Time base, HAL
 
 @par Directory contents
 

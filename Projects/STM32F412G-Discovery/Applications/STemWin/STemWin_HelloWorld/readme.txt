@@ -63,6 +63,10 @@ Note that the following user files may need to be updated:
 @note If the application is not running normally as mentionned above , you can accordingly modify either
       the Heap and Stack of the application or the GUI_NUMBYTES define in the GUIConf.c file.
 
+@par Keywords
+
+Display, STemWin, HelloWorld, LCD, GUI
+
 @par Directory contents 
 
   - STemWin/STemWin_HelloWorld/STemWin/Target/GUIConf.h           Header for GUIConf_stm32412g_discovery.c

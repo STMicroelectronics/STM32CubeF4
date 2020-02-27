@@ -70,6 +70,10 @@ Each image is displayed for two secondes.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Graphic, Display, LCD, DSI, MIPI Alliance, Command mode, Tearing Effect, Partial refresh, LTDC, QVGA, ARGB8888
+
 @par Directory contents
 
   - LCD_DSI/LCD_DSI_CmdMode_TearingEffect/Inc/stm32f4xx_hal_conf.h          HAL configuration file

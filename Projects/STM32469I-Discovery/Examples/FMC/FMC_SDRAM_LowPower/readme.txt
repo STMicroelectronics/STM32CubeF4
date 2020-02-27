@@ -38,7 +38,7 @@
 This example describes how to configure the FMC controller to access the SDRAM 
 memory in low power mode (SDRAM Self Refresh mode).
 
-The SDRAM is MT48LC4M32B2B5-6A.
+The SDRAM is MT48LC4M32B2B5-6A or IS42S32400F-6BL.
 
 It gives a simple application of the FMC SDRAM low power mode use (self refresh mode) 
 while the MCU is in a low power mode (STOP mode).
@@ -79,6 +79,10 @@ LEDs are used to indicate the system state as follows:
 
 @note The connection of the LCD reset pin to a dedicated GPIO PH7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+
+@par Keywords
+
+Memory, FMC, SDRAM, Read, Write, Initialization, Access, Low power, Self Refresh, Stop mode
 
 @par Directory contents 
 

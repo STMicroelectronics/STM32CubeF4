@@ -52,6 +52,9 @@ In this example, HCLK is configured at 180 MHz.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, GPIO, Output, Alternate function, Push-pull, Toggle
 
 @par Directory contents 
 

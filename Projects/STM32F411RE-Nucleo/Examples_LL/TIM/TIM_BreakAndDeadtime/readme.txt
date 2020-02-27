@@ -1,4 +1,4 @@
-/**
+﻿/**
   @page TIM_BreakAndDeadtime TIM example
   
   @verbatim
@@ -68,6 +68,10 @@ duty cycle measured on OCx will be slightly lower.
 The break Polarity is used at High level.
 
 The TIM1 waveforms can be displayed using an oscilloscope.
+
+@par Keywords
+
+Timers, Break, Dead time, PWM, Frequency, Duty Cycle, Waveform, Oscilloscope, Output, Signal
 
 @par Directory contents 
 

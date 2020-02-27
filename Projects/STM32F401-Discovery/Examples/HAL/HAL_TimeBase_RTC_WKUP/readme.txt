@@ -1,5 +1,5 @@
 /**
-  @page HAL_TimeBase_RTC_WKUP HAL TimeBase RTC WKUP
+  @page HAL_TimeBase_RTC_WKUP HAL TimeBase RTC WKUP example
   
   @verbatim
   ******************** (C) COPYRIGHT 2017 STMicroelectronics *******************
@@ -37,7 +37,8 @@
 
 This example describes how to customize the HAL time base using RTC wakeup instead 
 of Systick as main source of time base. The discovery board user button (connected to EXTI Line0)
-will be used to Suspend or Resume tick increment. 
+will be used to Suspend or Resume tick increment.
+ 
 Each time the user button is pressed; EXTI Line0 interrupt is generated and in the ISR
 the uwIncrementState is checked:
   1- If the uwIncrementState = 0: the tick increment is suspended by calling 
@@ -72,6 +73,9 @@ In an infinite loop, LED3, LED4, LED5 and LED6 toggles spaced out over 500ms del
 @note The application needs to ensure that the HAL time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, RTC Wakeup, Time base, HAL
 
 @par Directory contents
 
@@ -90,7 +94,6 @@ In an infinite loop, LED3, LED4, LED5 and LED6 toggles spaced out over 500ms del
   - This example has been tested with STMicroelectronics STM32F401C-DISCO RevB and RevC 
     boards and can be easily tailored to any other supported device 
     and development board.
-
 
 @par How to use it ? 
 

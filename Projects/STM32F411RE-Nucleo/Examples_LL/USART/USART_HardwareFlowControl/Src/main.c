@@ -67,8 +67,6 @@ uint8_t ubSizeToSend = sizeof(aStringToSend);
 __IO uint8_t      ubFinalCharReceived = 0;
 __IO uint32_t     ubReceivedChar;
 
-
-
 /* Private function prototypes -----------------------------------------------*/
 void     SystemClock_Config(void);
 void     Configure_USART1(void);
@@ -136,9 +134,9 @@ int main(void)
   */
 void Configure_USART1(void)
 {
-  /* (1) Enable GPIO clock and configures the USART1 pins **********************/
-  /*    (TX on PA.9, RX on PA.10)                         **********************/
-  /*    (CTS on PA.11, RTS on PA.12)                      **********************/
+  /* (1) Enable GPIO clock and configures the USART1 pins *********************/
+  /*    (TX on PA.9, RX on PA.10)                         *********************/
+  /*    (CTS on PA.11, RTS on PA.12)                      *********************/
 
   /* Enable the peripheral clock of GPIOA */
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
@@ -468,7 +466,7 @@ void USART_CharTransmitComplete_Callback(void)
   */
 void USART_CharReception_Callback(void)
 {
-__IO uint32_t received_char;
+  __IO uint32_t received_char;
 
   /* Read Received character. RXNE flag is cleared by reading of DR register */
   received_char = LL_USART_ReceiveData8(USART1);

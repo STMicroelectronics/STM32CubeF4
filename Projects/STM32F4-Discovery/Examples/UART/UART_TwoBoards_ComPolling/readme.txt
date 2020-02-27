@@ -74,6 +74,10 @@ The UART is configured as follows:
 @note USARTx/UARTx instance used and associated resources can be updated in "main.h"
 file depending hardware configuration used.
 
+@par Keywords
+
+Connectivity, UART, Baud rate, RS-232, Full-duplex, Polling, Parity, Stop bit, Transmission, Reception,
+
 @note When the parity is enabled, the computed parity is inserted at the MSB
 position of the transmitted data.
 
@@ -108,7 +112,7 @@ position of the transmitted data.
   - STM32F4-Discovery RevB & RevC set-up
     - Connect a wire between 1st board PA2 pin (UART Tx) to 2nd board PA3 pin (UART Rx)
     - Connect a wire between 1st board PA3 pin (UART Rx) to 2nd board PA2 pin (UART Tx)
-  
+    - Connect 1st board GND to 2nd Board GND  
   
 @par How to use it ? 
 

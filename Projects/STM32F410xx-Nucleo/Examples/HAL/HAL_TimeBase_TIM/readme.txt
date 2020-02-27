@@ -71,6 +71,9 @@ In an infinite loop, LED2 toggles spaced out over 1s delay.
 @note The clock setting is configured to have the max product performance (max clock frequency) 
       so not optimized in term of power consumption.
 
+@par Keywords
+
+System, General purpose Timer, Time base, HAL
 
 @par Directory contents
 

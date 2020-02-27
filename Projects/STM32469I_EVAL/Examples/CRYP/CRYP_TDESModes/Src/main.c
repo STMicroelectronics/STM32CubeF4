@@ -108,10 +108,14 @@ int main(void)
   BSP_LED_Init(LED3);
    
   /*## Set the CRYP parameters and initialize the IP  ######################################*/ 
+
   hcryp.Instance       = CRYP;
   hcryp.Init.DataType  = CRYP_DATATYPE_32B;
   hcryp.Init.pKey      = TDESKey;
   hcryp.Init.Algorithm = CRYP_TDES_ECB;
+  hcryp.Init.KeyIVConfigSkip = CRYP_KEYIVCONFIG_ALWAYS;
+
+  /* Configure the CRYP  */
   HAL_CRYP_Init(&hcryp);
   
   /*##-1- TDES ECB Encryption  #######################################*/ 
@@ -220,6 +224,7 @@ static void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLN = 360;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 7;
+  RCC_OscInitStruct.PLL.PLLR = 6;
   HAL_RCC_OscConfig(&RCC_OscInitStruct);
 
   /* Activate the Over-Drive mode */

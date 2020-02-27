@@ -94,6 +94,10 @@ STM32412G-DISCOVERY's LEDs can be used to monitor the application status:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+SD Card, FatFs, File system, FAT Volume, Format, Mount, Read, Write,
+
 @par Directory contents
  
   - FatFs/FatFs_uSD/Inc/stm32f4xx_hal_conf.h    HAL configuration file

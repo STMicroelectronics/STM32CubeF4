@@ -110,11 +110,6 @@ uint8_t *     USBD_HID_SerialStrDescriptor( USBD_SpeedTypeDef speed , uint16_t *
 uint8_t *     USBD_HID_ConfigStrDescriptor( USBD_SpeedTypeDef speed , uint16_t *length);
 uint8_t *     USBD_HID_InterfaceStrDescriptor( USBD_SpeedTypeDef speed , uint16_t *length);
 
-#ifdef USB_SUPPORT_USER_STRING_DESC
-uint8_t *     USBD_HID_USRStringDesc (USBD_SpeedTypeDef speed, uint8_t idx , uint16_t *length);  
-#endif /* USB_SUPPORT_USER_STRING_DESC */  
-
-
 USBD_DescriptorsTypeDef HID_Desc =
 {
   USBD_HID_DeviceDescriptor,

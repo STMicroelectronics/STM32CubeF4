@@ -85,6 +85,10 @@ copies images with the following properties:
 
   -  LED4 is ON when the uSD disk I/O driver is not Linked or an error has occured.
 
+@par Keywords
+
+Graphic, Display, LCD, Pictures, SD Card, BMP, RGB565, RGB888, ARGB8888
+
 @par Directory contents
 
     - Display/LCD_PicturesFromSDCard/Inc/main.h                             Main configuration file

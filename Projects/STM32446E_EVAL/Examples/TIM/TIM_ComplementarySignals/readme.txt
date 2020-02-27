@@ -67,8 +67,6 @@ The break Polarity is used at High level.
 
 The TIM1 waveforms can be displayed using an oscilloscope.
 
-
-
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
       a peripheral ISR process, then the SysTick interrupt must have higher priority (numerically lower)
@@ -77,6 +75,11 @@ The TIM1 waveforms can be displayed using an oscilloscope.
       
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
+@par Keywords
+
+Timers, PWM, Complementary signals, Master, Slave, Duty Cycle, Waveform, Oscilloscope, Output, Signal,
+dead time, break lock
 
 @par Directory contents 
 

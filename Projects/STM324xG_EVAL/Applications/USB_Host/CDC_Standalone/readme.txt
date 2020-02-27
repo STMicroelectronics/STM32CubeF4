@@ -117,6 +117,9 @@ requirements, such as:
    By default debug messages are displayed on the debugger IO terminal; to redirect the Library
    messages on the LCD screen, lcd_log.c driver need to be added to the application sources.
 
+@par Keywords
+
+Connectivity, USB Host, Full Speed, High Speed, CDC, PSTN, HyperTerminal, VCP, Com port, 
 
 @par Directory contents
 

@@ -12,7 +12,7 @@
   * This software component is licensed by ST under Ultimate Liberty license
   * SLA0044, the "License"; You may not use this file except in compliance with
   * the License. You may obtain a copy of the License at:
-  *                      http://www.st.com/SLA0044
+  *                      www.st.com/SLA0044
   *
   ******************************************************************************
   */
@@ -22,7 +22,7 @@
 #define __USBH_AUDIO_H
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
@@ -104,36 +104,36 @@ AUDIO_CSReqStateTypeDef;
 
 typedef enum
 {
- AUDIO_PLAYBACK_INIT = 1,
- AUDIO_PLAYBACK_SET_EP,
- AUDIO_PLAYBACK_SET_EP_FREQ,
- AUDIO_PLAYBACK_PLAY,
- AUDIO_PLAYBACK_IDLE,
+  AUDIO_PLAYBACK_INIT = 1,
+  AUDIO_PLAYBACK_SET_EP,
+  AUDIO_PLAYBACK_SET_EP_FREQ,
+  AUDIO_PLAYBACK_PLAY,
+  AUDIO_PLAYBACK_IDLE,
 }
 AUDIO_PlayStateTypeDef;
 
 typedef enum
 {
- VOLUME_UP = 1,
- VOLUME_DOWN = 2,
+  VOLUME_UP = 1,
+  VOLUME_DOWN = 2,
 }
 AUDIO_VolumeCtrlTypeDef;
 
 typedef enum
 {
- AUDIO_CONTROL_INIT = 1,
- AUDIO_CONTROL_CHANGE,
- AUDIO_CONTROL_IDLE,
- AUDIO_CONTROL_VOLUME_UP,
- AUDIO_CONTROL_VOLUME_DOWN,
+  AUDIO_CONTROL_INIT = 1,
+  AUDIO_CONTROL_CHANGE,
+  AUDIO_CONTROL_IDLE,
+  AUDIO_CONTROL_VOLUME_UP,
+  AUDIO_CONTROL_VOLUME_DOWN,
 }
 AUDIO_ControlStateTypeDef;
 
 
 typedef enum
 {
- AUDIO_DATA_START_OUT = 1,
- AUDIO_DATA_OUT,
+  AUDIO_DATA_START_OUT = 1,
+  AUDIO_DATA_OUT,
 }
 AUDIO_ProcessingTypeDef;
 
@@ -227,18 +227,18 @@ typedef struct
 AUDIO_InterfaceControlPropTypeDef;
 
 
-#define AUDIO_MAX_AUDIO_STD_INTERFACE      0x05U
-#define AUDIO_MAX_FREQ_SUPPORTED           0x05U
-#define AUDIO_MAX_STREAMING_INTERFACE      0x05U
-#define AUDIO_MAX_NUM_IN_TERMINAL          0x04U
-#define AUDIO_MAX_NUM_OUT_TERMINAL         0x04U
-#define AUDIO_MAX_NUM_FEATURE_UNIT         0x04U
-#define AUDIO_MAX_NUM_MIXER_UNIT           0x04U
-#define AUDIO_MAX_NUM_SELECTOR_UNIT        0x04U
+#define AUDIO_MAX_AUDIO_STD_INTERFACE      5U
+#define AUDIO_MAX_FREQ_SUPPORTED           5U
+#define AUDIO_MAX_STREAMING_INTERFACE      5U
+#define AUDIO_MAX_NUM_IN_TERMINAL          4U
+#define AUDIO_MAX_NUM_OUT_TERMINAL         4U
+#define AUDIO_MAX_NUM_FEATURE_UNIT         4U
+#define AUDIO_MAX_NUM_MIXER_UNIT           4U
+#define AUDIO_MAX_NUM_SELECTOR_UNIT        4U
 
-#define HEADPHONE_SUPPORTED                0x01U
-#define MICROPHONE_SUPPORTED               0x02U
-#define HEADSET_SUPPORTED                  0x03U
+#define HEADPHONE_SUPPORTED                1U
+#define MICROPHONE_SUPPORTED               2U
+#define HEADSET_SUPPORTED                  3U
 
 #define AUDIO_MAX_SAMFREQ_NBR              5U
 #define AUDIO_MAX_INTERFACE_NBR            5U
@@ -433,22 +433,22 @@ AUDIO_HandleTypeDef;
 #define AC_CLASS                                    0x01U
 
 /* A.2 Audio Interface Subclass Codes */
-#define USB_SUBCLASS_AUDIOCONTROL	                  0x01U
-#define USB_SUBCLASS_AUDIOSTREAMING	                0x02U
-#define USB_SUBCLASS_MIDISTREAMING	                0x03U
+#define USB_SUBCLASS_AUDIOCONTROL                   0x01U
+#define USB_SUBCLASS_AUDIOSTREAMING                 0x02U
+#define USB_SUBCLASS_MIDISTREAMING                  0x03U
 
 #define USB_DESC_TYPE_CS_INTERFACE                  0x24U
 #define USB_DESC_TYPE_CS_ENDPOINT                   0x25U
 
 /* A.5 Audio Class-Specific AC Interface Descriptor Subtypes */
-#define UAC_HEADER			                            0x01U
-#define UAC_INPUT_TERMINAL		                      0x02U
-#define UAC_OUTPUT_TERMINAL		                      0x03U
-#define UAC_MIXER_UNIT			                        0x04U
-#define UAC_SELECTOR_UNIT		                        0x05U
-#define UAC_FEATURE_UNIT		                        0x06U
-#define UAC_PROCESSING_UNIT		                      0x07U
-#define UAC_EXTENSION_UNIT		                      0x08U
+#define UAC_HEADER                                  0x01U
+#define UAC_INPUT_TERMINAL                          0x02U
+#define UAC_OUTPUT_TERMINAL                         0x03U
+#define UAC_MIXER_UNIT                              0x04U
+#define UAC_SELECTOR_UNIT                           0x05U
+#define UAC_FEATURE_UNIT                            0x06U
+#define UAC_PROCESSING_UNIT                         0x07U
+#define UAC_EXTENSION_UNIT                          0x08U
 
 /*Audio Class-Specific Endpoint Descriptor Subtypes*/
 #define  EP_CONTROL_UNDEFINED                       0x00U
@@ -474,48 +474,48 @@ AUDIO_HandleTypeDef;
 
 
 /* A.6 Audio Class-Specific AS Interface Descriptor Subtypes */
-#define UAC_AS_GENERAL			                        0x01U
-#define UAC_FORMAT_TYPE			                        0x02U
-#define UAC_FORMAT_SPECIFIC		                      0x03U
+#define UAC_AS_GENERAL                              0x01U
+#define UAC_FORMAT_TYPE                             0x02U
+#define UAC_FORMAT_SPECIFIC                         0x03U
 
 /* A.8 Audio Class-Specific Endpoint Descriptor Subtypes */
-#define UAC_EP_GENERAL			                        0x01U
+#define UAC_EP_GENERAL                              0x01U
 
 /* A.9 Audio Class-Specific Request Codes */
-#define UAC_SET_		                                0x00U
-#define UAC_GET_		                                0x80U
+#define UAC_SET_                                    0x00U
+#define UAC_GET_                                    0x80U
 
-#define UAC__CUR		                                0x01U
-#define UAC__MIN		                                0x02U
-#define UAC__MAX		                                0x03U
-#define UAC__RES		                                0x04U
-#define UAC__MEM		                                0x05U
+#define UAC__CUR                                    0x01U
+#define UAC__MIN                                    0x02U
+#define UAC__MAX                                    0x03U
+#define UAC__RES                                    0x04U
+#define UAC__MEM                                    0x05U
 
-#define UAC_SET_CUR			                            (UAC_SET_ | UAC__CUR)
-#define UAC_GET_CUR			                            (UAC_GET_ | UAC__CUR)
-#define UAC_SET_MIN			                            (UAC_SET_ | UAC__MIN)
-#define UAC_GET_MIN			                            (UAC_GET_ | UAC__MIN)
-#define UAC_SET_MAX			                            (UAC_SET_ | UAC__MAX)
-#define UAC_GET_MAX			                            (UAC_GET_ | UAC__MAX)
-#define UAC_SET_RES			                            (UAC_SET_ | UAC__RES)
-#define UAC_GET_RES			                            (UAC_GET_ | UAC__RES)
-#define UAC_SET_MEM			                            (UAC_SET_ | UAC__MEM)
-#define UAC_GET_MEM			                            (UAC_GET_ | UAC__MEM)
+#define UAC_SET_CUR                                 (UAC_SET_ | UAC__CUR)
+#define UAC_GET_CUR                                 (UAC_GET_ | UAC__CUR)
+#define UAC_SET_MIN                                 (UAC_SET_ | UAC__MIN)
+#define UAC_GET_MIN                                 (UAC_GET_ | UAC__MIN)
+#define UAC_SET_MAX                                 (UAC_SET_ | UAC__MAX)
+#define UAC_GET_MAX                                 (UAC_GET_ | UAC__MAX)
+#define UAC_SET_RES                                 (UAC_SET_ | UAC__RES)
+#define UAC_GET_RES                                 (UAC_GET_ | UAC__RES)
+#define UAC_SET_MEM                                 (UAC_SET_ | UAC__MEM)
+#define UAC_GET_MEM                                 (UAC_GET_ | UAC__MEM)
 
-#define UAC_GET_STAT			                          0xffU
+#define UAC_GET_STAT                                0xffU
 
 /* MIDI - A.1 MS Class-Specific Interface Descriptor Subtypes */
-#define UAC_MS_HEADER			                          0x01U
-#define UAC_MIDI_IN_JACK		                        0x02U
-#define UAC_MIDI_OUT_JACK		                        0x03U
+#define UAC_MS_HEADER                               0x01U
+#define UAC_MIDI_IN_JACK                            0x02U
+#define UAC_MIDI_OUT_JACK                           0x03U
 
 /* MIDI - A.1 MS Class-Specific Endpoint Descriptor Subtypes */
-#define UAC_MS_GENERAL			                        0x01U
+#define UAC_MS_GENERAL                              0x01U
 
 /* Terminals - 2.1 USB Terminal Types */
-#define UAC_TERMINAL_UNDEFINED		                  0x100U
-#define UAC_TERMINAL_STREAMING		                  0x101U
-#define UAC_TERMINAL_VENDOR_SPEC	                  0x1FFU
+#define UAC_TERMINAL_UNDEFINED                      0x100U
+#define UAC_TERMINAL_STREAMING                      0x101U
+#define UAC_TERMINAL_VENDOR_SPEC                    0x1FFU
 
 /**
   * @}
@@ -540,18 +540,18 @@ extern USBH_ClassTypeDef  AUDIO_Class;
 /** @defgroup USBH_AUDIO_CORE_Exported_FunctionsPrototype
   * @{
   */
-USBH_StatusTypeDef USBH_AUDIO_SetFrequency (USBH_HandleTypeDef *phost,
-                                            uint16_t SampleRate,
-                                            uint8_t NbrChannels,
-                                            uint8_t BitPerSample);
+USBH_StatusTypeDef USBH_AUDIO_SetFrequency(USBH_HandleTypeDef *phost,
+                                           uint16_t SampleRate,
+                                           uint8_t NbrChannels,
+                                           uint8_t BitPerSample);
 
-USBH_StatusTypeDef USBH_AUDIO_Play (USBH_HandleTypeDef *phost, uint8_t *buf, uint32_t length);
-USBH_StatusTypeDef USBH_AUDIO_Stop (USBH_HandleTypeDef *phost);
-USBH_StatusTypeDef USBH_AUDIO_Suspend (USBH_HandleTypeDef *phost);
-USBH_StatusTypeDef USBH_AUDIO_Resume (USBH_HandleTypeDef *phost);
-USBH_StatusTypeDef USBH_AUDIO_SetVolume (USBH_HandleTypeDef *phost, AUDIO_VolumeCtrlTypeDef volume_ctl);
-USBH_StatusTypeDef USBH_AUDIO_ChangeOutBuffer (USBH_HandleTypeDef *phost, uint8_t *buf);
-int32_t            USBH_AUDIO_GetOutOffset (USBH_HandleTypeDef *phost);
+USBH_StatusTypeDef USBH_AUDIO_Play(USBH_HandleTypeDef *phost, uint8_t *buf, uint32_t length);
+USBH_StatusTypeDef USBH_AUDIO_Stop(USBH_HandleTypeDef *phost);
+USBH_StatusTypeDef USBH_AUDIO_Suspend(USBH_HandleTypeDef *phost);
+USBH_StatusTypeDef USBH_AUDIO_Resume(USBH_HandleTypeDef *phost);
+USBH_StatusTypeDef USBH_AUDIO_SetVolume(USBH_HandleTypeDef *phost, AUDIO_VolumeCtrlTypeDef volume_ctl);
+USBH_StatusTypeDef USBH_AUDIO_ChangeOutBuffer(USBH_HandleTypeDef *phost, uint8_t *buf);
+int32_t            USBH_AUDIO_GetOutOffset(USBH_HandleTypeDef *phost);
 
 void        USBH_AUDIO_FrequencySet(USBH_HandleTypeDef *phost);
 

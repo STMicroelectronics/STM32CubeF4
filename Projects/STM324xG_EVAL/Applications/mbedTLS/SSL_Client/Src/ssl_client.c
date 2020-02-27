@@ -194,7 +194,7 @@ void SSL_Client(void const *argument)
     goto exit;
   }
 
-  if( ( ret = mbedtls_ssl_set_hostname( &ssl, "mbed TLS Server 1" ) ) != 0 )
+  if( ( ret = mbedtls_ssl_set_hostname( &ssl, "localhost" ) ) != 0 )
   {
     mbedtls_printf( " failed\n  ! mbedtls_ssl_set_hostname returned %d\n\n", ret );
     goto exit;

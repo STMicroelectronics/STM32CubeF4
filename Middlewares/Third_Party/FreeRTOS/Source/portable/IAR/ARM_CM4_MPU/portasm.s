@@ -1,6 +1,6 @@
 /*
- * FreeRTOS Kernel V10.0.0
- * Copyright (C) 2017 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ * FreeRTOS Kernel V10.2.1
+ * Copyright (C) 2019 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -10,8 +10,7 @@
  * subject to the following conditions:
  *
  * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software. If you wish to use our Amazon
- * FreeRTOS name, please do so in a fair use way that does not cause confusion.
+ * copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
@@ -40,7 +39,8 @@
 	PUBLIC vPortStartFirstTask
 	PUBLIC vPortEnableVFP
 	PUBLIC vPortRestoreContextOfFirstTask
-	PUBLIC xPortRaisePrivilege
+	PUBLIC xIsPrivileged
+	PUBLIC vResetPrivilege
 
 /*-----------------------------------------------------------*/
 
@@ -115,7 +115,7 @@ vPortSVCHandler:
 
 /*-----------------------------------------------------------*/
 
-vPortStartFirstTask
+vPortStartFirstTask:
 	/* Use the NVIC offset register to locate the stack. */
 	ldr r0, =0xE000ED08
 	ldr r0, [r0]
@@ -137,7 +137,7 @@ vPortStartFirstTask
 
 /*-----------------------------------------------------------*/
 
-vPortRestoreContextOfFirstTask
+vPortRestoreContextOfFirstTask:
 	/* Use the NVIC offset register to locate the stack. */
 	ldr r0, =0xE000ED08
 	ldr r0, [r0]
@@ -168,7 +168,7 @@ vPortRestoreContextOfFirstTask
 
 /*-----------------------------------------------------------*/
 
-vPortEnableVFP
+vPortEnableVFP:
 	/* The FPU enable bits are in the CPACR. */
 	ldr.w r0, =0xE000ED88
 	ldr	r1, [r0]
@@ -180,19 +180,20 @@ vPortEnableVFP
 
 /*-----------------------------------------------------------*/
 
-xPortRaisePrivilege
-	mrs r0, control
-	/* Is the task running privileged? */
-	tst r0, #1
-	itte ne
-	/* CONTROL[0]!=0, return false. */
-	movne r0, #0
-	/* Switch to privileged. */
-	svcne 2	/* 2 == portSVC_RAISE_PRIVILEGE */
-	/* CONTROL[0]==0, return true. */
-	moveq r0, #1
-	bx lr
+xIsPrivileged:
+	mrs r0, control		/* r0 = CONTROL. */
+	tst r0, #1			/* Perform r0 & 1 (bitwise AND) and update the conditions flag. */
+	ite ne
+	movne r0, #0		/* CONTROL[0]!=0. Return false to indicate that the processor is not privileged. */
+	moveq r0, #1		/* CONTROL[0]==0. Return true to indicate that the processor is privileged. */
+	bx lr				/* Return. */
+/*-----------------------------------------------------------*/
 
+vResetPrivilege:
+	mrs r0, control		/* r0 = CONTROL. */
+	orr r0, r0, #1		/* r0 = r0 | 1. */
+	msr control, r0		/* CONTROL = r0. */
+	bx lr				/* Return to the caller. */
+/*-----------------------------------------------------------*/
 
 	END
-

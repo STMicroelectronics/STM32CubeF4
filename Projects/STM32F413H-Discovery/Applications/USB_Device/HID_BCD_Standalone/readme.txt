@@ -91,7 +91,7 @@ For more details about the STM32Cube USB Device library, please refer to UM1734
 
 @par Keywords
 
-Middleware, USB Device, HID, BCD, USB-IF, VBUS, SDP, CDP, DCP
+USB Device, HID, BCD, USB-IF, VBUS, SDP, CDP, DCP
 
 @par Directory contents
 

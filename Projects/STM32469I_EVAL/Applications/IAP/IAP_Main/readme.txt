@@ -42,6 +42,10 @@ This directory contains a set of sources files and pre-configured projects that
 describes how to build an application to be loaded into Flash memory using
 In-Application Programming (IAP, through USART).
 
+@par Keywords
+
+In-Application Programming, IAP, USART, Binary, flash
+
 @par Directory contents
 
  - "IAP/IAP_Main/inc": contains the IAP firmware header files 

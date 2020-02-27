@@ -55,8 +55,6 @@
 
 The PWM waveforms can be displayed using an oscilloscope.
 
-
-
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
       a peripheral ISR process, then the SysTick interrupt must have higher priority (numerically lower)
@@ -66,6 +64,9 @@ The PWM waveforms can be displayed using an oscilloscope.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Timers, DMA, PWM, Frequency, Duty Cycle, Waveform, Oscilloscope, Output, Signal
 
 @par Directory contents 
 

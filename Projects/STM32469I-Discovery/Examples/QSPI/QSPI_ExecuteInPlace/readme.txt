@@ -61,6 +61,10 @@ In this example, HCLK is configured at 180 MHz.
 @note The connection of the LCD reset pin to a dedicated GPIO PH7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+Memory, QSPI, Execute in place, Erase, section, sector, memory-mapped mode
+
 @par Directory contents 
 
   - QSPI/QSPI_ExecuteInPlace/Inc/stm32f4xx_hal_conf.h HAL configuration file

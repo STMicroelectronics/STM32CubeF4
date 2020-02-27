@@ -81,6 +81,10 @@ The TIM1 counter clock is 180 MHz.
 
 The PWM waveform can be displayed using an oscilloscope.
 
+@par Keywords
+
+Timers, PWM, Parallel synchronization, Master, Slave, Duty Cycle, Waveform,
+Oscilloscope, Output, Signal
 
 @par Directory contents 
 

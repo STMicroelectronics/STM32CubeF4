@@ -88,6 +88,10 @@ STM32469I-EVAL LEDs are used to monitor the encryption/decryption and TAG genera
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Security, CRYP, CCM , NIST Special Publication 800-38C, hardware CRYP
+
 @par Directory contents 
   
   - CRYP/CRYP_AESCCM_IT/Inc/stm32f4xx_hal_conf.h    HAL configuration file

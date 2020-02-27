@@ -91,6 +91,9 @@ Other peripherals used:
   1 GPIO for analog input: PA.04 (Arduino connector CN8 pin A2, Morpho connector CN7 pin 32)
   DMA
 
+@par Keywords
+
+Analog, ADC, Analog to Digital, Multi Channel, Conversion, DMA, Single, Measurement
 
 @par Directory contents 
 

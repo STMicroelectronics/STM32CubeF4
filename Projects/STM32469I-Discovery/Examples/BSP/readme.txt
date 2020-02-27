@@ -59,7 +59,7 @@ how to detect the presence of the card.
 - LCD Log related : this example shows how to use the LCD log features.
 
 - External Memories related : the examples provide how to write, read and buffers compare 
-from SDRAM with of without using DMA.
+from SDRAM with or without using DMA.
 
 - RF EEPROM related : this example shows how to read and write data in RF EEPROM. 
 The I2C EEPROM memory (M24LR64) is available on separate daughter board ANT7-M24LR-A, which is not
@@ -89,6 +89,10 @@ icons.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+BSP, DMA, Audio play, Headphone, Audio record, microphone, Touchscreen, Joystick,
+LCD, SD Card, EEPROM, NOR, SRAM, SDRAM, LOG, QSPI
 
 @par Directory contents 
 

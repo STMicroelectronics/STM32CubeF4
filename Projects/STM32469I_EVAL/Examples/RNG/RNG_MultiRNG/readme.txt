@@ -58,6 +58,10 @@ In case of error, LED3 is toggling at a frequency of 1Hz.
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+Analog, RNG, Random, FIPS PUB 140-2, Analog Random number generator, Entropy, Period
+
 @par Directory contents 
 
   - RNG/RNG_MultiRNG/Inc/stm32f4xx_hal_conf.h    HAL configuration file

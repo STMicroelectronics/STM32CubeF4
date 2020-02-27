@@ -66,6 +66,9 @@ The PWM waveforms can be displayed using an oscilloscope.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Timers, DMA, PWM, Frequency, Duty Cycle, Waveform, Oscilloscope, Output, Signal
 
 @par Directory contents 
 

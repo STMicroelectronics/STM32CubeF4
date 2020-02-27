@@ -116,6 +116,10 @@ position of the transmitted data.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, UART, Baud rate, RS-232, Full-duplex, DMA, Parity, Stop bit, Transmission, Reception
+
 @par Directory contents 
 
   - UART/UART_TwoBoards_ComDMA/Inc/stm32f4xx_hal_conf.h    HAL configuration file
@@ -143,7 +147,7 @@ position of the transmitted data.
 
 In order to make the program work, you must do the following :
 - Open your preferred toolchain 
- - Rebuild all files and load your image into target memory
+- Rebuild all files and load your image into target memory
 - Run the example
 
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>

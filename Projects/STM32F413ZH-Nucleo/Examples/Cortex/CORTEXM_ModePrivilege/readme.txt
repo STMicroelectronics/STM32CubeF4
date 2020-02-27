@@ -61,6 +61,10 @@ LED1 Turns ON when the test is finished successfully.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, Cortex, Mode Privilege, Privileged access, thread mode, main stack, process stack
+
 @par Directory contents 
 
   - CORTEXM/CORTEXM_ModePrivilege/Inc/stm32f4xx_hal_conf.h    HAL configuration file

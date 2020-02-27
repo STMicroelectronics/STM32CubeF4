@@ -131,6 +131,9 @@ STM32 Eval board's LEDs can be used to monitor the example status:
        case the Backup domain will be reset in order to modify the RTC Clock source, as consequence RTC  
        registers (including the backup registers) and RCC_BDCR register are set to their reset values.
 
+@par Keywords
+
+Power, STOP, Sleep, Standby, Current Consumption, Low Power, LSI, Backup SRAM, Voltage range
 
 @par Directory contents 
 

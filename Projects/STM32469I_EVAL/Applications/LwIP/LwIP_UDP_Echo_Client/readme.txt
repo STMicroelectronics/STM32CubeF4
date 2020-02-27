@@ -103,6 +103,10 @@ For more details about this application, refer to UM1713 "STM32Cube interfacing 
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+Connectivity, LwIP, Ethernet, UDP, Echo Client, TCP/IP, DHCP
+
 @par Directory contents
 
   - LwIP/LwIP_UDP_Echo_Client/Inc/app_ethernet.h          header of app_ethernet.c file

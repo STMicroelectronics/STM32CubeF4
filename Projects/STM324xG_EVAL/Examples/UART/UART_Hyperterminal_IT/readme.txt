@@ -117,6 +117,11 @@ position of the transmitted data.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, UART, Printf, Baud rate, RS-232, HyperTerminal, full-duplex, HyperTerminal, DMA,
+Transmission, Reception, Asynchronous
+
 @par Directory contents 
 
   - UART/UART_Hyperterminal_IT/Inc/stm32f4xx_hal_conf.h    HAL configuration file

@@ -92,6 +92,9 @@ LED1 is turned ON when the RTC configuration is done correctly.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+RTC, Timer, Timestamp, Counter, LSE, LSI, Current time, Real Time Clock
 
 @par Directory contents 
 

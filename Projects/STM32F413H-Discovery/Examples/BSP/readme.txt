@@ -103,6 +103,10 @@ to the beginning (first examples).
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+BSP, Board support package, DMA, Audio play, Headphone, Audio record, microphone, Touchscreen, Joystick,
+LCD, SD Card, EEPROM, NOR, SRAM, SDRAM, LOG, QSPI
 
 @par Directory contents 
 

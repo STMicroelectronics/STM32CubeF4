@@ -99,7 +99,7 @@ int main(void)
   AdcHandle.Init.DiscontinuousConvMode = DISABLE;
   AdcHandle.Init.NbrOfDiscConversion = 0;
   AdcHandle.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  AdcHandle.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T1_CC1;
+  AdcHandle.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   AdcHandle.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   AdcHandle.Init.NbrOfConversion = 1;
   AdcHandle.Init.DMAContinuousRequests = DISABLE;
@@ -130,7 +130,7 @@ int main(void)
   sConfigInjected.InjectedSamplingTime = ADC_SAMPLETIME_56CYCLES;
   sConfigInjected.InjectedOffset = 0;
   sConfigInjected.ExternalTrigInjecConvEdge = ADC_EXTERNALTRIGINJECCONVEDGE_NONE;
-  sConfigInjected.ExternalTrigInjecConv = ADC_EXTERNALTRIGINJECCONV_T1_CC4;
+  sConfigInjected.ExternalTrigInjecConv = ADC_SOFTWARE_START;
   sConfigInjected.AutoInjectedConv = DISABLE;
   sConfigInjected.InjectedDiscontinuousConvMode = DISABLE;
 

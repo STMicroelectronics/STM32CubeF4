@@ -73,6 +73,9 @@ STM32F4xx-Nucleo's LED can be used to monitor the application status:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+EEPROM, Emulation, Flash, Program, Erase, Sectors, OPCODE
 
 @par Directory contents 
 

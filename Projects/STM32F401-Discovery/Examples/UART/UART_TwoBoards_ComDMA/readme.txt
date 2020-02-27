@@ -65,12 +65,12 @@ STM32 discovery board's LEDs can be used to monitor the transfer status:
  - LED5 (red) is ON when there is an error in transmission/reception process.  
 
 The UART is configured as follows:
-    - BaudRate = 9600 baud  
-    - Word Length = 8 Bits (7 data bit + 1 parity bit)
-    - One Stop Bit
-    - None parity
-    - Hardware flow control disabled (RTS and CTS signals)
-    - Reception and transmission are enabled in the time
+ - BaudRate = 9600 baud  
+ - Word Length = 8 Bits (7 data bit + 1 parity bit)
+ - One Stop Bit
+ - None parity
+ - Hardware flow control disabled (RTS and CTS signals)
+ - Reception and transmission are enabled in the time
 
 @note USARTx/UARTx instance used and associated resources can be updated in "main.h"
 file depending hardware configuration used.
@@ -86,6 +86,10 @@ position of the transmitted data.
       
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
+@par Keywords
+
+Connectivity, UART, Baud rate, RS-232, Full-duplex, DMA, Parity, Stop bit, Transmission, Reception
 
 @par Directory contents 
 
@@ -108,7 +112,8 @@ position of the transmitted data.
   - STM32F401-Discovery RevB set-up
     - Connect a wire between 1st board PA2 pin (UART Tx) to 2nd board PA3 pin (UART Rx)
     - Connect a wire between 1st board PA3 pin (UART Rx) to 2nd board PA2 pin (UART Tx)
-
+    - Connect 1st board GND to 2nd Board GND 
+ 
 @par How to use it ? 
 
 In order to make the program work, you must do the following :

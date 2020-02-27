@@ -74,6 +74,10 @@
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Timers, Output, Compare, Active, Signals
+
 @par Directory contents 
 
   - TIM/TIM_OCActive/Inc/stm32f4xx_hal_conf.h    HAL configuration file

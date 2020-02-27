@@ -78,6 +78,10 @@ Note that only DMA2 streams are able to perform Memory-to-Memory transfers.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, DMA, FIFO Mode, Data Transfer, FIFO Threshold, Memory to memory, Stream
+
 @par Directory contents 
 
   - DMA/DMA_FIFOMode/Src/system_stm32f4xx.c    STM32F4xx system clock configuration file

@@ -105,6 +105,10 @@ compiler preprocessor (already done in the preconfigured projects provided with 
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+Connectivity, USB Host, HID, Full Speed, High Speed, Joystick, Mouse, Keyboard, enumerate
+
 @par Directory contents
 
   - USB_Device/HID_Standalone/Src/main.c                  Main program

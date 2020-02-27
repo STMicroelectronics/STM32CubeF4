@@ -121,6 +121,10 @@ The UART is configured as follows:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, UART, Printf, Baud rate, RS-232, HyperTerminal, Polling, Transmission,
+Reception, Asynchronous
 
 @par Directory contents 
 

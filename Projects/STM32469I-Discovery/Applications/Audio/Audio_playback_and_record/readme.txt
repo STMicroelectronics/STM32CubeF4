@@ -139,6 +139,10 @@ this application. For IAR EWARM toolchain, the library is labeled
 @note Master Volume Control ranges from -102db to +12db according to codec cs43l22 specification which means that
       user may does not hear audio for volume lower than 50%.
 
+@par Keywords
+
+Audio, Playback, Record, MEMS, Microphone, Touch screen, USB, WAV, FatFS, SRAM, audio codec,
+DMA, SAI
 
 @par Directory contents 
 

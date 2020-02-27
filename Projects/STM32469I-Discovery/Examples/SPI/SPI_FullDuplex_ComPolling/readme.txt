@@ -115,6 +115,10 @@ STM32 board's LEDs can be used to monitor the transfer status:
 @note The connection of the LCD reset pin to a dedicated GPIO PH7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+Connectivity, SPI, Full-duplex, Polling, Transmission, Reception, Master, Slave, MISO, MOSI
+
 @par Directory contents 
 
   - SPI/SPI_FullDuplex_ComPolling/Inc/stm32f4xx_hal_conf.h    HAL configuration file

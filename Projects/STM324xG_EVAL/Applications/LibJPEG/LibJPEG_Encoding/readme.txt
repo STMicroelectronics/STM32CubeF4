@@ -66,6 +66,9 @@ in "main.h" file to decode other resolution than 320x240.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Display, Graphic, LibJPEG, Encoding, Flash memory, DMA2D, ARGB8888, LCD, RGB, BMP, JPG, SD Card
 
 @par Directory contents
 

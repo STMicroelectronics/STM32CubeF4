@@ -136,6 +136,9 @@ In this example, HCLK is configured at 180 MHz.
   just after Device_3 has been used (button pressed): there will be a transmission error.
   It is necessary to use (press joystick/button) on Device_2, then Device_1 becomes operative again.
   
+@par Keywords
+
+Connectivity, CEC, Lissen mode, Transmission, Reception, joystick, Data exchange
 
 @par Directory contents 
 

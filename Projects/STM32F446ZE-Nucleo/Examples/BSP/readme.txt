@@ -56,6 +56,10 @@ At the end of the nine examples when pushing the user button the application loo
 to the beginning (first examples). pushing the user button the application loops 
 to the beginning (first examples).
 
+@par Keywords
+
+Board Support Package, BSP, Adafruit, TFT, LCD, Joystick, SD Card
+
 @par Directory contents 
 
   - BSP/Src/main.c                     Main program

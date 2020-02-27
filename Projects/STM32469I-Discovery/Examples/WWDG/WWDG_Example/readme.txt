@@ -92,6 +92,10 @@ LED3 is turned ON and remains ON if any error occurs.
 @note The connection of the LCD reset pin to a dedicated GPIO PH7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+System, WWDG, Downcounter, MCU Reset, Timeout, Software fault
+
 @par Directory contents 
 
   - WWDG/WWDG_Example/Inc/stm32f4xx_hal_conf.h    HAL configuration file

@@ -71,6 +71,10 @@ If everything all right, at the end of the test, LED1 and LED4 must be ON, LED2 
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Display, Graphic, DMA2D, LCD, SRAM, ARGB4444, Memory to Memory
+
 @par Directory contents 
 
   - DMA2D/DMA2D_MemoryToMemory/Inc/stm32f4xx_hal_conf.h    HAL configuration file

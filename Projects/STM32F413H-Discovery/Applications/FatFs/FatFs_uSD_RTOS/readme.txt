@@ -95,6 +95,9 @@ STM32F413H-DISCOVERY's LEDs can be used to monitor the application status:
 For more details about FreeRTOS implementation on STM32Cube, please refer to UM1722 "Developing Applications 
 on STM32Cube with RTOS".
 
+@par Keywords
+
+SD Card, FatFs, File system, FAT Volume, Format, Mount, Read, Write,FreeRTOS, RTOS
 
 @par Directory contents
  

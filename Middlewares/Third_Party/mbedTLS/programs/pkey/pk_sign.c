@@ -30,9 +30,12 @@
 #else
 #include <stdio.h>
 #include <stdlib.h>
-#define mbedtls_snprintf   snprintf
-#define mbedtls_printf     printf
-#endif
+#define mbedtls_snprintf        snprintf
+#define mbedtls_printf          printf
+#define mbedtls_exit            exit
+#define MBEDTLS_EXIT_SUCCESS    EXIT_SUCCESS
+#define MBEDTLS_EXIT_FAILURE    EXIT_FAILURE
+#endif /* MBEDTLS_PLATFORM_C */
 
 #if !defined(MBEDTLS_BIGNUM_C) || !defined(MBEDTLS_ENTROPY_C) ||  \
     !defined(MBEDTLS_SHA256_C) || !defined(MBEDTLS_MD_C) || \
@@ -57,10 +60,23 @@ int main( void )
 #include <stdio.h>
 #include <string.h>
 
+#if defined(MBEDTLS_CHECK_PARAMS)
+#include "mbedtls/platform_util.h"
+void mbedtls_param_failed( const char *failure_condition,
+                           const char *file,
+                           int line )
+{
+    mbedtls_printf( "%s:%i: Input param failed - %s\n",
+                    file, line, failure_condition );
+    mbedtls_exit( MBEDTLS_EXIT_FAILURE );
+}
+#endif
+
 int main( int argc, char *argv[] )
 {
     FILE *f;
     int ret = 1;
+    int exit_code = MBEDTLS_EXIT_FAILURE;
     mbedtls_pk_context pk;
     mbedtls_entropy_context entropy;
     mbedtls_ctr_drbg_context ctr_drbg;
@@ -134,14 +150,12 @@ int main( int argc, char *argv[] )
 
     if( ( f = fopen( filename, "wb+" ) ) == NULL )
     {
-        ret = 1;
         mbedtls_printf( " failed\n  ! Could not create %s\n\n", filename );
         goto exit;
     }
 
     if( fwrite( buf, 1, olen, f ) != olen )
     {
-        ret = 1;
         mbedtls_printf( "failed\n  ! fwrite failed\n\n" );
         fclose( f );
         goto exit;
@@ -151,13 +165,15 @@ int main( int argc, char *argv[] )
 
     mbedtls_printf( "\n  . Done (created \"%s\")\n\n", filename );
 
+    exit_code = MBEDTLS_EXIT_SUCCESS;
+
 exit:
     mbedtls_pk_free( &pk );
     mbedtls_ctr_drbg_free( &ctr_drbg );
     mbedtls_entropy_free( &entropy );
 
 #if defined(MBEDTLS_ERROR_C)
-    if( ret != 0 )
+    if( exit_code != MBEDTLS_EXIT_SUCCESS )
     {
         mbedtls_strerror( ret, (char *) buf, sizeof(buf) );
         mbedtls_printf( "  !  Last error was: %s\n", buf );
@@ -169,7 +185,7 @@ exit:
     fflush( stdout ); getchar();
 #endif
 
-    return( ret ? EXIT_FAILURE : EXIT_SUCCESS );
+    return( exit_code );
 }
 #endif /* MBEDTLS_BIGNUM_C && MBEDTLS_ENTROPY_C &&
           MBEDTLS_SHA256_C && MBEDTLS_PK_PARSE_C && MBEDTLS_FS_IO &&

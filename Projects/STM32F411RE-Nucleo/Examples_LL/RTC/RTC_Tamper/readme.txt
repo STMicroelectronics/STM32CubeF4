@@ -56,7 +56,11 @@ The associated firmware performs the following:
    the RTC backup data registers are reset and the Tamper interrupt is generated. 
    The corresponding ISR then checks whether the RTC Backup data registers are cleared.
    If yes LED2 turns on, otherwise LED2 toggles with a period of 1s.
-      
+ 
+@par Keywords
+
+System, RTC, Tamper, Reset, LSE, LSI
+     
 @par Directory contents 
 
   - RTC/RTC_Tamper/Inc/stm32f4xx_it.h          Interrupt handlers header file

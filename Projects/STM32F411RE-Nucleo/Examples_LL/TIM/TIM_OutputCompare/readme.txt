@@ -80,6 +80,10 @@ User push-button can be used to change the output compare mode:
     
 Initially the output channel is configured in output compare toggle mode.
 
+@par Keywords
+
+Timers, Output, Compare, signal, Oscilloscope, Frequency, Duty cycle, Waveform
+
 @par Directory contents 
 
   - TIM/TIM_OutputCompare/Inc/stm32f4xx_it.h          Interrupt handlers header file

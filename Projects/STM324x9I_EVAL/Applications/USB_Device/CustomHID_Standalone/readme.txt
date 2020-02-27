@@ -100,6 +100,9 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_FS" when using USB Full Speed (FS) Core 
       - "USE_USB_HS" and "USE_USB_HS_IN_FS" when using USB High Speed (HS) Core in FS mode
 
+@par Keywords
+
+Connectivity, USB Device, HID, Full Speed, High Speed, Joystick, Mouse, OTG
 
 @par Directory contents
 

@@ -61,6 +61,10 @@ Example execution:
 
    - LED2 is toggling every 1 second: This indicates that the system generates an error.
 
+@par Keywords
+
+System, RTC, RTC Wakeup timer, Standby mode, LSI, LSE, Interrupt,
+
 @par Directory contents 
 
   - RTC/RTC_ExitStandbyWithWakeUpTimer/Inc/stm32f4xx_it.h          Interrupt handlers header file

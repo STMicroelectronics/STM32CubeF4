@@ -77,10 +77,6 @@ uint8_t *USBD_VCP_ConfigStrDescriptor(USBD_SpeedTypeDef speed,
                                       uint16_t * length);
 uint8_t *USBD_VCP_InterfaceStrDescriptor(USBD_SpeedTypeDef speed,
                                          uint16_t * length);
-#ifdef USB_SUPPORT_USER_STRING_DESC
-uint8_t *USBD_VCP_USRStringDesc(USBD_SpeedTypeDef speed, uint8_t idx,
-                                uint16_t * length);
-#endif                          /* USB_SUPPORT_USER_STRING_DESC */
 
 /* Private variables --------------------------------------------------------- */
 USBD_DescriptorsTypeDef VCP_Desc = {

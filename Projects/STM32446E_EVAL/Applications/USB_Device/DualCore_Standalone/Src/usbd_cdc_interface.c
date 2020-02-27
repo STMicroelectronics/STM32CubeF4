@@ -80,6 +80,7 @@ static int8_t CDC_Itf_Init(void);
 static int8_t CDC_Itf_DeInit(void);
 static int8_t CDC_Itf_Control(uint8_t cmd, uint8_t* pbuf, uint16_t length);
 static int8_t CDC_Itf_Receive(uint8_t* pbuf, uint32_t *Len);
+static int8_t CDC_Itf_TransmitCplt(uint8_t *pbuf, uint32_t *Len, uint8_t epnum);
 
 static void Error_Handler(void);
 static void ComPort_Config(void);
@@ -90,7 +91,8 @@ USBD_CDC_ItfTypeDef USBD_CDC_fops =
   CDC_Itf_Init,
   CDC_Itf_DeInit,
   CDC_Itf_Control,
-  CDC_Itf_Receive
+  CDC_Itf_Receive,
+  CDC_Itf_TransmitCplt
 };
 
 /* Private functions ---------------------------------------------------------*/
@@ -305,6 +307,23 @@ static int8_t CDC_Itf_Receive(uint8_t* Buf, uint32_t *Len)
 {
   HAL_UART_Transmit_DMA(&UartHandle, Buf, *Len);
   return (USBD_OK);
+}
+
+/**
+  * @brief  CDC_Itf_TransmitCplt
+  *         Data transmited callback
+  *
+  * @note
+  *         This function is IN transfer complete callback used to inform user that
+  *         the submitted Data is successfully sent over USB.
+  *
+  * @param  Buf: Buffer of data to be received
+  * @param  Len: Number of data received (in bytes)
+  * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
+  */
+static int8_t CDC_Itf_TransmitCplt(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
+{
+  return (0);
 }
 
 /**

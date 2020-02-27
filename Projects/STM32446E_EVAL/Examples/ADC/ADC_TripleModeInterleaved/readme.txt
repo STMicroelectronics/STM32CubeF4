@@ -86,6 +86,10 @@ User should monitor aADCTripleConvertedValue variable to get the converted value
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Analog, ADC, Analog to Digital, Triple mode, Interleaved, Continuous conversion, Software Trigger, DMA, Measurement,
+
 @par Directory contents 
 
   - ADC/ADC_TripleModeInterleaved/Inc/stm32f4xx_hal_conf.h    HAL configuration file

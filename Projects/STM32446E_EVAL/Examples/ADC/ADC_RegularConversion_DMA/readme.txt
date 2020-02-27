@@ -54,6 +54,10 @@ STM32 Eval board's LEDs can be used to monitor the transfer status:
   - LED1 is ON when the conversion is complete.
   - LED3 is ON when there are an error in initialization.
 
+@par Keywords
+
+Analog, ADC, Analog to Digital Converter, Regular Conversion, DMA, Continuous Conversion
+
 @par Directory contents 
 
   - ADC/ADC_RegularConversion_DMA/Inc/stm32f4xx_hal_conf.h    HAL configuration file

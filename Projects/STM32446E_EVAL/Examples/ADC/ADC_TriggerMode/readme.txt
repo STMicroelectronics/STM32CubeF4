@@ -65,6 +65,10 @@ SB94 must be closed to use the potentiometer.
 
 Remark: LED3 is ON when there is an error in initialization.
 
+@par Keywords
+
+Analog, ADC, Analog to Digital, Trigger mode, Continuous conversion, Timer, Measurement, Voltage
+
 @par Directory contents 
 
   - ADC/ADC_TriggerMode/Inc/stm32f4xx_hal_conf.h    HAL configuration file

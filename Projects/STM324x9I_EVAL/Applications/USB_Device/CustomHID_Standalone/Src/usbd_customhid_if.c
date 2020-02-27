@@ -292,6 +292,10 @@ static int8_t CustomHID_OutEvent(uint8_t event_idx, uint8_t state)
     BSP_LED_Off(LED4);
     break;
   }
+
+  /* Start next USB packet transfer once data processing is completed */
+  USBD_CUSTOM_HID_ReceivePacket(&USBD_Device);
+
   return (0);
 }
 

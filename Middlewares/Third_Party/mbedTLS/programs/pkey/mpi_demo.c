@@ -29,8 +29,12 @@
 #include "mbedtls/platform.h"
 #else
 #include <stdio.h>
-#define mbedtls_printf     printf
-#endif
+#include <stdlib.h>
+#define mbedtls_printf          printf
+#define mbedtls_exit            exit
+#define MBEDTLS_EXIT_SUCCESS    EXIT_SUCCESS
+#define MBEDTLS_EXIT_FAILURE    EXIT_FAILURE
+#endif /* MBEDTLS_PLATFORM_C */
 
 #if defined(MBEDTLS_BIGNUM_C) && defined(MBEDTLS_FS_IO)
 #include "mbedtls/bignum.h"
@@ -45,9 +49,23 @@ int main( void )
     return( 0 );
 }
 #else
+
+#if defined(MBEDTLS_CHECK_PARAMS)
+#include "mbedtls/platform_util.h"
+void mbedtls_param_failed( const char *failure_condition,
+                           const char *file,
+                           int line )
+{
+    mbedtls_printf( "%s:%i: Input param failed - %s\n",
+                    file, line, failure_condition );
+    mbedtls_exit( MBEDTLS_EXIT_FAILURE );
+}
+#endif
+
 int main( void )
 {
-    int ret;
+    int ret = 1;
+    int exit_code = MBEDTLS_EXIT_FAILURE;
     mbedtls_mpi E, P, Q, N, H, D, X, Y, Z;
 
     mbedtls_mpi_init( &E ); mbedtls_mpi_init( &P ); mbedtls_mpi_init( &Q ); mbedtls_mpi_init( &N );
@@ -88,15 +106,16 @@ int main( void )
     MBEDTLS_MPI_CHK( mbedtls_mpi_write_file( "  Z (decrypted)  = Y^D mod N = ", &Z, 10, NULL ) );
     mbedtls_printf( "\n" );
 
+    exit_code = MBEDTLS_EXIT_SUCCESS;
+
 cleanup:
     mbedtls_mpi_free( &E ); mbedtls_mpi_free( &P ); mbedtls_mpi_free( &Q ); mbedtls_mpi_free( &N );
     mbedtls_mpi_free( &H ); mbedtls_mpi_free( &D ); mbedtls_mpi_free( &X ); mbedtls_mpi_free( &Y );
     mbedtls_mpi_free( &Z );
 
-    if( ret != 0 )
+    if( exit_code != MBEDTLS_EXIT_SUCCESS )
     {
         mbedtls_printf( "\nAn error occurred.\n" );
-        ret = 1;
     }
 
 #if defined(_WIN32)
@@ -104,6 +123,6 @@ cleanup:
     fflush( stdout ); getchar();
 #endif
 
-    return( ret );
+    return( exit_code );
 }
 #endif /* MBEDTLS_BIGNUM_C && MBEDTLS_FS_IO */

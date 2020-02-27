@@ -186,6 +186,24 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution)
     /* Return CAMERA_OK status */
     ret = CAMERA_OK;
   }
+  else if(ov5640_ReadID(CAMERA_I2C_ADDRESS_2) == OV5640_ID)
+  {
+    /* Initialize the camera driver structure */
+    camera_drv = &ov5640_drv;
+    cameraHwAddress = CAMERA_I2C_ADDRESS_2;
+
+    /* DCMI Initialization */
+    BSP_CAMERA_MspInit(&hDcmiEval, NULL);
+    HAL_DCMI_Init(phdcmi);
+
+    /* Camera Module Initialization via I2C to the wanted 'Resolution' */
+    camera_drv->Init(cameraHwAddress, Resolution);
+
+    currentResolution = Resolution;
+
+    /* Return CAMERA_OK status */
+    ret = CAMERA_OK;
+  }  
   else
   {
     /* No supported camera sensor found */

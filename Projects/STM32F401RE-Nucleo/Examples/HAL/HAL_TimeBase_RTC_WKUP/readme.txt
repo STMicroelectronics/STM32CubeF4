@@ -72,6 +72,9 @@ In an infinite loop, LED2 toggles spaced out over 500ms delay
 @note The application needs to ensure that the HAL time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, RTC Wakeup, Time base, HAL
 
 @par Directory contents
 
@@ -83,7 +86,7 @@ In an infinite loop, LED2 toggles spaced out over 500ms delay
   - HAL/HAL_TimeBase/Src/system_stm32f4xx.c                      STM32F4xx system clock configuration file
 
 
-  @par Hardware and Software environment
+@par Hardware and Software environment
 
   - This example runs on STM32F401xx devices.
   

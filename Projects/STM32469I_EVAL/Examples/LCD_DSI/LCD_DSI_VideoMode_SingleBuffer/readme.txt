@@ -58,6 +58,10 @@ buffer is used to draw and display image.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Graphic, Display, LCD, DSI, MIPI Alliance, Video mode, Single buffer, LTDC, QVGA, ARGB8888, SDRAM
+
 @par Directory contents
 
   - LCD_DSI/LCD_DSI_VideoMode_SingleBuffer/Inc/stm32f4xx_hal_conf.h          HAL configuration file

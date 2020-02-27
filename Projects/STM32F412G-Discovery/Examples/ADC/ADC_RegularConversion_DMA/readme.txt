@@ -60,6 +60,10 @@ on the board to VDD (+3.3V), the Vref- reference voltage is connected on the boa
 To convert the read value in volts, here is the equation to apply :
 Voltage = uhADCxConvertedValue * (Vref+ - Vref-) / (2^12) = uhADCxConvertedValue * 3.3 / 4096
 
+@par Keywords
+
+Analog, ADC, Analog to Digital Converter, Regular Conversion, DMA, Continuous Conversion
+
 @par Directory contents 
 
   - ADC/ADC_RegularConversion_DMA/Inc/stm32f4xx_hal_conf.h    HAL configuration file

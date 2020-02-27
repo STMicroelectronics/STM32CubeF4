@@ -112,6 +112,10 @@ Then, on TX side,
 
 In this example, HCLK is configured at 180 MHz.
 
+@par Keywords
+
+Connectivity, CEC, Transmission, Reception, joystick, Data exchange
+
 @par Directory contents 
 
   - CEC/CEC_DataExchange/Inc/stm32f4xx_hal_conf.h    HAL configuration file

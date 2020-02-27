@@ -78,7 +78,9 @@ Configuration of TIM3 in One Pulse Mode
   CH1 ______________________________________|                           |_____
                                <---Delay----><------Pulse--------------->
   
+@par Keywords
 
+Timers, Output, signals, One Pulse, PWM, Oscilloscope, External signal, Autoreload, Waveform
 
 @par Directory contents 
 

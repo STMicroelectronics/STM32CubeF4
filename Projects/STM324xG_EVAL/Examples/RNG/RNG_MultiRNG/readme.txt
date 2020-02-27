@@ -63,6 +63,9 @@ LED3 will turn ON, if any error is occurred.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Analog, RNG, Random, FIPS PUB 140-2, Analog Random number generator, Entropy, Period
 
 @par Directory contents 
 

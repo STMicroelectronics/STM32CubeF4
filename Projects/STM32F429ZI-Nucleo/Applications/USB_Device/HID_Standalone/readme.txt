@@ -88,6 +88,10 @@ LED1, LED2 and LED3 are blinking continuously.
       
 For more details about the STM32Cube USB Device library, please refer to UM1734 
 "STM32Cube USB Device library".
+
+@par Keywords
+
+Connectivity, USB Host, HID, Full Speed, High Speed, Joystick, Mouse, Keyboard, enumerate
       
 @par Directory contents
 

@@ -95,6 +95,10 @@ which can be easily customized (square, circle...). Use Joystick to move the mou
 For more details about the STM32Cube USB Device library, please refer to UM1734 
 "STM32Cube USB Device library".
 
+@par Keywords
+
+Connectivity, USB Host, HID, Full Speed, High Speed, Joystick, Mouse, Keyboard, enumerate
+
 @par Directory contents
 
   - USB_Device/HID_Standalone/Src/main.c                  Main program

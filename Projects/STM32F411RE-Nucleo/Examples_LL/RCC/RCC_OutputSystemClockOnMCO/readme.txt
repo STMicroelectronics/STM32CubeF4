@@ -50,6 +50,10 @@ Different configuration will be observed
 
 When user press User push-button, a LED2 toggle is done to indicate a change in MCO config.
 
+@par Keywords
+
+System, RCC, PLL, HSI, PLLCLK, SYSCLK, HSE, Clock, Oscillator
+
 @par Directory contents 
 
   - RCC/RCC_OutputSystemClockOnMCO/Inc/stm32f4xx_it.h          Interrupt handlers header file

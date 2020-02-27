@@ -1,4 +1,4 @@
-/**
+﻿/**
   @page RCC_ClockConfig RCC Clock Configuration example
   
   @verbatim
@@ -94,6 +94,9 @@ One LED is toggled with a timing defined by the HAL_Delay() API.
 @note The clock setting is configured to have the max product performance (max clock frequency) 
       so not optimized in term of power consumption.
  
+@par Keywords
+
+RCC, System, Clock Configuration, HSE bypass mode, HSI, System clock, Oscillator, PLL
       
 @par Directory contents  
 

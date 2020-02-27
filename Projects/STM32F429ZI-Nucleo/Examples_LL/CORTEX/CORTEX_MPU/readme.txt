@@ -45,6 +45,10 @@ a memory management fault is generated and LED3 is ON.
 To generate an MPU memory fault exception due to an access right error, press 
 user button.
 
+@par Keywords
+
+System, Cortex, Memory regions, Privileged area, permitted access, memory management fault, MPU memory fault
+
 @par Directory contents 
 
   - CORTEX/CORTEX_MPU/Inc/stm32f4xx_it.h          Interrupt handlers header file

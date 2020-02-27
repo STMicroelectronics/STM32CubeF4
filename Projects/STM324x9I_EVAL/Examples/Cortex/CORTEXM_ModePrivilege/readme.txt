@@ -59,6 +59,9 @@ possible to use the 'Cortex register' window of the debugger.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, Cortex, Mode Privilege, Privileged access, thread mode, main stack, process stack
 
 @par Directory contents
 

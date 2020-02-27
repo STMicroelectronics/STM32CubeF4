@@ -132,9 +132,6 @@ void mbedtls_net_init( mbedtls_net_context *ctx )
   {
      printf("\nIpAdress = %lu.%lu.%lu.%lu\n", (netif.ip_addr.addr & 0xff), ((netif.ip_addr.addr >> 8) & 0xff)
                                         , ((netif.ip_addr.addr >> 16) & 0xff), ((netif.ip_addr.addr >> 24)& 0xff));
-#ifdef USE_DHCP
-    dhcp_stop(&netif);
-#endif
     initialized = 1;
   }
 }

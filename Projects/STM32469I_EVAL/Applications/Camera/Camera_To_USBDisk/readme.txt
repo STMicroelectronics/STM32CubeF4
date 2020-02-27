@@ -71,6 +71,9 @@ When the tamper button is pressed an image is saved under USBdisk.
 
 @note Make sure jumper JP3 of STM32469I-EVAL board is on position PC0, because PA4 is shared with the DCMI_HSYNC signal.
 
+@par Keywords
+
+Display, Camera, USB Disk, DCMI, LCD, DMA, Frame buffer, WVGA
 
 @par Directory contents
 

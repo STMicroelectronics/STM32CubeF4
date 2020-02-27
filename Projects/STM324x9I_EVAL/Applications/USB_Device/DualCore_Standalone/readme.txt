@@ -93,6 +93,9 @@ To select the appropriate USB Core to work with, user must add the following mac
 compiler preprocessor (already done in the preconfigured projects provided with this application):
       - "USE_USB_HS" and "USE_USB_FS" when using USB Dual Core Mode
 
+@par Keywords
+
+Connectivity, USB Host, HID, MSC, Full Speed, High Speed, OTG, enumeration, mass storage, mouse, USB Stick
 
 @par Directory contents
 

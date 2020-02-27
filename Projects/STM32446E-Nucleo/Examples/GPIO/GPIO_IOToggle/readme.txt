@@ -55,7 +55,11 @@ The HCLK is configured at 180 MHz for STM32F446xx Devices.
 
 @note The clock setting is configured to have the max product performance (max clock frequency) 
       so not optimized in term of power consumption.
-      
+
+@par Keywords
+
+System, GPIO, Output, Alternate function, Push-pull, Toggle
+ 
 @par Directory contents 
 
   - GPIO/GPIO_IOToggle/Inc/stm32f4xx_hal_conf.h    HAL configuration file

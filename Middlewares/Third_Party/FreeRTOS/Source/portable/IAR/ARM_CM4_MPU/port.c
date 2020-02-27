@@ -1,6 +1,6 @@
 /*
- * FreeRTOS Kernel V10.0.0
- * Copyright (C) 2017 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ * FreeRTOS Kernel V10.2.1
+ * Copyright (C) 2019 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -10,8 +10,7 @@
  * subject to the following conditions:
  *
  * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software. If you wish to use our Amazon
- * FreeRTOS name, please do so in a fair use way that does not cause confusion.
+ * copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
@@ -143,21 +142,14 @@ have bit-0 clear, as it is loaded into the PC on exit from an ISR. */
 /*
  * Configure a number of standard MPU regions that are used by all tasks.
  */
-PRIVILEGED_FUNCTION static void prvSetupMPU( void );
+static void prvSetupMPU( void ) PRIVILEGED_FUNCTION;
 
 /*
  * Return the smallest MPU region size that a given number of bytes will fit
  * into.  The region size is returned as the value that should be programmed
  * into the region attribute register for that region.
  */
-PRIVILEGED_FUNCTION static uint32_t prvGetMPURegionSizeSetting( uint32_t ulActualSizeInBytes );
-
-/*
- * Checks to see if being called from the context of an unprivileged task, and
- * if so raises the privilege level and returns false - otherwise does nothing
- * other than return true.
- */
-extern BaseType_t xPortRaisePrivilege( void );
+static uint32_t prvGetMPURegionSizeSetting( uint32_t ulActualSizeInBytes ) PRIVILEGED_FUNCTION;
 
 /*
  * Setup the timer to generate the tick interrupts.  The implementation in this
@@ -169,12 +161,12 @@ void vPortSetupTimerInterrupt( void );
 /*
  * Exception handlers.
  */
-PRIVILEGED_FUNCTION void xPortSysTickHandler( void );
+void xPortSysTickHandler( void ) PRIVILEGED_FUNCTION;
 
 /*
  * Start first task is a separate function so it can be tested in isolation.
  */
-PRIVILEGED_FUNCTION extern void vPortStartFirstTask( void );
+extern void vPortStartFirstTask( void ) PRIVILEGED_FUNCTION;
 
 /*
  * Turn the VFP on.
@@ -189,8 +181,20 @@ void vPortSVCHandler_C( uint32_t *pulParam );
 /*
  * Called from the SVC handler used to start the scheduler.
  */
-PRIVILEGED_FUNCTION extern void vPortRestoreContextOfFirstTask( void );
+extern void vPortRestoreContextOfFirstTask( void ) PRIVILEGED_FUNCTION;
 
+/**
+ * @brief Calls the port specific code to raise the privilege.
+ *
+ * @return pdFALSE if privilege was raised, pdTRUE otherwise.
+ */
+extern BaseType_t xPortRaisePrivilege( void );
+
+/**
+ * @brief If xRunningPrivileged is not pdTRUE, calls the port specific
+ * code to reset the privilege, otherwise does nothing.
+ */
+extern void vPortResetPrivilege( BaseType_t xRunningPrivileged );
 /*-----------------------------------------------------------*/
 
 /* Each task maintains its own interrupt status in the critical nesting
@@ -484,6 +488,9 @@ extern uint32_t __FLASH_segment_end__;
 extern uint32_t __privileged_data_start__;
 extern uint32_t __privileged_data_end__;
 
+	/* Check the expected MPU is present. */
+	if( portMPU_TYPE_REG == portEXPECTED_MPU_TYPE_VALUE )
+	{
 		/* First setup the entire flash for unprivileged read only access. */
 		portMPU_REGION_BASE_ADDRESS_REG =	( ( uint32_t ) __FLASH_segment_start__ ) | /* Base address. */
 											( portMPU_REGION_VALID ) |
@@ -532,6 +539,7 @@ extern uint32_t __privileged_data_end__;
 
 		/* Enable the MPU with the background region configured. */
 		portMPU_CTRL_REG |= ( portMPU_ENABLE | portMPU_BACKGROUND_ENABLE );
+	}
 }
 /*-----------------------------------------------------------*/
 
@@ -556,18 +564,6 @@ uint32_t ulRegionSize, ulReturnValue = 4;
 	/* Shift the code by one before returning so it can be written directly
 	into the the correct bit position of the attribute register. */
 	return ( ulReturnValue << 1UL );
-}
-/*-----------------------------------------------------------*/
-
-void vPortResetPrivilege( BaseType_t xRunningPrivileged )
-{
-	if( xRunningPrivileged != pdTRUE )
-	{
-		__asm volatile ( " mrs r0, control 	\n" \
-						 " orr r0, r0, #1	\n" \
-						 " msr control, r0	\n"	\
-						 :::"r0", "memory" );
-	}
 }
 /*-----------------------------------------------------------*/
 

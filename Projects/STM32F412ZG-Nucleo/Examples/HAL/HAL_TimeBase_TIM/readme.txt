@@ -69,6 +69,10 @@ In an infinite loop, LED1 toggles spaced out over 1s delay.
 @note The application need to ensure that the TIM6 time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+System, General purpose Timer, Time base, HAL
+
 @par Directory contents  
 
   - HAL/HAL_TimeBase/Inc/stm32f4xx_hal_conf.h    HAL configuration file

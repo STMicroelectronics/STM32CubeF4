@@ -111,6 +111,9 @@ requirements, such as:
  - USBD_AUDIO_FREQ, specifying the sampling rate conversion from original audio file sampling rate to the
    sampling rate supported by the device.   
     
+@par Keywords
+
+USB Device, Audio, Streaming, SAI, Full speed, PCM
          
 @par Directory contents
 

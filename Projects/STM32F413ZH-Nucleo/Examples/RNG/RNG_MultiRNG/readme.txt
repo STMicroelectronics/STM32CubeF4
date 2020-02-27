@@ -56,6 +56,9 @@ The random numbers can be displayed on the debugger in aRandom32bit variable.
 
 In case of error, LED3 is toggling at a frequency of 1Hz.
 
+@par Keywords
+
+Analog, RNG, Random, FIPS PUB 140-2, Analog Random number generator, Entropy, Period
 
 @par Directory contents 
 

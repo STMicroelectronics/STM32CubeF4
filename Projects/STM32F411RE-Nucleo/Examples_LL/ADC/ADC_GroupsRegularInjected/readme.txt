@@ -93,6 +93,9 @@ Other peripherals used:
   DMA
   Timer
 
+@par Keywords
+
+Analog, ADC, Analog to Digital, regular group, single conversion mode, HW trigger, 
 
 @par Directory contents 
 

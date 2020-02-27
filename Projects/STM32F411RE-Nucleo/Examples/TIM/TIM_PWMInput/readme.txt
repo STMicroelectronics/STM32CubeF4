@@ -45,7 +45,7 @@ The SystemCoreClock is set to 100 MHz for STM32F411xEx Devices.
 TIM4 is configured in PWM Input Mode: the external signal is connected to 
 TIM4 Channel2 used as input pin.
 To measure the frequency and the duty cycle we use the TIM4 CC2 interrupt request,
-so In the TIM4_IRQHandler routine, the frequency and the duty cycle of the external 
+so in the TIM4_IRQHandler routine, the frequency and the duty cycle of the external 
 signal are computed. 
 The "uwFrequency" variable contains the external signal frequency:
 TIM4 counter clock = SystemCoreClock,
@@ -68,6 +68,10 @@ The minimum frequency value to measure is (TIM4 counter clock / CCR MAX)
 
 @note The clock setting is configured to have the max product performance (max clock frequency) 
       so not optimized in term of power consumption.
+
+@par Keywords
+
+Timers, Input, signals, PWM, External signal, Frequency, Duty cycle, Measure
 
 @par Directory contents 
 

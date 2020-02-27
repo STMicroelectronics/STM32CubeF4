@@ -80,6 +80,10 @@ When the tamper button is pressed an image is saved under USBdisk.
       to have correct HAL operation.
 
 
+@par Keywords
+
+Display, Camera, USB Disk, DCMI, LCD, DMA, Frame buffer, WVGA
+
 @par Directory contents
 
     - Camera/Camera_To_USBDisk/Inc/stm32f4xx_hal_conf.h    HAL configuration file

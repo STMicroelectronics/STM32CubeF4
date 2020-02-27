@@ -73,7 +73,11 @@ The associated firmware performs the following:
    The current time and date are updated and displayed on the debugger (live watch) in aShowTime, aShowDate variables .
 
 - LED2 is toggling : This indicates that the system generates an error.
-       
+ 
+@par Keywords
+
+RTC, Timer, Timestamp, Counter, LSE, LSI, Current time, Real Time Clock
+      
 @par Directory contents 
 
   - RTC/RTC_TimeStamp/Inc/stm32f4xx_it.h          Interrupt handlers header file

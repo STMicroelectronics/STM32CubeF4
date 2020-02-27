@@ -69,6 +69,10 @@ write protection status of FLASH_WRP_SECTORS (defined in main.c)
 @note The application need to ensure that the SysTick time base is always set 
       to 1 millisecond to have correct HAL operation.
 
+@par Keywords
+
+Memory, Flash, Write protection, Sector, Program, Erase
+
 @par Directory contents 
 
   - FLASH/FLASH_WriteProtection/Inc/stm32f4xx_hal_conf.h        HAL Configuration file  

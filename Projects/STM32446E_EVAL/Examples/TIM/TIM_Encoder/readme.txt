@@ -82,6 +82,10 @@ signals" table, rotation direction is Backward.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Timer, Encoder mode, Master, Slave, Duty Cycle, rotation direction, Waveform, Oscilloscope, Output, Signal
+
 @par Directory contents 
 
   - TIM/TIM_Encoder/Inc/stm32f4xx_hal_conf.h    HAL configuration file

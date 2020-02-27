@@ -135,6 +135,10 @@ by pushing the user button of the Master board.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, Communication, I2C, Interrupt, Master, Slave, Transmission, Reception, Fast mode,
+Command, Acknowledge
 
 @par Directory contents 
 

@@ -92,6 +92,9 @@ The provided sample audio files (stored in internal flash memory) are:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Audio, SAI, DMA, play, pause, headphone, audio codec
 
 @par Directory contents 
 

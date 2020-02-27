@@ -101,6 +101,10 @@ STM32 Eval board's LEDs can be used to monitor the transfer status:
        If a different EEPROM is used to test, EEPROM_ADDRESS in main.c should be
        updated with the right value.
        
+@par Keywords
+
+Connectivity, Memory, EEPROM, I2C, SCL, SDA, DMA, Read, Write
+
 @par Directory contents 
 
   - I2C/I2C_EEPROM/Inc/stm32f4xx_hal_conf.h    HAL configuration file

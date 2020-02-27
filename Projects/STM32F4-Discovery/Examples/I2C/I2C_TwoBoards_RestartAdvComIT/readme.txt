@@ -211,7 +211,7 @@ Also only on Master board side, Terminal I/O can be used to watch the Request Co
  In Debug configuration window\ Startup, in addition to "monitor reset halt" add the command "monitor arm semihosting enable"
  Command Code is displayed on debugger as follows: Window--> Show View--> Console.
 
- @note I2Cx instance used and associated resources can be updated in "main.h"
+@note I2Cx instance used and associated resources can be updated in "main.h"
        file depending hardware configuration used.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -222,6 +222,10 @@ Also only on Master board side, Terminal I/O can be used to watch the Request Co
 
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
+@par Keywords
+
+Connectivity, I2C, Communication, Trasmission, Reception, SCL, SDA, Interrupt, Request, Sequential
 
 @par Directory contents 
 
@@ -241,7 +245,7 @@ Also only on Master board side, Terminal I/O can be used to watch the Request Co
   - This example has been tested with STM32F4-Discovery RevB and RevC board and can be
     easily tailored to any other supported device and development board.    
 
-  -STM32F4-Discovery RevB and RevC Set-up
+  - STM32F4-Discovery RevB and RevC Set-up
     - Connect I2C_SCL line of Master board (PB6, P2) to I2C_SCL line of Slave Board (PB6, P2).
     - Connect I2C_SDA line of Master board (PB9, P2) to I2C_SDA line of Slave Board (PB9, P2).
     - Connect GND of Master board to GND of Slave Board.

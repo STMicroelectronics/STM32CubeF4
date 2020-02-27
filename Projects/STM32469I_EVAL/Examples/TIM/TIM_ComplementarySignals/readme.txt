@@ -67,8 +67,6 @@ The break Polarity is used at High level.
 
 The TIM1 waveforms can be displayed using an oscilloscope.
 
-
-
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
       a peripheral ISR process, then the SysTick interrupt must have higher priority (numerically lower)
@@ -80,6 +78,11 @@ The TIM1 waveforms can be displayed using an oscilloscope.
 
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+
+@par Keywords
+
+Timers, PWM, Complementary signals, Master, Slave, Duty Cycle, Waveform, Oscilloscope, Output, Signal,
+dead time, break lock
 
 @par Directory contents 
 

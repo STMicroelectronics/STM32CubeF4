@@ -93,6 +93,9 @@ NUCLEO-F413ZH Rev B board's LEDs can be used to monitor the application status:
 For more details about FatFs implementation on STM32Cube, please refer to UM1721 "Developing Applications 
 on STM32Cube with FatFs".
 
+@par Keywords
+
+Connectivity, USB Host, FatFS, FAT, File system
 
 @par Directory contents
  

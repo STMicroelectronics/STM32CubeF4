@@ -75,6 +75,9 @@ suspends itself, the thread 1 toggles the LED1 each 400 ms.
 For more details about FreeRTOS implementation on STM32Cube, please refer to UM1722 "Developing Applications 
 on STM32Cube with RTOS".
 
+@par Keywords
+
+RTOS, FreeRTOS, Thread
 
 @par Directory contents
     - FreeRTOS/FreeRTOS_ThreadCreation/Src/main.c                Main program

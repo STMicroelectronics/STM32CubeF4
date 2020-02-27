@@ -45,6 +45,9 @@
 #include "mbedtls/aes.h"
 #include "mbedtls/camellia.h"
 #include "mbedtls/aria.h"
+#include "mbedtls/chacha20.h"
+#include "mbedtls/poly1305.h"
+#include "mbedtls/chachapoly.h"
 #include "mbedtls/base64.h"
 #include "mbedtls/bignum.h"
 #include "mbedtls/rsa.h"
@@ -54,6 +57,7 @@
 #include "mbedtls/ecp.h"
 #include "mbedtls/ecjpake.h"
 #include "mbedtls/timing.h"
+#include "mbedtls/nist_kw.h"
 
 #include <string.h>
 
@@ -71,6 +75,18 @@
 
 #if defined(MBEDTLS_MEMORY_BUFFER_ALLOC_C)
 #include "mbedtls/memory_buffer_alloc.h"
+#endif
+
+#if defined(MBEDTLS_CHECK_PARAMS)
+#include "mbedtls/platform_util.h"
+void mbedtls_param_failed( const char *failure_condition,
+                           const char *file,
+                           int line )
+{
+    mbedtls_printf( "%s:%i: Input param failed - %s\n",
+                    file, line, failure_condition );
+    mbedtls_exit( MBEDTLS_EXIT_FAILURE );
+}
 #endif
 
 static int test_snprintf( size_t n, const char ref_buf[10], int ref_ret )
@@ -205,8 +221,20 @@ const selftest_t selftests[] =
 #if defined(MBEDTLS_CCM_C) && defined(MBEDTLS_AES_C)
     {"ccm", mbedtls_ccm_self_test},
 #endif
+#if defined(MBEDTLS_NIST_KW_C) && defined(MBEDTLS_AES_C)
+    {"nist_kw", mbedtls_nist_kw_self_test},
+#endif
 #if defined(MBEDTLS_CMAC_C)
     {"cmac", mbedtls_cmac_self_test},
+#endif
+#if defined(MBEDTLS_CHACHA20_C)
+    {"chacha20", mbedtls_chacha20_self_test},
+#endif
+#if defined(MBEDTLS_POLY1305_C)
+    {"poly1305", mbedtls_poly1305_self_test},
+#endif
+#if defined(MBEDTLS_CHACHAPOLY_C)
+    {"chacha20-poly1305", mbedtls_chachapoly_self_test},
 #endif
 #if defined(MBEDTLS_BASE64_C)
     {"base64", mbedtls_base64_self_test},

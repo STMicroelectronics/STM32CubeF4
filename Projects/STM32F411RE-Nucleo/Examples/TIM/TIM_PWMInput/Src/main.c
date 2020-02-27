@@ -226,7 +226,7 @@ static void Error_Handler(void)
   *            VDD(V)                         = 3.3
   *            Main regulator output voltage  = Scale2 mode
   *            Flash Latency(WS)              = 3
-  * @param  None
+ * @param  None
   * @retval None
   */
 static void SystemClock_Config(void)

@@ -115,6 +115,10 @@ position of the transmitted data.
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, UART, Baud rate, RS-232, Full-duplex, Polling, Parity, Stop bit, Transmission, Reception
+
 @par Directory contents 
 
   - UART/UART_TwoBoards_ComPolling/Inc/stm32f4xx_hal_conf.h    HAL configuration file

@@ -65,6 +65,10 @@
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Display, Graphic, DMA2D, Memory to memory, LCD, RGB565
+
 @par Directory contents 
   
   - DMA2D/DMA2D_MemToMemWithLCD/Inc/stm32f4xx_hal_conf.h    HAL configuration file

@@ -114,6 +114,10 @@ requirements, such as:
 Since this is an RTOS based application, built around FreeRTOS and CMSIS-OS wrapping layer common APIs,
 the RTOS is enabled by setting, #define USBH_USE_OS      1
 
+@par Keywords
+
+Connectivity, FreeRTOS, USB Host, MSC, Mass Storage, Full Speed, High Speed, BOT, SCSI, Removable drive, FatFs,
+File system, Write, Read, Format
 
 @par Directory contents
 

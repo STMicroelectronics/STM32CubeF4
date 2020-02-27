@@ -29,10 +29,14 @@
 #include "mbedtls/platform.h"
 #else
 #include <stdio.h>
+#include <stdlib.h>
 #define mbedtls_exit       exit
 #define mbedtls_printf     printf
 #define mbedtls_snprintf   snprintf
 #define mbedtls_free       free
+#define mbedtls_exit            exit
+#define MBEDTLS_EXIT_SUCCESS    EXIT_SUCCESS
+#define MBEDTLS_EXIT_FAILURE    EXIT_FAILURE
 #endif
 
 #if !defined(MBEDTLS_TIMING_C)
@@ -61,9 +65,12 @@ int main( void )
 #include "mbedtls/aria.h"
 #include "mbedtls/blowfish.h"
 #include "mbedtls/camellia.h"
+#include "mbedtls/chacha20.h"
 #include "mbedtls/gcm.h"
 #include "mbedtls/ccm.h"
+#include "mbedtls/chachapoly.h"
 #include "mbedtls/cmac.h"
+#include "mbedtls/poly1305.h"
 
 #include "mbedtls/havege.h"
 #include "mbedtls/ctr_drbg.h"
@@ -98,9 +105,10 @@ int main( void )
 
 #define OPTIONS                                                         \
     "md4, md5, ripemd160, sha1, sha256, sha512,\n"                      \
-    "arc4, des3, des, camellia, blowfish,\n"                            \
-    "aes_cbc, aes_gcm, aes_ccm, aes_cmac, aes_xts,\n"                   \
-    "des3_cmac, havege, ctr_drbg, hmac_drbg,\n"                         \
+    "arc4, des3, des, camellia, blowfish, chacha20,\n"                  \
+    "aes_cbc, aes_gcm, aes_ccm, aes_ctx, chachapoly,\n"                 \
+    "aes_cmac, des3_cmac, poly1305\n"                                   \
+    "havege, ctr_drbg, hmac_drbg\n"                                     \
     "rsa, dhm, ecdsa, ecdh.\n"
 
 #if defined(MBEDTLS_ERROR_C)
@@ -115,25 +123,34 @@ int main( void )
 #define TIME_AND_TSC( TITLE, CODE )                                     \
 do {                                                                    \
     unsigned long ii, jj, tsc;                                          \
+    int ret = 0;                                                        \
                                                                         \
     mbedtls_printf( HEADER_FORMAT, TITLE );                             \
     fflush( stdout );                                                   \
                                                                         \
     mbedtls_set_alarm( 1 );                                             \
-    for( ii = 1; ! mbedtls_timing_alarmed; ii++ )                       \
+    for( ii = 1; ret == 0 && ! mbedtls_timing_alarmed; ii++ )           \
     {                                                                   \
-        CODE;                                                           \
+        ret = CODE;                                                     \
     }                                                                   \
                                                                         \
     tsc = mbedtls_timing_hardclock();                                   \
-    for( jj = 0; jj < 1024; jj++ )                                      \
+    for( jj = 0; ret == 0 && jj < 1024; jj++ )                          \
     {                                                                   \
-        CODE;                                                           \
+        ret = CODE;                                                     \
     }                                                                   \
                                                                         \
-    mbedtls_printf( "%9lu KiB/s,  %9lu cycles/byte\n",                   \
-                     ii * BUFSIZE / 1024,                               \
-                     ( mbedtls_timing_hardclock() - tsc ) / ( jj * BUFSIZE ) );         \
+    if( ret != 0 )                                                      \
+    {                                                                   \
+        PRINT_ERROR;                                                    \
+    }                                                                   \
+    else                                                                \
+    {                                                                   \
+        mbedtls_printf( "%9lu KiB/s,  %9lu cycles/byte\n",              \
+                         ii * BUFSIZE / 1024,                           \
+                         ( mbedtls_timing_hardclock() - tsc )           \
+                         / ( jj * BUFSIZE ) );                          \
+    }                                                                   \
 } while( 0 )
 
 #if defined(MBEDTLS_MEMORY_BUFFER_ALLOC_C) && defined(MBEDTLS_MEMORY_DEBUG)
@@ -146,7 +163,7 @@ do {                                                                    \
 
 #define MEMORY_MEASURE_PRINT( title_len )                               \
     mbedtls_memory_buffer_alloc_max_get( &max_used, &max_blocks );      \
-    for( ii = 12 - title_len; ii != 0; ii-- ) mbedtls_printf( " " );    \
+    for( ii = 12 - (title_len); ii != 0; ii-- ) mbedtls_printf( " " );  \
     max_used -= prv_used;                                               \
     max_blocks -= prv_blocks;                                           \
     max_bytes = max_used + MEM_BLOCK_OVERHEAD * max_blocks;             \
@@ -233,11 +250,25 @@ unsigned char buf[BUFSIZE];
 typedef struct {
     char md4, md5, ripemd160, sha1, sha256, sha512,
          arc4, des3, des,
-         aes_cbc, aes_gcm, aes_ccm, aes_cmac, aes_xts,
-         des3_cmac, aria, camellia, blowfish,
+         aes_cbc, aes_gcm, aes_ccm, aes_xts, chachapoly,
+         aes_cmac, des3_cmac,
+         aria, camellia, blowfish, chacha20,
+         poly1305,
          havege, ctr_drbg, hmac_drbg,
          rsa, dhm, ecdsa, ecdh;
 } todo_list;
+
+#if defined(MBEDTLS_CHECK_PARAMS)
+#include "mbedtls/platform_util.h"
+void mbedtls_param_failed( const char *failure_condition,
+                           const char *file,
+                           int line )
+{
+    mbedtls_printf( "%s:%i: Input param failed - %s\n",
+                    file, line, failure_condition );
+    mbedtls_exit( MBEDTLS_EXIT_FAILURE );
+}
+#endif
 
 int main( int argc, char *argv[] )
 {
@@ -285,6 +316,8 @@ int main( int argc, char *argv[] )
                 todo.aes_gcm = 1;
             else if( strcmp( argv[i], "aes_ccm" ) == 0 )
                 todo.aes_ccm = 1;
+            else if( strcmp( argv[i], "chachapoly" ) == 0 )
+                todo.chachapoly = 1;
             else if( strcmp( argv[i], "aes_cmac" ) == 0 )
                 todo.aes_cmac = 1;
             else if( strcmp( argv[i], "des3_cmac" ) == 0 )
@@ -295,6 +328,10 @@ int main( int argc, char *argv[] )
                 todo.camellia = 1;
             else if( strcmp( argv[i], "blowfish" ) == 0 )
                 todo.blowfish = 1;
+            else if( strcmp( argv[i], "chacha20" ) == 0 )
+                todo.chacha20 = 1;
+            else if( strcmp( argv[i], "poly1305" ) == 0 )
+                todo.poly1305 = 1;
             else if( strcmp( argv[i], "havege" ) == 0 )
                 todo.havege = 1;
             else if( strcmp( argv[i], "ctr_drbg" ) == 0 )
@@ -497,6 +534,26 @@ int main( int argc, char *argv[] )
         }
     }
 #endif
+#if defined(MBEDTLS_CHACHAPOLY_C)
+    if( todo.chachapoly )
+    {
+        mbedtls_chachapoly_context chachapoly;
+
+        mbedtls_chachapoly_init( &chachapoly );
+        memset( buf, 0, sizeof( buf ) );
+        memset( tmp, 0, sizeof( tmp ) );
+
+        mbedtls_snprintf( title, sizeof( title ), "ChaCha20-Poly1305" );
+
+        mbedtls_chachapoly_setkey( &chachapoly, tmp );
+
+        TIME_AND_TSC( title,
+                mbedtls_chachapoly_encrypt_and_tag( &chachapoly,
+                    BUFSIZE, tmp, NULL, 0, buf, buf, tmp ) );
+
+        mbedtls_chachapoly_free( &chachapoly );
+    }
+#endif
 #if defined(MBEDTLS_CMAC_C)
     if( todo.aes_cmac )
     {
@@ -574,6 +631,20 @@ int main( int argc, char *argv[] )
     }
 #endif
 
+#if defined(MBEDTLS_CHACHA20_C)
+    if ( todo.chacha20 )
+    {
+        TIME_AND_TSC( "ChaCha20", mbedtls_chacha20_crypt( buf, buf, 0U, BUFSIZE, buf, buf ) );
+    }
+#endif
+
+#if defined(MBEDTLS_POLY1305_C)
+    if ( todo.poly1305 )
+    {
+        TIME_AND_TSC( "Poly1305", mbedtls_poly1305_mac( buf, buf, BUFSIZE, buf ) );
+    }
+#endif
+
 #if defined(MBEDTLS_BLOWFISH_C) && defined(MBEDTLS_CIPHER_MODE_CBC)
     if( todo.blowfish )
     {
@@ -618,15 +689,13 @@ int main( int argc, char *argv[] )
         if( mbedtls_ctr_drbg_seed( &ctr_drbg, myrand, NULL, NULL, 0 ) != 0 )
             mbedtls_exit(1);
         TIME_AND_TSC( "CTR_DRBG (NOPR)",
-                if( mbedtls_ctr_drbg_random( &ctr_drbg, buf, BUFSIZE ) != 0 )
-                mbedtls_exit(1) );
+                mbedtls_ctr_drbg_random( &ctr_drbg, buf, BUFSIZE ) );
 
         if( mbedtls_ctr_drbg_seed( &ctr_drbg, myrand, NULL, NULL, 0 ) != 0 )
             mbedtls_exit(1);
         mbedtls_ctr_drbg_set_prediction_resistance( &ctr_drbg, MBEDTLS_CTR_DRBG_PR_ON );
         TIME_AND_TSC( "CTR_DRBG (PR)",
-                if( mbedtls_ctr_drbg_random( &ctr_drbg, buf, BUFSIZE ) != 0 )
-                mbedtls_exit(1) );
+                mbedtls_ctr_drbg_random( &ctr_drbg, buf, BUFSIZE ) );
         mbedtls_ctr_drbg_free( &ctr_drbg );
     }
 #endif
@@ -646,18 +715,14 @@ int main( int argc, char *argv[] )
         if( mbedtls_hmac_drbg_seed( &hmac_drbg, md_info, myrand, NULL, NULL, 0 ) != 0 )
             mbedtls_exit(1);
         TIME_AND_TSC( "HMAC_DRBG SHA-1 (NOPR)",
-                if( mbedtls_hmac_drbg_random( &hmac_drbg, buf, BUFSIZE ) != 0 )
-                mbedtls_exit(1) );
-        mbedtls_hmac_drbg_free( &hmac_drbg );
+                mbedtls_hmac_drbg_random( &hmac_drbg, buf, BUFSIZE ) );
 
         if( mbedtls_hmac_drbg_seed( &hmac_drbg, md_info, myrand, NULL, NULL, 0 ) != 0 )
             mbedtls_exit(1);
         mbedtls_hmac_drbg_set_prediction_resistance( &hmac_drbg,
                                              MBEDTLS_HMAC_DRBG_PR_ON );
         TIME_AND_TSC( "HMAC_DRBG SHA-1 (PR)",
-                if( mbedtls_hmac_drbg_random( &hmac_drbg, buf, BUFSIZE ) != 0 )
-                mbedtls_exit(1) );
-        mbedtls_hmac_drbg_free( &hmac_drbg );
+                mbedtls_hmac_drbg_random( &hmac_drbg, buf, BUFSIZE ) );
 #endif
 
 #if defined(MBEDTLS_SHA256_C)
@@ -667,19 +732,16 @@ int main( int argc, char *argv[] )
         if( mbedtls_hmac_drbg_seed( &hmac_drbg, md_info, myrand, NULL, NULL, 0 ) != 0 )
             mbedtls_exit(1);
         TIME_AND_TSC( "HMAC_DRBG SHA-256 (NOPR)",
-                if( mbedtls_hmac_drbg_random( &hmac_drbg, buf, BUFSIZE ) != 0 )
-                mbedtls_exit(1) );
-        mbedtls_hmac_drbg_free( &hmac_drbg );
+                mbedtls_hmac_drbg_random( &hmac_drbg, buf, BUFSIZE ) );
 
         if( mbedtls_hmac_drbg_seed( &hmac_drbg, md_info, myrand, NULL, NULL, 0 ) != 0 )
             mbedtls_exit(1);
         mbedtls_hmac_drbg_set_prediction_resistance( &hmac_drbg,
                                              MBEDTLS_HMAC_DRBG_PR_ON );
         TIME_AND_TSC( "HMAC_DRBG SHA-256 (PR)",
-                if( mbedtls_hmac_drbg_random( &hmac_drbg, buf, BUFSIZE ) != 0 )
-                mbedtls_exit(1) );
-        mbedtls_hmac_drbg_free( &hmac_drbg );
+                mbedtls_hmac_drbg_random( &hmac_drbg, buf, BUFSIZE ) );
 #endif
+        mbedtls_hmac_drbg_free( &hmac_drbg );
     }
 #endif
 
@@ -816,7 +878,7 @@ int main( int argc, char *argv[] )
     }
 #endif
 
-#if defined(MBEDTLS_ECDH_C)
+#if defined(MBEDTLS_ECDH_C) && defined(MBEDTLS_ECDH_LEGACY_CONTEXT)
     if( todo.ecdh )
     {
         mbedtls_ecdh_context ecdh;

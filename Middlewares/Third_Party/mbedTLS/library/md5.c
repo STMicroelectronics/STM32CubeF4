@@ -136,19 +136,22 @@ int mbedtls_internal_md5_process( mbedtls_md5_context *ctx,
     GET_UINT32_LE( X[14], data, 56 );
     GET_UINT32_LE( X[15], data, 60 );
 
-#define S(x,n) ((x << n) | ((x & 0xFFFFFFFF) >> (32 - n)))
+#define S(x,n)                                                          \
+    ( ( (x) << (n) ) | ( ( (x) & 0xFFFFFFFF) >> ( 32 - (n) ) ) )
 
-#define P(a,b,c,d,k,s,t)                                \
-{                                                       \
-    a += F(b,c,d) + X[k] + t; a = S(a,s) + b;           \
-}
+#define P(a,b,c,d,k,s,t)                                        \
+    do                                                          \
+    {                                                           \
+        (a) += F((b),(c),(d)) + X[(k)] + (t);                   \
+        (a) = S((a),(s)) + (b);                                 \
+    } while( 0 )
 
     A = ctx->state[0];
     B = ctx->state[1];
     C = ctx->state[2];
     D = ctx->state[3];
 
-#define F(x,y,z) (z ^ (x & (y ^ z)))
+#define F(x,y,z) ((z) ^ ((x) & ((y) ^ (z))))
 
     P( A, B, C, D,  0,  7, 0xD76AA478 );
     P( D, A, B, C,  1, 12, 0xE8C7B756 );
@@ -169,7 +172,7 @@ int mbedtls_internal_md5_process( mbedtls_md5_context *ctx,
 
 #undef F
 
-#define F(x,y,z) (y ^ (z & (x ^ y)))
+#define F(x,y,z) ((y) ^ ((z) & ((x) ^ (y))))
 
     P( A, B, C, D,  1,  5, 0xF61E2562 );
     P( D, A, B, C,  6,  9, 0xC040B340 );
@@ -190,7 +193,7 @@ int mbedtls_internal_md5_process( mbedtls_md5_context *ctx,
 
 #undef F
 
-#define F(x,y,z) (x ^ y ^ z)
+#define F(x,y,z) ((x) ^ (y) ^ (z))
 
     P( A, B, C, D,  5,  4, 0xFFFA3942 );
     P( D, A, B, C,  8, 11, 0x8771F681 );
@@ -211,7 +214,7 @@ int mbedtls_internal_md5_process( mbedtls_md5_context *ctx,
 
 #undef F
 
-#define F(x,y,z) (y ^ (x | ~z))
+#define F(x,y,z) ((y) ^ ((x) | ~(z)))
 
     P( A, B, C, D,  0,  6, 0xF4292244 );
     P( D, A, B, C,  7, 10, 0x432AFF97 );
@@ -309,14 +312,6 @@ void mbedtls_md5_update( mbedtls_md5_context *ctx,
 }
 #endif
 
-static const unsigned char md5_padding[64] =
-{
- 0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-};
-
 /*
  * MD5 final digest
  */
@@ -324,26 +319,48 @@ int mbedtls_md5_finish_ret( mbedtls_md5_context *ctx,
                             unsigned char output[16] )
 {
     int ret;
-    uint32_t last, padn;
+    uint32_t used;
     uint32_t high, low;
-    unsigned char msglen[8];
 
+    /*
+     * Add padding: 0x80 then 0x00 until 8 bytes remain for the length
+     */
+    used = ctx->total[0] & 0x3F;
+
+    ctx->buffer[used++] = 0x80;
+
+    if( used <= 56 )
+    {
+        /* Enough room for padding + length in current block */
+        memset( ctx->buffer + used, 0, 56 - used );
+    }
+    else
+    {
+        /* We'll need an extra block */
+        memset( ctx->buffer + used, 0, 64 - used );
+
+        if( ( ret = mbedtls_internal_md5_process( ctx, ctx->buffer ) ) != 0 )
+            return( ret );
+
+        memset( ctx->buffer, 0, 56 );
+    }
+
+    /*
+     * Add message length
+     */
     high = ( ctx->total[0] >> 29 )
          | ( ctx->total[1] <<  3 );
     low  = ( ctx->total[0] <<  3 );
 
-    PUT_UINT32_LE( low,  msglen, 0 );
-    PUT_UINT32_LE( high, msglen, 4 );
+    PUT_UINT32_LE( low,  ctx->buffer, 56 );
+    PUT_UINT32_LE( high, ctx->buffer, 60 );
 
-    last = ctx->total[0] & 0x3F;
-    padn = ( last < 56 ) ? ( 56 - last ) : ( 120 - last );
+    if( ( ret = mbedtls_internal_md5_process( ctx, ctx->buffer ) ) != 0 )
+        return( ret );
 
-    if( ( ret = mbedtls_md5_update_ret( ctx, md5_padding, padn ) ) != 0 )
-            return( ret );
-
-    if( ( ret = mbedtls_md5_update_ret( ctx, msglen, 8 ) ) != 0 )
-            return( ret );
-
+    /*
+     * Output final state
+     */
     PUT_UINT32_LE( ctx->state[0], output,  0 );
     PUT_UINT32_LE( ctx->state[1], output,  4 );
     PUT_UINT32_LE( ctx->state[2], output,  8 );

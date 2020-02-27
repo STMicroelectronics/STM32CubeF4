@@ -83,6 +83,9 @@ by the downloaded one.
   - This Simulation project runs on VS Express for Desktop on windows platform
   - This project has been tested with Microsoft Visual Studio Express 2017 for Windows Desktop on Windows 7
 
+@par Keywords
+
+STemWin, Simulation, Microsoft Visual C++, LCD
 
 @par How to use it ? 
 

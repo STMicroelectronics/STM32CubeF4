@@ -48,6 +48,10 @@ Use of the SAI HAL API to play an audio file in DMA circular mode and handle the
 
 @note This example does not use BSP_AUDIO so the MspInit is coded in the main.c.
 
+@par Keywords
+
+Audio, SAI, DMA, Buffer update, play, headphone, audio protocol
+
 @par Directory contents  
 
   - SAI/SAI_AudioPlay/Src/main.c                  Main program

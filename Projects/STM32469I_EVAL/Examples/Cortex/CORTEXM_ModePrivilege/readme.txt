@@ -64,6 +64,10 @@ LED1 is ON once the test is finished.
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+System, Cortex, Mode Privilege, Privileged access, thread mode, main stack, process stack
+
 @par Directory contents 
 
   - CORTEXM/CORTEXM_ModePrivilege/Inc/stm32f4xx_hal_conf.h    HAL configuration file

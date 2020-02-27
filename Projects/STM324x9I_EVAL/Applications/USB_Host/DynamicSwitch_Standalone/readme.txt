@@ -109,6 +109,9 @@ requirements, such as:
  
   - Number of supported classes: USBH_MAX_NUM_SUPPORTED_CLASS  
 
+@par Keywords
+
+USB Host, MSC, HID, AUDIO, Full-Speed, High-Speed, LCD, SD Card, Mass Storage, FatFS
 
 @par Directory contents
 

@@ -64,6 +64,10 @@ STM32 Eval board's LEDs can be used to monitor the transfer status:
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
 	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
 
+@par Keywords
+
+Analog, ADC, Analog to Digital Converter, Regular Conversion, Polling, Single Conversion
+
 @par Directory contents 
 
   - ADC/ADC_RegularConversion_Polling/Inc/stm32f4xx_hal_conf.h    HAL configuration file

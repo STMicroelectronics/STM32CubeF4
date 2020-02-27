@@ -84,6 +84,9 @@ LEDs can be used to monitor the example status:
 For more details about FreeRTOS implementation on STM32Cube, please refer to UM1722 "Developing Applications 
 on STM32Cube with RTOS".
 
+@par Keywords
+
+RTOS, FreeRTOS, Thread, Mail, Queues, 
 
 @par Directory contents
     - FreeRTOS/FreeRTOS_Mail/Src/main.c                Main program

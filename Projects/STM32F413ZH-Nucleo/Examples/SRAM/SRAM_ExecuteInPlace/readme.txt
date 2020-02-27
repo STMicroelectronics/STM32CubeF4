@@ -61,6 +61,10 @@ The STM32F413ZH-Nucleo board LEDs can be used to monitor the SRAM1 Read/Write st
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Memory, SRAM, Execute, Initialization, Access
+
 @par Directory contents 
 
   - SRAM/SRAM_ExecuteInPlace/Inc/stm32f4xx_hal_conf.h        HAL Configuration file  

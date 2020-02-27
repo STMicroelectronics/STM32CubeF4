@@ -89,31 +89,33 @@ For this example the aTxBuffer is predefined and the aRxBuffer size is same as a
 On Master board side:
  - Wait User push-button to be pressed.
  - Request write communication after a Start condition by sending aTxBuffer through HAL_I2C_Master_Sequential_Transmit_IT() to I2C Slave 
-   - LED4 is turned ON when the transmission process is completed.
+ - LED4 is turned ON when the transmission process is completed.
  - Then wait User push-button to be pressed.
  - Request read communication after a Repeated Start condition through HAL_I2C_Master_Sequential_Receive_IT() to I2C Slave.
  - Receive data from Slave in aRxBuffer.
-   - LED6 is turned ON when the reception process is completed.
+ - LED6 is turned ON when the reception process is completed.
 Finally, aRxBuffer and aTxBuffer are compared through Buffercmp() in order to 
 check buffers correctness.
+
 LED5 is turned ON when there is an error in transmission/reception process,
 or buffers compared error. (communication is stopped if any, using infinite loop)
 
 On Slave board side:
  - Go Listen mode by calling HAL_I2C_EnableListen_IT().
  - Acknowledge Address match code.
-   - LED3 is turned ON when an Address match code event is acknowledge.
+ - LED3 is turned ON when an Address match code event is acknowledge.
  - Slave receives data into aRxBuffer through HAL_I2C_Slave_Sequential_Receive_IT().
-   - LED6 is turned ON when the reception process is completed.
+ - LED6 is turned ON when the reception process is completed.
  - Then slave transmits data by sending aTxBuffer through HAL_I2C_Slave_Sequential_Transmit_IT().
-   - LED4 is turned ON when the transmission process is completed.
-   - LED3 is turned OFF when the communication is completed.
+ - LED4 is turned ON when the transmission process is completed.
+ - LED3 is turned OFF when the communication is completed.
 Finally, aRxBuffer and aTxBuffer are compared through Buffercmp() in order to 
 check buffers correctness.
+
 LED5 is turned ON when there is an error in transmission/reception process,
 or buffers compared error. (communication is stopped if any, using infinite loop)
 
- @note I2Cx instance used and associated resources can be updated in "main.h"
+@note I2Cx instance used and associated resources can be updated in "main.h"
        file depending hardware configuration used.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -124,6 +126,10 @@ or buffers compared error. (communication is stopped if any, using infinite loop
 
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
+
+@par Keywords
+
+Connectivity, I2C, Communication, Trasmission, Reception, SCL, SDA, Interrupt
 
 @par Directory contents 
 

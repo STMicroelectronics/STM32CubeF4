@@ -70,6 +70,10 @@ The NUCLEO-F412ZG Rev B board LEDs can be used to monitor the transfer status:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Memory, FLASH, Erase, Program, Sector, Mass Erase
+
 @par Directory contents 
 
   - FLASH/FLASH_EraseProgram/Inc/stm32f4xx_hal_conf.h        HAL Configuration file  

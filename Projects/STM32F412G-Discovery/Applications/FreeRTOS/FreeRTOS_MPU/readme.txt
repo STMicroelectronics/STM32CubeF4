@@ -94,7 +94,7 @@ on STM32Cube with RTOS".
 
 @par Keywords
 
-Middleware, RTOS, FreeRTOS, MPU
+RTOS, FreeRTOS, MPU
 
 @par Directory contents
     - FreeRTOS/FreeRTOS_MPU/Src/main.c                       Main program

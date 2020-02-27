@@ -71,6 +71,10 @@ Other peripherals used:
   1 GPIO for User Button
   1 GPIO for LED2
 
+@par Keywords
+
+Analog, ADC, Temperatuer Sensor, Single Conversion, Polling, Software trigger, Signal measurement,
+
 @par Directory contents 
 
   - ADC/ADC_TemperatureSensor/Inc/stm32f4xx_it.h          Interrupt handlers header file

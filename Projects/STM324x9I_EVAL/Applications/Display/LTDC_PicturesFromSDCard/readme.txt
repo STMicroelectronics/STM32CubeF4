@@ -111,6 +111,9 @@ copies inside the content of "/BMP_320x240" and "/BMP_480x272" folders provided 
 
   -  LED3 is ON when the uSD disk I/O driver is not Linked;
 
+@par Keywords
+
+Graphic, Display, LTDC, LCD, Pictures, SD Card, BMP, RGB565, RGB888, ARGB8888
 
 @par Directory contents
 

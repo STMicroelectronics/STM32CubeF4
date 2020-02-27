@@ -73,7 +73,7 @@ uint32_t ExpectedTAG[4] = {0xEF8DFABB,0x29F6FE68,0xD70AA868,0x26BB30DB};
 
 
 /* Used for storing the encrypted text */
-uint32_t Encryptedtext[4]={0}; 
+uint32_t Encryptedtext[4]={0};
 
 /* Used for storing the decrypted text */
 uint32_t Decryptedtext[4]={0};
@@ -101,82 +101,83 @@ int main(void)
        - Global MSP (MCU Support Package) initialization
      */
   HAL_Init();
-  
+
   /* Configure the system clock to 180 MHz */
   SystemClock_Config();
-  
+
   /* Configure LED1, LED2 and LED3 */
   BSP_LED_Init(LED1);
   BSP_LED_Init(LED2);
   BSP_LED_Init(LED3);
-   
-  /*## Initialize the CRYP IP  ###############################################*/ 
-  
+
+  /*## Initialize the CRYP IP  ###############################################*/
+
   /* Set the CRYP parameters */
-  hcryp.Instance        = CRYP;
-  hcryp.Init.DataType   = CRYP_DATATYPE_32B;
-  hcryp.Init.KeySize    = CRYP_KEYSIZE_192B;
-  hcryp.Init.pKey       = AES192Key; 
-  hcryp.Init.Algorithm  = CRYP_AES_CCM;
-  hcryp.Init.Header     = BlockB1;
-  hcryp.Init.HeaderSize = 4;
-  hcryp.Init.B0         = BlockB0; 
-  
-  /* Initialize CRYP */ 
+  hcryp.Instance             = CRYP;
+  hcryp.Init.DataType        = CRYP_DATATYPE_32B;
+  hcryp.Init.KeySize         = CRYP_KEYSIZE_192B;
+  hcryp.Init.pKey            = AES192Key;
+  hcryp.Init.Algorithm       = CRYP_AES_CCM;
+  hcryp.Init.KeyIVConfigSkip = CRYP_KEYIVCONFIG_ALWAYS;
+  hcryp.Init.Header          = BlockB1;
+  hcryp.Init.HeaderSize      = 4;
+  hcryp.Init.B0              = BlockB0;
+
+  /* Initialize CRYP */
   HAL_CRYP_Init(&hcryp);
-  
-  /*##-1- AES CCM Encryption & TAG generation in interrupt mode ##############*/ 
-  
-  /* Encryption, result in  Encryptedtext buffer */ 
+
+  /*##-1- AES CCM Encryption & TAG generation in interrupt mode ##############*/
+
+  /* Encryption, result in  Encryptedtext buffer */
   HAL_CRYP_Encrypt_IT(&hcryp, Plaintext, 4, Encryptedtext);
-  
+
   /*Wait until output transfer complete*/
-  while(CrypCompleteDetected == 0) 
-  {  }  
-  
+  while(CrypCompleteDetected == 0)
+  {  }
+
   /* Reset Output Transfer Complete Detect */
-  CrypCompleteDetected = 0;  
-  
+  CrypCompleteDetected = 0;
+
   /*Compare results with expected buffer*/
   if(memcmp(Encryptedtext, Ciphertext, 16) != 0)
   {
     /* Not expected result, wrong on Encryptedtext buffer: Turn LED3 on */
     Error_Handler();
   }
-  
+
   /* Generate the authentication TAG */
   HAL_CRYPEx_AESCCM_GenerateAuthTAG(&hcryp,TAG, TIMEOUT_VALUE);
-  
-  /*Compare results with expected TAG buffer*/ 
+
+  /*Compare results with expected TAG buffer*/
   if(memcmp(TAG, ExpectedTAG, 16) != 0)
   {
     /* Not expected result, wrong on TAG buffer: Turn LED3 on */
     Error_Handler();
   }
-  
-  /*##-2- AES CCM Decryption & TAG generation in interrupt mode ################*/   
-  
-  /* Decryption, result in  Decryptedtext buffer */ 
+
+  /*##-2- AES CCM Decryption & TAG generation in interrupt mode ################*/
+
+  /* Decryption, result in  Decryptedtext buffer */
   HAL_CRYP_Decrypt_IT(&hcryp,Ciphertext , 4, Decryptedtext);
-  
+
   /*Wait until output transfer complete*/
-  while(CrypCompleteDetected == 0) 
-  {  }  
-  
+  while(CrypCompleteDetected == 0)
+  {  }
+
   /* Reset Output Transfer Complete Detect */
-  CrypCompleteDetected = 0;  
-  
+  CrypCompleteDetected = 0;
+
   /*Compare results with expected buffer*/
   if(memcmp(Decryptedtext, Plaintext, 16) != 0)
   {
     /* Not expected result, wrong on DecryptedText buffer: Turn LED3 on */
     Error_Handler();
   }
-  
+
   /* Generate the authentication TAG */
   HAL_CRYPEx_AESCCM_GenerateAuthTAG(&hcryp,TAG, TIMEOUT_VALUE);
-  
-  /*Compare results with expected buffer*/ 
+
+  /*Compare results with expected buffer*/
   if(memcmp(TAG, ExpectedTAG, 16) != 0)
   {
     /* Not expected result, wrong on TAG buffer: Turn LED3 on */
@@ -187,7 +188,7 @@ int main(void)
     /* Right Encryptedtext & Decryptedtext buffer : Turn LED1 on */
     BSP_LED_On(LED1);
   }
-  
+
   /* Infinite loop */
   while (1)
   {
@@ -196,7 +197,7 @@ int main(void)
 
 /**
   * @brief  System Clock Configuration
-  *         The system Clock is configured as follow : 
+  *         The system Clock is configured as follow :
   *            System Clock source            = PLL (HSE)
   *            SYSCLK(Hz)                     = 180000000
   *            HCLK(Hz)                       = 180000000
@@ -222,8 +223,8 @@ static void SystemClock_Config(void)
   /* Enable Power Control clock */
   __HAL_RCC_PWR_CLK_ENABLE();
 
-  /* The voltage scaling allows optimizing the power consumption when the device is 
-     clocked below the maximum system frequency, to update the voltage scaling value 
+  /* The voltage scaling allows optimizing the power consumption when the device is
+     clocked below the maximum system frequency, to update the voltage scaling value
      regarding system frequency refer to product datasheet.  */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
@@ -240,14 +241,14 @@ static void SystemClock_Config(void)
 
   /* Activate the Over-Drive mode */
   HAL_PWREx_EnableOverDrive();
-    
-  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
+
+  /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2
      clocks dividers */
   RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;  
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;  
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
   HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5);
 }
 
@@ -262,7 +263,7 @@ static void Error_Handler(void)
   BSP_LED_On(LED3);
   while (1)
   {
-  }  
+  }
 
 }
 

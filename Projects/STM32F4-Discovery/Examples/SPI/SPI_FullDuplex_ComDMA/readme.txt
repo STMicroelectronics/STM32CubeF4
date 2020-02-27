@@ -100,12 +100,11 @@ STM32 Discovery board's LEDs can be used to monitor the transfer status:
  - LED6 turns ON when the reception process is complete.
  - LED5 turns ON when there is an error in transmission/reception process.  
 
- @note SPIx instance used and associated resources can be updated in "main.h"
+@note SPIx instance used and associated resources can be updated in "main.h"
        file depending hardware configuration used.
 
- @note You need to perform a reset on Slave board, then perform it on Master board
+@note You need to perform a reset on Slave board, then perform it on Master board
        to have the correct behaviour of this example.
-
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
@@ -116,6 +115,9 @@ STM32 Discovery board's LEDs can be used to monitor the transfer status:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Connectivity, SPI, Full-duplex, DMA, Transmission, Reception, Master, Slave, MISO, MOSI
 
 @par Directory contents 
 
