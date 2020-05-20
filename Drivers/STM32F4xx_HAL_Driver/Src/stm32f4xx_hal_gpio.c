@@ -434,16 +434,23 @@ void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState Pin
   */
 void HAL_GPIO_TogglePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
 {
+  uint16_t uxGPIO_Pin = 0x01;
   /* Check the parameters */
   assert_param(IS_GPIO_PIN(GPIO_Pin));
 
-  if ((GPIOx->ODR & GPIO_Pin) == GPIO_Pin)
+  for(int i = 0; i < 16; i++, uxGPIO_Pin <<= 1)
   {
-    GPIOx->BSRR = (uint32_t)GPIO_Pin << GPIO_NUMBER;
-  }
-  else
-  {
-    GPIOx->BSRR = GPIO_Pin;
+	if(GPIO_Pin & uxGPIO_Pin)
+	{
+	  if (GPIOx->ODR & uxGPIO_Pin)
+	  {
+	    GPIOx->BSRR = (uint32_t)uxGPIO_Pin << GPIO_NUMBER;
+	  }
+	  else
+	  {
+	    GPIOx->BSRR = uxGPIO_Pin;
+	  }
+	}
   }
 }
 
