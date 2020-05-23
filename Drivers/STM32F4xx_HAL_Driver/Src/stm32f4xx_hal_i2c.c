@@ -5718,14 +5718,18 @@ static void I2C_SlaveTransmit_TXE(I2C_HandleTypeDef *hi2c)
     /* Update counter */
     hi2c->XferCount--;
 
-    if ((hi2c->XferCount == 0U) && (CurrentState == HAL_I2C_STATE_BUSY_TX_LISTEN))
+   // HAL_I2C_STATE_BUSY_TX_LISTEN make this condition false, so the program stuck in interrput and could not return to main
+   // The actual state is I2C_STATE_SLAVE_BUSY_TX
+    if ((hi2c->XferCount == 0U) && (CurrentState == I2C_STATE_SLAVE_BUSY_TX))
     {
       /* Last Byte is received, disable Interrupt */
       __HAL_I2C_DISABLE_IT(hi2c, I2C_IT_BUF);
 
       /* Set state at HAL_I2C_STATE_LISTEN */
       hi2c->PreviousState = I2C_STATE_SLAVE_BUSY_TX;
-      hi2c->State = HAL_I2C_STATE_LISTEN;
+     // HAL_I2C_STATE_LISTEN make it impossible to perform HAL_I2C_Slave_Transmit_IT again
+     // Because HAL_I2C_Slave_Transmit_IT only possible to be perfrom if State is HAL_I2C_STATE_READY
+      hi2c->State = HAL_I2C_STATE_READY;
 
       /* Call the corresponding callback to inform upper layer of End of Transfer */
 #if (USE_HAL_I2C_REGISTER_CALLBACKS == 1)
