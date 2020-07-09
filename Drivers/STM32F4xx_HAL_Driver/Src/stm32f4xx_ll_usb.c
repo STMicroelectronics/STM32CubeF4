@@ -960,14 +960,19 @@ HAL_StatusTypeDef USB_WritePacket(USB_OTG_GlobalTypeDef *USBx, uint8_t *src, uin
 {
   uint32_t USBx_BASE = (uint32_t)USBx;
   uint32_t *pSrc = (uint32_t *)src;
-  uint32_t count32b, i;
+  uint32_t count32b, i, temp;
+  uint8_t *pTemp = (uint8_t *)&temp;
 
   if (dma == 0U)
   {
     count32b = ((uint32_t)len + 3U) / 4U;
     for (i = 0U; i < count32b; i++)
     {
-      USBx_DFIFO((uint32_t)ch_ep_num) = __UNALIGNED_UINT32_READ(pSrc);
+      pTemp[0] = ((uint8_t *)pSrc)[0];
+      pTemp[1] = ((uint8_t *)pSrc)[1];
+      pTemp[2] = ((uint8_t *)pSrc)[2];
+      pTemp[3] = ((uint8_t *)pSrc)[3];
+      USBx_DFIFO((uint32_t)ch_ep_num) = temp;
       pSrc++;
     }
   }
