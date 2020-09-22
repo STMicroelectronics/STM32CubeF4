@@ -5,7 +5,7 @@
 ;*                      This module performs:
 ;*                      - Set the initial SP
 ;*                      - Set the initial PC == _iar_program_start,
-;*                      - Set the vector table entries with the exceptions ISR 
+;*                      - Set the vector table entries with the exceptions ISR
 ;*                        address.
 ;*                      - Branches to main in the C library (which eventually
 ;*                        calls main()).
@@ -139,7 +139,7 @@ __vector_table
         DCD     CAN2_RX0_IRQHandler             ; CAN2 RX0
         DCD     CAN2_RX1_IRQHandler             ; CAN2 RX1
         DCD     CAN2_SCE_IRQHandler             ; CAN2 SCE
-        DCD     OTG_FS_IRQHandler               ; USB OTG FS   
+        DCD     OTG_FS_IRQHandler               ; USB OTG FS
         DCD     DMA2_Stream5_IRQHandler         ; DMA2 Stream 5
         DCD     DMA2_Stream6_IRQHandler         ; DMA2 Stream 6
         DCD     DMA2_Stream7_IRQHandler         ; DMA2 Stream 7
@@ -357,7 +357,7 @@ TIM1_UP_TIM10_IRQHandler
         SECTION .text:CODE:REORDER:NOROOT(1)
 TIM1_TRG_COM_TIM11_IRQHandler
         B TIM1_TRG_COM_TIM11_IRQHandler
-        
+
         PUBWEAK TIM1_CC_IRQHandler
         SECTION .text:CODE:REORDER:NOROOT(1)
 TIM1_CC_IRQHandler
@@ -437,7 +437,7 @@ RTC_Alarm_IRQHandler
         SECTION .text:CODE:REORDER:NOROOT(1)
 OTG_FS_WKUP_IRQHandler
         B OTG_FS_WKUP_IRQHandler
-      
+
         PUBWEAK TIM8_BRK_TIM12_IRQHandler
         SECTION .text:CODE:REORDER:NOROOT(1)
 TIM8_BRK_TIM12_IRQHandler
@@ -630,7 +630,7 @@ FPU_IRQHandler
 
         PUBWEAK UART7_IRQHandler
         SECTION .text:CODE:REORDER:NOROOT(1)
-UART7_IRQHandler 
+UART7_IRQHandler
         B UART7_IRQHandler
 
         PUBWEAK UART8_IRQHandler

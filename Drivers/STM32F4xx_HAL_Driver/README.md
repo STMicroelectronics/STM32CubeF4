@@ -23,7 +23,7 @@ This **stm32f4xx_hal_driver** MCU component repository is one element of the STM
 
 Copyright (c) 2016 STMicroelectronics.
 
-This software component is licensed by STMicroelectronics under BSD-3-Clause license. You may not use this file except in compliance with the License. 
+This software component is licensed by STMicroelectronics under BSD-3-Clause license. You may not use this file except in compliance with the License.
 You may obtain a copy of the License [here](https://opensource.org/licenses/BSD-3-Clause).
 
 ## Release note

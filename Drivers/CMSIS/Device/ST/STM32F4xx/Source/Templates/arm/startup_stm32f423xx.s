@@ -1,7 +1,7 @@
 ;*******************************************************************************
 ;* File Name          : startup_stm32f423xx.s
 ;* Author             : MCD Application Team
-;* Description        : STM32F423xx devices vector table for MDK-ARM toolchain. 
+;* Description        : STM32F423xx devices vector table for MDK-ARM toolchain.
 ;*                      This module performs:
 ;*                      - Set the initial SP
 ;*                      - Set the initial PC == Reset_Handler
@@ -448,16 +448,16 @@ DFSDM2_FLT3_IRQHandler
 ; User Stack and Heap initialization
 ;*******************************************************************************
                  IF      :DEF:__MICROLIB
-                
+
                  EXPORT  __initial_sp
                  EXPORT  __heap_base
                  EXPORT  __heap_limit
-                
+
                  ELSE
-                
+
                  IMPORT  __use_two_region_memory
                  EXPORT  __user_initial_stackheap
-                 
+
 __user_initial_stackheap
 
                  LDR     R0, =  Heap_Mem
