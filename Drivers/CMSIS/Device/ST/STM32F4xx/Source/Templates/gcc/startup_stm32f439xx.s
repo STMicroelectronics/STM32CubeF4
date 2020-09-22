@@ -226,11 +226,11 @@ Infinite_Loop:
   .word     UART7_IRQHandler                  /* UART7                        */
   .word     UART8_IRQHandler                  /* UART8                        */
   .word     SPI4_IRQHandler                   /* SPI4                         */
-  .word     SPI5_IRQHandler                   /* SPI5 						  */
-  .word     SPI6_IRQHandler                   /* SPI6						  */
-  .word     SAI1_IRQHandler                   /* SAI1						  */
-  .word     LTDC_IRQHandler                   /* LTDC           		      */
-  .word     LTDC_ER_IRQHandler                /* LTDC error          	      */
+  .word     SPI5_IRQHandler                   /* SPI5                         */
+  .word     SPI6_IRQHandler                   /* SPI6                         */
+  .word     SAI1_IRQHandler                   /* SAI1                         */
+  .word     LTDC_IRQHandler                   /* LTDC                         */
+  .word     LTDC_ER_IRQHandler                /* LTDC error                   */
   .word     DMA2D_IRQHandler                  /* DMA2D                        */
 
 

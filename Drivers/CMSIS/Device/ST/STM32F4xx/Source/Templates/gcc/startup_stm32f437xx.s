@@ -226,11 +226,11 @@ g_pfnVectors:
   .word     UART7_IRQHandler                  /* UART7                        */
   .word     UART8_IRQHandler                  /* UART8                        */
   .word     SPI4_IRQHandler                   /* SPI4                         */
-  .word     SPI5_IRQHandler                   /* SPI5 						  */
-  .word     SPI6_IRQHandler                   /* SPI6						  */
-  .word     SAI1_IRQHandler                   /* SAI1						  */
-  .word     0                                 /* Reserved			          */
-  .word     0                                 /* Reserved			          */
+  .word     SPI5_IRQHandler                   /* SPI5                         */
+  .word     SPI6_IRQHandler                   /* SPI6                         */
+  .word     SAI1_IRQHandler                   /* SAI1                         */
+  .word     0                                 /* Reserved                     */
+  .word     0                                 /* Reserved                     */
   .word     DMA2D_IRQHandler                  /* DMA2D                        */
 
 /*******************************************************************************

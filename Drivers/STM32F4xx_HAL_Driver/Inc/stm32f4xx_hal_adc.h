@@ -99,10 +99,10 @@ typedef struct
                                               If trigger is set to ADC_SOFTWARE_START, this parameter is discarded.
                                               This parameter can be a value of @ref ADC_External_trigger_edge_Regular */
   FunctionalState DMAContinuousRequests; /*!< Specifies whether the DMA requests are performed in one shot mode (DMA transfer stop when number of conversions is reached)
-											  or in Continuous mode (DMA transfer unlimited, whatever number of conversions).
-											  Note: In continuous mode, DMA must be configured in circular mode. Otherwise an overrun will be triggered when DMA buffer maximum pointer is reached.
-											  Note: This parameter must be modified when no conversion is on going on both regular and injected groups (ADC disabled, or ADC enabled without continuous mode or external trigger that could launch a conversion).
-											  This parameter can be set to ENABLE or DISABLE. */
+                                              or in Continuous mode (DMA transfer unlimited, whatever number of conversions).
+                                              Note: In continuous mode, DMA must be configured in circular mode. Otherwise an overrun will be triggered when DMA buffer maximum pointer is reached.
+                                              Note: This parameter must be modified when no conversion is on going on both regular and injected groups (ADC disabled, or ADC enabled without continuous mode or external trigger that could launch a conversion).
+                                              This parameter can be set to ENABLE or DISABLE. */
 }ADC_InitTypeDef;
 
 

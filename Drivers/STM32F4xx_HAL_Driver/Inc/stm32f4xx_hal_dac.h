@@ -437,7 +437,7 @@ HAL_StatusTypeDef     HAL_DAC_UnRegisterCallback (DAC_HandleTypeDef *hdac, HAL_D
 #endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx ||\
           STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx ||\
           STM32F410xx || STM32F446xx || STM32F469xx || STM32F479xx ||\
-		  STM32F413xx || STM32F423xx */
+          STM32F413xx || STM32F423xx */
 
 /**
   * @}

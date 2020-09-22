@@ -59,7 +59,7 @@ defined in linker script */
   .weak  Reset_Handler
   .type  Reset_Handler, %function
 Reset_Handler:
-  ldr   sp, =_estack    		 /* set stack pointer */
+  ldr   sp, =_estack             /* set stack pointer */
 
 /* Copy the data segment initializers from flash to SRAM */
   movs  r1, #0
@@ -159,8 +159,8 @@ g_pfnVectors:
   .word     DMA1_Stream5_IRQHandler           /* DMA1 Stream 5                */
   .word     DMA1_Stream6_IRQHandler           /* DMA1 Stream 6                */
   .word     ADC_IRQHandler                    /* ADC1, ADC2 and ADC3s         */
-  .word     0               				  /* Reserved                      */
-  .word     0              					  /* Reserved                     */
+  .word     0                                 /* Reserved                      */
+  .word     0                                 /* Reserved                     */
   .word     0                                 /* Reserved                     */
   .word     0                                 /* Reserved                     */
   .word     EXTI9_5_IRQHandler                /* External Line[9:5]s          */
@@ -179,13 +179,13 @@ g_pfnVectors:
   .word     SPI2_IRQHandler                   /* SPI2                         */
   .word     USART1_IRQHandler                 /* USART1                       */
   .word     USART2_IRQHandler                 /* USART2                       */
-  .word     0               				  /* Reserved                       */
+  .word     0                                 /* Reserved                       */
   .word     EXTI15_10_IRQHandler              /* External Line[15:10]s        */
   .word     RTC_Alarm_IRQHandler              /* RTC Alarm (A and B) through EXTI Line */
   .word     OTG_FS_WKUP_IRQHandler            /* USB OTG FS Wakeup through EXTI line */
-  .word     0                                 /* Reserved     				  */
-  .word     0                                 /* Reserved       			  */
-  .word     0                                 /* Reserved 					  */
+  .word     0                                 /* Reserved                     */
+  .word     0                                 /* Reserved                     */
+  .word     0                                 /* Reserved                     */
   .word     0                                 /* Reserved                     */
   .word     DMA1_Stream7_IRQHandler           /* DMA1 Stream7                 */
   .word     0                                 /* Reserved                     */
@@ -201,12 +201,12 @@ g_pfnVectors:
   .word     DMA2_Stream2_IRQHandler           /* DMA2 Stream 2                */
   .word     DMA2_Stream3_IRQHandler           /* DMA2 Stream 3                */
   .word     DMA2_Stream4_IRQHandler           /* DMA2 Stream 4                */
-  .word     0                    			  /* Reserved                     */
-  .word     0              					  /* Reserved                     */
-  .word     0              					  /* Reserved                     */
-  .word     0             					  /* Reserved                     */
-  .word     0              					  /* Reserved                     */
-  .word     0              					  /* Reserved                     */
+  .word     0                                 /* Reserved                     */
+  .word     0                                 /* Reserved                     */
+  .word     0                                 /* Reserved                     */
+  .word     0                                 /* Reserved                     */
+  .word     0                                 /* Reserved                     */
+  .word     0                                 /* Reserved                     */
   .word     OTG_FS_IRQHandler                 /* USB OTG FS                   */
   .word     DMA2_Stream5_IRQHandler           /* DMA2 Stream 5                */
   .word     DMA2_Stream6_IRQHandler           /* DMA2 Stream 6                */

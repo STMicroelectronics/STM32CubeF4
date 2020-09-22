@@ -821,7 +821,7 @@ __weak void HAL_DAC_DMAUnderrunCallbackCh1(DAC_HandleTypeDef *hdac)
   */
 
 /** @defgroup DAC_Exported_Functions_Group3 Peripheral Control functions
- *  @brief   	Peripheral Control functions
+ *  @brief      Peripheral Control functions
  *
 @verbatim
   ==============================================================================
@@ -1284,7 +1284,7 @@ static void DAC_DMAErrorCh1(DMA_HandleTypeDef *hdma)
 #endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx ||\
           STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx ||\
           STM32F410xx || STM32F446xx || STM32F469xx || STM32F479xx ||\
-		  STM32F413xx || STM32F423xx */
+          STM32F413xx || STM32F423xx */
 #endif /* HAL_DAC_MODULE_ENABLED */
 
 /**
