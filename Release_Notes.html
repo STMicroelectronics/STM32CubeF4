@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>Release Notes for STM32CubeF4 Firmware Package</title>
-  <style type="text/css">
+  <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
@@ -65,18 +65,74 @@
 <div class="col-sm-12 col-lg-8">
 <h1 id="update-history">Update History</h1>
 <div class="collapse">
-<input type="checkbox" id="collapse-section25" aria-hidden="true"> <label for="collapse-section25" aria-hidden="true"><strong>V1.25.0 / 12-February-2020</strong></label>
+<input type="checkbox" id="collapse-section25_1" aria-hidden="true"> <label for="collapse-section25_1" aria-hidden="true"><strong>V1.25.1 / 14-August-2020</strong></label>
 <div>
 <h1 id="maintenance-release">Maintenance release</h1>
 <h2 id="main-changes">Main Changes</h2>
 <ul>
-<li>Add new <strong>HAL FMPSMBUS</strong> and <strong>LL FMPI2C</strong> drivers</li>
-<li>General updates to fix known defects and enhancements implementation</li>
-<li>Update HAL CRYP driver to support block by block decryption without reinitializes the IV and KEY for each call.</li>
-<li>Integration of three new USB class drivers, CDC-ECM, CDC-RNDIS for Ethernet communication and Billboard class driver for USB power delivery usage</li>
-<li>Update on USB MSC, CDC, DFU, AUDIO, CustomHID class drivers with bug fixes</li>
+<li><p>Patch release to fix known defects and enhancements implementation.</p></li>
+<li><p><strong>HAL</strong></p>
+<ul>
+<li><strong>HAL/LL I2C</strong> update
+<ul>
+<li>Update HAL_I2C_ER_IRQHandler() API to fix acknowledge failure issue with I2C memory IT processes
+<ul>
+<li>Add stop condition generation when NACK occurs.</li>
+</ul></li>
+<li>Update I2C_DMAXferCplt(), I2C_DMAError() and I2C_DMAAbort() APIs to fix hardfault issue when hdmatx and hdmarx parameters in i2c handle aren’t initialized (NULL pointer).
+<ul>
+<li>Add additional check on hi2c-&gt;hdmtx and hi2c-&gt;hdmarx before resetting DMA Tx/Rx complete callbacks</li>
+</ul></li>
+<li>Update Sequential transfer APIs to adjust xfermode condition.
+<ul>
+<li>Replace hi2c-&gt;XferCount &lt; MAX_NBYTE_SIZE by hi2c-&gt;XferCount &lt;= MAX_NBYTE_SIZE which corresponds to a case without reload</li>
+</ul></li>
+</ul></li>
+<li><strong>HAL/LL USB</strong> update
+<ul>
+<li>Bug fix: USB_ReadPMA() and USB_WritePMA() by ensuring 16-bits access to USB PMA memory</li>
+<li>Bug fix: correct USB RX count calculation</li>
+<li>Fix USB Bulk transfer double buffer mode</li>
+<li>Remove register keyword from USB defined macros as no more supported by C++ compiler</li>
+<li>Minor rework on USBD_Start() and USBD_Stop() APIs: stopping device will be handled by HAL_PCD_DeInit() API.</li>
+<li>Remove non used API for USB device mode.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="contents">Contents</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: center;">Licence</th>
+<th style="text-align: center;">Release note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>STM32F4xx HAL</strong></td>
+<td style="text-align: left;"><strong>V1.7.9</strong></td>
+<td style="text-align: center;"><a href="https://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause</a></td>
+<td style="text-align: center;"><a href="Drivers/STM32F4xx_HAL_Driver/Release_Notes.html">release notes</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section25" aria-hidden="true"> <label for="collapse-section25" aria-hidden="true"><strong>V1.25.0 / 12-February-2020</strong></label>
+<div>
+<h1 id="maintenance-release-1">Maintenance release</h1>
+<h2 id="main-changes-1">Main Changes</h2>
+<ul>
+<li><p>Add new <strong>HAL FMPSMBUS</strong> and <strong>LL FMPI2C</strong> drivers</p></li>
+<li><p>General updates to fix known defects and enhancements implementation</p></li>
+<li><p>Update HAL CRYP driver to support block by block decryption without reinitializes the IV and KEY for each call.</p></li>
+<li><p>Integration of three new USB class drivers, CDC-ECM, CDC-RNDIS for Ethernet communication and Billboard class driver for USB power delivery usage</p></li>
+<li><p>Update on USB MSC, CDC, DFU, AUDIO, CustomHID class drivers with bug fixes</p></li>
 <li><p>Improve code quality by fixing MisraC-2012 violations</p></li>
-<li><strong>HAL</strong>
+<li><p><strong>HAL</strong></p>
 <ul>
 <li><strong>HAL/LL USB</strong> update
 <ul>
@@ -106,7 +162,7 @@
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong>Middlewares</strong>
+<li><p><strong>Middlewares</strong></p>
 <ul>
 <li>Upgrade to use new version of <strong>USB Device V2.6.0</strong>
 <ul>
@@ -139,13 +195,13 @@
 <li>Upgrade to use new version of PDM Library <strong>V3.2.0</strong></li>
 <li>Upgrade to use <strong>FatFs r0.12c</strong> ST modified <strong>r0.12c_20191011</strong></li>
 </ul></li>
-<li><strong>BSP</strong>
+<li><p><strong>BSP</strong></p>
 <ul>
 <li>General updates to fix known defects and enhancements implementation</li>
 <li>Upgrade to use Adafruit Shield <strong>V3.0.3</strong></li>
 <li>Update to support new camera sensor ov5640 <strong>V2.0.0</strong> on STM32469I-EVAL and STM32446E-EVAL boards.</li>
 </ul></li>
-<li><strong>Projects</strong>
+<li><p><strong>Projects</strong></p>
 <ul>
 <li>USB Applications Impact:
 <ul>
@@ -608,11 +664,11 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section24_2" aria-hidden="true"> <label for="collapse-section24_2" aria-hidden="true"><strong>V1.24.2 / 06-December-2019</strong></label>
 <div>
-<h1 id="maintenance-release-1">Maintenance release</h1>
-<h2 id="main-changes-1">Main Changes</h2>
+<h1 id="maintenance-release-2">Maintenance release</h1>
+<h2 id="main-changes-2">Main Changes</h2>
 <ul>
 <li><p><strong>Patch release to fix known defects and enhancements implementation</strong></p></li>
-<li><strong>HAL</strong>
+<li><p><strong>HAL</strong></p>
 <ul>
 <li>Update GPIO initialization sequence to avoid unwanted pulse on GPIO Pin’s</li>
 <li>General update to enhance HAL EXTI driver robustness</li>
@@ -623,14 +679,14 @@
 <li>Update HAL_I2C_Init() API to force software reset before setting new I2C configuration</li>
 <li>Update I2C_DMAXferCplt(), I2C_DMAError() and I2C_DMAAbort() APIs to fix hardfault issue when hdmatx and hdmarx parameters in i2c handle aren’t initialized (NULL pointer).</li>
 </ul></li>
-<li><strong>CMSIS</strong>
+<li><p><strong>CMSIS</strong></p>
 <ul>
 <li>Update stm32f446xx.h file to support HW flow control on UART4 and UART5 instances</li>
 <li>Update SystemInit() API in system_stm32f4xx.c file to don’t reset RCC registers to its reset values</li>
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents">Contents</h2>
+<h2 id="contents-1">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -661,8 +717,8 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section24_1" aria-hidden="true"> <label for="collapse-section24_1" aria-hidden="true"><strong>V1.24.1 / 12-April-2019</strong></label>
 <div>
-<h1 id="maintenance-release-2">Maintenance release</h1>
-<h2 id="main-changes-2">Main Changes</h2>
+<h1 id="maintenance-release-3">Maintenance release</h1>
+<h2 id="main-changes-3">Main Changes</h2>
 <ul>
 <li><strong>Patch release to fix mainly the I2C send break issue with IT processes API’s</strong></li>
 <li><strong>HAL I2C</strong> update
@@ -694,7 +750,7 @@
 <li>Software Quality improvement with a fix ofCodeSonar warning on PCD_Port_IRQHandler() and HCD_Port_IRQHandler()interrupt handlers</li>
 </ul></li>
 </ul>
-<h2 id="contents-1">Contents</h2>
+<h2 id="contents-2">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -719,8 +775,8 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section24" aria-hidden="true"> <label for="collapse-section24" aria-hidden="true"><strong>V1.24.0 / 08-February-2019</strong></label>
 <div>
-<h1 id="maintenance-release-3">Maintenance release</h1>
-<h2 id="main-changes-3">Main Changes</h2>
+<h1 id="maintenance-release-4">Maintenance release</h1>
+<h2 id="main-changes-4">Main Changes</h2>
 <ul>
 <li><strong>HAL</strong>
 <ul>
@@ -803,7 +859,7 @@
 </ul></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-2">Contents</h2>
+<h2 id="contents-3">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -1237,8 +1293,8 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section23" aria-hidden="true"> <label for="collapse-section23" aria-hidden="true"><strong>V1.23.0 / 23-November-2018</strong></label>
 <div>
-<h1 id="maintenance-release-4">Maintenance release</h1>
-<h2 id="main-changes-4">Main Changes</h2>
+<h1 id="maintenance-release-5">Maintenance release</h1>
+<h2 id="main-changes-5">Main Changes</h2>
 <ul>
 <li><strong>Maintenance release:</strong>
 <ul>
@@ -1250,18 +1306,18 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section22" aria-hidden="true"> <label for="collapse-section22" aria-hidden="true"><strong>V1.22.0 / 26-October-2018</strong></label>
 <div>
-<h1 id="maintenance-release-5">Maintenance release</h1>
-<h2 id="main-changes-5">Main Changes</h2>
+<h1 id="maintenance-release-6">Maintenance release</h1>
+<h2 id="main-changes-6">Main Changes</h2>
 <ul>
-<li>Thanks to the acquisition of <strong>Draupner Graphics A/S</strong>, ST is extending the STM32 ecosystem with advanced and easy to use graphic software solution enabling stunning GUI additions to embedded devices. <strong>TouchGFX</strong> solution is now fully part of STM32CubeF4.</li>
+<li><p>Thanks to the acquisition of <strong>Draupner Graphics A/S</strong>, ST is extending the STM32 ecosystem with advanced and easy to use graphic software solution enabling stunning GUI additions to embedded devices. <strong>TouchGFX</strong> solution is now fully part of STM32CubeF4.</p></li>
 <li><p>TouchGFX examples and demonstrations can be accessed directly through the TouchGFX Designer tool. Here you simply create a new project, select the appropriate ST board in the Application Template section and select whatever demonstration or example you want in the UI Template selector. After this you will have a TouchGFX application ready to compile and flash to the selected ST board. More information are available <a href="https://touchgfx.zendesk.com/hc/en-us/articles/206159259-Step-1-Installation-of-TouchGFX">here</a></p></li>
-<li><strong>Middleware</strong>
+<li><p><strong>Middleware</strong></p>
 <ul>
 <li>Add TouchGFX stack</li>
 <li>Update to use STM32 PDM audio software decoding Library V3.1.0</li>
 <li>Update to use STemWin V5.44</li>
 </ul></li>
-<li><strong>Projects</strong>
+<li><p><strong>Projects</strong></p>
 <ul>
 <li>Add new STemWin applications and demonstrations and TouchGFX demonstrations for STM32F4x9I_EVAL, STM32F429I-Discovery, STM32F469_EVAL and STM32F469-Discovery platforms.</li>
 <li>Update applications to refer to the new PDM libraries:</li>
@@ -1278,7 +1334,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-3">Contents</h2>
+<h2 id="contents-4">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -1716,11 +1772,11 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section21" aria-hidden="true"> <label for="collapse-section21" aria-hidden="true"><strong>V1.21.0 / 23-February-2018</strong></label>
 <div>
-<h1 id="maintenance-release-6">Maintenance release</h1>
-<h2 id="main-changes-6">Main Changes</h2>
+<h1 id="maintenance-release-7">Maintenance release</h1>
+<h2 id="main-changes-7">Main Changes</h2>
 <ul>
 <li><p>General updates to fix known defects and enhancements implementation</p></li>
-<li><strong>HAL</strong>
+<li><p><strong>HAL</strong></p>
 <ul>
 <li><strong>HAL</strong> update
 <ul>
@@ -1741,13 +1797,13 @@
 <li>Update HAL_SAI_DMAStop() and HAL_SAI_Abort() process to fix the lock/unlock audio issue</li>
 </ul></li>
 </ul></li>
-<li><strong>Projects</strong>
+<li><p><strong>Projects</strong></p>
 <ul>
 <li>Add new STemWin applications for STM32F4x9I_EVAL, STM32F429I-Discovery, STM32F469_EVAL and STM32F469-Discovery platforms.</li>
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-4">Contents</h2>
+<h2 id="contents-5">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -2176,12 +2232,12 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section18" aria-hidden="true"> <label for="collapse-section18" aria-hidden="true"><strong>V1.18.0 / 07-November-2017</strong></label>
 <div>
-<h1 id="maintenance-release-7">Maintenance release</h1>
-<h2 id="main-changes-7">Main Changes</h2>
+<h1 id="maintenance-release-8">Maintenance release</h1>
+<h2 id="main-changes-8">Main Changes</h2>
 <ul>
 <li>Package Clean-up: remove unwanted project folders</li>
 </ul>
-<h2 id="contents-5">Contents</h2>
+<h2 id="contents-6">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -2610,8 +2666,8 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section17" aria-hidden="true"> <label for="collapse-section17" aria-hidden="true"><strong>V1.17.0 / 06-October-2017</strong></label>
 <div>
-<h1 id="maintenance-release-8">Maintenance release</h1>
-<h2 id="main-changes-8">Main Changes</h2>
+<h1 id="maintenance-release-9">Maintenance release</h1>
+<h2 id="main-changes-9">Main Changes</h2>
 <ul>
 <li>General updates to be compliant with Linux platforms</li>
 <li>General update to fix known defects and several implementations enhancement</li>
@@ -2670,7 +2726,7 @@
 </ul></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-6">Contents</h2>
+<h2 id="contents-7">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -3099,19 +3155,19 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section16" aria-hidden="true"> <label for="collapse-section16" aria-hidden="true"><strong>V1.16.0 / 14-April-2017</strong></label>
 <div>
-<h1 id="maintenance-release-9">Maintenance release</h1>
-<h2 id="main-changes-9">Main Changes</h2>
+<h1 id="maintenance-release-10">Maintenance release</h1>
+<h2 id="main-changes-10">Main Changes</h2>
 <ul>
 <li><p>General update to fix known defects and several implementations enhancement</p></li>
-<li><strong>HAL</strong>
+<li><p><strong>HAL</strong></p>
 <ul>
-<li>Update CHM UserManuals to support LL drivers</li>
+<li><p>Update CHM UserManuals to support LL drivers</p></li>
 <li><p>General updates to fix known defects and enhancements implementation</p></li>
-<li><strong>HAL PWR</strong> update
+<li><p><strong>HAL PWR</strong> update</p>
 <ul>
 <li>HAL_PWREx_EnterUnderDriveSTOPMode() API: remove check on UDRDY flag</li>
 </ul></li>
-<li><strong>HAL CAN</strong> update
+<li><p><strong>HAL CAN</strong> update</p>
 <ul>
 <li>Add management of overrun error.</li>
 <li>Allow possibility to receive messages from the 2 RX FIFOs in parallel via interrupt.</li>
@@ -3119,21 +3175,21 @@
 <li>Handle transmission failure with error callback, when NART is enabled.</li>
 <li>Add __HAL_CAN_CANCEL_TRANSMIT() call to abort transmission when timeout is reached</li>
 </ul></li>
-<li><strong>LL ADC</strong> update
+<li><p><strong>LL ADC</strong> update</p>
 <ul>
 <li>Fix wrong ADC group injected sequence configuration</li>
 <li>LL_ADC_INJ_SetSequencerRanks() and LL_ADC_INJ_GetSequencerRanks() API s update to take in consideration the ADC number of conversions</li>
 <li>Update the defined values for ADC group injected seqencer ranks</li>
 </ul></li>
 </ul></li>
-<li><strong>Middleware</strong>
+<li><p><strong>Middleware</strong></p>
 <ul>
 <li>Upgrade to use FreeRTOS V9.0.0 (ST Modified 20170303).</li>
 <li>Update CMSIS-RTOS drivers to support both CMSIS Core V4.x and V5.x.</li>
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-7">Contents</h2>
+<h2 id="contents-8">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -3552,14 +3608,14 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section15" aria-hidden="true"> <label for="collapse-section15" aria-hidden="true"><strong>V1.15.0 / 17-February-2017</strong></label>
 <div>
-<h1 id="maintenance-release-10">Maintenance release</h1>
-<h2 id="main-changes-10">Main Changes</h2>
+<h1 id="maintenance-release-11">Maintenance release</h1>
+<h2 id="main-changes-11">Main Changes</h2>
 <ul>
-<li>Add the support of the STM32F413H-Discovery board
+<li><p>Add the support of the STM32F413H-Discovery board</p>
 <ul>
 <li>Full set of examples, applications and demonstrations running on STM32F413H-Discovery</li>
 </ul></li>
-<li>Add Low Layer drivers under Drivers32F4xx_HAL_Driver
+<li><p>Add Low Layer drivers under Drivers32F4xx_HAL_Driver</p>
 <ul>
 <li>Low Layer drivers allow performance and memory footprint optimization
 <ul>
@@ -3570,7 +3626,7 @@
 </ul></li>
 </ul></li>
 <li><p>General update to fix known defects and several implementations enhancement</p></li>
-<li>HAL
+<li><p>HAL</p>
 <ul>
 <li>Add Low Layer drivers under Drivers32F4xx_HAL_Driver</li>
 <li>Add new HAL driver for <strong>MMC</strong></li>
@@ -3597,12 +3653,12 @@
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong>BSP</strong>
+<li><p><strong>BSP</strong></p>
 <ul>
 <li>Add BSP drivers for the STM32F413H-Discovery board</li>
 <li>Update all BSP drivers to be aligned with the version V1.7.0 of HAL peripheral drivers and escpacially update required by the new HAL SD driver</li>
 </ul></li>
-<li><strong>Middleware</strong>
+<li><p><strong>Middleware</strong></p>
 <ul>
 <li>Upgrade to use new version of LwIP V2.0.0
 <ul>
@@ -3619,7 +3675,7 @@
 <li><strong>Note:</strong> The updates made on this new build have impact on application based on previous version LibJPEG V8d ST modified 20160923. For details please refer to its Release Note.</li>
 </ul></li>
 </ul></li>
-<li><strong>Projects</strong>
+<li><p><strong>Projects</strong></p>
 <ul>
 <li>Add Examples, Applications and Demonstrations firmware for STM32F413H-Discovery board</li>
 <li>Add Low Layer examples and MIX examples on the STM32F410xx-Nucleo, STM32F429ZI-Nucleo and STM32F411REx-Nucleo boards</li>
@@ -3628,7 +3684,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-8">Contents</h2>
+<h2 id="contents-9">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -4047,12 +4103,12 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section14" aria-hidden="true"> <label for="collapse-section14" aria-hidden="true"><strong>V1.14.0 / 04-November-2016</strong></label>
 <div>
-<h1 id="maintenance-release-11">Maintenance release</h1>
-<h2 id="main-changes-11">Main Changes</h2>
+<h1 id="maintenance-release-12">Maintenance release</h1>
+<h2 id="main-changes-12">Main Changes</h2>
 <ul>
-<li>Official release to add the support of <strong>STM32F413xx and STM32F423xx</strong> devices</li>
+<li><p>Official release to add the support of <strong>STM32F413xx and STM32F423xx</strong> devices</p></li>
 <li><p>Fix known defects and several implementation enhancement</p></li>
-<li><strong>HAL</strong>
+<li><p><strong>HAL</strong></p>
 <ul>
 <li>Add the support of <strong>STM32F413xx and STM32F423xx</strong> devices</li>
 <li><strong>HAL GPIO</strong> update
@@ -4078,7 +4134,7 @@
 <li>Implement workaround to fix the limitation pronounced in the Errata sheet 2.1.8 section: In some specific cases, DMA2 data corruption occurs when managing AHB and APB2 peripherals in a concurrent way</li>
 </ul></li>
 </ul></li>
-<li><strong>CMSIS</strong>
+<li><p><strong>CMSIS</strong></p>
 <ul>
 <li>Add the support of <strong>STM32F413xx and STM32F423xx</strong> devices</li>
 <li>Use _Pos and _Mask macro for all bit definitions</li>
@@ -4086,11 +4142,11 @@
 <li>Add macro to check SMBUS instance support</li>
 <li>Add AHBPrescTable and APBPrescTable extern declaration in system_stm32f4xx.h file</li>
 </ul></li>
-<li><strong>BSP</strong>
+<li><p><strong>BSP</strong></p>
 <ul>
 <li>Update STM32469I-Discovery and STM32469I-EVAL LCD BSP drivers with proper DSI initialization</li>
 </ul></li>
-<li><strong>Projects</strong>
+<li><p><strong>Projects</strong></p>
 <ul>
 <li>Add 68 projects for <strong>STM32F413ZH-Nucleo</strong> board</li>
 <li>General updates to fix known defects and enhancements implementation</li>
@@ -4098,7 +4154,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-9">Contents</h2>
+<h2 id="contents-10">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -4517,12 +4573,12 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section13_1" aria-hidden="true"> <label for="collapse-section13_1" aria-hidden="true"><strong>V1.13.1 / 22-September-2016</strong></label>
 <div>
-<h1 id="maintenance-release-12">Maintenance release</h1>
-<h2 id="main-changes-12">Main Changes</h2>
+<h1 id="maintenance-release-13">Maintenance release</h1>
+<h2 id="main-changes-13">Main Changes</h2>
 <ul>
 <li><strong>Patch release to fix issues in I2C/FMPI2C HAL drivers</strong></li>
 </ul>
-<h2 id="contents-10">Contents</h2>
+<h2 id="contents-11">Contents</h2>
 <table>
 <thead>
 <tr class="header">
@@ -4546,8 +4602,8 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section13" aria-hidden="true"> <label for="collapse-section13" aria-hidden="true"><strong>V1.13.0 / 01-July-2016</strong></label>
 <div>
-<h1 id="maintenance-release-13">Maintenance release</h1>
-<h2 id="main-changes-13">Main Changes</h2>
+<h1 id="maintenance-release-14">Maintenance release</h1>
+<h2 id="main-changes-14">Main Changes</h2>
 <ul>
 <li>Fix known defects and enhancements implementation</li>
 <li><strong>HAL</strong>
@@ -4594,7 +4650,7 @@
 </ul></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-11">Contents</h2>
+<h2 id="contents-12">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -5011,12 +5067,12 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section12" aria-hidden="true"> <label for="collapse-section12" aria-hidden="true"><strong>V1.12.0 / 01-July-2016</strong></label>
 <div>
-<h1 id="maintenance-release-14">Maintenance release</h1>
-<h2 id="main-changes-14">Main Changes</h2>
+<h1 id="maintenance-release-15">Maintenance release</h1>
+<h2 id="main-changes-15">Main Changes</h2>
 <ul>
-<li>Official release to add the support of <strong>STM32F412cx, STM32F412rx, STM32F412vx and STM32F412zx</strong> devices</li>
+<li><p>Official release to add the support of <strong>STM32F412cx, STM32F412rx, STM32F412vx and STM32F412zx</strong> devices</p></li>
 <li><p>Fix known defects and several implementation enhancement</p></li>
-<li><strong>HAL</strong>
+<li><p><strong>HAL</strong></p>
 <ul>
 <li>Add the support of <strong>STM32F412cx, STM32F412rx, STM32F412vx and STM32F412zx</strong> devices</li>
 <li>Add new drivers for <strong>DFSDM</strong> peripheral</li>
@@ -5030,7 +5086,7 @@
 <li>Enhance the DMA transmit process by using peripheral TC interrupt instead of waiting on TC flag under DMA ISR for HAL QSPI driver</li>
 </ul></li>
 </ul></li>
-<li><strong>Middlewares</strong>
+<li><p><strong>Middlewares</strong></p>
 <ul>
 <li>Update to FreeRTOS V8.2.3</li>
 <li>Update to new build of LwIP V1.4.1 ST modified 20160211
@@ -5038,12 +5094,12 @@
 <li><strong>Note:</strong> Updated architecture having impact on application based on previous version LwIP V1.4.1 ST modified 20140619</li>
 </ul></li>
 </ul></li>
-<li><strong>BSP</strong>
+<li><p><strong>BSP</strong></p>
 <ul>
 <li>Add new BSP driver for <strong>STM32412G-Discovery</strong> board</li>
 <li>Align BSP drivers with the HAL V1.5.0</li>
 </ul></li>
-<li><strong>Projects</strong>
+<li><p><strong>Projects</strong></p>
 <ul>
 <li>General updates to fix known defects and enhancements implementation</li>
 <li><strong>Add QSPI_PreInitConfig example on STM32446E-EVAL, STM32469I-EVAL and STM32469I-Discovery boards</strong></li>
@@ -5053,7 +5109,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-12">Contents</h2>
+<h2 id="contents-13">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -5469,8 +5525,8 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section11" aria-hidden="true"> <label for="collapse-section11" aria-hidden="true"><strong>V1.11.0 / 29-January-2016</strong></label>
 <div>
-<h1 id="maintenance-release-15">Maintenance release</h1>
-<h2 id="main-changes-15">Main Changes</h2>
+<h1 id="maintenance-release-16">Maintenance release</h1>
+<h2 id="main-changes-16">Main Changes</h2>
 <ul>
 <li><strong>Fix known defects and enhancements implementation</strong></li>
 <li><strong>HAL</strong>
@@ -5507,7 +5563,7 @@
 </ul></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-13">Contents</h2>
+<h2 id="contents-14">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -5922,12 +5978,12 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section10_1" aria-hidden="true"> <label for="collapse-section10_1" aria-hidden="true"><strong>V1.10.1 / 11-December-2015</strong></label>
 <div>
-<h1 id="maintenance-release-16">Maintenance release</h1>
-<h2 id="main-changes-16">Main Changes</h2>
+<h1 id="maintenance-release-17">Maintenance release</h1>
+<h2 id="main-changes-17">Main Changes</h2>
 <ul>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-14">Contents</h2>
+<h2 id="contents-15">Contents</h2>
 <table>
 <thead>
 <tr class="header">
@@ -5951,12 +6007,12 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section10" aria-hidden="true"> <label for="collapse-section10" aria-hidden="true"><strong>V1.10.0 / 13-November-2015</strong></label>
 <div>
-<h1 id="maintenance-release-17">Maintenance release</h1>
-<h2 id="main-changes-17">Main Changes</h2>
+<h1 id="maintenance-release-18">Maintenance release</h1>
+<h2 id="main-changes-18">Main Changes</h2>
 <ul>
-<li><strong>Support new boards: STM32F411E-Discovery, STM32F446ZE NUCLEO144 and STM32F429ZI NUCLEO144</strong></li>
+<li><p><strong>Support new boards: STM32F411E-Discovery, STM32F446ZE NUCLEO144 and STM32F429ZI NUCLEO144</strong></p></li>
 <li><p><strong>Fix known defects and enhancements implementation</strong></p></li>
-<li><strong>HAL</strong>
+<li><p><strong>HAL</strong></p>
 <ul>
 <li>General updates to fix known defects and enhancements implementation</li>
 <li><strong>One change done on the HAL CRYP requires an update on the application code based on HAL V1.4.1</strong>
@@ -5964,21 +6020,21 @@
 <li>Update HAL_CRYP_DESECB_Decrypt() API to invert pPlainData and pCypherData parameters</li>
 </ul></li>
 </ul></li>
-<li><strong>CMSIS</strong>
+<li><p><strong>CMSIS</strong></p>
 <ul>
 <li>General updates to fix known defects and enhancements implementation</li>
 <li>system_stm32f4xx.c file</li>
 <li>update SystemInit_ExtMemCtl() function implementation to allow the possibility of simultaneous use of DATA_IN_ExtSRAM and DATA_IN_ExtSDRAM</li>
 </ul></li>
-<li><strong>BSP</strong>
+<li><p><strong>BSP</strong></p>
 <ul>
 <li>Add new BPS drivers for STM32411E-Discovery and STM32F4xx_Nucleo_144 boards</li>
 </ul></li>
-<li><strong>Utilities</strong>
+<li><p><strong>Utilities</strong></p>
 <ul>
 <li>Use latest version of STM32CubeUpdater V4.10.0</li>
 </ul></li>
-<li><strong>Projects</strong>
+<li><p><strong>Projects</strong></p>
 <ul>
 <li>General updates to fix known defects and enhancements implementation</li>
 <li><strong>Add EEPROM emulation application on all supported boards</strong></li>
@@ -5988,7 +6044,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-15">Contents</h2>
+<h2 id="contents-16">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -6391,8 +6447,8 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section9" aria-hidden="true"> <label for="collapse-section9" aria-hidden="true"><strong>V1.9.0 / 09-October-2015</strong></label>
 <div>
-<h1 id="maintenance-release-18">Maintenance release</h1>
-<h2 id="main-changes-18">Main Changes</h2>
+<h1 id="maintenance-release-19">Maintenance release</h1>
+<h2 id="main-changes-19">Main Changes</h2>
 <ul>
 <li>Maintenance release to fix known defects and enhancements implementation</li>
 <li><strong>HAL</strong>
@@ -6434,7 +6490,7 @@
 </ul></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-16">Contents</h2>
+<h2 id="contents-17">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -6828,19 +6884,19 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section8" aria-hidden="true"> <label for="collapse-section8" aria-hidden="true"><strong>V1.8.0 / 14-August-2015</strong></label>
 <div>
-<h1 id="maintenance-release-19">Maintenance release</h1>
-<h2 id="main-changes-19">Main Changes</h2>
+<h1 id="maintenance-release-20">Maintenance release</h1>
+<h2 id="main-changes-20">Main Changes</h2>
 <ul>
-<li><strong>Official release to support STM32F469xx, STM32F479xx, STM32F410Cx, STM32F410Rx</strong> and <strong>STM32F410Tx devices</strong></li>
+<li><p><strong>Official release to support STM32F469xx, STM32F479xx, STM32F410Cx, STM32F410Rx</strong> and <strong>STM32F410Tx devices</strong></p></li>
 <li><p><strong>Fix known defects and several enhancements implementation</strong></p></li>
-<li><strong>HAL</strong>
+<li><p><strong>HAL</strong></p>
 <ul>
 <li>Support of the STM32F469xx / STM32F479xx / STM32F410Cx / STM32F410Rx / STM32F410Tx devices:
 <ul>
 <li><strong>Add new drivers for DSI and LPTIM peripherals</strong></li>
 </ul></li>
 </ul></li>
-<li><strong>Middlewares</strong>
+<li><p><strong>Middlewares</strong></p>
 <ul>
 <li>New USB Host V3.2.2: Fix MSC Get Ready Delay issue</li>
 <li>Updated STemWin V5.28: Upgrade to use SEGGER emWin version V5.28</li>
@@ -6852,12 +6908,12 @@
 <li><strong>Note:</strong> For application code based on previous FatFs versions: when moving to R0.11, ffconf.h file must be updated, taking ffconf_template.h file as reference.</li>
 </ul></li>
 </ul></li>
-<li><strong>BSP</strong>
+<li><p><strong>BSP</strong></p>
 <ul>
 <li>Add new BPS drivers for STM32469I_EVAL / STM32469I-Discovery boards</li>
 <li>Align all other BSP drivers with the V4.0.x of BSP Components Common drivers</li>
 </ul></li>
-<li><strong>Projects</strong>
+<li><p><strong>Projects</strong></p>
 <ul>
 <li>Add Examples, Applications and Demonstration firmware for STM32F469xx/STM32F479xx devices and STM32469I_EVAL/STM32469I-Discovery boards</li>
 <li>Add Examples for STM32410xx_Nucleo board (14 in total)</li>
@@ -6868,7 +6924,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware components</p></li>
 </ul>
-<h2 id="contents-17">Contents</h2>
+<h2 id="contents-18">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -7265,12 +7321,12 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section7" aria-hidden="true"> <label for="collapse-section7" aria-hidden="true"><strong>V1.7.0 / 01-July-2015</strong></label>
 <div>
-<h1 id="maintenance-release-20">Maintenance release</h1>
-<h2 id="main-changes-20">Main Changes</h2>
+<h1 id="maintenance-release-21">Maintenance release</h1>
+<h2 id="main-changes-21">Main Changes</h2>
 <ul>
-<li><strong>Official release to support STM32446E-Nucleo board</strong></li>
+<li><p><strong>Official release to support STM32446E-Nucleo board</strong></p></li>
 <li><p><strong>Maintenance release to fix known defects</strong></p></li>
-<li><strong>HAL</strong>
+<li><p><strong>HAL</strong></p>
 <ul>
 <li>General updates to fix known defects and enhancements implementation</li>
 <li><strong>One change done on the HAL may require an update on the application code based on HAL V1.3.1</strong>
@@ -7278,20 +7334,20 @@
 <li>HASH IT process: update to call the HAL_HASH_InCpltCallback() at the end of the complete buffer instead of every each 512 bits</li>
 </ul></li>
 </ul></li>
-<li><strong>CMSIS</strong>
+<li><p><strong>CMSIS</strong></p>
 <ul>
 <li>General updates to fix known defects and enhancements implementation</li>
 </ul></li>
-<li><strong>Middlewares</strong>
+<li><p><strong>Middlewares</strong></p>
 <ul>
 <li>Updated USB Device V2.4.1: Fix known defects and several enhancement implementation</li>
 <li>Updated USB Host V3.2.1: Fix known defects and several enhancement implementation</li>
 </ul></li>
-<li><strong>BSP</strong>
+<li><p><strong>BSP</strong></p>
 <ul>
 <li>Update STM324x9I-EVAL BSP driver to support the exc7200 touch controller</li>
 </ul></li>
-<li><strong>Projects</strong>
+<li><p><strong>Projects</strong></p>
 <ul>
 <li>Add Examples for STM32446E_Nucleo board (11 in total)</li>
 <li>Add the support System Workbench for STM32 (SW4STM32) toolchain for STM32446E_EVAL board projects</li>
@@ -7303,7 +7359,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware components</p></li>
 </ul>
-<h2 id="contents-18">Contents</h2>
+<h2 id="contents-19">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -7722,12 +7778,12 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section6" aria-hidden="true"> <label for="collapse-section6" aria-hidden="true"><strong>V1.6.0 / 25-May-2015</strong></label>
 <div>
-<h1 id="maintenance-release-21">Maintenance release</h1>
-<h2 id="main-changes-21">Main Changes</h2>
+<h1 id="maintenance-release-22">Maintenance release</h1>
+<h2 id="main-changes-22">Main Changes</h2>
 <ul>
-<li><strong>Add support of System Workbench for STM32 (SW4STM32) toolchain</strong></li>
+<li><p><strong>Add support of System Workbench for STM32 (SW4STM32) toolchain</strong></p></li>
 <li><p><strong>Maintenance release to fix known defects</strong></p></li>
-<li><strong>HAL</strong>
+<li><p><strong>HAL</strong></p>
 <ul>
 <li>HAL PWR update
 <ul>
@@ -7748,11 +7804,11 @@
 <li>Fix V1.3.0 regression issue with DAC software trigger configuration</li>
 </ul></li>
 </ul></li>
-<li><strong>Middlewares</strong>
+<li><p><strong>Middlewares</strong></p>
 <ul>
 <li>No changes</li>
 </ul></li>
-<li><strong>BSP</strong>
+<li><p><strong>BSP</strong></p>
 <ul>
 <li>No changes</li>
 </ul></li>
@@ -7763,7 +7819,7 @@
 </ul></li>
 <li><p>Fix compile issue in some projects (9 in total), mainly due to bad project settings</p></li>
 </ul>
-<h2 id="contents-19">Contents</h2>
+<h2 id="contents-20">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -8173,12 +8229,12 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section5" aria-hidden="true"> <label for="collapse-section5" aria-hidden="true"><strong>V1.5.0 / 25-May-2015</strong></label>
 <div>
-<h1 id="maintenance-release-22">Maintenance release</h1>
-<h2 id="main-changes-22">Main Changes</h2>
+<h1 id="maintenance-release-23">Maintenance release</h1>
+<h2 id="main-changes-23">Main Changes</h2>
 <ul>
-<li><strong>Official release to support STM32F446xx devices</strong></li>
+<li><p><strong>Official release to support STM32F446xx devices</strong></p></li>
 <li><p><strong>Fix known defects and several enhancements implementation</strong></p></li>
-<li><strong>HAL</strong>
+<li><p><strong>HAL</strong></p>
 <ul>
 <li>Support of the STM32F446xx devices:
 <ul>
@@ -8188,18 +8244,18 @@
 <li>HAL SAI driver has been updated in this version, some changes done on process APIs (to add new features) require update of application code based on previous versions.</li>
 <li>HAL CRYP driver updated to support multi instance, so user must ensure that the new parameter Instance is initialized in his application(CRYPHandle.Instance = CRYP)</li>
 </ul></li>
-<li><strong>Middlewares</strong>
+<li><p><strong>Middlewares</strong></p>
 <ul>
 <li>New USB Device V2.4.0: adding the support of the Link Power Management (LPM) feature, for STM32F446xx devices</li>
 <li>Updated STemWin V5.26: fix bitmap drawing operation with 24bpp</li>
 <li>Updated PolarSSL V1.2.8: alignment vs. latest change in HAL CRYP driver</li>
 </ul></li>
-<li><strong>BSP</strong>
+<li><p><strong>BSP</strong></p>
 <ul>
 <li>Add new BPS drivers for STM32446E_EVAL board</li>
 <li>Align all other BSP drivers with the V1.3.0 of HAL peripheral drivers</li>
 </ul></li>
-<li><strong>Projects</strong>
+<li><p><strong>Projects</strong></p>
 <ul>
 <li>Add Examples, Applications and Demonstration firmware for STM32F446xx devices and STM32446E_EVAL board</li>
 <li>All projects updated following changes in latest version of HAL and Middlewares</li>
@@ -8212,7 +8268,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware components</p></li>
 </ul>
-<h2 id="contents-20">Contents</h2>
+<h2 id="contents-21">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -8621,11 +8677,11 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section4" aria-hidden="true"> <label for="collapse-section4" aria-hidden="true"><strong>V1.4.0 / 25-May-2015</strong></label>
 <div>
-<h1 id="maintenance-release-23">Maintenance release</h1>
-<h2 id="main-changes-23">Main Changes</h2>
+<h1 id="maintenance-release-24">Maintenance release</h1>
+<h2 id="main-changes-24">Main Changes</h2>
 <ul>
-<li><strong>Maintenance release to fix known defects and several enhancements implementation</strong></li>
-<li><strong>HAL</strong>
+<li><p><strong>Maintenance release to fix known defects and several enhancements implementation</strong></p></li>
+<li><p><strong>HAL</strong></p>
 <ul>
 <li>Macros and literals renaming to ensure full compatibility across STM32 series, backward compatibility with HAL V1.1.0 maintained thanks to new added file stm32_hal_legacy.h under /Inc/Legacy</li>
 <li>Fix known defects and several enhancements implementation. <strong>Two changes done on the HAL requires an update on the application code based on HAL V1.1.0</strong>
@@ -8642,7 +8698,7 @@
 <li>Add *.chm UM for all drivers, a UM is provided for each superset RPN</li>
 </ul></li>
 <li><p><strong>Use latest Cortex-M CMSIS, including the DSP Library </strong></p></li>
-<li><strong>Middlewares</strong>
+<li><p><strong>Middlewares</strong></p>
 <ul>
 <li>Use latest version</li>
 <li>USB Host V3.2.0: backward compatible with previous used version V3.1.0</li>
@@ -8652,12 +8708,12 @@
 <li>FreeRTOS V8.1.2: project based on previous version V7.6.0 needs some update to work with version V8.1.2 (for more details please refer the associated <a href="Middlewares/Third_Party/FreeRTOS/Source/st_readme.txt">release notes</a>)</li>
 <li>Update USB Host and Device Libraries to be C++ compliant</li>
 </ul></li>
-<li><strong>BSP</strong>
+<li><p><strong>BSP</strong></p>
 <ul>
 <li>Fix known defects</li>
 <li>Update to fix compilation issues under Linux and Mac OS</li>
 </ul></li>
-<li><strong>Projects</strong>
+<li><p><strong>Projects</strong></p>
 <ul>
 <li>All projects updated following changes in latest version of HAL and Middlewares</li>
 <li>Miscellaneous enhancements and bugs fix</li>
@@ -8671,7 +8727,7 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware components</p></li>
 </ul>
-<h2 id="contents-21">Contents</h2>
+<h2 id="contents-22">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -9071,11 +9127,11 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section3" aria-hidden="true"> <label for="collapse-section3" aria-hidden="true"><strong>V1.3.0 / 26-June-2014</strong></label>
 <div>
-<h1 id="maintenance-release-24">Maintenance release</h1>
-<h2 id="main-changes-24">Main Changes</h2>
+<h1 id="maintenance-release-25">Maintenance release</h1>
+<h2 id="main-changes-25">Main Changes</h2>
 <ul>
 <li><p><strong>Full features release, containing all projects sources for the supported boards</strong></p></li>
-<li><strong>Projects</strong>
+<li><p><strong>Projects</strong></p>
 <ul>
 <li><strong>All projects updated following changes in latest version of HAL, BSP and Middlewares</strong></li>
 <li>Add <strong>examples for JPEG images encoding and decoding</strong>, based on <strong>LibJPEG</strong>, for STM324x9I_EVAL, STM324xG_EVAL and STM32F429I-Discovery (under &lt;BoardName&gt;)</li>
@@ -9086,13 +9142,13 @@
 <li>For the complete list of changes, please refer to the release notes of each board Examples, Applications and Demonstrations</li>
 <li><strong>Important note:</strong> some of MDK-ARM projects was created with v4.73, and others with v5.10 (mainly for STM32F411RE-Nucleo projects). If you are using MDK-ARM v5.10 (and later) you have to install a legacy patch to be able to open projects built with v4.73, here is the download <a href="http://www2.keil.com/mdk5/legacy">link</a></li>
 </ul></li>
-<li><strong>BSP</strong>
+<li><p><strong>BSP</strong></p>
 <ul>
 <li>Minor update in STM32F4-Discovery, STM32F401-Discovery and STM324xG-EVAL BSP audio drivers</li>
 </ul></li>
 <li><p>Use STM32CubeUpdater.exe utility V4.2.0</p></li>
 </ul>
-<h2 id="contents-22">Contents</h2>
+<h2 id="contents-23">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -9480,19 +9536,19 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section2" aria-hidden="true"> <label for="collapse-section2" aria-hidden="true"><strong>V1.2.0 / 19-June-2014</strong></label>
 <div>
-<h1 id="maintenance-release-25">Maintenance release</h1>
-<h2 id="main-changes-25">Main Changes</h2>
+<h1 id="maintenance-release-26">Maintenance release</h1>
+<h2 id="main-changes-26">Main Changes</h2>
 <ul>
 <li><strong>Patch release for STM32CubeF4, adding support of STM32F411xE devices with several enhancements and bugs fix</strong>
 <ul>
 <li><p>In this release; only the Firmware components drivers are provided, the projects for the supported boards will be provided in the upcoming release V1.2.1</p></li>
-<li>HAL and CMSIS</li>
-<li>Add support of STM32F411xE devices</li>
-<li>Several enhancements and bugs fix</li>
+<li><p>HAL and CMSIS</p></li>
+<li><p>Add support of STM32F411xE devices</p></li>
+<li><p>Several enhancements and bugs fix</p></li>
 <li><p>Update startup files for EWARM toolchain to cope with compiler enhancement of the V7.x version</p></li>
-<li>Middleware</li>
-<li>Use updated version V5.24b of STemWin; adding many new features, with PC simulation resources added and binaries compiled for high speed optimization</li>
-<li>Add LibJPEG library for JPEG images encoding and decoding</li>
+<li><p>Middleware</p></li>
+<li><p>Use updated version V5.24b of STemWin; adding many new features, with PC simulation resources added and binaries compiled for high speed optimization</p></li>
+<li><p>Add LibJPEG library for JPEG images encoding and decoding</p></li>
 <li><p>Miscellaneous update and minor bugs fix</p></li>
 </ul></li>
 <li>BSP
@@ -9503,7 +9559,7 @@
 </ul></li>
 <li>Note: for the complete list of changes, please refer to the release notes of each Firmware component</li>
 </ul>
-<h2 id="contents-23">Contents</h2>
+<h2 id="contents-24">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -9870,8 +9926,8 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section1_1" aria-hidden="true"> <label for="collapse-section1_1" aria-hidden="true"><strong>V1.1.0 / 26-February-2014</strong></label>
 <div>
-<h1 id="maintenance-release-26">Maintenance release</h1>
-<h2 id="main-changes-26">Main Changes</h2>
+<h1 id="maintenance-release-27">Maintenance release</h1>
+<h2 id="main-changes-27">Main Changes</h2>
 <ul>
 <li><strong>Add sources of STM324x9I-EVAL (both references MB1046 and MB1063), STM324xG-EVAL and STM32F429I-Discovery Demonstration</strong> (only for EWARM and MDK-ARM)
 <ul>
@@ -9881,7 +9937,7 @@
 <li>Miscellaneous update on Examples, Applications, Demonstrations and Templates projects for some boards; for more details refer to the associated release notes</li>
 <li>Minor update in STM324x9I-EVAL, STM324xG-EVAL and STM32F429I-Discovery uSD and EEPROM BSP drivers</li>
 </ul>
-<h2 id="contents-24">Contents</h2>
+<h2 id="contents-25">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
@@ -10232,12 +10288,12 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section1" aria-hidden="true"> <label for="collapse-section1" aria-hidden="true"><strong>V1.0.0 / 18-February-2014</strong></label>
 <div>
-<h1 id="maintenance-release-27">Maintenance release</h1>
-<h2 id="main-changes-27">Main Changes</h2>
+<h1 id="maintenance-release-28">Maintenance release</h1>
+<h2 id="main-changes-28">Main Changes</h2>
 <ul>
 <li><strong>First official release of STM32CubeF4 (STM32Cube for STM32F4 Series)</strong></li>
 </ul>
-<h2 id="contents-25">Contents</h2>
+<h2 id="contents-26">Contents</h2>
 <table>
 <caption>Drivers</caption>
 <thead>
