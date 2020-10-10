@@ -437,14 +437,9 @@ void HAL_GPIO_TogglePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
   /* Check the parameters */
   assert_param(IS_GPIO_PIN(GPIO_Pin));
 
-  if ((GPIOx->ODR & GPIO_Pin) == GPIO_Pin)
-  {
-    GPIOx->BSRR = (uint32_t)GPIO_Pin << GPIO_NUMBER;
-  }
-  else
-  {
-    GPIOx->BSRR = GPIO_Pin;
-  }
+  uint16_t tmp = GPIOx->ODR;
+
+  GPIOx->BSRR = ((((uint32_t)GPIO_Pin & tmp) << GPIO_NUMBER) | (GPIO_Pin & ~tmp));
 }
 
 /**
