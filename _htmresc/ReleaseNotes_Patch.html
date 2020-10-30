@@ -1,10 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head></head>
-<body><font color="blue"><b><u>STM32CubeF4 Firmware Package V1.25.1 / 14-August-2020</u></b></font><br>
+<font color="blue"><b><u>STM32CubeF4 Firmware Package V1.25.2 / 22-October-2020</u></b></font><br>
 <br>
-<b><u>Main Changes</u></b><br><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="color: black; font-family: Verdana,sans-serif; font-size: 10pt;">Patch release to fix known defects and enhancements implementation.</span></li><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-family: Verdana,sans-serif; font-size: 10pt;" lang="EN-US">Update HAL_I2C_ER_IRQHandler() API to fix acknowledge failure issue with I2C memory IT processes</span></li></ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-family: Verdana,sans-serif; font-size: 10pt;" lang="EN-US">Update
-I2C_DMAXferCplt(), I2C_DMAError() and I2C_DMAAbort() APIs to fix
-hardfault issue when hdmatx and hdmarx parameters in i2c handle aren't
-initialized (NULL pointer).</span></li></ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-family: Verdana,sans-serif; font-size: 10pt;" lang="EN-US">Minor rework on USBD_Start() and USBD_Stop() APIs: stopping device will be handled by HAL_PCD_DeInit() API.</span></li></ul></ul>
+<b><u>Main Changes</u></b><br><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="color: black; font-family: Verdana,sans-serif; font-size: 10pt;">Patch release to fix I2C issue. <br></span></li></ul>
 <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 67.65pt; text-indent: -18pt; line-height: normal;"><span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;,&quot;serif&quot;; color: black;"><o:p></o:p></span></p>
-</body></html>
