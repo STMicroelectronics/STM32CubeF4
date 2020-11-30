@@ -1651,6 +1651,39 @@ typedef struct
   )
 
 /**
+  * @brief  Helper macro to calculate analog reference voltage (Vref+)
+  *         (unit: mVolt) from ADC conversion data of internal voltage
+  *         reference VrefInt.
+  * @note   Computation is using VrefInt calibration value
+  *         stored in system memory for each device during production.
+  * @note   This voltage depends on user board environment: voltage level
+  *         connected to pin Vref+.
+  *         On devices with small package, the pin Vref+ is not present
+  *         and internally bonded to pin Vdda.
+  * @note   On this STM32 series, calibration data of internal voltage reference
+  *         VrefInt corresponds to a resolution of 12 bits,
+  *         this is the recommended ADC resolution to convert voltage of
+  *         internal voltage reference VrefInt.
+  *         Otherwise, this macro performs the processing to scale
+  *         ADC conversion data to 12 bits.
+  * @param  __VREFINT_ADC_DATA__ ADC conversion data (resolution 12 bits)
+  *         of internal voltage reference VrefInt (unit: digital value).
+  * @param  __ADC_RESOLUTION__ This parameter can be one of the following values:
+  *         @arg @ref LL_ADC_RESOLUTION_12B
+  *         @arg @ref LL_ADC_RESOLUTION_10B
+  *         @arg @ref LL_ADC_RESOLUTION_8B
+  *         @arg @ref LL_ADC_RESOLUTION_6B
+  * @retval Analog reference voltage (unit: mV)
+  */
+#define __LL_ADC_CALC_VREFANALOG_VOLTAGE(__VREFINT_ADC_DATA__,\
+                                         __ADC_RESOLUTION__)                 \
+(((uint32_t)(*VREFINT_CAL_ADDR) * VREFINT_CAL_VREF)                          \
+ / __LL_ADC_CONVERT_DATA_RESOLUTION((__VREFINT_ADC_DATA__),                  \
+                                    (__ADC_RESOLUTION__),                    \
+                                    LL_ADC_RESOLUTION_12B)                   \
+)
+
+/**
   * @brief  Helper macro to calculate the temperature (unit: degree Celsius)
   *         from ADC conversion data of internal temperature sensor.
   * @note   Computation is using temperature sensor calibration values
