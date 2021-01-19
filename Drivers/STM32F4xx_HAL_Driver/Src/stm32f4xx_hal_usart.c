@@ -2789,7 +2789,7 @@ static void USART_SetConfig(USART_HandleTypeDef *husart)
     pclk = HAL_RCC_GetPCLK2Freq();
     husart->Instance->BRR = USART_BRR(pclk, husart->Init.BaudRate);
   }
-#endif /* USART6 || UART9 || UART10 */	
+#endif /* USART6 || UART9 || UART10 */
   else
   {
     pclk = HAL_RCC_GetPCLK1Freq();

@@ -903,7 +903,7 @@ typedef struct
 #if defined(SPDIFRX)
 #define LL_TIM_TIM11_TI1_RMP_SPDIFRX     (TIM_OR_TI1_RMP_0 | TIM11_OR_RMP_MASK)     /*!< TIM11 channel 1 is connected to SPDIFRX */
 #else
-#define LL_TIM_TIM11_TI1_RMP_GPIO1       (TIM_OR_TI1_RMP_0 | TIM11_OR_RMP_MASK)     /*!< TIM11 channel 1 is connected to GPIO */  
+#define LL_TIM_TIM11_TI1_RMP_GPIO1       (TIM_OR_TI1_RMP_0 | TIM11_OR_RMP_MASK)     /*!< TIM11 channel 1 is connected to GPIO */
 #endif
 #define LL_TIM_TIM11_TI1_RMP_GPIO2       (TIM_OR_TI1_RMP   | TIM11_OR_RMP_MASK)     /*!< TIM11 channel 1 is connected to GPIO */
 #define LL_TIM_TIM11_TI1_RMP_HSE_RTC     (TIM_OR_TI1_RMP_1 | TIM11_OR_RMP_MASK)     /*!< TIM11 channel 1 is connected to HSE_RTC */

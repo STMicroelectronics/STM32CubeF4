@@ -90,7 +90,7 @@
      (+) Stop the DMA Transfer using HAL_I2S_DMAStop()
          In Slave mode, if HAL_I2S_DMAStop is used to stop the communication, an error
          HAL_I2S_ERROR_BUSY_LINE_RX is raised as the master continue to transmit data.
-         In this case __HAL_I2S_FLUSH_RX_DR macro must be used to flush the remaining data 
+         In this case __HAL_I2S_FLUSH_RX_DR macro must be used to flush the remaining data
          inside DR register and avoid using DeInit/Init process for the next transfer.
 
    *** I2S HAL driver macros list ***

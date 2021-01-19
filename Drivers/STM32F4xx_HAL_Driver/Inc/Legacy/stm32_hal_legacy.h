@@ -313,8 +313,8 @@
 #endif /* STM32L4 */
 
 #if defined(STM32G0)
-#define DMA_REQUEST_DAC1_CHANNEL1								 DMA_REQUEST_DAC1_CH1
-#define DMA_REQUEST_DAC1_CHANNEL2								 DMA_REQUEST_DAC1_CH2
+#define DMA_REQUEST_DAC1_CHANNEL1                DMA_REQUEST_DAC1_CH1
+#define DMA_REQUEST_DAC1_CHANNEL2                DMA_REQUEST_DAC1_CH2
 #endif
 
 #if defined(STM32H7)
@@ -1563,10 +1563,10 @@
   */
 
 #if defined(STM32G0)
-#define HAL_PWR_ConfigPVD															HAL_PWREx_ConfigPVD
-#define HAL_PWR_EnablePVD															HAL_PWREx_EnablePVD
-#define HAL_PWR_DisablePVD													  HAL_PWREx_DisablePVD
-#define HAL_PWR_PVD_IRQHandler											  HAL_PWREx_PVD_IRQHandler
+#define HAL_PWR_ConfigPVD                             HAL_PWREx_ConfigPVD
+#define HAL_PWR_EnablePVD                             HAL_PWREx_EnablePVD
+#define HAL_PWR_DisablePVD                            HAL_PWREx_DisablePVD
+#define HAL_PWR_PVD_IRQHandler                        HAL_PWREx_PVD_IRQHandler
 #endif
 #define HAL_PWR_PVDConfig                             HAL_PWR_ConfigPVD
 #define HAL_PWR_DisableBkUpReg                        HAL_PWREx_DisableBkUpReg
@@ -3481,9 +3481,9 @@
 #define  __HAL_SD_SDIO_CLEAR_FLAG   __HAL_SD_SDMMC_CLEAR_FLAG
 #define  __HAL_SD_SDIO_GET_IT       __HAL_SD_SDMMC_GET_IT
 #define  __HAL_SD_SDIO_CLEAR_IT     __HAL_SD_SDMMC_CLEAR_IT
-#define  SDIO_STATIC_FLAGS	        SDMMC_STATIC_FLAGS
-#define  SDIO_CMD0TIMEOUT	          SDMMC_CMD0TIMEOUT
-#define  SD_SDIO_SEND_IF_COND	      SD_SDMMC_SEND_IF_COND
+#define  SDIO_STATIC_FLAGS          SDMMC_STATIC_FLAGS
+#define  SDIO_CMD0TIMEOUT           SDMMC_CMD0TIMEOUT
+#define  SD_SDIO_SEND_IF_COND       SD_SDMMC_SEND_IF_COND
 /* alias CMSIS for compatibilities */
 #define  SDIO_IRQn                  SDMMC1_IRQn
 #define  SDIO_IRQHandler            SDMMC1_IRQHandler
