@@ -370,7 +370,7 @@
             <vShortWch>0</vShortWch>
             <VariousControls>
               <MiscControls>--C99</MiscControls>
-              <Define>USE_HAL_DRIVER,STM32F469xx</Define>
+              <Define>USE_HAL_DRIVER,STM32F469xx,USE_STM32469I_DISCO_REVC</Define>
               <Undefine></Undefine>
               <IncludePath>../Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../../../../../../Drivers/STM32F4xx_HAL_Driver/Inc;../../../../../../Middlewares/ST/STM32_USB_Host_Library/Core/Inc;../../../../../../Middlewares/ST/STM32_USB_Host_Library/Class/HID/Inc;../../../../../../Drivers/BSP/STM32469I-Discovery;../../../../../../Drivers/BSP/Components;../../../../../../Utilities/Log;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/Include;../../../../../../Middlewares/Third_Party/FreeRTOS/Source;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS</IncludePath>
             </VariousControls>
@@ -470,6 +470,11 @@
         <Group>
           <GroupName>Drivers/BSP/Components</GroupName>
           <Files>
+            <File>
+              <FileName>nt35510.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../../Drivers/BSP/Components/nt35510/nt35510.c</FilePath>
+            </File>
             <File>
               <FileName>otm8009a.c</FileName>
               <FileType>1</FileType>

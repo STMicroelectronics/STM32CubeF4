@@ -6,39 +6,13 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics International N.V. 
+  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
-  * Redistribution and use in source and binary forms, with or without 
-  * modification, are permitted, provided that the following conditions are met:
-  *
-  * 1. Redistribution of source code must retain the above copyright notice, 
-  *    this list of conditions and the following disclaimer.
-  * 2. Redistributions in binary form must reproduce the above copyright notice,
-  *    this list of conditions and the following disclaimer in the documentation
-  *    and/or other materials provided with the distribution.
-  * 3. Neither the name of STMicroelectronics nor the names of other 
-  *    contributors to this software may be used to endorse or promote products 
-  *    derived from this software without specific written permission.
-  * 4. This software, including modifications and/or derivative works of this 
-  *    software, must execute solely and exclusively on microcontroller or
-  *    microprocessor devices manufactured by or for STMicroelectronics.
-  * 5. Redistribution and use of this software other than as permitted under 
-  *    this license is void and will automatically terminate your rights under 
-  *    this license. 
-  *
-  * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS" 
-  * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT 
-  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
-  * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
-  * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT 
-  * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
-  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
-  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
-  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
   *
   ******************************************************************************
   */
@@ -327,7 +301,17 @@ static uint8_t LCD_Init(void)
   HAL_DSI_Init(&(hdsi_eval), &(dsiPllInit));
   
   /* The following values are same for portrait and landscape orientations */
-  VSA  = OTM8009A_480X800_VSYNC;        /* 10 */
+#if defined (USE_STM32469I_DISCO_REVC)
+  VSA  = NT35510_480X800_VSYNC;
+  VBP  = NT35510_480X800_VBP;
+  VFP  = NT35510_480X800_VFP;
+  HSA  = NT35510_480X800_HSYNC;
+  HBP  = NT35510_480X800_HBP;
+  HFP  = NT35510_480X800_HFP;
+  HACT = NT35510_800X480_WIDTH;
+  VACT = NT35510_800X480_HEIGHT;
+#else
+  VSA  = OTM8009A_480X800_VSYNC;        /* 1 */
   VBP  = OTM8009A_480X800_VBP;          /* 15 */
   VFP  = OTM8009A_480X800_VFP;          /* 16 */
   HSA  = OTM8009A_480X800_HSYNC;        /* 2 */
@@ -335,6 +319,7 @@ static uint8_t LCD_Init(void)
   HFP  = OTM8009A_480X800_HFP;          /* 20 */ 
   HACT = OTM8009A_800X480_WIDTH;        /* 800 */
   VACT = OTM8009A_800X480_HEIGHT;       /* 480 */   
+#endif
 
   hdsivideo_handle.VirtualChannelID = LCD_OTM8009A_ID;
   hdsivideo_handle.ColorCoding = LCD_DSI_PIXEL_DATA_FMT_RBG888;
@@ -442,15 +427,25 @@ static uint8_t LCD_Init(void)
   
 /************************End LTDC Initialization*******************************/
   
+#if defined (USE_STM32469I_DISCO_REVC)
+/***********************NT35510 Initialization********************************/  
   
+  /* Initialize the NT35510 LCD Display IC Driver (3K138 LCD IC Driver)
+   *  depending on configuration set in 'hdsivideo_handle'.
+   */
+  NT35510_Init(NT35510_FORMAT_RGB888, LCD_ORIENTATION_LANDSCAPE);
+
+/***********************End NT35510 Initialization****************************/
+#else
 /***********************OTM8009A Initialization********************************/  
   
   /* Initialize the OTM8009A LCD Display IC Driver (KoD LCD IC Driver)
-  *  depending on configuration set in 'hdsivideo_handle'.
-  */
+   *  depending on configuration set in 'hdsivideo_handle'.
+   */
   OTM8009A_Init(OTM8009A_FORMAT_RGB888, OTM8009A_ORIENTATION_LANDSCAPE);
-  
-/***********************End OTM8009A Initialization****************************/ 
+
+/***********************End OTM8009A Initialization****************************/
+#endif
   
   return LCD_OK; 
 }

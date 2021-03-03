@@ -333,7 +333,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_HAL_DRIVER,STM32F469xx,USE_STM32469I_DISCOVERY</Define>
+              <Define>USE_HAL_DRIVER,STM32F469xx,USE_STM32469I_DISCO_REVC,USE_STM32469I_DISCOVERY</Define>
               <Undefine></Undefine>
               <IncludePath>../Core/Inc;../STemWin/App/generated/fonts;../STemWin/App/generated/images;../STemWin/Target;../../../../../../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../../../../../../Drivers/STM32F4xx_HAL_Driver/Inc;../../../../../../Drivers/BSP/STM32469I-Discovery;../../../../../../Drivers/BSP/Components/otm8009a;../../../../../../Middlewares/ST/STemWin/inc;../STemWin/Target</IncludePath>
             </VariousControls>
@@ -379,6 +379,11 @@
         <Group>
           <GroupName>Drivers/BSP/Components</GroupName>
           <Files>
+            <File>
+              <FileName>nt35510.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../../Drivers/BSP/Components/nt35510/nt35510.c</FilePath>
+            </File>
             <File>
               <FileName>otm8009a.c</FileName>
               <FileType>1</FileType>

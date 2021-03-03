@@ -5,7 +5,7 @@
   * @brief   This file provides a set of firmware functions to manage LEDs,
   *          push-buttons, external SDRAM, external QSPI Flash, RF EEPROM,
   *          available on STM32469I-Discovery
-  *          board (MB1189) RevA/B from STMicroelectronics.
+  *          board (MB1189) RevA/B/C from STMicroelectronics.
   ******************************************************************************
   * @attention
   *
@@ -62,11 +62,11 @@
   * @{
   */
 /**
- * @brief STM32469I Discovery BSP Driver version number V2.0.1
+ * @brief STM32469I Discovery BSP Driver version number V2.1.0
    */
 #define __STM32469I_DISCOVERY_BSP_VERSION_MAIN   (0x02) /*!< [31:24] main version */
-#define __STM32469I_DISCOVERY_BSP_VERSION_SUB1   (0x00) /*!< [23:16] sub1 version */
-#define __STM32469I_DISCOVERY_BSP_VERSION_SUB2   (0x01) /*!< [15:8]  sub2 version */
+#define __STM32469I_DISCOVERY_BSP_VERSION_SUB1   (0x01) /*!< [23:16] sub1 version */
+#define __STM32469I_DISCOVERY_BSP_VERSION_SUB2   (0x00) /*!< [15:8]  sub2 version */
 #define __STM32469I_DISCOVERY_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */
 #define __STM32469I_DISCOVERY_BSP_VERSION        ((__STM32469I_DISCOVERY_BSP_VERSION_MAIN << 24)\
                                                  |(__STM32469I_DISCOVERY_BSP_VERSION_SUB1 << 16)\
@@ -152,6 +152,7 @@ uint16_t TS_IO_ReadMultiple(uint8_t Addr, uint8_t Reg, uint8_t *Buffer, uint16_t
 void    TS_IO_WriteMultiple(uint8_t Addr, uint8_t Reg, uint8_t *Buffer, uint16_t Length);
 void    TS_IO_Delay(uint32_t Delay);
 void     OTM8009A_IO_Delay(uint32_t Delay);
+void     NT35510_IO_Delay(uint32_t Delay);
 /**
   * @}
   */
@@ -398,6 +399,24 @@ static void I2C1_MspInit(void)
   /*** Configure the GPIOs ***/
   /* Enable GPIO clock */
   DISCO_I2C1_SCL_SDA_GPIO_CLK_ENABLE();
+
+#if defined(USE_STM32469I_DISCO_REVC)
+  /* Perform 10 pulses on SCL to unlock I2C devices if previous I2C transaction aborted.*/
+  /* This configuration is needed with STM32F469i Disco RevC when using touch screen controller FT6336U */
+  gpio_init_structure.Pin = DISCO_I2C1_SCL_PIN;
+  gpio_init_structure.Mode = GPIO_MODE_OUTPUT_OD;
+  gpio_init_structure.Pull = GPIO_NOPULL;
+  gpio_init_structure.Speed = GPIO_SPEED_FAST;
+  gpio_init_structure.Alternate = 0;
+  HAL_GPIO_Init( DISCO_I2C1_SCL_SDA_GPIO_PORT, &gpio_init_structure );
+  for(uint8_t count = 10; count > 0; count-- )
+  {
+    HAL_GPIO_WritePin( DISCO_I2C1_SCL_SDA_GPIO_PORT, DISCO_I2C1_SCL_PIN, GPIO_PIN_SET );
+    HAL_Delay(1);
+    HAL_GPIO_WritePin( DISCO_I2C1_SCL_SDA_GPIO_PORT, DISCO_I2C1_SCL_PIN, GPIO_PIN_RESET );
+    HAL_Delay(1);
+  }
+#endif /* USE_STM32469I_DISCO_REVC */
 
   /* Configure I2C Tx as alternate function */
   gpio_init_structure.Pin = DISCO_I2C1_SCL_PIN;
@@ -910,6 +929,16 @@ void TS_IO_Delay(uint32_t Delay)
   * @param  Delay: Delay in ms
   */
 void OTM8009A_IO_Delay(uint32_t Delay)
+{
+  HAL_Delay(Delay);
+}
+
+/**************************** LINK NT35510 (Display driver) ******************/
+/**
+  * @brief  NT35510 delay
+  * @param  Delay: Delay in ms
+  */
+void NT35510_IO_Delay(uint32_t Delay)
 {
   HAL_Delay(Delay);
 }

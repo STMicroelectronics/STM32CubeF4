@@ -27,6 +27,7 @@
 
 #include <OTM8009TouchController.hpp>
 #include "../Components/otm8009a/otm8009a.h"
+#include "../Components/nt35510/nt35510.h"
 
 /**
  * In order to use double buffering, simply enable the USE_DOUBLE_BUFFERING #define below
@@ -314,14 +315,19 @@ static void SystemClock_Config(void)
 static void LCD_Reset(void)
 {
 #if !defined(USE_STM32469I_DISCO_REVA)
-/* EVAL Rev B and beyond : reset the LCD by activation of XRES (active low) connected to PH7 */
+/* Disco Rev B and beyond : reset the LCD by activation of XRES (active low) connected to PH7 */
     GPIO_InitTypeDef gpio_init_structure;
 
     __HAL_RCC_GPIOH_CLK_ENABLE();
 
     /* Configure the GPIO on PH7 */
     gpio_init_structure.Pin   = GPIO_PIN_7;
+#if defined(USE_STM32469I_DISCO_REVC)
+    /* Push Pull Mode is required for TechShine LCD (NT35510) */
+    gpio_init_structure.Mode  = GPIO_MODE_OUTPUT_PP;
+#else
     gpio_init_structure.Mode  = GPIO_MODE_OUTPUT_OD;
+#endif
     gpio_init_structure.Pull  = GPIO_NOPULL;
     gpio_init_structure.Speed = GPIO_SPEED_HIGH;
 
@@ -336,9 +342,10 @@ static void LCD_Reset(void)
     HAL_GPIO_WritePin(GPIOH, GPIO_PIN_7, GPIO_PIN_SET);
     
     /* MMA FIX */
-    HAL_Delay(10); /* wait 10 ms */    
+    /* Wait for 20ms after releasing XRES before sending commands */
+    HAL_Delay(20); 
 #else
-  
+  /* Nothing to do in case of Disco Rev A */
 #endif /* USE_STM32469I_DISCO_REVA == 0 */
 }
 
@@ -499,7 +506,7 @@ static uint8_t LCD_Init(void)
 
     /* LCD clock configuration, 417/5/2 = 41.7MHz */
     PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LTDC;
-    PeriphClkInitStruct.PLLSAI.PLLSAIN = 250;
+    PeriphClkInitStruct.PLLSAI.PLLSAIN = 417;
     PeriphClkInitStruct.PLLSAI.PLLSAIR = 5;
     PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;
     HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct);
@@ -571,6 +578,15 @@ static uint8_t LCD_Init(void)
     /* Start DSI */
     HAL_DSI_Start(&hdsi);
 
+#if defined(USE_STM32469I_DISCO_REVC)
+#if !defined(USE_BPP) || USE_BPP==16
+    NT35510_Init(NT35510_FORMAT_RBG565, 1);
+#elif USE_BPP==24
+    NT35510_Init(NT35510_FORMAT_RGB888, 1);
+#else
+#error Unknown USE_BPP
+#endif
+#else
 #if !defined(USE_BPP) || USE_BPP==16
     OTM8009A_Init(OTM8009A_FORMAT_RBG565, 1);
 #elif USE_BPP==24
@@ -578,6 +594,7 @@ static uint8_t LCD_Init(void)
 #else
 #error Unknown USE_BPP
 #endif
+#endif /* USE_STM32469I_DISCO_REVC */
 
     LPCmd.LPGenShortWriteNoP    = DSI_LP_GSW0P_DISABLE;
     LPCmd.LPGenShortWriteOneP   = DSI_LP_GSW1P_DISABLE;

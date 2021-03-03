@@ -98,7 +98,7 @@
 
 @par Keywords
 
-Display, LCD, Pictures, SD Card, BMP, Background, Foreground, Layers,
+Graphic, Display, LCD, Pictures, SD Card, BMP, Background, Foreground, Layers,
 
 @par Directory contents
 

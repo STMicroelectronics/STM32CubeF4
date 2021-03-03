@@ -335,7 +335,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>ST,STM32F469xx,USE_BPP=16,CORE_CM4F</Define>
+              <Define>ST,STM32F469xx,USE_STM32469I_DISCO_REVC,USE_BPP=16,CORE_CM4F</Define>
               <Undefine></Undefine>
               <IncludePath>../Gui/gui/include;../Gui/target/include;../Gui/platform/os;../Gui/generated/fonts/include;../Gui/generated/images/include;../Gui/generated/texts/include;../Gui/generated/gui_generated/include;../../../../../Middlewares/ST/TouchGFX/touchgfx/framework/include;../../../../../Middlewares/Third_Party/FreeRTOS/Source/include;../../../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../../../../../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../../../../../Drivers/STM32F4xx_HAL_Driver/Inc;../../../../../Drivers/BSP/STM32469I-Discovery;../../../../../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Gui/target;../Core/Inc</IncludePath>
             </VariousControls>
@@ -1735,6 +1735,11 @@
               <FileName>ft6x06.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../Drivers/BSP/Components/ft6x06/ft6x06.c</FilePath>
+            </File>
+            <File>
+              <FileName>nt35510.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../Drivers/BSP/Components/nt35510/nt35510.c</FilePath>
             </File>
             <File>
               <FileName>otm8009a.c</FileName>

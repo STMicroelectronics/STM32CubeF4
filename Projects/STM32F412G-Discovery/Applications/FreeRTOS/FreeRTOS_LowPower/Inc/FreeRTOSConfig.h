@@ -163,8 +163,8 @@ header file. */
 #define xPortPendSVHandler PendSV_Handler
 
 #if defined(__ICCARM__) || defined(__CC_ARM) || defined(__GNUC__)
-void PreSleepProcessing(uint32_t * ulExpectedIdleTime);
-void PostSleepProcessing(uint32_t * ulExpectedIdleTime);
+void PreSleepProcessing(uint32_t ulExpectedIdleTime);
+void PostSleepProcessing(uint32_t ulExpectedIdleTime);
 #endif /* defined(__ICCARM__) || defined(__CC_ARM) || defined(__GNUC__) */
 
 /* The configPRE_SLEEP_PROCESSING() and configPOST_SLEEP_PROCESSING() macros
@@ -172,7 +172,12 @@ allow the application writer to add additional code before and after the MCU is
 placed into the low power state respectively.  The empty implementations
 provided in this demo can be extended to save even more power. */
 #if configUSE_TICKLESS_IDLE == 1 
-#define configPRE_SLEEP_PROCESSING                        PreSleepProcessing
+ 
+#define configPRE_SLEEP_PROCESSING(__x__)                           \
+                                      do{                           \
+                                         __x__ = 0;                 \
+                                         PreSleepProcessing(__x__); \
+                                      }while(0)
 #define configPOST_SLEEP_PROCESSING                       PostSleepProcessing
 #endif /* configUSE_TICKLESS_IDLE == 1 */
 

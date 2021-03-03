@@ -116,6 +116,7 @@ build, this configuration file has all options turned on. */
 #define configUSE_COUNTING_SEMAPHORES			1
 #define configUSE_TICKLESS_IDLE					0
 #define configCHECK_FOR_STACK_OVERFLOW          2
+#define configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY             1
 
 /* Run time stats gathering definitions. */
 #define configGENERATE_RUN_TIME_STATS			1

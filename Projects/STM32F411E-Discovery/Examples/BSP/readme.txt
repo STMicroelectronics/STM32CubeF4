@@ -3,69 +3,63 @@
 
   @verbatim
   ******************** (C) COPYRIGHT 2017 STMicroelectronics *******************
-  * @file    BSP/readme.txt 
+  * @file    BSP/readme.txt
   * @author  MCD Application Team
   * @brief   Description of the BSP example.
   ******************************************************************************
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
+  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
   *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                       opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
-  @endverbatim
+   @endverbatim
 
-@par Example Description 
+@par Example Description
 
-This example provides a description of how to use the different BSP drivers. 
+This example provides a description of how to use the different BSP drivers.
 
-At the beginning of the main program the HAL_Init() function is called to reset 
+At the beginning of the main program the HAL_Init() function is called to reset
 all the peripherals.
-Then the SystemClock_Config() function is used to configure the systemclock (SYSCLK) 
+Then the SystemClock_Config() function is used to configure the systemclock (SYSCLK)
 to run at 100 MHz.
 
-This example shows how to use the different functionalities of Gyroscope L3GD20 
-and Accelerometer LSM303DLHC, Audio device CS43L22 and ST MEMS microphone (MP45DT02)
-by switching between all tests using USER button. 
+This example shows how to use the different functionalities listed below by
+switching between all tests using USER button.
+- For Rev.A boards:
+  - Accelerometer LSM303DLHC
+  - Gyroscope L3GD20
+  - Audio device CS43L22
+  - ST MEMS microphone MP45DT02TR-M
+- For Rev.C boards:
+  - Accelerometer LSM303AGR
+  - Gyroscope I3G4250D
+  - Audio device CS43L22
+  - ST MEMS microphone IMP34DT05TR
 
-Firstly, push the User button to start first Test.  
+First, push the User button to start first Test.
 4 LEDs will blink between each test.Press user key to start another test:
 
-     1) ACCELEROMETER_MEMS_Test.    Device: "LSM303DLHC"
-        LEDs 3,4,5 and 6 show board orientation. (X and Y axis)       
-        
-     2) GYROSCOPE_MEMS_Test.        Device: "L3GD20"
-        LEDs 3,4,5 and 6 show board movement. (X and Y axis)   
-     
-     3) AudioPlay_Test(Need headphone). Device: "CS43L22"
-        Plug a headphone to ear a 48K sound  /!\ Take care of yours ears.
-        Default volume is 50%.
-        A click on the board will pause the audio file play (LED6 & LED4 ON). 
-		    Another click resumes audio file play (only LED6 on)
-        @Note: Copy file "/Utilities/Media/Audio/art_of_gard_448K.bin" directly 
-        in the STM32 flash at @0x08020000 
+     1) ACCELEROMETER_MEMS_Test.    Device: "LSM303DLHC" / "LSM303AGR"
+        LEDs 3,4,5 and 6 show board orientation (X and Y axes).
 
-     3) AudioRecord_Test. Device: "MP45DT02"
+     2) GYROSCOPE_MEMS_Test.        Device: "L3GD20" / "I3G4250D"
+        LEDs 3,4,5 and 6 show board movement (X and Y axes).
+
+     3) AudioPlay_Test(Need headphone). Device: "CS43L22"
+        Plug a headphone to hear a 48K sound  /!\ Take care of yours ears.
+        Default volume is 50%.
+        A click on the board will pause the audio file play (LED6 & LED4 ON).
+		    Another click resumes audio file play (only LED6 on)
+        @Note: Copy file "/Utilities/Media/Audio/art_of_gard_448K.bin" directly
+        in the STM32 flash at @0x08020000
+
+     4) AudioRecord_Test. Device: "MP45DT02TR-M" / "IMP34DT05TR"
         Record your voice (2 or 3 secs)
-        When LED6 turns on, Plug a headphone to ear a 16K sound  /!\ Take care of yours ears.
+        When LED6 turns on, Plug a headphone to hear a 16K sound  /!\ Take care of yours ears.
         Default volume is 70%.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -73,7 +67,7 @@ Firstly, push the User button to start first Test.
       a peripheral ISR process, then the SysTick interrupt must have higher priority (numerically lower)
       than the peripheral interrupt. Otherwise the caller ISR process will be blocked.
       To change the SysTick interrupt priority you have to use HAL_NVIC_SetPriority() function.
-      
+
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
@@ -82,7 +76,7 @@ Firstly, push the User button to start first Test.
 BSP, LCD, Touchscreen, PSRAM, DMA, QSPI, Erase, Read, Write, Audio play, Record, MEMS, Audio Codec, DFSDM,
 I2S, Microphone, Headphones
 
-@par Directory contents 
+@par Directory contents
 
   - BSP/Src/system_stm32f4xx.c      STM32F4xx system clock configuration file
   - BSP/Src/main.c                  Main program
@@ -96,24 +90,24 @@ I2S, Microphone, Headphones
   - BSP/Inc/audio_record.h          Audio record header file
   - BSP/Inc/stm32f4xx_hal_conf.h    HAL configuration file
   - BSP/Inc/stm32f4xx_it.h          Interrupt handlers header file
- 
-      
-@par Hardware and Software environment  
+
+
+@par Hardware and Software environment
 
   - This example runs on and STM32F411xE devices.
-    
-  - This example has been tested with STMicroelectronics STM32F411E-Discovery 
+
+  - This example has been tested with STMicroelectronics STM32F411E-Discovery
     board and can be easily tailored to any other supported device and development board.
 
   - Use STLink utility, available on www.st.com or any other in system programming
-    tool to load "/Utilities/Media/Audio/art_of_gard_448K.bin" file to the STM32 
+    tool to load "/Utilities/Media/Audio/art_of_gard_448K.bin" file to the STM32
     internal flash at the address 0x08020000.
 
 
-@par How to use it ? 
+@par How to use it ?
 
 In order to make the program work, you must do the following :
- - Open your preferred toolchain 
+ - Open your preferred toolchain
  - Rebuild all files and load your image into target memory
  - Run the example
 

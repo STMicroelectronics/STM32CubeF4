@@ -820,19 +820,36 @@ int mbedtls_gcm_self_test( int verbose )
                                         additional[add_index[i]], add_len[i],
                                         pt[pt_index[i]], buf, 16, tag_buf );
             if( ret != 0 )
-                goto exit;
-
-            if ( memcmp( buf, ct[j * 6 + i], pt_len[i] ) != 0 ||
-                 memcmp( tag_buf, tag[j * 6 + i], 16 ) != 0 )
             {
-                ret = 1;
-                goto exit;
+                /*
+                 * IV-96 bits is recommended for situations in which efficiency
+                 * is critical. Other IV may be unavailable when
+                 * there is an alternative underlying implementation i.e. when
+                 * MBEDTLS_AES_ALT is defined.
+                 */
+                if (ret == MBEDTLS_ERR_PLATFORM_FEATURE_UNSUPPORTED && (iv_len[i] == 8 || (iv_len[i] == 60)))
+                {
+                  mbedtls_printf( "Skipped, iv len %d not supported\n", iv_len[i] );
+                }
+                else
+                {
+                  goto exit;
+                }
+            }
+            else
+            {
+                if ( memcmp( buf, ct[j * 6 + i], pt_len[i] ) != 0 ||
+                     memcmp( tag_buf, tag[j * 6 + i], 16 ) != 0 )
+                {
+                    ret = 1;
+                    goto exit;
+                }
+
+                if( verbose != 0 )
+                    mbedtls_printf( "passed\n" );
             }
 
             mbedtls_gcm_free( &ctx );
-
-            if( verbose != 0 )
-                mbedtls_printf( "passed\n" );
 
             mbedtls_gcm_init( &ctx );
 
@@ -852,19 +869,36 @@ int mbedtls_gcm_self_test( int verbose )
                                         ct[j * 6 + i], buf, 16, tag_buf );
 
             if( ret != 0 )
-                goto exit;
-
-            if( memcmp( buf, pt[pt_index[i]], pt_len[i] ) != 0 ||
-                memcmp( tag_buf, tag[j * 6 + i], 16 ) != 0 )
             {
-                ret = 1;
-                goto exit;
+                /*
+                 * IV-96 bits is recommended for situations in which efficiency
+                 * is critical. Other IV may be unavailable when
+                 * there is an alternative underlying implementation i.e. when
+                 * MBEDTLS_AES_ALT is defined.
+                 */
+                if (ret == MBEDTLS_ERR_PLATFORM_FEATURE_UNSUPPORTED && (iv_len[i] == 8 || (iv_len[i] == 60)))
+                {
+                  mbedtls_printf( "Skipped, iv len %d not supported\n", iv_len[i] );
+                }
+                else
+                {
+                  goto exit;
+                }
+            }
+            else
+            {
+                if( memcmp( buf, pt[pt_index[i]], pt_len[i] ) != 0 ||
+                    memcmp( tag_buf, tag[j * 6 + i], 16 ) != 0 )
+                {
+                    ret = 1;
+                    goto exit;
+                }
+
+                if( verbose != 0 )
+                    mbedtls_printf( "passed\n" );
             }
 
             mbedtls_gcm_free( &ctx );
-
-            if( verbose != 0 )
-                mbedtls_printf( "passed\n" );
 
             mbedtls_gcm_init( &ctx );
 
@@ -881,42 +915,59 @@ int mbedtls_gcm_self_test( int verbose )
                                       iv[iv_index[i]], iv_len[i],
                                       additional[add_index[i]], add_len[i] );
             if( ret != 0 )
-                goto exit;
-
-            if( pt_len[i] > 32 )
             {
-                size_t rest_len = pt_len[i] - 32;
-                ret = mbedtls_gcm_update( &ctx, 32, pt[pt_index[i]], buf );
-                if( ret != 0 )
-                    goto exit;
-
-                ret = mbedtls_gcm_update( &ctx, rest_len, pt[pt_index[i]] + 32,
-                                  buf + 32 );
-                if( ret != 0 )
-                    goto exit;
+                /*
+                 * IV-96 bits is recommended for situations in which efficiency
+                 * is critical. Other IV may be unavailable when
+                 * there is an alternative underlying implementation i.e. when
+                 * MBEDTLS_AES_ALT is defined.
+                 */
+                if (ret == MBEDTLS_ERR_PLATFORM_FEATURE_UNSUPPORTED && (iv_len[i] == 8 || (iv_len[i] == 60)))
+                {
+                  mbedtls_printf( "Skipped, iv len %d not supported\n", iv_len[i] );
+                }
+                else
+                {
+                  goto exit;
+                }
             }
             else
             {
-                ret = mbedtls_gcm_update( &ctx, pt_len[i], pt[pt_index[i]], buf );
+                if( pt_len[i] > 32 )
+                {
+                    size_t rest_len = pt_len[i] - 32;
+                    ret = mbedtls_gcm_update( &ctx, 32, pt[pt_index[i]], buf );
+                    if( ret != 0 )
+                        goto exit;
+
+                    ret = mbedtls_gcm_update( &ctx, rest_len, pt[pt_index[i]] + 32,
+                                  buf + 32 );
+                    if( ret != 0 )
+                        goto exit;
+                }
+                else
+                {
+                     ret = mbedtls_gcm_update( &ctx, pt_len[i], pt[pt_index[i]], buf );
+                     if( ret != 0 )
+                     goto exit;
+                }
+
+                ret = mbedtls_gcm_finish( &ctx, tag_buf, 16 );
                 if( ret != 0 )
                     goto exit;
-            }
 
-            ret = mbedtls_gcm_finish( &ctx, tag_buf, 16 );
-            if( ret != 0 )
-                goto exit;
+                if( memcmp( buf, ct[j * 6 + i], pt_len[i] ) != 0 ||
+                    memcmp( tag_buf, tag[j * 6 + i], 16 ) != 0 )
+                {
+                    ret = 1;
+                    goto exit;
+                }
 
-            if( memcmp( buf, ct[j * 6 + i], pt_len[i] ) != 0 ||
-                memcmp( tag_buf, tag[j * 6 + i], 16 ) != 0 )
-            {
-                ret = 1;
-                goto exit;
+                if( verbose != 0 )
+                    mbedtls_printf( "passed\n" );
             }
 
             mbedtls_gcm_free( &ctx );
-
-            if( verbose != 0 )
-                mbedtls_printf( "passed\n" );
 
             mbedtls_gcm_init( &ctx );
 
@@ -933,43 +984,54 @@ int mbedtls_gcm_self_test( int verbose )
                               iv[iv_index[i]], iv_len[i],
                               additional[add_index[i]], add_len[i] );
             if( ret != 0 )
-                goto exit;
-
-            if( pt_len[i] > 32 )
             {
-                size_t rest_len = pt_len[i] - 32;
-                ret = mbedtls_gcm_update( &ctx, 32, ct[j * 6 + i], buf );
-                if( ret != 0 )
-                    goto exit;
-
-                ret = mbedtls_gcm_update( &ctx, rest_len, ct[j * 6 + i] + 32,
-                                          buf + 32 );
-                if( ret != 0 )
-                    goto exit;
+                if (ret == MBEDTLS_ERR_PLATFORM_FEATURE_UNSUPPORTED && (iv_len[i] == 8 || (iv_len[i] == 60)))
+                {
+                  mbedtls_printf( "Skipped, iv len %d not supported\n", iv_len[i] );
+                }
+                else
+                {
+                  goto exit;
+                }
             }
             else
             {
-                ret = mbedtls_gcm_update( &ctx, pt_len[i], ct[j * 6 + i],
-                                          buf );
+                if( pt_len[i] > 32 )
+                {
+                    size_t rest_len = pt_len[i] - 32;
+                    ret = mbedtls_gcm_update( &ctx, 32, ct[j * 6 + i], buf );
+                    if( ret != 0 )
+                        goto exit;
+
+                    ret = mbedtls_gcm_update( &ctx, rest_len, ct[j * 6 + i] + 32,
+                                              buf + 32 );
+                    if( ret != 0 )
+                        goto exit;
+                }
+                else
+                {
+                     ret = mbedtls_gcm_update( &ctx, pt_len[i], ct[j * 6 + i],
+                                              buf );
+                     if( ret != 0 )
+                        goto exit;
+                }
+
+                ret = mbedtls_gcm_finish( &ctx, tag_buf, 16 );
                 if( ret != 0 )
                     goto exit;
-            }
 
-            ret = mbedtls_gcm_finish( &ctx, tag_buf, 16 );
-            if( ret != 0 )
-                goto exit;
+                if( memcmp( buf, pt[pt_index[i]], pt_len[i] ) != 0 ||
+                    memcmp( tag_buf, tag[j * 6 + i], 16 ) != 0 )
+                {
+                    ret = 1;
+                    goto exit;
+                }
 
-            if( memcmp( buf, pt[pt_index[i]], pt_len[i] ) != 0 ||
-                memcmp( tag_buf, tag[j * 6 + i], 16 ) != 0 )
-            {
-                ret = 1;
-                goto exit;
+                if( verbose != 0 )
+                    mbedtls_printf( "passed\n" );
             }
 
             mbedtls_gcm_free( &ctx );
-
-            if( verbose != 0 )
-                mbedtls_printf( "passed\n" );
         }
     }
 

@@ -56,7 +56,7 @@
 
 @par Keywords
 
-Display, LTCD, Pictures, USB, BMP, Background, Foreground, Layers, Touchscreen, Calibration
+Graphic, Display, LTCD, Pictures, USB, BMP, Background, Foreground, Layers, Touchscreen, Calibration
 
 @par Directory contents
 

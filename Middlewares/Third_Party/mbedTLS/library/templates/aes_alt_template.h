@@ -20,8 +20,9 @@
  *          <https://ieeexplore.ieee.org/servlet/opac?punumber=4375278>.
  */
 
-/*  Copyright (C) 2006-2018, Arm Limited (or its affiliates), All Rights Reserved.
- *  Copyright (C) 2019 STMicroelectronics, All Rights Reserved
+/*
+ *  Copyright (C) 2006-2018, Arm Limited (or its affiliates), All Rights Reserved.
+ *  Copyright (C) 2019-2020 STMicroelectronics, All Rights Reserved
  *  SPDX-License-Identifier: Apache-2.0
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -43,15 +44,9 @@
 #ifndef MBEDTLS_AES_ALT_H
 #define MBEDTLS_AES_ALT_H
 
-/* Includes ------------------------------------------------------------------*/
 #if defined(MBEDTLS_AES_ALT)
-
-#if defined(MBEDTLS_THREADING_C)
-#include "threading.h"
-#endif
-
-/* include the appropriate header file */
-#include "stm32<xxxxx>_hal.h"
+/* Includes ------------------------------------------------------------------*/
+#include "cryp_stm32.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -61,11 +56,10 @@ extern "C" {
 /**
  * \brief          AES context structure
  */
-typedef struct {
-
-    __ALIGN_BEGIN
-      uint32_t aes_key[8];         /* Encryption/Decryption key       */
-    __ALIGN_END
+typedef struct
+{
+    /* Encryption/Decryption key */
+    uint32_t aes_key[8];
 
     CRYP_HandleTypeDef hcryp_aes;   /* AES context                     */
     uint32_t           ctx_save_cr; /* save context for multi-context  */
@@ -86,11 +80,6 @@ typedef struct mbedtls_aes_xts_context
 #endif /* MBEDTLS_CIPHER_MODE_XTS */
 
 /* Exported constants --------------------------------------------------------*/
-#ifdef CRYP_KEYSIZE_192B
-#define USE_AES_KEY192   /* AES 192 bits key length may be optional in the HW */
-#endif /* USE_AES_KEY192 */
-
-
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions --------------------------------------------------------*/
 

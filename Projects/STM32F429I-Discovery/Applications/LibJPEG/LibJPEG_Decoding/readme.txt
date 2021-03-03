@@ -72,7 +72,7 @@ with CPU or with DMA2D. Uncomment "USE_DMA2D" define for DMA2D transfer and
 
 @par Keywords
 
-Display, Graphic, LibJPEG, Decoding, Flash memory, DMA2D, ARGB8888, LCD, RGB, BMP, JPG, SD Card
+Display, Graphic, LibJPEG, Flash memory, LCD, DMA2D, SD Card, Decoding, ARGB8888, RGB, BMP, JPG
 
 @par Directory contents
 

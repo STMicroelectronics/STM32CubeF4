@@ -40,39 +40,13 @@ Purpose     : Display controller configuration (single layer)
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics International N.V. 
+  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
-  * Redistribution and use in source and binary forms, with or without 
-  * modification, are permitted, provided that the following conditions are met:
-  *
-  * 1. Redistribution of source code must retain the above copyright notice, 
-  *    this list of conditions and the following disclaimer.
-  * 2. Redistributions in binary form must reproduce the above copyright notice,
-  *    this list of conditions and the following disclaimer in the documentation
-  *    and/or other materials provided with the distribution.
-  * 3. Neither the name of STMicroelectronics nor the names of other 
-  *    contributors to this software may be used to endorse or promote products 
-  *    derived from this software without specific written permission.
-  * 4. This software, including modifications and/or derivative works of this 
-  *    software, must execute solely and exclusively on microcontroller or
-  *    microprocessor devices manufactured by or for STMicroelectronics.
-  * 5. Redistribution and use of this software other than as permitted under 
-  *    this license is void and will automatically terminate your rights under 
-  *    this license. 
-  *
-  * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS" 
-  * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT 
-  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
-  * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
-  * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT 
-  * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
-  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
-  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
-  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                             www.st.com/SLA0044
   *
   ******************************************************************************
   */
@@ -117,7 +91,7 @@ Purpose     : Display controller configuration (single layer)
 #define HSYNC           1
 #define HBP             1
 #define HFP             1
-#define HACT            XSIZE_PHYS/ZONES      /* !!!! SCREEN DIVIDED INTO 2 AREAS !!!! */
+#define HACT            XSIZE_PHYS/ZONES      /* !!!! SCREEN DIVIDED INTO 4 AREAS !!!! */
 
 
 #define NUM_BUFFERS      3 /* Number of multiple buffers to be used */
@@ -276,7 +250,12 @@ static void LCD_LL_Reset(void)
   /* Configure the GPIO on PH7 */
   gpio_init_structure.Pin   = GPIO_PIN_7;
   gpio_init_structure.Mode  = GPIO_MODE_OUTPUT_PP;
+  /* GPIO_NOPULL is needed for new TechShine LCD(NT35510) used in STM32F469I_DISCO_REVC */
+#if defined(USE_STM32469I_DISCO_REVC)
+  gpio_init_structure.Pull  = GPIO_NOPULL;
+#else
   gpio_init_structure.Pull  = GPIO_PULLUP;
+#endif /* USE_STM32469I_DISCO_REVC */
   gpio_init_structure.Speed = GPIO_SPEED_HIGH;
   HAL_GPIO_Init(GPIOH, &gpio_init_structure);
 
@@ -367,6 +346,7 @@ static void LCD_LL_Init(void)
 {   
   RCC_PeriphCLKInitTypeDef  PeriphClkInitStruct;
   GPIO_InitTypeDef          GPIO_Init_Structure;
+  static DSI_PHY_TimerTypeDef PhyTimings;
   static DSI_CmdCfgTypeDef         CmdCfg;
   static DSI_LPCmdTypeDef          LPCmd;
   static DSI_PLLInitTypeDef        PLLInit;
@@ -434,12 +414,35 @@ static void LCD_LL_Init(void)
   LPCmd.LPDcsLongWrite        = DSI_LP_DLW_ENABLE;
   HAL_DSI_ConfigCommand(&hdsi_disco, &LPCmd);
 
+  /* Configure DSI PHY HS2LP and LP2HS timings */
+  PhyTimings.ClockLaneHS2LPTime = 35;
+  PhyTimings.ClockLaneLP2HSTime = 35;
+  PhyTimings.DataLaneHS2LPTime = 35;
+  PhyTimings.DataLaneLP2HSTime = 35;
+  PhyTimings.DataLaneMaxReadTime = 0;
+  PhyTimings.StopWaitTime = 10;
+  HAL_DSI_ConfigPhyTimer(&hdsi_disco, &PhyTimings);
+
   /* Initialize LTDC */
   LTDC_Init();
 
   /* Start DSI */
   HAL_DSI_Start(&(hdsi_disco));
 
+#if defined(USE_STM32469I_DISCO_REVC)
+  /* Initialize the NT35510 LCD Display IC Driver (TechShine LCD IC Driver)
+   *  depending on configuration set in 'hdsivideo_handle'.
+   */
+
+  /* Send Display off DCS Command to display */
+  HAL_DSI_ShortWrite(&(hdsi_disco),
+                     0,
+                     DSI_DCS_SHORT_PKT_WRITE_P1,
+                     NT35510_CMD_DISPOFF,
+                     0x00);
+
+  NT35510_Init(NT35510_FORMAT_RBG565, NT35510_ORIENTATION_LANDSCAPE);
+#else
   /* Initialize the OTM8009A LCD Display IC Driver (KoD LCD IC Driver)
    *  depending on configuration set in 'hdsivideo_handle'.
    */
@@ -452,6 +455,7 @@ static void LCD_LL_Init(void)
                      0x00);
 
   OTM8009A_Init(OTM8009A_FORMAT_RBG565, LCD_ORIENTATION_LANDSCAPE);
+#endif
 
   LPCmd.LPGenShortWriteNoP    = DSI_LP_GSW0P_DISABLE;
   LPCmd.LPGenShortWriteOneP   = DSI_LP_GSW1P_DISABLE;

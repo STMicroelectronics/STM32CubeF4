@@ -1,9 +1,9 @@
 /**
-  @page Demo   STM32412G-DISCO Demonstration Firmware
+  @page STemWin   STM32412G-DISCO Demonstration Firmware
  
   @verbatim
   ******************** (C) COPYRIGHT 2017 STMicroelectronics *******************
-  * @file    Demonstrations/readme.txt 
+  * @file    Demonstrations/STemWin/readme.txt 
   * @author  MCD Application Team
   * @brief   Description of STM32412G-DISCO Demonstration
   ******************************************************************************

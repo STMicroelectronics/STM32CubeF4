@@ -32,59 +32,64 @@
 /* Entry Point */
 ENTRY(Reset_Handler)
 
-/* Highest address of the user mode stack */
-_estack = 0x20050000;    /* end of RAM */
-/* Generate a link error if heap and stack don't fit into RAM */
-_Min_Heap_Size = 0x200;      /* required amount of heap  */
-_Min_Stack_Size = 0x400; /* required amount of stack */
+_estack = ORIGIN(RAM) + LENGTH(RAM);	/* end of "RAM" Ram type memory */
 
-/* Specify the memory areas */
+_Min_Heap_Size = 0x200 ;	/* required amount of heap  */
+_Min_Stack_Size = 0x400 ;	/* required amount of stack */
+
+/* Memories definition */
 MEMORY
 {
-FLASH_priv (rx)    : ORIGIN = 0x08000000, LENGTH = 16K
-FLASH (rx)         : ORIGIN = 0x08004000, LENGTH = 1520K
-RAM_priv (xrw) : ORIGIN = 0x20000000, LENGTH = 512
-RAM (xrw)      : ORIGIN = 0x20000200, LENGTH = 319K
+  RAM	(xrw)	: ORIGIN = 0x20000000,	LENGTH = 320K
+  FLASH	(rx)	: ORIGIN = 0x8000000,	LENGTH = 1536K
 }
 
-/* Variables used by FreeRTOS-MPU. */
-_Privileged_Functions_Region_Size = 16K;
-_Privileged_Data_Region_Size = 512;
+/* Initial 32K Flash is used to store kernel functions and
+ * initial 32K RAM is used to store kernel data. */
+__privileged_functions_region_size__  = 32K;
+__privileged_data_region_size__       = 32K;
 
-__FLASH_segment_start__ = ORIGIN( FLASH_priv );
-__FLASH_segment_end__ = __FLASH_segment_start__ + LENGTH( FLASH_priv ) + LENGTH( FLASH );
+__FLASH_segment_start__               = ORIGIN( FLASH );
+__FLASH_segment_end__                 = __FLASH_segment_start__ + LENGTH( FLASH );
 
-__privileged_functions_start__ = ORIGIN( FLASH_priv );
-__privileged_functions_end__ = __privileged_functions_start__ + _Privileged_Functions_Region_Size;
+__SRAM_segment_start__                = ORIGIN( RAM );
+__SRAM_segment_end__                  = __SRAM_segment_start__ + LENGTH( RAM );
 
-__SRAM_segment_start__ = ORIGIN( RAM_priv );
-__SRAM_segment_end__ = __SRAM_segment_start__ + LENGTH( RAM_priv ) + LENGTH( RAM );
+__privileged_functions_start__        = __FLASH_segment_start__;
+__privileged_functions_end__          = __FLASH_segment_start__ + __privileged_functions_region_size__;
 
-__privileged_data_start__ = ORIGIN( RAM_priv );
-__privileged_data_end__ = __privileged_data_start__ + _Privileged_Data_Region_Size;
+__privileged_data_start__             = __SRAM_segment_start__;
+__privileged_data_end__               = __SRAM_segment_start__ + __privileged_data_region_size__;
 
-/* Define output sections */
+/* Sections */
 SECTIONS
 {
-  /* The startup code goes first into FLASH */
-  .isr_vector :
+  /* The startup code and FreeRTOS kernel code are placed into privileged
+   * flash. */
+  .privileged_functions :
   {
     . = ALIGN(4);
-    KEEP(*(.isr_vector)) /* Startup code */
-    . = ALIGN(4);
-  } >FLASH_priv
-  
-    .privileged_functions : 
-  {
+    KEEP(*(.isr_vector)) /* Startup code. */
     . = ALIGN(4);
     *(privileged_functions)
-    *(privileged_functions*)
     . = ALIGN(4);
-  } >FLASH_priv
+    FILL(0xDEAD);
+    /* Ensure that non-privileged code is placed after the region reserved for
+     * privileged kernel code. */
+    /* Note that dot (.) actually refers to the byte offset from the start of
+     * the current section (.privileged_functions in this case). As a result,
+     * setting dot (.) to a value sets the size of the section. */
+    . = __privileged_functions_region_size__;
+  } >FLASH
 
-  /* The program code and other data goes into FLASH */
+  /* The program code and other data into "FLASH" Rom type memory */
   .text :
   {
+    /* Place the FreeRTOS System Calls first in the unprivileged region. */
+    . = ALIGN(4);
+    __syscalls_flash_start__ = .;
+    *(freertos_system_calls)
+    __syscalls_flash_end__ = .;
     . = ALIGN(4);
     *(.text)           /* .text sections (code) */
     *(.text*)          /* .text* sections (code) */
@@ -99,7 +104,7 @@ SECTIONS
     _etext = .;        /* define a global symbols at end of code */
   } >FLASH
 
-  /* Constant data goes into FLASH */
+  /* Constant data into "FLASH" Rom type memory */
   .rodata :
   {
     . = ALIGN(4);
@@ -108,78 +113,85 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  .ARM.extab   : { *(.ARM.extab* .gnu.linkonce.armextab.*) } >FLASH
+  .ARM.extab   : {
+    . = ALIGN(4);
+    *(.ARM.extab* .gnu.linkonce.armextab.*)
+    . = ALIGN(4);
+  } >FLASH
+
   .ARM : {
+    . = ALIGN(4);
     __exidx_start = .;
     *(.ARM.exidx*)
     __exidx_end = .;
+    . = ALIGN(4);
   } >FLASH
 
   .preinit_array     :
   {
+    . = ALIGN(4);
     PROVIDE_HIDDEN (__preinit_array_start = .);
     KEEP (*(.preinit_array*))
     PROVIDE_HIDDEN (__preinit_array_end = .);
+    . = ALIGN(4);
   } >FLASH
+
   .init_array :
   {
+    . = ALIGN(4);
     PROVIDE_HIDDEN (__init_array_start = .);
     KEEP (*(SORT(.init_array.*)))
     KEEP (*(.init_array*))
     PROVIDE_HIDDEN (__init_array_end = .);
+    . = ALIGN(4);
   } >FLASH
+
   .fini_array :
   {
+    . = ALIGN(4);
     PROVIDE_HIDDEN (__fini_array_start = .);
     KEEP (*(SORT(.fini_array.*)))
     KEEP (*(.fini_array*))
     PROVIDE_HIDDEN (__fini_array_end = .);
+    . = ALIGN(4);
   } >FLASH
 
-.pbss : 
+  /* Used by the startup to initialize data */
+  _sidata = LOADADDR(.privileged_data);
+
+  /* FreeRTOS kernel data. */
+  .privileged_data :
   {
     . = ALIGN(4);
-    _spbss = .;
+    _sdata = .;        /* Create a global symbol at data start. */
     *(privileged_data)
-    *(privileged_data*)
     . = ALIGN(4);
-    _epbss = .;
-  } >RAM_priv
-  
-  /* used by the startup to initialize data */
-  _sipdata = LOADADDR(.pdata);
+    FILL(0xDEAD);
+    /* Ensure that non-privileged data is placed after the region reserved for
+     * privileged kernel data. */
+    /* Note that dot (.) actually refers to the byte offset from the start of
+     * the current section (.privileged_data in this case). As a result, setting
+     * dot (.) to a value sets the size of the section. */
+    . = __privileged_data_region_size__;
+  } >RAM AT> FLASH
 
-  .pdata : 
+  /* Initialized data sections into "RAM" Ram type memory */
+  .data :
   {
     . = ALIGN(4);
-    _spdata = .;
-    *(privileged_initialized_data)
-    *(privileged_initialized_data*)
-    . = ALIGN(4);
-    _epdata = .;
-  } >RAM_priv AT> FLASH_priv
-
-  /* used by the startup to initialize data */
-  _sidata = LOADADDR(.data);
-
-  /* Initialized data sections goes into RAM, load LMA copy after code */
-  .data : 
-  {
-    . = ALIGN(4);
-    _sdata = .;        /* create a global symbol at data start */
     *(.data)           /* .data sections */
     *(.data*)          /* .data* sections */
 
     . = ALIGN(4);
     _edata = .;        /* define a global symbol at data end */
+
   } >RAM AT> FLASH
 
-  
-  /* Uninitialized data section */
+  /* Uninitialized data section into "RAM" Ram type memory */
   . = ALIGN(4);
   .bss :
   {
-    /* This is used by the startup in order to initialize the .bss secion */
+    /* This is used by the startup in order to initialize the .bss section */
     _sbss = .;         /* define a global symbol at bss start */
     __bss_start__ = _sbss;
     *(.bss)
@@ -191,7 +203,7 @@ SECTIONS
     __bss_end__ = _ebss;
   } >RAM
 
-  /* User_heap_stack section, used to check that there is enough RAM left */
+  /* User_heap_stack section, used to check that there is enough "RAM" Ram  type memory left */
   ._user_heap_stack :
   {
     . = ALIGN(8);
@@ -202,9 +214,7 @@ SECTIONS
     . = ALIGN(8);
   } >RAM
 
-  
-
-  /* Remove information from the standard libraries */
+  /* Remove information from the compiler libraries */
   /DISCARD/ :
   {
     libc.a ( * )

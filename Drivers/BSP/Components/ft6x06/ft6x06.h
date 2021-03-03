@@ -2,43 +2,25 @@
   ******************************************************************************
   * @file    ft6x06.h
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    03-May-2016
   * @brief   This file contains all the functions prototypes for the
   *          ft6x06.c IO expander driver.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  * <h2><center>&copy; Copyright (c) 2016 STMicroelectronics.
+  * All rights reserved.</center></h2>
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                        opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __FT6X06_H
-#define __FT6X06_H
+#ifndef __FT6XX6_H
+#define __FT6XX6_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -82,19 +64,19 @@ typedef struct
    * @{
    */
 
-  /** @defgroup FT6X06
+  /** @defgroup FT6XX6
    * @{
    */
 
   /* Exported types ------------------------------------------------------------*/
 
-  /** @defgroup FT6X06_Exported_Types
+  /** @defgroup FT6XX6_Exported_Types
    * @{
    */
 
   /* Exported constants --------------------------------------------------------*/
 
-  /** @defgroup FT6X06_Exported_Constants
+  /** @defgroup FT6XX6_Exported_Constants
    * @{
    */
 
@@ -102,7 +84,7 @@ typedef struct
 #define  FT_6206_MAX_WIDTH              ((uint16_t)800)     /* Touchscreen pad max width   */
 #define  FT_6206_MAX_HEIGHT             ((uint16_t)480)     /* Touchscreen pad max height  */
 
-  /* Touchscreen pad max width and height values for FT6x36 Touch*/
+  /* Touchscreen pad max width and height values for FT6xx6 Touch*/
 #define  FT_6206_MAX_WIDTH_HEIGHT       ((uint16_t)240)     
 
   /* Possible values of driver functions return status */
@@ -117,10 +99,10 @@ typedef struct
 #define FT6206_MAX_DETECTABLE_TOUCH     2
 
   /**
-   * @brief : Definitions for FT6206 I2C register addresses on 8 bit
+   * @brief : Definitions for FT6xx6 I2C register addresses on 8 bit
    **/
 
-  /* Current mode register of the FT6206 (R/W) */
+  /* Current mode register of the FT6xx6 (R/W) */
 #define FT6206_DEV_MODE_REG             0x00
 
   /* Possible values of FT6206_DEV_MODE_REG */
@@ -258,23 +240,24 @@ typedef struct
 #define FT6206_G_MODE_INTERRUPT_POLLING 0x00
 #define FT6206_G_MODE_INTERRUPT_TRIGGER 0x01
 
-  /* Current power mode the FT6206 system is in (R) */
+  /* Current power mode the FT6xx6 system is in (R) */
 #define FT6206_PWR_MODE_REG             0xA5
 
-  /* FT6206 firmware version */
+  /* FT6xx6 firmware version */
 #define FT6206_FIRMID_REG               0xA6
 
-  /* FT6206 Chip identification register */
+  /* FT6xx6 Chip identification register */
 #define FT6206_CHIP_ID_REG              0xA8
 
-  /*  Possible values of FT6206_CHIP_ID_REG */
+  /*  Possible values of touchscreen controller ID */
 #define FT6206_ID_VALUE                 0x11
 #define FT6x36_ID_VALUE                 0xCD
+#define FT6X36_ID2_VALUE                0xD8
 
   /* Release code version */
 #define FT6206_RELEASE_CODE_ID_REG      0xAF
 
-  /* Current operating mode the FT6206 system is in (R) */
+  /* Current operating mode the FT6xx6 system is in (R) */
 #define FT6206_STATE_REG                0xBC
 
   /**
@@ -283,40 +266,40 @@ typedef struct
 
   /* Exported macro ------------------------------------------------------------*/
 
-  /** @defgroup ft6x06_Exported_Macros
+  /** @defgroup ft6xx6_Exported_Macros
    * @{
    */
 
   /* Exported functions --------------------------------------------------------*/
 
-  /** @defgroup ft6x06_Exported_Functions
+  /** @defgroup ft6xx6_Exported_Functions
    * @{
    */
 
   /**
-   * @brief ft6x06 Control functions
+   * @brief ft6xx6 Control functions
    */
 
 
 /**
- * @brief  Initialize the ft6x06 communication bus
- *         from MCU to FT6206 : ie I2C channel initialization (if required).
- * @param  DeviceAddr: Device address on communication Bus (I2C slave address of FT6206).
+ * @brief  Initialize the ft6xx6 communication bus
+ *         from MCU to FT6xx6 : ie I2C channel initialization (if required).
+ * @param  DeviceAddr: Device address on communication Bus (I2C slave address of FT6xx6).
  * @retval None
  */
 void ft6x06_Init(uint16_t DeviceAddr);
 
 /**
- * @brief  Software Reset the ft6x06.
- * @param  DeviceAddr: Device address on communication Bus (I2C slave address of FT6206).
+ * @brief  Software Reset the ft6xx6.
+ * @param  DeviceAddr: Device address on communication Bus (I2C slave address of FT6xx6).
  * @retval None
  */
 void ft6x06_Reset(uint16_t DeviceAddr);
 
 /**
- * @brief  Read the ft6x06 device ID, pre intitalize I2C in case of need to be
- *         able to read the FT6206 device ID, and verify this is a FT6206.
- * @param  DeviceAddr: I2C FT6x06 Slave address.
+ * @brief  Read the ft6xx6 device ID, pre intitalize I2C in case of need to be
+ *         able to read the FT6xx6 device ID, and verify this is a FT6xx6.
+ * @param  DeviceAddr: I2C FT6xx6 Slave address.
  * @retval The Device ID (two bytes).
  */
 uint16_t ft6x06_ReadID(uint16_t DeviceAddr);
@@ -349,34 +332,34 @@ uint8_t ft6x06_TS_DetectTouch(uint16_t DeviceAddr);
 void ft6x06_TS_GetXY(uint16_t DeviceAddr, uint16_t *X, uint16_t *Y);
 
 /**
- * @brief  Configure the FT6206 device to generate IT on given INT pin
+ * @brief  Configure the FT6xx6 device to generate IT on given INT pin
  *         connected to MCU as EXTI.
- * @param  DeviceAddr: Device address on communication Bus (Slave I2C address of FT6206).
+ * @param  DeviceAddr: Device address on communication Bus (Slave I2C address of FT6xx6).
  * @retval None
  */
 void ft6x06_TS_EnableIT(uint16_t DeviceAddr);
 
 /**
- * @brief  Configure the FT6206 device to stop generating IT on the given INT pin
+ * @brief  Configure the FT6xx6 device to stop generating IT on the given INT pin
  *         connected to MCU as EXTI.
- * @param  DeviceAddr: Device address on communication Bus (Slave I2C address of FT6206).
+ * @param  DeviceAddr: Device address on communication Bus (Slave I2C address of FT6xx6).
  * @retval None
  */
 void ft6x06_TS_DisableIT(uint16_t DeviceAddr);
 
 /**
- * @brief  Get IT status from FT6206 interrupt status registers
+ * @brief  Get IT status from FT6xx6 interrupt status registers
  *         Should be called Following an EXTI coming to the MCU to know the detailed
  *         reason of the interrupt.
- * @param  DeviceAddr: Device address on communication Bus (I2C slave address of FT6206).
+ * @param  DeviceAddr: Device address on communication Bus (I2C slave address of FT6xx6).
  * @retval TS interrupts status
  */
 uint8_t ft6x06_TS_ITStatus (uint16_t DeviceAddr);
 
 /**
- * @brief  Clear IT status in FT6206 interrupt status clear registers
+ * @brief  Clear IT status in FT6xx6 interrupt status clear registers
  *         Should be called Following an EXTI coming to the MCU.
- * @param  DeviceAddr: Device address on communication Bus (I2C slave address of FT6206).
+ * @param  DeviceAddr: Device address on communication Bus (I2C slave address of FT6xx6).
  * @retval TS interrupts status
  */
 void ft6x06_TS_ClearIT (uint16_t DeviceAddr);
@@ -387,7 +370,7 @@ void ft6x06_TS_ClearIT (uint16_t DeviceAddr);
 
 /**
  * @brief  Get the last touch gesture identification (zoom, move up/down...).
- * @param  DeviceAddr: Device address on communication Bus (I2C slave address of FT6x06).
+ * @param  DeviceAddr: Device address on communication Bus (I2C slave address of FT6xx6).
  * @param  pGestureId : Pointer to get last touch gesture Identification.
  * @retval None.
  */
@@ -399,7 +382,7 @@ void ft6x06_TS_GetGestureID(uint16_t DeviceAddr, uint32_t * pGestureId);
  *         - weight that was applied to this touch
  *         - sub-area of the touch in the touch panel
  *         - event of linked to the touch (press down, lift up, ...)
- * @param  DeviceAddr: Device address on communication Bus (I2C slave address of FT6x06).
+ * @param  DeviceAddr: Device address on communication Bus (I2C slave address of FT6xx6).
  * @param  touchIdx : Passed index of the touch (0..1) on which we want to get the
  *                    detailed information.
  * @param  pWeight : Pointer to to get the weight information of 'touchIdx'.
@@ -418,7 +401,7 @@ void ft6x06_TS_GetTouchInfo(uint16_t   DeviceAddr,
 
 /* Imported TS IO functions --------------------------------------------------------*/
 
-/** @defgroup ft6x06_Imported_Functions
+/** @defgroup ft6xx6_Imported_Functions
  * @{
  */
 
@@ -435,7 +418,7 @@ extern void     TS_IO_Delay(uint32_t Delay);
 
   /* Imported global variables --------------------------------------------------------*/
 
-  /** @defgroup ft6x06_Imported_Globals
+  /** @defgroup ft6xx6_Imported_Globals
    * @{
    */
 
@@ -450,7 +433,7 @@ extern TS_DrvTypeDef ft6x06_ts_drv;
 #ifdef __cplusplus
 }
 #endif
-#endif /* __FT6X06_H */
+#endif /* __FT6XX6_H */
 
 
 /**

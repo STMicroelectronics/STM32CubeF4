@@ -187,7 +187,6 @@ static err_t http_sent(void *arg, struct tcp_pcb *pcb, u16_t len)
     { 
       /* Generate a software reset */
       NVIC_SystemReset();
-      while(1);
     }
       
   }

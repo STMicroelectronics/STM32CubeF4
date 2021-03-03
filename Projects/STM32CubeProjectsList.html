@@ -18,7 +18,7 @@
 
     <h1>STM32CubeF4 Firmware Examples for STM32F4xx Series</h1>
 
-    <p class="copyright">Copyright 2017 STMicroelectronics</p>
+    <p class="copyright">Copyright 2019 STMicroelectronics</p>
 
     <div class="picture">
       <img alt="" id="_x0000_i1025" src="../_htmresc/st_logo.png" style="border: 0px solid ; width: 104px; height: 77px;"/>
@@ -41,7 +41,7 @@
       <li>A Template project is provided to allow user to quickly build any firmware application on a given board.</li>
     </ul>
 
-    <p>The examples are located under STM32Cube_FW_STM32CubeF4_VX.Y.Z\Projects\, and all of them have the same structure:</p>
+    <p>The examples are located under STM32Cube_FW_F4_VX.Y.Z\Projects\, and all of them have the same structure:</p>
 
     <ul>
       <li>\Inc folder that contains all header files.</li>
@@ -63,7 +63,10 @@
 
     <p>The provided examples can be tailored to run on any compatible hardware; user simply need to update the BSP drivers for his board, if it has the same hardware functions (LED, LCD display, pushbuttons...etc.). The BSP is based on a modular architecture that allows it to be ported easily to any hardware by just implementing the low level routines.</p>
 
-    <p>The table below contains the list of examples provided within STM32CubeF4 Firmware package.</p>
+    <p>
+      <div>The table below contains the list of examples provided within STM32Cube_FW_F4 Firmware package.</div>
+      <div>In this table, the label <b>CubeMX</b> means the projects have been created using <a href="https://www.st.com/en/development-tools/stm32cubemx.html" target="_blank">STM32CubeMX</a>, the STM32Cube initialization code generator. Those projects can be opened with this tools to modify the projects itself. The others projects are manually created to demonstrate the product features.</div>
+    </p>
 
     <p id="STM32F4xxImportantLink">
       <div>Reference materials available on <a href="http://www.st.com/stm32cubefw" target="_blank">www.st.com/stm32cubefw</a></div>
@@ -86,24 +89,24 @@
 				<td><b>Module Name</b></td>
 				<td><b>Project Name</b></td>
 				<td class="descriptionColumn"><b>Description</b></td>
-				<td>STM32F412ZG-Nucleo</td>
-				<td>STM32F411E-Discovery</td>
-				<td>STM32469I-Discovery</td>
-				<td>STM32F401RE-Nucleo</td>
-				<td>STM324xG_EVAL</td>
 				<td>STM32F446ZE-Nucleo</td>
-				<td>STM32F413H-Discovery</td>
-				<td>STM32F411RE-Nucleo</td>
-				<td>STM324x9I_EVAL</td>
-				<td>STM32F4-Discovery</td>
-				<td>STM32F429I-Discovery</td>
-				<td>STM32F401-Discovery</td>
-				<td>STM32F413ZH-Nucleo</td>
-				<td>STM32F410xx-Nucleo</td>
-				<td>STM32469I_EVAL</td>
-				<td>STM32446E_EVAL</td>
-				<td>STM32F412G-Discovery</td>
 				<td>STM32F429ZI-Nucleo</td>
+				<td>STM32F429I-Discovery</td>
+				<td>STM32F413ZH-Nucleo</td>
+				<td>STM32F413H-Discovery</td>
+				<td>STM32F412ZG-Nucleo</td>
+				<td>STM32F412G-Discovery</td>
+				<td>STM32F411RE-Nucleo</td>
+				<td>STM32F411E-Discovery</td>
+				<td>STM32F410xx-Nucleo</td>
+				<td>STM32F401RE-Nucleo</td>
+				<td>STM32F401-Discovery</td>
+				<td>STM32F4-Discovery</td>
+				<td>STM324xG_EVAL</td>
+				<td>STM324x9I_EVAL</td>
+				<td>STM32469I_EVAL</td>
+				<td>STM32469I-Discovery</td>
+				<td>STM32446E_EVAL</td>
 				<td>STM32446E-Nucleo</td>
 			</tr>
       <tr align=center>
@@ -206,7 +209,7 @@ This projects provides a reference template through the LL API that can be used 
         <td>1</td>
       </tr>
       <tr align=center>
-        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" rowspan=136><p id="Examples">Examples</p></td>
+        <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" rowspan=137><p id="Examples">Examples</p></td>
         <td align=left rowspan=1><p id="-">-</p></td>
         <td align=left><p id="BSP">BSP</p></td>
         <td align=left>
@@ -215,17 +218,17 @@ This example provides a description of how to use the different BSP drivers.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -242,20 +245,20 @@ How to use two ADC peripherals to perform conversions in dual interleaved mode.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -268,20 +271,20 @@ channels, and how to get the result of this conversion.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -293,17 +296,17 @@ ADC1 to memory.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -316,6 +319,15 @@ ADC1 to memory.
 How to use the ADC in interrupt mode to convert data through the HAL API.
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -323,15 +335,6 @@ How to use the ADC in interrupt mode to convert data through the HAL API.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -343,21 +346,21 @@ How to use the ADC in Polling mode to convert data through the HAL API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -369,20 +372,20 @@ How to use ADC and TIM8 to continuously convert data from an ADC channel.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -395,20 +398,20 @@ interleaved mode.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -421,17 +424,17 @@ How to set up a communication with the CAN in loopback mode.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -456,10 +459,10 @@ How to set up a communication with the CAN in loopback mode.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -472,17 +475,17 @@ normal mode.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -509,9 +512,9 @@ How to configure and use the CEC peripheral to receive and transmit messages.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -536,9 +539,9 @@ acknowledge the received messages.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -563,9 +566,9 @@ same time.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -577,6 +580,15 @@ HAL API. The CRC (Cyclic Redundancy Check) calculation unit computes the CRC cod
 of a given buffer of 32-bit data words, using a fixed generator polynomial (0x4C11DB7).
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -584,15 +596,6 @@ of a given buffer of 32-bit data words, using a fixed generator polynomial (0x4C
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -612,14 +615,14 @@ interrupt mode using AES with Combined Cipher Machine (CCM) then generate the au
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -639,14 +642,14 @@ AES Galois/counter mode (GCM)and generate the authentication TAG .
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -662,18 +665,18 @@ ECB, CBC and CTR algorithm.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -689,18 +692,18 @@ ECB algorithm  in DMA mode with swapping.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -716,18 +719,18 @@ TDES ECB and CBC algorithm.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -741,22 +744,22 @@ as privileged read-only area and attempt to perform read and write operations
 in different modes.
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -769,21 +772,21 @@ mode is entered on reset or when returning from an exception.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -795,16 +798,16 @@ and can be entered as a result of an exception return.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -819,6 +822,15 @@ This example shows how to use the default configuration of SysTick with a time b
 equal to 1 ms in order to insert a delay between LEDs toggling.
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -826,15 +838,6 @@ equal to 1 ms in order to insert a delay between LEDs toggling.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -851,18 +854,18 @@ generate several signals using DMA controller.
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -875,20 +878,20 @@ do a simple conversion.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -902,20 +905,20 @@ camera module and display in continuous mode the picture on LCD.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -928,20 +931,20 @@ camera module and display in snapshot mode the picture on LCD.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -956,17 +959,17 @@ This example shows how to use the DFSDM HAL API to perform stereo audio recordin
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -979,9 +982,9 @@ This example shows how to use the DFSDM HAL API to perform stereo audio recordin
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1006,21 +1009,21 @@ enabled through the HAL API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -1033,17 +1036,17 @@ the HAL API.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -1065,15 +1068,15 @@ the HAL API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -1091,14 +1094,14 @@ the HAL API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1117,15 +1120,15 @@ the HAL API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -1143,14 +1146,14 @@ the HAL API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1169,14 +1172,14 @@ the HAL API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1196,13 +1199,13 @@ flash memory bank 1 and bank 2 and to swap between both of them by mean of the F
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1217,20 +1220,20 @@ the internal Flash memory.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -1248,7 +1251,6 @@ disable the write protection of the internal Flash memory.
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1258,6 +1260,7 @@ disable the write protection of the internal Flash memory.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -1280,8 +1283,8 @@ This example describes how to configure the FMC controller to access the NOR mem
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1296,9 +1299,9 @@ memory.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1321,9 +1324,9 @@ This example describes how to execute a part of the code from the PSRAM external
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1352,16 +1355,16 @@ memory.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -1378,16 +1381,16 @@ memory including heap and stack.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -1404,16 +1407,16 @@ memory in low power mode (SDRAM Self Refresh mode).
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -1430,14 +1433,14 @@ memory.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1457,14 +1460,14 @@ on evaluation board (including heap and stack).
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1480,16 +1483,16 @@ memory.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1507,16 +1510,16 @@ memory including heap and stack.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1532,17 +1535,17 @@ How to configure external interrupt lines.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -1555,22 +1558,22 @@ How to configure external interrupt lines.
 How to configure and use GPIOs through the HAL API.
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
       </tr>
@@ -1666,18 +1669,18 @@ and HMAC MD5 algorithms.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1691,18 +1694,18 @@ How to use the HASH peripheral to hash data with SHA-1 and MD5 algorithms.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1717,18 +1720,18 @@ when data are fed to the HASH unit with DMA.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1746,14 +1749,14 @@ How to use the HASH peripheral to hash data with SHA224 and SHA256 algorithms.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1780,9 +1783,9 @@ the device communicates with an I2C EEPROM memory.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -1805,8 +1808,8 @@ the device communicates with an I2C EEPROM memory.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1817,20 +1820,20 @@ the device communicates with an I2C EEPROM memory.
 How to handle I2C data buffer transmission/reception between two boards, 
 using an interrupt.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
@@ -1843,20 +1846,20 @@ using an interrupt.
 How to handle I2C data buffer transmission/reception between two boards, 
 via DMA.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
@@ -1869,20 +1872,20 @@ via DMA.
 How to handle I2C data buffer transmission/reception between two boards, 
 using an interrupt.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
@@ -1895,20 +1898,20 @@ using an interrupt.
 How to handle I2C data buffer transmission/reception between two boards, 
 in polling mode.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
@@ -1922,18 +1925,18 @@ How to perform multiple I2C data buffer transmission/reception between two board
 in interrupt mode and with restart condition.
 </td>
         <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1948,18 +1951,18 @@ How to handle single I2C data buffer transmission/reception between two boards,
 in interrupt mode and with restart condition.
 </td>
         <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -1979,19 +1982,19 @@ peripheral using DMA transfer.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -2003,19 +2006,19 @@ How to handle the IWDG reload counter and simulate a software fault that generat
 an MCU IWDG reset after a preset laps of time.
 </td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -2031,21 +2034,21 @@ This example provides a description of how to use the embedded LCD DSI controlle
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -2057,21 +2060,21 @@ This example provides a description of how to use the embedded LCD DSI controlle
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -2083,21 +2086,21 @@ This example provides a description of how to use the embedded LCD DSI controlle
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -2109,21 +2112,21 @@ This example provides a description of how to use the embedded LCD DSI controlle
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -2135,21 +2138,21 @@ This example provides a description of how to use the embedded LCD DSI controlle
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -2163,21 +2166,21 @@ on data lane and allows to save some power when the LCD does not need to display
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -2190,21 +2193,21 @@ DSI ULPM mode on data lane and clock lane.
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -2216,21 +2219,21 @@ This example provides a description of how to use the embedded LCD DSI controlle
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -2242,21 +2245,21 @@ This example provides a description of how to use the embedded LCD DSI controlle
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -2274,13 +2277,13 @@ This example provides a description of how to use the embedded LCD DSI controlle
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2300,13 +2303,13 @@ This example provides a description of how to use the embedded LCD DSI controlle
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2319,6 +2322,12 @@ This example provides a description of how to use the embedded LCD DSI controlle
 </td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2326,12 +2335,6 @@ This example provides a description of how to use the embedded LCD DSI controlle
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2348,17 +2351,17 @@ FLASH option bytes.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2374,8 +2377,6 @@ low-power modes.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -2384,10 +2385,12 @@ low-power modes.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
       </tr>
       <tr align=center>
@@ -2400,17 +2403,17 @@ line. External DC supply must be used to supply Vdd.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2422,15 +2425,6 @@ line. External DC supply must be used to supply Vdd.
 How to enter the Standby mode and wake up from this mode by using an external 
 reset or the WKUP pin.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2438,8 +2432,17 @@ reset or the WKUP pin.
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -2448,15 +2451,6 @@ reset or the WKUP pin.
 How to enter the Stop mode and wake up from this mode by using the RTC wakeup 
 timer event or an interrupt.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2464,8 +2458,17 @@ timer event or an interrupt.
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -2476,22 +2479,22 @@ How to execute code from QSPI memory after code loading.
 </td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -2505,6 +2508,7 @@ How to use a QSPI memory in memory-mapped mode.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2514,9 +2518,8 @@ How to use a QSPI memory in memory-mapped mode.
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -2526,22 +2529,22 @@ How to configure the QSPI IP in order to have access to external memory just aft
 </td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -2553,7 +2556,7 @@ How to use a QSPI memory in DMA mode.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
@@ -2563,10 +2566,10 @@ How to use a QSPI memory in DMA mode.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -2578,7 +2581,7 @@ How to use a QSPI memory in interrupt mode.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
@@ -2588,10 +2591,10 @@ How to use a QSPI memory in interrupt mode.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -2604,14 +2607,14 @@ and modify the clock settings in Run mode.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -2627,23 +2630,23 @@ and modify the clock settings in Run mode.
         <td align=left>
 Configuration of the RNG using the HAL API. This example uses the RNG to generate 32-bit long random numbers.
 </td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -2657,21 +2660,21 @@ HAL API to configure and generate an RTC alarm.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -2681,22 +2684,22 @@ This example guides you through the different configuration steps by mean of HAL
 to ensure Calendar configuration using the RTC peripheral.  
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
       </tr>
@@ -2708,19 +2711,19 @@ HAL API to write/read data to/from RTC Backup registers. It also demonstrates th
 detection feature.
 </td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
@@ -2741,7 +2744,6 @@ HAL API to demonstrate the timestamp feature.
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2751,6 +2753,7 @@ HAL API to demonstrate the timestamp feature.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -2767,7 +2770,6 @@ Basic implementation of audio features using BSP_AUDIO.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2777,6 +2779,7 @@ Basic implementation of audio features using BSP_AUDIO.
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -2798,10 +2801,10 @@ Use of the SAI HAL API to play an audio file in DMA circular mode and handle the
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -2818,16 +2821,16 @@ smartcard mode.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -2842,16 +2845,16 @@ This example guides you through the different configuration steps by mean of HAL
 to transmit/receive SPI data buffer using Interrupt, in an advanced communication mode :
 The master board always sends the command to the slave before any transmission is performed.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
@@ -2869,16 +2872,16 @@ This example guides you through the different configuration steps by mean of HAL
 to transmit/receive SPI data buffer in Polling mode and in an advanced communication mode:
 the master board always sends the command to the slave before any transmission is performed.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
@@ -2895,17 +2898,17 @@ the master board always sends the command to the slave before any transmission i
 This example shows how to perform SPI data buffer transmission/reception between 
 two boards via DMA.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
@@ -2921,17 +2924,17 @@ two boards via DMA.
 This example shows how to ensure SPI data buffer transmission/reception between 
 two boards by using an interrupt.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
@@ -2947,17 +2950,17 @@ two boards by using an interrupt.
 This example shows how to ensure SPI data buffer transmission/reception in Polling 
 mode between two boards.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
@@ -2977,16 +2980,16 @@ a section is created where the function is stored.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3004,20 +3007,20 @@ This example shows how to configure the TIM1 peripheral to generate 6 Steps.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3030,20 +3033,20 @@ with 4 different duty cycles (50%, 37.5%, 25% and 12.5%).
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3055,20 +3058,20 @@ This example shows how to synchronize TIM2 and Timers (TIM3 and TIM4) in cascade
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3082,20 +3085,20 @@ feature and to lock the desired parameters.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3105,6 +3108,15 @@ This example provides a description of how to use DMA with TIMER Update request
 to transfer Data from memory to TIMER Capture Compare Register 3 (CCR3).
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3112,15 +3124,6 @@ to transfer Data from memory to TIMER Capture Compare Register 3 (CCR3).
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -3134,20 +3137,20 @@ using the TIM1 DMA burst feature.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3160,20 +3163,20 @@ determinate the rotation direction.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3186,20 +3189,20 @@ determinate the rotation direction.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3209,6 +3212,15 @@ determinate the rotation direction.
   an external signal.
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3216,15 +3228,6 @@ determinate the rotation direction.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -3235,6 +3238,15 @@ determinate the rotation direction.
   different delays.
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3242,15 +3254,6 @@ determinate the rotation direction.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -3264,20 +3267,20 @@ determinate the rotation direction.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3287,22 +3290,22 @@ determinate the rotation direction.
   signals with four different frequencies.
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -3313,22 +3316,22 @@ This example shows how to use the TIM peripheral to generate a single pulse when
 a rising edge of an external signal is received on the timer Input pin.
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -3342,9 +3345,9 @@ duty cycle of an external signal.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -3365,22 +3368,22 @@ This example shows how to configure the TIM peripheral in PWM (Pulse Width Modul
 mode.
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -3393,20 +3396,20 @@ This example shows how to synchronize TIM2 and Timers (TIM3 and TIM4) in paralle
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3430,10 +3433,10 @@ which allows to double the output frequency.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3451,13 +3454,13 @@ which allow to double the output frequency.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3472,20 +3475,20 @@ This example shows how to synchronize TIM1 and Timers (TIM3 and TIM4) in paralle
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3495,27 +3498,27 @@ This example shows how to configure the TIM peripheral to generate a time base o
 one second with the corresponding Interrupt request.
 </td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
-        <td align=left rowspan=8><p id="UART">UART</p></td>
+        <td align=left rowspan=9><p id="UART">UART</p></td>
         <td align=left><p id="UART_HyperTerminal_DMA">UART_HyperTerminal_DMA</p></td>
         <td align=left>
 This example describes an UART transmission (transmit/receive) in DMA mode
@@ -3535,10 +3538,10 @@ between a board and an HyperTerminal PC application.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3561,10 +3564,10 @@ an Hyperterminal PC application by using an interrupt.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -3577,17 +3580,17 @@ between a board and an Hyperterminal PC application.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3603,17 +3606,17 @@ an Hyperterminal PC application by using an interrupt.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -3625,23 +3628,48 @@ an Hyperterminal PC application by using an interrupt.
 This example shows how to re-route the C library printf function to the UART.
 </td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+      </tr>
+      <tr align=center>
+        <td align=left><p id="UART_ReceptionToIdle_CircularDMA">UART_ReceptionToIdle_CircularDMA</p></td>
+        <td align=left>
+How to use the HAL UART API for reception to IDLE event in circular DMA mode.
+</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
       </tr>
       <tr align=center>
@@ -3650,20 +3678,20 @@ This example shows how to re-route the C library printf function to the UART.
 This example describes an UART transmission (transmit/receive) in DMA mode
 between two boards.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
@@ -3676,20 +3704,20 @@ between two boards.
 This example describes an UART transmission (transmit/receive) in interrupt mode
 between two boards.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
@@ -3702,20 +3730,20 @@ between two boards.
 This example describes an UART transmission (transmit/receive) in polling mode
 between two boards.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
@@ -3731,19 +3759,19 @@ HAL API to perform periodic WWDG counter update and simulate a software fault th
 generates an MCU WWDG reset when a predefined time period has elapsed.
 </td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -3751,26 +3779,26 @@ generates an MCU WWDG reset when a predefined time period has elapsed.
         <td>-</td>
       </tr>
       <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
-        <td colspan="3"><b>Total number of examples: 740</b></td>
-        <td>42</td>
-        <td>24</td>
-        <td>46</td>
-        <td>7</td>
-        <td>71</td>
+        <td colspan="3"><b>Total number of examples: 742</b></td>
         <td>27</td>
-        <td>27</td>
-        <td>9</td>
-        <td>86</td>
-        <td>27</td>
+        <td>28</td>
         <td>30</td>
-        <td>24</td>
         <td>48</td>
-        <td>16</td>
-        <td>94</td>
-        <td>71</td>
-        <td>51</td>
         <td>27</td>
-        <td>13</td>
+        <td>42</td>
+        <td>51</td>
+        <td>9</td>
+        <td>24</td>
+        <td>16</td>
+        <td>7</td>
+        <td>24</td>
+        <td>27</td>
+        <td>71</td>
+        <td>86</td>
+        <td>94</td>
+        <td>46</td>
+        <td>71</td>
+        <td>14</td>
       </tr>
       <tr align=center>
         <td style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" rowspan=72><p id="Examples_LL">Examples_LL</p></td>
@@ -4079,23 +4107,23 @@ as privileged read-only area and attempt to perform read and write operations
 in different modes.
 </td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -4136,23 +4164,23 @@ peripheral initialization done using LL unitary services functions
 for optimization purpose (performance and size).
 </td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -4164,23 +4192,23 @@ peripheral initialization done using LL unitary services functions
 for optimization purpose (performance and size).
 </td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -4192,23 +4220,23 @@ peripheral initialization done using LL initialization function
 to demonstrate LL init usage.
 </td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -4275,23 +4303,23 @@ mode. The example is based on the STM32F4xx DMA2D LL API. Peripheral initializat
 using LL unitary services functions for optimization purpose (performance and size).
 </td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -4673,11 +4701,11 @@ for optimization purpose (performance and size).
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4701,11 +4729,11 @@ to demonstrate LL init usage.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -4849,23 +4877,23 @@ This example shows how to configure RNG peripheral to allow generation of
 functions for optimization purpose (performance and size).
 </td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -4876,23 +4904,23 @@ This example shows how to configure RNG peripheral to allow generation of
 using LL unitary services functions for optimization purpose (performance and size).
 </td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -5774,7 +5802,7 @@ is done using LL unitary services functions for optimization purpose (performanc
       <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
         <td colspan="3"><b>Total number of examples_ll: 71</b></td>
         <td>0</td>
-        <td>0</td>
+        <td>7</td>
         <td>0</td>
         <td>0</td>
         <td>0</td>
@@ -5782,15 +5810,15 @@ is done using LL unitary services functions for optimization purpose (performanc
         <td>0</td>
         <td>62</td>
         <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
         <td>2</td>
         <td>0</td>
         <td>0</td>
         <td>0</td>
-        <td>7</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
         <td>0</td>
       </tr>
       <tr align=center>
@@ -5805,23 +5833,23 @@ examples). This example is based on the STM32F4xx ADC HAL and LL API
 (LL API usage for performance improvement).
 </td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -5889,23 +5917,23 @@ the STM32F4xx DMA HAL and LL API (LL API used for performance improvement).
   DMA2D LL APIs for performance improvement.
 </td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -6163,7 +6191,7 @@ the STM32F4xx UART HAL and LL API (LL API usage for performance improvement).
       <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
         <td colspan="3"><b>Total number of examples_mix: 13</b></td>
         <td>0</td>
-        <td>0</td>
+        <td>2</td>
         <td>0</td>
         <td>0</td>
         <td>0</td>
@@ -6179,7 +6207,7 @@ the STM32F4xx UART HAL and LL API (LL API usage for performance improvement).
         <td>0</td>
         <td>0</td>
         <td>0</td>
-        <td>2</td>
+        <td>0</td>
         <td>0</td>
       </tr>
       <tr align=center>
@@ -6187,27 +6215,27 @@ the STM32F4xx UART HAL and LL API (LL API usage for performance improvement).
         <td align=left rowspan=1><p id="Audio">Audio</p></td>
         <td align=left><p id="Audio_playback_and_record">Audio_playback_and_record</p></td>
         <td align=left>
-This application shows how to use the different functionalities of Audio device 
+This application shows how to use the different functionalities of Audio device
 and ST MEMS microphones.
 </td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -6222,20 +6250,20 @@ in USB device.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -6247,21 +6275,21 @@ in USB device.
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -6274,21 +6302,21 @@ the content of GRAM is directly updated and displayed on DSI LCD.
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -6300,21 +6328,21 @@ the content of GRAM is directly updated and displayed on DSI LCD.
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -6327,19 +6355,19 @@ This application describes how to display on LCD pictures saved under SD card.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -6357,13 +6385,13 @@ This application describes how to display on LCD pictures saved under SD card.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -6376,15 +6404,15 @@ This application describes how to display on LCD pictures saved under SD card.
 </td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -6402,6 +6430,12 @@ This application describes how to display on LCD pictures saved under SD card.
 </td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -6409,12 +6443,6 @@ This application describes how to display on LCD pictures saved under SD card.
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -6433,13 +6461,13 @@ This application describes how to display on LCD pictures saved under SD card.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -6456,9 +6484,9 @@ by emulating the EEPROM mechanism using the on-chip Flash of STM32F446ZE device.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -6477,109 +6505,105 @@ by emulating the EEPROM mechanism using the on-chip Flash of STM32F446ZE device.
         <td align=left><p id="FatFs_MultiDrives">FatFs_MultiDrives</p></td>
         <td align=left>
 This application provides a description on how to use STM32Cube firmware with FatFs 
-middleware component as a generic FAT file system module, in order to develop an
-application exploiting FatFs offered features with multidrives (RAMDisk, uSD) 
-configuration. 
+middleware component as a generic FAT file system module. This example develops an
+application exploiting FatFs features with multidrives (RAMDisk, uSD) configuration.
 </td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
         <td align=left><p id="FatFs_RAMDisk">FatFs_RAMDisk</p></td>
         <td align=left>
-This application provides a description on how to use STM32Cube firmware with FatFs 
-middleware component as a generic FAT file system module, in order to develop an
-application exploiting FatFs offered features with RAM disk (SDRAM) drive 
-configuration. 
+How to use STM32Cube firmware with FatFs middleware component as a generic FAT
+file system module. This example develops an application that exploits FatFs
+features to configure a RAM disk (SRAM) drive.
 </td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
         <td align=left><p id="FatFs_RAMDisk_RTOS">FatFs_RAMDisk_RTOS</p></td>
         <td align=left>
-This application provides a description on how to use STM32Cube firmware with FatFs 
-middleware component as a generic FAT file system module, in order to develop an
-application exploiting FatFs offered features with RAM disk (SRAM) drive in RTOS 
-mode configuration. 
+How to use STM32Cube firmware with FatFs middleware component as a generic FAT
+file system module. This example develops an application exploiting FatFs
+features with a RAM disk (SRAM) drive in RTOS mode configuration.
 </td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
         <td align=left><p id="FatFs_USBDisk">FatFs_USBDisk</p></td>
         <td align=left>
-This application provides a description on how to use STM32Cube firmware with FatFs 
-middleware component as a generic FAT file system module and STM32 USB On-The-Go
-(OTG) host library, in Full Speed (FS) mode,
-in order to develop an application exploiting FatFs offered features with USB 
-disk drive configuration.
+How to use STM32Cube firmware with FatFs middleware component as a generic FAT
+file system module and STM32 USB On-The-Go (OTG) host library, in both Full
+Speed (FS) and High Speed (HS) modes. This example develops an application
+exploiting FatFs features with USB disk drive configuration.
 </td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -6589,11 +6613,9 @@ disk drive configuration.
       <tr align=center>
         <td align=left><p id="FatFs_USBDisk_MultipleAccess_RTOS">FatFs_USBDisk_MultipleAccess_RTOS</p></td>
         <td align=left>
-This application provides a description on how to use STM32Cube firmware with FatFs 
-middleware component as a generic FAT file system module, FreeRTOS as an RTOS
-module based on using CMSIS-OS wrapping layer common APIs, and also STM32 USB 
-On-The-Go (OTG) host library, in Full Speed (FS), in order to develop an application 
-exploiting FatFs offered features with USB disk drive in RTOS mode configuration.
+How to use STM32Cube firmware with FatFs middleware component as a generic FAT
+file system module, FreeRTOS as an RTOS module based on using CMSIS-OS wrapping
+layer common APIs, and also STM32 USB On-The-Go (OTG) host library, in Full Speed (FS).
 </td>
         <td>-</td>
         <td>-</td>
@@ -6603,8 +6625,6 @@ exploiting FatFs offered features with USB disk drive in RTOS mode configuration
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -6613,17 +6633,18 @@ exploiting FatFs offered features with USB disk drive in RTOS mode configuration
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
         <td align=left><p id="FatFs_USBDisk_RTOS">FatFs_USBDisk_RTOS</p></td>
         <td align=left>
-This application provides a description on how to use STM32Cube firmware with FatFs 
-middleware component as a generic FAT file system module, FreeRTOS as an RTOS
-module based on using CMSIS-OS wrapping layer common APIs, and also STM32 USB 
-On-The-Go (OTG) host library, in Full Speed (FS) mode,
-in order to develop an application exploiting FatFs offered features with USB 
-disk drive in RTOS mode configuration.
+How to use STM32Cube firmware with FatFs middleware component as a generic FAT
+file system module, FreeRTOS as an RTOS module based on using CMSIS-OS wrapping
+layer common APIs, and STM32 USB On-The-Go (OTG) host library, in both Full
+Speed (FS) and High Speed (HS) modes. This example develops an application
+exploiting FatFs features with a USB disk drive in RTOS mode configuration.
 </td>
         <td>-</td>
         <td>-</td>
@@ -6633,8 +6654,6 @@ disk drive in RTOS mode configuration.
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -6643,40 +6662,43 @@ disk drive in RTOS mode configuration.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
         <td align=left><p id="FatFs_uSD">FatFs_uSD</p></td>
         <td align=left>
-This application provides a description on how to use STM32Cube firmware with FatFs 
-middleware component as a generic FAT file system module, in order to develop an
-application exploiting FatFs offered features with microSD drive configuration. 
+How to use STM32Cube firmware with FatFs middleware component as a generic FAT
+file system module. This example develops an application exploiting FatFs
+features with a microSD drive configuration.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
         <td align=left><p id="FatFs_uSD_RTOS">FatFs_uSD_RTOS</p></td>
         <td align=left>
-This application provides a description on how to use STM32Cube firmware with FatFs 
-middleware component as a generic FAT file system module. 
+How to use STM32Cube firmware with FatFs middleware component as a generic FAT
+file system module. This example develops an application exploiting FatFs
+features with a microSD drive in RTOS mode configuration.
 </td>
         <td>-</td>
         <td>-</td>
@@ -6686,7 +6708,6 @@ middleware component as a generic FAT file system module.
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -6696,6 +6717,7 @@ middleware component as a generic FAT file system module.
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -6707,21 +6729,21 @@ How to enter and exit low-power mode with CMSIS RTOS API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -6732,21 +6754,21 @@ How to use the MPU feature of FreeRTOS.
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -6757,20 +6779,20 @@ How to use mail queues with CMSIS RTOS API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -6782,21 +6804,21 @@ How to use mutexes with CMSIS RTOS API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -6807,21 +6829,21 @@ How to use message queues with CMSIS RTOS API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -6832,21 +6854,21 @@ How to use semaphores with CMSIS RTOS API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -6857,21 +6879,21 @@ How to use semaphore from ISR with CMSIS RTOS API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -6882,8 +6904,8 @@ How to perform thread signaling using CMSIS RTOS API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
@@ -6891,11 +6913,11 @@ How to perform thread signaling using CMSIS RTOS API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -6907,20 +6929,20 @@ How to perform thread signaling from an interrupt using CMSIS RTOS API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -6932,21 +6954,21 @@ How to implement thread creation using CMSIS RTOS API.
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -6957,21 +6979,21 @@ How to use timers of CMSIS RTOS API.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -6986,20 +7008,20 @@ In-Application Programming (IAP, through USART).
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7012,20 +7034,20 @@ loaded into Flash memory using In-Application Programming (IAP, through USART).
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7043,16 +7065,16 @@ the final BMP image on the LCD.
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7069,16 +7091,16 @@ in USB disk then decode the jpeg file and display the final BMP image on the LCD
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7090,23 +7112,23 @@ based on Netconn API of LwIP TCP/IP stack
 The communication is done with a web browser application in a remote PC.
 </td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7120,17 +7142,17 @@ The communication is done with a web browser application in a remote PC.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7147,17 +7169,17 @@ The communication is done with a web browser application in a remote PC.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7173,17 +7195,17 @@ This application guides STM32Cube HAL API users to run In-Application Programmin
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7201,18 +7223,18 @@ To run this application, On the remote PC, open a command prompt window.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7229,18 +7251,18 @@ To run this application, On the remote PC, open a command prompt window.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7255,18 +7277,18 @@ for STM32F4xx devices.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7283,18 +7305,18 @@ To run this application, On the remote PC, open a command prompt window.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7311,18 +7333,18 @@ To run this application, On the remote PC, open a command prompt window.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7339,18 +7361,18 @@ To run this application, On the remote PC, open a command prompt window.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7370,15 +7392,15 @@ application based on STemWin for STM32F4xx devices.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -7396,15 +7418,15 @@ application based on STemWin for STM32F4xx devices.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -7422,15 +7444,15 @@ application based on STemWin for STM32F4xx devices.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -7447,16 +7469,16 @@ Simple "Hello World" example based on STemWin for STM32F4xx devices.
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7473,15 +7495,15 @@ application based on STemWin for STM32F4xx devices.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -7495,20 +7517,20 @@ to show some of the STemWin Library capabilities.
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7520,13 +7542,11 @@ capability on the STM32F4xx devices.
 </td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7534,8 +7554,10 @@ capability on the STM32F4xx devices.
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7548,20 +7570,20 @@ following the PSTN subprotocol using the USB Device and UART peripherals.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7573,20 +7595,20 @@ This application shows how to use the USB device application based on the Human 
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7595,23 +7617,23 @@ This application shows how to use the USB device application based on the Human 
 This application presents a compliant implementation of the Device Firmware Upgrade (DFU) 
 capability for programming the embedded flash memory through the USB peripheral on the STM32F4xx devices.
 </td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -7626,20 +7648,20 @@ and Human Interface (HID) in the same project.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7653,9 +7675,9 @@ should be set to 1 to enable the support for BCD.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7678,22 +7700,22 @@ protocol in the USB stack.
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7702,19 +7724,19 @@ protocol in the USB stack.
 This application shows how to use the USB device application based on the Human Interface (HID) on the STM32F4xx devices.
 </td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -7728,22 +7750,22 @@ This application shows how to use the USB device application based on the Mass S
 </td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7756,12 +7778,9 @@ This application shows how to use the USB host application based on the Audio OU
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7769,6 +7788,9 @@ This application shows how to use the USB host application based on the Audio OU
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -7779,21 +7801,21 @@ This application shows how to use the USB host application based on the Communic
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -7808,18 +7830,18 @@ Human Interface (HID) in the same project.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7832,21 +7854,21 @@ dynamically switch, on the same port, between available USB host applications on
 </td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -7860,20 +7882,20 @@ allows a user application to erase and write to on-chip flash memory.
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7881,24 +7903,24 @@ allows a user application to erase and write to on-chip flash memory.
         <td align=left>
 This application shows how to use the USB host application based on the HID class on the STM32F4xx devices.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7907,19 +7929,19 @@ This application shows how to use the USB host application based on the HID clas
 This application shows how to use the USB host application based on the HID class on the STM32F446xx device.
 </td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
@@ -7932,16 +7954,6 @@ This application shows how to use the USB host application based on the HID clas
 This application shows how to use the USB host application based on the Mass Storage Class (MSC) on the STM32F4xx devices in RTOS mode
 configuration.
 </td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -7950,6 +7962,16 @@ configuration.
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -7958,22 +7980,22 @@ configuration.
 This application shows how to use the USB host application based on the Mass Storage Class (MSC) on the STM32F446xx device.
 </td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
@@ -7986,17 +8008,17 @@ This application shows how to use the USB host application based on the Media Tr
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -8014,9 +8036,9 @@ to a TCP server.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -8040,9 +8062,9 @@ on STM32 Cube HAL.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -8067,18 +8089,18 @@ crypto library and LwIP TCP/IP stack on STM32F4 family.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -8093,42 +8115,42 @@ based on mbedTLS crypto library and LwIP TCP/IP stack.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
         <td colspan="3"><b>Total number of applications: 345</b></td>
-        <td>8</td>
-        <td>3</td>
-        <td>30</td>
-        <td>1</td>
-        <td>54</td>
         <td>6</td>
-        <td>20</td>
-        <td>1</td>
-        <td>61</td>
-        <td>3</td>
-        <td>16</td>
-        <td>3</td>
-        <td>19</td>
-        <td>1</td>
-        <td>48</td>
-        <td>38</td>
-        <td>25</td>
         <td>7</td>
+        <td>16</td>
+        <td>19</td>
+        <td>20</td>
+        <td>8</td>
+        <td>25</td>
+        <td>1</td>
+        <td>3</td>
+        <td>1</td>
+        <td>1</td>
+        <td>3</td>
+        <td>3</td>
+        <td>54</td>
+        <td>61</td>
+        <td>48</td>
+        <td>30</td>
+        <td>38</td>
         <td>1</td>
       </tr>
       <tr align=center>
@@ -8136,16 +8158,12 @@ based on mbedTLS crypto library and LwIP TCP/IP stack.
         <td align=left rowspan=3><p id="-">-</p></td>
         <td align=left><p id="Demo">Demo</p></td>
         <td align=left>
-The provided demonstration firmware based on STM32Cube helps you to discover STM32 
-Cortex-M devices that can be plugged on a STM32NUCLEO board. 
+Demonstration firmware based on STM32Cube. This example helps you to discover
+STM32 Cortex-M devices that are plugged onto your STM32 Nucleo board.
 </td>
         <td><font size="5" color=green>X</font></td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td><font size="5" color=green>X</font></td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
@@ -8154,9 +8172,13 @@ Cortex-M devices that can be plugged on a STM32NUCLEO board.
         <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
       </tr>
       <tr align=center>
@@ -8183,20 +8205,20 @@ of usage based on the STM32Cube HAL, BSP and several Middleware components.
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
-        <td><font size="5" color=green>X</font></td>
         <td>-</td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
       </tr>
       <tr align=center>
         <td align=left><p id="TouchGFX">TouchGFX</p></td>
         <td align=left>
-This is a demonstration from Draupner Graphics for MCUs with 240x320 LCDs attached.
+Demonstration from Draupner Graphics for MCUs with 240x320 LCDs attached.
 </td>
         <td>-</td>
         <td>-</td>
@@ -8206,15 +8228,15 @@ This is a demonstration from Draupner Graphics for MCUs with 240x320 LCDs attach
         <td>-</td>
         <td>-</td>
         <td>-</td>
-        <td><font size="5" color=green>X</font></td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
+        <td><font size="5" color=green>X</font></td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -8241,13 +8263,13 @@ of usage based on the STM3Cube HAL, BSP and several Middleware components.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -8275,13 +8297,13 @@ of usage based on the STM3Cube HAL, BSP and several Middleware components.
         <td>-</td>
         <td>-</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
         <td><font size="5" color=green>X</font></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
@@ -8292,44 +8314,44 @@ of usage based on the STM3Cube HAL, BSP and several Middleware components.
         <td>1</td>
         <td>1</td>
         <td>2</td>
-        <td>0</td>
         <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
         <td>1</td>
         <td>1</td>
         <td>1</td>
         <td>3</td>
-        <td>1</td>
         <td>2</td>
-        <td>1</td>
-        <td>1</td>
-        <td>0</td>
         <td>2</td>
-        <td>1</td>
-        <td>1</td>
         <td>1</td>
         <td>0</td>
       </tr>
       <tr style="background-repeat: no-repeat;background-position: right center;background-color: #39A9DC;color: #FFF;" align=center>
-      	<td colspan="4"><b>Total number of projects: 1228</b></td>
-      	<td>53</td>
-      	<td>30</td>
-      	<td>80</td>
-      	<td>10</td>
-      	<td>128</td>
+      	<td colspan="4"><b>Total number of projects: 1230</b></td>
       	<td>36</td>
+      	<td>47</td>
       	<td>50</td>
-      	<td>86</td>
-      	<td>152</td>
-      	<td>33</td>
-      	<td>50</td>
-      	<td>30</td>
       	<td>70</td>
-      	<td>21</td>
-      	<td>146</td>
-      	<td>112</td>
+      	<td>50</td>
+      	<td>53</td>
       	<td>79</td>
-      	<td>46</td>
-      	<td>16</td>
+      	<td>86</td>
+      	<td>30</td>
+      	<td>21</td>
+      	<td>10</td>
+      	<td>30</td>
+      	<td>33</td>
+      	<td>128</td>
+      	<td>152</td>
+      	<td>146</td>
+      	<td>80</td>
+      	<td>112</td>
+      	<td>17</td>
       </tr>
     </table>
   </body>

@@ -1,6 +1,7 @@
 /*
- * FreeRTOS Kernel V10.2.1
- * Copyright (C) 2019 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+ * FreeRTOS Kernel V10.3.1
+ * Portion Copyright © 2020 STMicroelectronics International N.V. All rights reserved.
+ * Copyright (C) 2020 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -26,7 +27,7 @@
  */
 
 /*-----------------------------------------------------------
- * Implementation of functions defined in portable.h
+ * Implementation of functions defined in portable.h for the ARM CM7 port.
  *----------------------------------------------------------*/
 
 /* Defining MPU_WRAPPERS_INCLUDED_FROM_API_FILE prevents task.h from redefining
@@ -43,7 +44,6 @@ task.h is included from an application file. */
 #endif
 
 #undef MPU_WRAPPERS_INCLUDED_FROM_API_FILE
-
 
 #ifndef configSYSTICK_CLOCK_HZ
 	#define configSYSTICK_CLOCK_HZ configCPU_CLOCK_HZ
@@ -108,29 +108,9 @@ task.h is included from an application file. */
 /* Offsets in the stack to the parameters when inside the SVC handler. */
 #define portOFFSET_TO_PC						( 6 )
 
-/* The systick is a 24-bit counter. */
-#define portMAX_24_BIT_NUMBER		( 0xffffffUL )
-
-/* A fiddle factor to estimate the number of SysTick counts that would have
-occurred while the SysTick counter is stopped during tickless idle
-calculations. */
-#define portMISSED_COUNTS_FACTOR	( 45UL )
-
 /* For strict compliance with the Cortex-M spec the task start address should
 have bit-0 clear, as it is loaded into the PC on exit from an ISR. */
 #define portSTART_ADDRESS_MASK				( ( StackType_t ) 0xfffffffeUL )
-
-/* Each task maintains its own interrupt status in the critical nesting
-variable.  Note this is not saved as part of the task context as context
-switches can only occur when uxCriticalNesting is zero. */
-static UBaseType_t uxCriticalNesting = 0xaaaaaaaa;
-
-/*
- * Setup the timer to generate the tick interrupts.  The implementation in this
- * file is weak to allow application writers to change the timer used to
- * generate the tick interrupt.
- */
-void vPortSetupTimerInterrupt( void );
 
 /*
  * Configure a number of standard MPU regions that are used by all tasks.
@@ -155,7 +135,7 @@ void vPortSetupTimerInterrupt( void );
  * Standard FreeRTOS exception handlers.
  */
 void xPortPendSVHandler( void ) __attribute__ (( naked )) PRIVILEGED_FUNCTION;
-void xPortSysTickHandler( void )  __attribute__ ((optimize("3"))) PRIVILEGED_FUNCTION;
+void xPortSysTickHandler( void ) PRIVILEGED_FUNCTION;
 void vPortSVCHandler( void ) __attribute__ (( naked )) PRIVILEGED_FUNCTION;
 
 /*
@@ -203,12 +183,25 @@ extern BaseType_t xPortRaisePrivilege( void );
  * code to reset the privilege, otherwise does nothing.
  */
 extern void vPortResetPrivilege( BaseType_t xRunningPrivileged );
+/*-----------------------------------------------------------*/
 
+/* Each task maintains its own interrupt status in the critical nesting
+variable.  Note this is not saved as part of the task context as context
+switches can only occur when uxCriticalNesting is zero. */
+static UBaseType_t uxCriticalNesting = 0xaaaaaaaa;
+
+/*
+ * Used by the portASSERT_IF_INTERRUPT_PRIORITY_INVALID() macro to ensure
+ * FreeRTOS API functions are not called from interrupts that have been assigned
+ * a priority above configMAX_SYSCALL_INTERRUPT_PRIORITY.
+ */
 #if ( configASSERT_DEFINED == 1 )
 	 static uint8_t ucMaxSysCallPriority = 0;
 	 static uint32_t ulMaxPRIGROUPValue = 0;
 	 static const volatile uint8_t * const pcInterruptPriorityRegisters = ( const volatile uint8_t * const ) portNVIC_IP_REGISTERS_OFFSET_16;
 #endif /* configASSERT_DEFINED */
+
+/*-----------------------------------------------------------*/
 
 /*
  * See header file for description.
@@ -268,10 +261,25 @@ void vPortSVCHandler( void )
 static void prvSVCHandler(	uint32_t *pulParam )
 {
 uint8_t ucSVCNumber;
+uint32_t ulPC;
+#if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 )
+	#if defined( __ARMCC_VERSION )
+		/* Declaration when these variable are defined in code instead of being
+		* exported from linker scripts. */
+		extern uint32_t * __syscalls_flash_start__;
+		extern uint32_t * __syscalls_flash_end__;
+	#else
+		/* Declaration when these variable are exported from linker scripts. */
+		extern uint32_t __syscalls_flash_start__[];
+		extern uint32_t __syscalls_flash_end__[];
+	#endif /* #if defined( __ARMCC_VERSION ) */
+#endif /* #if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
 
-	/* The stack contains: r0, r1, r2, r3, r12, r14, the return address and
-	xPSR.  The first argument (r0) is pulParam[ 0 ]. */
-	ucSVCNumber = ( ( uint8_t * ) pulParam[ portOFFSET_TO_PC ] )[ -2 ];
+	/* The stack contains: r0, r1, r2, r3, r12, LR, PC and xPSR.  The first
+	argument (r0) is pulParam[ 0 ]. */
+	ulPC = pulParam[ portOFFSET_TO_PC ];
+	ucSVCNumber = ( ( uint8_t * ) ulPC )[ -2 ];
+
 	switch( ucSVCNumber )
 	{
 		case portSVC_START_SCHEDULER	:	portNVIC_SYSPRI1_REG |= portNVIC_SVC_PRI;
@@ -288,6 +296,23 @@ uint8_t ucSVCNumber;
 
 											break;
 
+	#if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 )
+		case portSVC_RAISE_PRIVILEGE	:	/* Only raise the privilege, if the
+											 * svc was raised from any of the
+											 * system calls. */
+											if( ulPC >= ( uint32_t ) __syscalls_flash_start__ &&
+												ulPC <= ( uint32_t ) __syscalls_flash_end__ )
+											{
+												__asm volatile
+												(
+													"	mrs r1, control		\n" /* Obtain current control value. */
+													"	bic r1, #1			\n" /* Set privilege bit. */
+													"	msr control, r1		\n" /* Write back new control value. */
+													::: "r1", "memory"
+												);
+											}
+											break;
+	#else
 		case portSVC_RAISE_PRIVILEGE	:	__asm volatile
 											(
 												"	mrs r1, control		\n" /* Obtain current control value. */
@@ -296,6 +321,7 @@ uint8_t ucSVCNumber;
 												::: "r1", "memory"
 											);
 											break;
+	#endif /* #if( configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY == 1 ) */
 
 		default							:	/* Unknown SVC call. */
 											break;
@@ -315,9 +341,23 @@ static void prvRestoreContextOfFirstTask( void )
 		"	ldr r1, [r3]					\n"
 		"	ldr r0, [r1]					\n" /* The first item in the TCB is the task top of stack. */
 		"	add r1, r1, #4					\n" /* Move onto the second item in the TCB... */
+		"									\n"
+		"	dmb								\n" /* Complete outstanding transfers before disabling MPU. */
+		"	ldr r2, =0xe000ed94				\n" /* MPU_CTRL register. */
+		"	ldr r3, [r2]					\n" /* Read the value of MPU_CTRL. */
+		"	bic r3, #1						\n" /* r3 = r3 & ~1 i.e. Clear the bit 0 in r3. */
+		"	str r3, [r2]					\n" /* Disable MPU. */
+		"									\n"
 		"	ldr r2, =0xe000ed9c				\n" /* Region Base Address register. */
-		"	ldmia r1!, {r4-r11}				\n" /* Read 4 sets of MPU registers. */
+		"	ldmia r1!, {r4-r11}				\n" /* Read 4 sets of MPU registers from TCB. */
 		"	stmia r2!, {r4-r11}				\n" /* Write 4 sets of MPU registers. */
+		"									\n"
+		"	ldr r2, =0xe000ed94				\n" /* MPU_CTRL register. */
+		"	ldr r3, [r2]					\n" /* Read the value of MPU_CTRL. */
+		"	orr r3, #1						\n" /* r3 = r3 | 1 i.e. Set the bit 0 in r3. */
+		"	str r3, [r2]					\n" /* Enable MPU. */
+		"	dsb								\n" /* Force memory writes before continuing. */
+		"									\n"
 		"	ldmia r0!, {r3-r11, r14}		\n" /* Pop the registers that are not automatically saved on exception entry. */
 		"	msr control, r3					\n"
 		"	msr psp, r0						\n" /* Restore the task stack pointer. */
@@ -516,9 +556,23 @@ void xPortPendSVHandler( void )
 		"	ldr r1, [r3]						\n"
 		"	ldr r0, [r1]						\n" /* The first item in the TCB is the task top of stack. */
 		"	add r1, r1, #4						\n" /* Move onto the second item in the TCB... */
+		"										\n"
+		"	dmb									\n" /* Complete outstanding transfers before disabling MPU. */
+		"	ldr r2, =0xe000ed94					\n" /* MPU_CTRL register. */
+		"	ldr r3, [r2]						\n" /* Read the value of MPU_CTRL. */
+		"	bic r3, #1							\n" /* r3 = r3 & ~1 i.e. Clear the bit 0 in r3. */
+		"	str r3, [r2]						\n" /* Disable MPU. */
+		"										\n"
 		"	ldr r2, =0xe000ed9c					\n" /* Region Base Address register. */
-		"	ldmia r1!, {r4-r11}					\n" /* Read 4 sets of MPU registers. */
+		"	ldmia r1!, {r4-r11}					\n" /* Read 4 sets of MPU registers from TCB. */
 		"	stmia r2!, {r4-r11}					\n" /* Write 4 sets of MPU registers. */
+		"										\n"
+		"	ldr r2, =0xe000ed94					\n" /* MPU_CTRL register. */
+		"	ldr r3, [r2]						\n" /* Read the value of MPU_CTRL. */
+		"	orr r3, #1							\n" /* r3 = r3 | 1 i.e. Set the bit 0 in r3. */
+		"	str r3, [r2]						\n" /* Enable MPU. */
+		"	dsb									\n" /* Force memory writes before continuing. */
+		"										\n"
 		"	ldmia r0!, {r3-r11, r14}			\n" /* Pop the registers that are not automatically saved on exception entry. */
 		"	msr control, r3						\n"
 		"										\n"
@@ -553,161 +607,6 @@ uint32_t ulDummy;
 }
 /*-----------------------------------------------------------*/
 
-#if configUSE_TICKLESS_IDLE == 1
-
-	__attribute__((weak)) void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
-	{
-	uint32_t ulReloadValue, ulCompleteTickPeriods, ulCompletedSysTickDecrements, ulSysTickCTRL;
-	TickType_t xModifiableIdleTime;
-
-		/* Make sure the SysTick reload value does not overflow the counter. */
-		if( xExpectedIdleTime > xMaximumPossibleSuppressedTicks )
-		{
-			xExpectedIdleTime = xMaximumPossibleSuppressedTicks;
-		}
-
-		/* Stop the SysTick momentarily.  The time the SysTick is stopped for
-		is accounted for as best it can be, but using the tickless mode will
-		inevitably result in some tiny drift of the time maintained by the
-		kernel with respect to calendar time. */
-		portNVIC_SYSTICK_CTRL_REG &= ~portNVIC_SYSTICK_ENABLE;
-
-		/* Calculate the reload value required to wait xExpectedIdleTime
-		tick periods.  -1 is used because this code will execute part way
-		through one of the tick periods. */
-		ulReloadValue = portNVIC_SYSTICK_CURRENT_VALUE_REG + ( ulTimerCountsForOneTick * ( xExpectedIdleTime - 1UL ) );
-		if( ulReloadValue > ulStoppedTimerCompensation )
-		{
-			ulReloadValue -= ulStoppedTimerCompensation;
-		}
-
-		/* Enter a critical section but don't use the taskENTER_CRITICAL()
-		method as that will mask interrupts that should exit sleep mode. */
-		__asm volatile( "cpsid i" );
-		__asm volatile( "dsb" );
-		__asm volatile( "isb" );
-
-		/* If a context switch is pending or a task is waiting for the scheduler
-		to be unsuspended then abandon the low power entry. */
-		if( eTaskConfirmSleepModeStatus() == eAbortSleep )
-		{
-			/* Restart from whatever is left in the count register to complete
-			this tick period. */
-			portNVIC_SYSTICK_LOAD_REG = portNVIC_SYSTICK_CURRENT_VALUE_REG;
-
-			/* Restart SysTick. */
-			portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE;
-
-			/* Reset the reload register to the value required for normal tick
-			periods. */
-			portNVIC_SYSTICK_LOAD_REG = ulTimerCountsForOneTick - 1UL;
-
-			/* Re-enable interrupts - see comments above the cpsid instruction()
-			above. */
-			__asm volatile( "cpsie i" );
-		}
-		else
-		{
-			/* Set the new reload value. */
-			portNVIC_SYSTICK_LOAD_REG = ulReloadValue;
-
-			/* Clear the SysTick count flag and set the count value back to
-			zero. */
-			portNVIC_SYSTICK_CURRENT_VALUE_REG = 0UL;
-
-			/* Restart SysTick. */
-			portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE;
-
-			/* Sleep until something happens.  configPRE_SLEEP_PROCESSING() can
-			set its parameter to 0 to indicate that its implementation contains
-			its own wait for interrupt or wait for event instruction, and so wfi
-			should not be executed again.  However, the original expected idle
-			time variable must remain unmodified, so a copy is taken. */
-			xModifiableIdleTime = xExpectedIdleTime;
-			configPRE_SLEEP_PROCESSING( &xModifiableIdleTime );
-			if( xModifiableIdleTime > 0 )
-			{
-				__asm volatile( "dsb" );
-				__asm volatile( "wfi" );
-				__asm volatile( "isb" );
-			}
-			configPOST_SLEEP_PROCESSING( &xExpectedIdleTime );
-
-			/* Stop SysTick.  Again, the time the SysTick is stopped for is
-			accounted for as best it can be, but using the tickless mode will
-			inevitably result in some tiny drift of the time maintained by the
-			kernel with respect to calendar time. */
-			ulSysTickCTRL = portNVIC_SYSTICK_CTRL_REG;
-			portNVIC_SYSTICK_CTRL_REG = ( ulSysTickCTRL & ~portNVIC_SYSTICK_ENABLE );
-
-			/* Re-enable interrupts - see comments above the cpsid instruction()
-			above. */
-			__asm volatile( "cpsie i" );
-
-			if( ( ulSysTickCTRL & portNVIC_SYSTICK_COUNT_FLAG ) != 0 )
-			{
-				uint32_t ulCalculatedLoadValue;
-
-				/* The tick interrupt has already executed, and the SysTick
-				count reloaded with ulReloadValue.  Reset the
-				portNVIC_SYSTICK_LOAD_REG with whatever remains of this tick
-				period. */
-				ulCalculatedLoadValue = ( ulTimerCountsForOneTick - 1UL ) - ( ulReloadValue - portNVIC_SYSTICK_CURRENT_VALUE_REG );
-
-				/* Don't allow a tiny value, or values that have somehow
-				underflowed because the post sleep hook did something
-				that took too long. */
-				if( ( ulCalculatedLoadValue < ulStoppedTimerCompensation ) || ( ulCalculatedLoadValue > ulTimerCountsForOneTick ) )
-				{
-					ulCalculatedLoadValue = ( ulTimerCountsForOneTick - 1UL );
-				}
-
-				portNVIC_SYSTICK_LOAD_REG = ulCalculatedLoadValue;
-
-				/* The tick interrupt handler will already have pended the tick
-				processing in the kernel.  As the pending tick will be
-				processed as soon as this function exits, the tick value
-				maintained by the tick is stepped forward by one less than the
-				time spent waiting. */
-				ulCompleteTickPeriods = xExpectedIdleTime - 1UL;
-			}
-			else
-			{
-				/* Something other than the tick interrupt ended the sleep.
-				Work out how long the sleep lasted rounded to complete tick
-				periods (not the ulReload value which accounted for part
-				ticks). */
-				ulCompletedSysTickDecrements = ( xExpectedIdleTime * ulTimerCountsForOneTick ) - portNVIC_SYSTICK_CURRENT_VALUE_REG;
-
-				/* How many complete tick periods passed while the processor
-				was waiting? */
-				ulCompleteTickPeriods = ulCompletedSysTickDecrements / ulTimerCountsForOneTick;
-
-				/* The reload value is set to whatever fraction of a single tick
-				period remains. */
-				portNVIC_SYSTICK_LOAD_REG = ( ( ulCompleteTickPeriods + 1UL ) * ulTimerCountsForOneTick ) - ulCompletedSysTickDecrements;
-			}
-
-			/* Restart SysTick so it runs from portNVIC_SYSTICK_LOAD_REG
-			again, then set portNVIC_SYSTICK_LOAD_REG back to its standard
-			value.  The critical section is used to ensure the tick interrupt
-			can only execute once in the case that the reload register is near
-			zero. */
-			portNVIC_SYSTICK_CURRENT_VALUE_REG = 0UL;
-			portENTER_CRITICAL();
-			{
-				portNVIC_SYSTICK_CTRL_REG |= portNVIC_SYSTICK_ENABLE;
-				vTaskStepTick( ulCompleteTickPeriods );
-				portNVIC_SYSTICK_LOAD_REG = ulTimerCountsForOneTick - 1UL;
-			}
-			portEXIT_CRITICAL();
-		}
-	}
-
-#endif /* #if configUSE_TICKLESS_IDLE */
-
-/*-----------------------------------------------------------*/
-
 /*
  * Setup the systick timer to generate the tick interrupts at the required
  * frequency.
@@ -722,7 +621,6 @@ __attribute__(( weak )) void vPortSetupTimerInterrupt( void )
 	portNVIC_SYSTICK_LOAD_REG = ( configSYSTICK_CLOCK_HZ / configTICK_RATE_HZ ) - 1UL;
 	portNVIC_SYSTICK_CTRL_REG = ( portNVIC_SYSTICK_CLK | portNVIC_SYSTICK_INT | portNVIC_SYSTICK_ENABLE );
 }
-
 /*-----------------------------------------------------------*/
 
 /* This is a naked function. */
@@ -742,14 +640,24 @@ static void vPortEnableVFP( void )
 
 static void prvSetupMPU( void )
 {
-extern uint32_t __privileged_functions_end__[];
-extern uint32_t __FLASH_segment_start__[];
-extern uint32_t __FLASH_segment_end__[];
-extern uint32_t __privileged_data_start__[];
-extern uint32_t __privileged_data_end__[];
-
+#if defined( __ARMCC_VERSION )
+	/* Declaration when these variable are defined in code instead of being
+	 * exported from linker scripts. */
+	extern uint32_t * __privileged_functions_end__;
+	extern uint32_t * __FLASH_segment_start__;
+	extern uint32_t * __FLASH_segment_end__;
+	extern uint32_t * __privileged_data_start__;
+	extern uint32_t * __privileged_data_end__;
+#else
+	/* Declaration when these variable are exported from linker scripts. */
+	extern uint32_t __privileged_functions_end__[];
+	extern uint32_t __FLASH_segment_start__[];
+	extern uint32_t __FLASH_segment_end__[];
+	extern uint32_t __privileged_data_start__[];
+	extern uint32_t __privileged_data_end__[];
+#endif
 	/* Check the expected MPU is present. */
-	if( portMPU_TYPE_REG == portEXPECTED_MPU_TYPE_VALUE )
+	if( ( portMPU_TYPE_REG == portEXPECTED_MPU_TYPE_VALUE )  || ( portMPU_TYPE_REG == portEXPECTED_MPU_TYPE_VALUE << 1 ))
 	{
 		/* First setup the entire flash for unprivileged read only access. */
 		portMPU_REGION_BASE_ADDRESS_REG =	( ( uint32_t ) __FLASH_segment_start__ ) | /* Base address. */
@@ -799,7 +707,7 @@ extern uint32_t __privileged_data_end__[];
 
 		/* Enable the MPU with the background region configured. */
 		portMPU_CTRL_REG |= ( portMPU_ENABLE | portMPU_BACKGROUND_ENABLE );
-    }
+	}
 }
 /*-----------------------------------------------------------*/
 
@@ -859,10 +767,21 @@ void vResetPrivilege( void ) /* __attribute__ (( naked )) */
 
 void vPortStoreTaskMPUSettings( xMPU_SETTINGS *xMPUSettings, const struct xMEMORY_REGION * const xRegions, StackType_t *pxBottomOfStack, uint32_t ulStackDepth )
 {
-extern uint32_t __SRAM_segment_start__[];
-extern uint32_t __SRAM_segment_end__[];
-extern uint32_t __privileged_data_start__[];
-extern uint32_t __privileged_data_end__[];
+#if defined( __ARMCC_VERSION )
+	/* Declaration when these variable are defined in code instead of being
+	 * exported from linker scripts. */
+	extern uint32_t * __SRAM_segment_start__;
+	extern uint32_t * __SRAM_segment_end__;
+	extern uint32_t * __privileged_data_start__;
+	extern uint32_t * __privileged_data_end__;
+#else
+	/* Declaration when these variable are exported from linker scripts. */
+	extern uint32_t __SRAM_segment_start__[];
+	extern uint32_t __SRAM_segment_end__[];
+	extern uint32_t __privileged_data_start__[];
+	extern uint32_t __privileged_data_end__[];
+#endif
+
 int32_t lIndex;
 uint32_t ul;
 

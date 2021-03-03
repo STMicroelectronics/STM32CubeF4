@@ -64,7 +64,7 @@
 
 @par Keywords
 
-Display, LTCD, Pictures, SD Card, BMP, Background, Foreground, Layers,
+Graphic, Display, LTCD, Pictures, SD Card, BMP, Background, Foreground, Layers,
 
 @par Directory contents
 

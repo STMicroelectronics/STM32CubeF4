@@ -22,6 +22,9 @@
 #include <STM32F4HAL_DSI.hpp>
 #include <STM32F4DMA.hpp>
 
+#include <FreeRTOS.h>
+#include <task.h>
+
 /**
  * About this implementation:
  * This class is for use ONLY with the DSI peripheral. If you have a regular RGB interface display, use the STM32F4HAL.cpp class instead.
@@ -139,8 +142,14 @@ void HAL_DSI_TearingEffectCallback(DSI_HandleTypeDef *hdsi)
 {
     GPIO::set(GPIO::VSYNC_FREQ);
 
-    HAL::getInstance()->vSync();
-    OSWrappers::signalVSync();
+    if (HAL::getInstance())
+    {
+      HAL::getInstance()->vSync();
+      if (xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED)
+      {
+        OSWrappers::signalVSync();
+      }
+    }
 
     if (!doubleBufferingEnabled && HAL::getInstance())
     {

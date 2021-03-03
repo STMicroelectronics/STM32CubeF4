@@ -93,7 +93,7 @@ requirements, such as:
 
 @par Keywords
 
-Connectivity, USB Host, HID, Full Speed, High Speed, Joystick, Mouse, Keyboard, enumerate
+Connectivity, USB_Host, HID, Full Speed, High Speed, Joystick, Mouse, Keyboard, enumerate
 
 @par Directory contents
 

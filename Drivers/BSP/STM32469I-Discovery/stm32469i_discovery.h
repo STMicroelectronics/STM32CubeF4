@@ -34,6 +34,12 @@
   ******************************************************************************
   */
 
+/* IMPORTANT: One of the following flags must be defined in the preprocessor */
+/* options in order to select the target board revision: !!!!!!!!!! */
+/* USE_STM32469I_DISCO_REVA */
+/* USE_STM32469I_DISCO_REVB */
+/* USE_STM32469I_DISCO_REVC */
+
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32469I_DISCOVERY_H
 #define __STM32469I_DISCOVERY_H
@@ -319,6 +325,11 @@ typedef enum
 #define DISCO_I2C2_EV_IRQn                     I2C2_EV_IRQn
 #define DISCO_I2C2_ER_IRQn                     I2C2_ER_IRQn
 
+#if !defined(USE_STM32469I_DISCO_REVA) && \
+    !defined(USE_STM32469I_DISCO_REVB) && \
+    !defined(USE_STM32469I_DISCO_REVC)
+#define USE_STM32469I_DISCO_REVC
+#endif
 
 /**
   * @}

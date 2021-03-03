@@ -69,7 +69,7 @@ in "main.h" file to decode other resolution than 240x240.
 
 @par Keywords
 
-Display, Graphic, LibJPEG, Encoding, Flash memory, DMA2D, ARGB8888, LCD, RGB, BMP, JPG, SD Card
+Display, Graphic, LibJPEG, Flash memory, LCD, DMA2D, SD Card, Encoding, ARGB8888, RGB, BMP, JPG
 
 @par Directory contents
 

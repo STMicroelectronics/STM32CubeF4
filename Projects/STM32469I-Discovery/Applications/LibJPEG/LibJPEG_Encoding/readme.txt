@@ -71,7 +71,7 @@ in "main.h" file to decode other resolution than 320x240.
 
 @par Keywords
 
-Display, Graphic, LibJPEG, Encoding, Flash memory, DMA2D, ARGB8888, LCD, RGB, BMP, JPG, SD Card
+Display, Graphic, LibJPEG, Flash memory, LCD, DMA2D, SD Card, Encoding, ARGB8888, RGB, BMP, JPG
 
 @par Directory contents
 
@@ -100,6 +100,11 @@ Display, Graphic, LibJPEG, Encoding, Flash memory, DMA2D, ARGB8888, LCD, RGB, BM
 
   - This application has been tested with STM32469I-DISCOVERY board and can be easily tailored to any 
     other supported device and development board.
+
+  - This application is configured to run by default on STM32469I-DISCO RevC board.
+  - In order to run this application on RevA or RevB boards, replace the flag 
+    USE_STM32469I_DISCO_REVC, which is defined in the pre-processor options, by 
+    either USE_STM32469I_DISCO_REVA or USE_STM32469I_DISCO_REVB respectively.
 
   - STM32469I-DISCOVERY Set-up
    - Connect a uSD Card to the Micro SD connector (CN9) 

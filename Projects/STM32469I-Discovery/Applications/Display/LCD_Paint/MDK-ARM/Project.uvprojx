@@ -333,7 +333,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls> </MiscControls>
-              <Define>USE_HAL_DRIVER,STM32F469xx,USE_STM32469I_DISCOVERY,TS_MULTI_TOUCH_SUPPORTED</Define>
+              <Define>USE_HAL_DRIVER,STM32F469xx,USE_STM32469I_DISCO_REVC,USE_STM32469I_DISCOVERY,TS_MULTI_TOUCH_SUPPORTED</Define>
               <Undefine></Undefine>
               <IncludePath>../Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../../../../../../Drivers/STM32F4xx_HAL_Driver/Inc;../../../../../../Drivers/BSP/STM32469I-Discovery;../../../../../../Drivers/BSP/Components/ft6x06;../../../../../../Drivers/BSP/Components/Common;../../../../../../Drivers/BSP/Components;../../../../../../Utilities;../../../../../../Utilities/fonts;../../../../../../Middlewares/Third_Party/FatFs/src</IncludePath>
             </VariousControls>
@@ -402,6 +402,11 @@
         <Group>
           <GroupName>Drivers/BSP/Components</GroupName>
           <Files>
+            <File>
+              <FileName>nt35510.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../../Drivers/BSP/Components/nt35510/nt35510.c</FilePath>
+            </File>
             <File>
               <FileName>otm8009a.c</FileName>
               <FileType>1</FileType>

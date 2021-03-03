@@ -34,12 +34,9 @@
 								<option id="gnu.c.compiler.option.debugging.level.2141210705" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.848648793" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../../Gui/gui/include"/>
-									<listOptionValue builtIn="false" value="../../../Gui/target/include"/>
-									<listOptionValue builtIn="false" value="../../../Gui/platform/os"/>
 									<listOptionValue builtIn="false" value="../../../Gui/generated/fonts/include"/>
 									<listOptionValue builtIn="false" value="../../../Gui/generated/images/include"/>
 									<listOptionValue builtIn="false" value="../../../Gui/generated/texts/include"/>
-									<listOptionValue builtIn="false" value="../../../Gui/generated/gui_generated/include"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/TouchGFX/touchgfx/framework/include"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/Third_Party/FreeRTOS/Source/include"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
@@ -54,6 +51,7 @@
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.1770398347" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="ST"/>
 									<listOptionValue builtIn="false" value="STM32F469xx"/>
+									<listOptionValue builtIn="false" value="USE_STM32469I_DISCO_REVC"/>
 									<listOptionValue builtIn="false" value="USE_BPP=16"/>
 									<listOptionValue builtIn="false" value="USE_OS_SYSTICK"/>
 									<listOptionValue builtIn="false" value="USE_FLOATING_POINT"/>
@@ -67,12 +65,9 @@
 								<option id="gnu.cpp.compiler.option.debugging.level.1493699993" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.59383502" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../../Gui/gui/include"/>
-									<listOptionValue builtIn="false" value="../../../Gui/target/include"/>
-									<listOptionValue builtIn="false" value="../../../Gui/platform/os"/>
 									<listOptionValue builtIn="false" value="../../../Gui/generated/fonts/include"/>
 									<listOptionValue builtIn="false" value="../../../Gui/generated/images/include"/>
 									<listOptionValue builtIn="false" value="../../../Gui/generated/texts/include"/>
-									<listOptionValue builtIn="false" value="../../../Gui/generated/gui_generated/include"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/ST/TouchGFX/touchgfx/framework/include"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/Third_Party/FreeRTOS/Source/include"/>
 									<listOptionValue builtIn="false" value="../../../../../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
@@ -131,8 +126,6 @@
 							<tool command="as" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="org.eclipse.cdt.core.GASErrorParser" id="fr.ac6.managedbuild.tool.gnu.cross.assembler.408114485" name="MCU GCC Assembler" superClass="fr.ac6.managedbuild.tool.gnu.cross.assembler">
 								<option id="gnu.both.asm.option.include.paths.373132003" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../../Gui/gui/include"/>
-									<listOptionValue builtIn="false" value="../../../Gui/target/include"/>
-									<listOptionValue builtIn="false" value="../../../Gui/platform/os"/>
 									<listOptionValue builtIn="false" value="../../../Gui/generated/fonts/include"/>
 									<listOptionValue builtIn="false" value="../../../Gui/generated/images/include"/>
 									<listOptionValue builtIn="false" value="../../../Gui/generated/texts/include"/>
@@ -145,8 +138,6 @@
 									<listOptionValue builtIn="false" value="../../../../../../../Drivers/CMSIS/Device/ST/STM32F4xx/Include"/>
 									<listOptionValue builtIn="false" value="../../../Gui/target"/>
 									<listOptionValue builtIn="false" value="../../../Core/Inc"/>
-									<listOptionValue builtIn="false" value="../../../../../../../../../Drivers/CMSIS/Include"/>
-									<listOptionValue builtIn="false" value="../../../../../../../../../../../Drivers/CMSIS/Include"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1297854089" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.assembler.input.195091800" superClass="fr.ac6.managedbuild.tool.gnu.cross.assembler.input"/>
@@ -230,7 +221,6 @@
 							<tool id="fr.ac6.managedbuild.tool.gnu.archiver.$(UID)" name="MCU GCC Archiver" superClass="fr.ac6.managedbuild.tool.gnu.archiver"/>
 							<tool id="fr.ac6.managedbuild.tool.gnu.cross.assembler.$(UID)" name="MCU GCC Assembler" superClass="fr.ac6.managedbuild.tool.gnu.cross.assembler">
 								<option id="gnu.both.asm.option.include.paths.$(UID)" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value=""/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.$(UID)" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 								<inputType id="fr.ac6.managedbuild.tool.gnu.cross.assembler.input.$(UID)" superClass="fr.ac6.managedbuild.tool.gnu.cross.assembler.input"/>

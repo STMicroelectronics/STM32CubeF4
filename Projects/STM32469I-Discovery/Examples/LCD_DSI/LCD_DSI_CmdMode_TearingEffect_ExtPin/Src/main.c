@@ -7,29 +7,13 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.</center></h2>
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                        opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
   */
@@ -163,8 +147,10 @@ int main(void)
   
   /* Show first image */
   CopyPicture((uint32_t *)Images[ImageIndex++], (uint32_t *)LAYER0_ADDRESS, 240, 160, 320, 240);
-  
+
+#if !defined(USE_STM32469I_DISCO_REVC)
   pending_buffer = 0;
+#endif
   active_area = LEFT_AREA;
   
   HAL_DSI_LongWrite(&hdsi_eval, 0, DSI_DCS_LONG_PKT_WRITE, 2, OTM8009A_CMD_WRTESCN, pScanCol);
@@ -342,7 +328,7 @@ static uint8_t LCD_Init(void)
   static DSI_CmdCfgTypeDef CmdCfg;
   static DSI_LPCmdTypeDef LPCmd;
   static DSI_PLLInitTypeDef dsiPllInit;
-  static RCC_PeriphCLKInitTypeDef  PeriphClkInitStruct; 
+  static RCC_PeriphCLKInitTypeDef  PeriphClkInitStruct;
   
   /* Toggle Hardware Reset of the DSI LCD using
   * its XRES signal (active low) */
@@ -427,8 +413,13 @@ static uint8_t LCD_Init(void)
   /* Start DSI */
   HAL_DSI_Start(&(hdsi_eval));
     
+#if defined (USE_STM32469I_DISCO_REVC)
+  /* Initialize the NT35510 LCD Display IC Driver (3K138 LCD IC Driver) */
+  NT35510_Init(NT35510_FORMAT_RGB888, LCD_ORIENTATION_LANDSCAPE);
+#else
   /* Initialize the OTM8009A LCD Display IC Driver (KoD LCD IC Driver) */
   OTM8009A_Init(OTM8009A_COLMOD_RGB888, LCD_ORIENTATION_LANDSCAPE);
+#endif
   
   LPCmd.LPGenShortWriteNoP    = DSI_LP_GSW0P_DISABLE;
   LPCmd.LPGenShortWriteOneP   = DSI_LP_GSW1P_DISABLE;
@@ -444,11 +435,10 @@ static uint8_t LCD_Init(void)
   HAL_DSI_ConfigCommand(&hdsi_eval, &LPCmd);
   
   HAL_DSI_ConfigFlowControl(&hdsi_eval, DSI_FLOW_CONTROL_BTA);
-  
-  
+
   /* Enable GPIOJ clock */
   __HAL_RCC_GPIOJ_CLK_ENABLE();
-  
+
   /* Configure DSI_TE pin from MB1166 : Tearing effect on separated GPIO from KoD LCD */
   /* that is mapped on GPIOJ2 as alternate DSI function (DSI_TE)                      */
   /* This pin is used only when the LCD and DSI link is configured in command mode    */
@@ -459,11 +449,10 @@ static uint8_t LCD_Init(void)
   GPIO_Init_Structure.Speed     = GPIO_SPEED_HIGH;
   GPIO_Init_Structure.Alternate = GPIO_AF13_DSI;
   HAL_GPIO_Init(GPIOJ, &GPIO_Init_Structure);   
-  
-  
+
   /* Refresh the display */
   HAL_DSI_Refresh(&hdsi_eval);
-  
+
   return LCD_OK;
 }
 

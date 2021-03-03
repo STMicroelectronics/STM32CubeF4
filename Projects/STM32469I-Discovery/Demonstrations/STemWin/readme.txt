@@ -1,50 +1,22 @@
 /**
-  @page Demo   STM32469I-DISCO Demonstration Firmware
+  @page STemWin   STM32469I-DISCO Demonstration Firmware
  
   @verbatim
   ******************** (C) COPYRIGHT 2017 STMicroelectronics *******************
-  * @file    Demonstrations/readme.txt 
+  * @file    Demonstrations/STemWin/readme.txt 
   * @author  MCD Application Team
   * @brief   Description of STM32469I-DISCO Demonstration
   ******************************************************************************
-  * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics International N.V. 
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without 
-  * modification, are permitted, provided that the following conditions are met:
-  *
-  * 1. Redistribution of source code must retain the above copyright notice, 
-  *    this list of conditions and the following disclaimer.
-  * 2. Redistributions in binary form must reproduce the above copyright notice,
-  *    this list of conditions and the following disclaimer in the documentation
-  *    and/or other materials provided with the distribution.
-  * 3. Neither the name of STMicroelectronics nor the names of other 
-  *    contributors to this software may be used to endorse or promote products 
-  *    derived from this software without specific written permission.
-  * 4. This software, including modifications and/or derivative works of this 
-  *    software, must execute solely and exclusively on microcontroller or
-  *    microprocessor devices manufactured by or for STMicroelectronics.
-  * 5. Redistribution and use of this software other than as permitted under 
-  *    this license is void and will automatically terminate your rights under 
-  *    this license. 
-  *
-  * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS" 
-  * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT 
-  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
-  * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
-  * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT 
-  * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
-  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
-  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
-  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software component is licensed by ST under Ultimate Liberty license
+  * SLA0044, the "License"; You may not use this file except in compliance with
+  * the License. You may obtain a copy of the License at:
+  *                               www.st.com/SLA0044
   *
   ******************************************************************************
-  @endverbatim
+   @endverbatim
 
 @par Demo Description
 
@@ -123,9 +95,13 @@ Below you find an overview of the different offered module in the demonstration:
 
   - This application runs on STM32F469xx devices.  
 
-  - This example has been tested with STMicroelectronics STM32469I_DISCOVERY
-    boards RevB and can be easily tailored to any other supported device 
+  - This application has been tested with STMicroelectronics STM32469I_DISCOVERY
+    boards and can be easily tailored to any other supported device 
     and development board.
+  - This application is configured to run by default on STM32469I-DISCO RevC board.
+  - In order to run this application on RevA or RevB boards, replace the flag 
+    USE_STM32469I_DISCO_REVC, which is defined in the pre-processor options, by 
+    either USE_STM32469I_DISCO_REVA or USE_STM32469I_DISCO_REVB respectively.
   - Jumpers configuration:
     - JP5	Fitted (Power on MCU)
 
@@ -140,8 +116,9 @@ and then use your preferred toolchain to update and debug the internal flash con
 Below the detailed steps:
 
 In order to program the demonstration you must do the following
-1- Open STM32 ST-Link Utility , click on "External Loader" from the bar menu then check 
-   "N25Q128A_STM32469I-DISCO" box 
+1- Open STM32CubeProgrammer, click on "External Loader" icon then check 
+   "N25Q128A_STM32469I-DISCO" box for STM32469I_DISCOVERY board RevB or
+   "MT25QL128A_STM32469I-DK" box for STM32469I_DISCOVERY board RevC
 2- Connect the STM32F469I-DISCO board to PC with USB cable through CN1
 3- Use "STM32469I-Disco_Demo_VX.Y.Z.hex" file provided under “Binary” with STM32 ST-Link Utility
    to program both internal Flash and external NOR memory

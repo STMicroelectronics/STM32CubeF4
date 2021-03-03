@@ -98,7 +98,7 @@
 
 @par Keywords
 
-Display, LCD, Pictures, SD Card, BMP, Background, Foreground, Layers,
+Graphic, Display, LCD, Pictures, SD Card, BMP, Background, Foreground, Layers,
 
 @par Directory contents
 
@@ -123,6 +123,10 @@ Display, LCD, Pictures, SD Card, BMP, Background, Foreground, Layers,
     discovery boards and can be easily tailored to any other supported device 
     and development board.
  
+  - This application is configured to run by default on STM32469I-DISCO RevC board.
+  - In order to run this application on RevA or RevB boards, replace the flag 
+    USE_STM32469I_DISCO_REVC, which is defined in the pre-processor options, by 
+    either USE_STM32469I_DISCO_REVA or USE_STM32469I_DISCO_REVB respectively.
  
 @par How to use it ?
 

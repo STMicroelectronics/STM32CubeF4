@@ -132,7 +132,26 @@ to gain access to the queue.  See the comments in the tasks themselves for
 further information. */
 QueueHandle_t xGlobalScopeCheckQueue = NULL;
 
-#if defined ( __GNUC__ )
+#if defined(__CC_ARM) /* !< ARM Compiler */
+
+extern uint32_t Image$$ER_IROM_FREERTOS_SYSTEM_CALLS$$Base;
+extern uint32_t Image$$ER_IROM_FREERTOS_SYSTEM_CALLS$$Limit;
+
+/* Memory map needed for MPU setup. Must match the one defined in
+ * the scatter-loading file (Project.sct). */
+const uint32_t * __FLASH_segment_start__ = ( uint32_t * ) 0x08000000;
+const uint32_t * __FLASH_segment_end__ = ( uint32_t * ) 0x080FFFFF;
+const uint32_t * __SRAM_segment_start__ = ( uint32_t * ) 0x20000000;
+const uint32_t * __SRAM_segment_end__ = ( uint32_t * ) 0x20017FFF;
+
+const uint32_t * __privileged_functions_start__ = ( uint32_t * ) 0x08000000;
+const uint32_t * __privileged_functions_end__ = ( uint32_t * ) 0x08007FFF;
+const uint32_t * __privileged_data_start__ = ( uint32_t * ) 0x20000000;
+const uint32_t * __privileged_data_end__ = ( uint32_t * ) 0x20007FFF;
+
+const uint32_t * __syscalls_flash_start__ = ( uint32_t * ) &( Image$$ER_IROM_FREERTOS_SYSTEM_CALLS$$Base );
+const uint32_t * __syscalls_flash_end__ = ( uint32_t * ) &( Image$$ER_IROM_FREERTOS_SYSTEM_CALLS$$Limit );
+#else
 extern uint32_t __FLASH_segment_start__[];
 extern uint32_t __FLASH_segment_end__[];
 extern uint32_t __SRAM_segment_end__[];
@@ -140,15 +159,8 @@ extern uint32_t __privileged_functions_start__[];
 extern uint32_t __privileged_functions_end__[];
 extern uint32_t __privileged_data_start__[];
 extern uint32_t __privileged_data_end__[];
-#else
-const uint32_t * __FLASH_segment_start__ = ( uint32_t * ) 0x08000000UL;
-const uint32_t * __FLASH_segment_end__ = ( uint32_t * ) 0x08100000UL;
-const uint32_t * __SRAM_segment_start__ = ( uint32_t * ) 0x20000000UL;
-const uint32_t * __SRAM_segment_end__ = ( uint32_t * ) 0x20020000UL;
-const uint32_t * __privileged_functions_start__ = ( uint32_t * ) 0x08000000UL;
-const uint32_t * __privileged_functions_end__ = ( uint32_t * ) 0x08004000UL;
-const uint32_t * __privileged_data_start__ = ( uint32_t * ) 0x20000000UL;
-const uint32_t * __privileged_data_end__ = ( uint32_t * ) 0x20000200UL;
+extern uint32_t __syscalls_flash_start__[];
+extern uint32_t __syscalls_flash_end__  [];
 #endif
 
 /* Data used by the 'Check' task. ---------------------------*/

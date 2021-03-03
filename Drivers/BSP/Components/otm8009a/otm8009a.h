@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    otm8009a.h
   * @author  MCD Application Team
-  * @version V1.0.2
-  * @date    27-January-2017
   * @brief   This file contains all the constants parameters for the OTM8009A
   *          which is the LCD Driver for KoD KM-040TMP-02-0621 (WVGA)
   *          DSI LCD Display.
@@ -63,12 +61,12 @@
   * @{
   */
 
-#if defined ( __GNUC__ )
+#if defined ( __GNUC__ ) || (defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)) /* GNU and ARM Compiler 6 compilers */
 #ifndef __weak
 #define __weak __attribute__((weak))
 #endif /* __weak */
-#endif /* __GNUC__ */
-      
+#endif /* __GNUC__ || (__ARMCC_VERSION && (__ARMCC_VERSION >= 6010050)) */
+
 /**
  *  @brief LCD_OrientationTypeDef
  *  Possible values of Display Orientation

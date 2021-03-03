@@ -13,7 +13,7 @@ CAUTION: Some steps described below (e.g. license display, download start) may
 
 Please follow the steps below in order to obtain it:
 1. Click on the link below to be redirected to the MW web page on ST servers.
-   http://www.st.com/en/licensed-software/audiopdm-mw.html?softwareProduct=AudioPDM-MW&softwareVersion=3.2.0
+   https://www.st.com/en/licensed-software/audiopdm-mw.html?softwareProduct=AudioPDM-MW&softwareVersion=3.2.0
 2. The terms of the license shall be displayed on your screen (this may take a few seconds).
    Once you have read them carefully and accepted them click on the "ACCEPT" button.
 3. You will be then prompted to login/register or to provide your name and e-mail.
