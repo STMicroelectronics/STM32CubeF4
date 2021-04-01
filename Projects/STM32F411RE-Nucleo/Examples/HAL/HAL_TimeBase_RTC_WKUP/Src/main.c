@@ -105,7 +105,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   *            PLL_P                          = 4
   *            PLL_Q                          = 7
   *            VDD(V)                         = 3.3
-  *            Main regulator output voltage  = Scale2 mode
+  *            Main regulator output voltage  = Scale1 mode
   *            Flash Latency(WS)              = 3
   * @param  None
   * @retval None

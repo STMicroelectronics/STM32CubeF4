@@ -71,7 +71,7 @@ int main(void)
   /* The voltage scaling allows optimizing the power consumption when the device is 
      clocked below the maximum system frequency, to update the voltage scaling value 
      regarding system frequency refer to product datasheet.  */
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
    
   /* Enable HSI oscillator and configure the PLL to reach the max system frequency (100MHz)
      when using HSI oscillator as PLL clock source. */
@@ -154,7 +154,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   *            PLL_P                          = 4
   *            PLL_Q                          = 7
   *            VDD(V)                         = 3.3
-  *            Main regulator output voltage  = Scale2 mode
+  *            Main regulator output voltage  = Scale1 mode
   *            Flash Latency(WS)              = 3
   * @param  None
   * @retval None
@@ -170,7 +170,7 @@ void SystemClockHSE_Config(void)
   /* The voltage scaling allows optimizing the power consumption when the device is 
      clocked below the maximum system frequency, to update the voltage scaling value 
      regarding system frequency refer to product datasheet.  */
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
   /* -1- Select HSI as system clock source to allow modification of the PLL configuration */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_SYSCLK;
@@ -237,7 +237,7 @@ void SystemClockHSE_Config(void)
   *            PLL_P                          = 4
   *            PLL_Q                          = 7
   *            VDD(V)                         = 3.3
-  *            Main regulator output voltage  = Scale2 mode
+  *            Main regulator output voltage  = Scale1 mode
   *            Flash Latency(WS)              = 3
   * @param  None
   * @retval None
@@ -253,7 +253,7 @@ void SystemClockHSI_Config(void)
   /* The voltage scaling allows optimizing the power consumption when the device is 
      clocked below the maximum system frequency, to update the voltage scaling value 
      regarding system frequency refer to product datasheet.  */
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
   
   /* -1- Select HSE as system clock source to allow modification of the PLL configuration */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_SYSCLK;

@@ -249,7 +249,7 @@ static void Error_Handler(void)
   *            PLL_P                          = 4
   *            PLL_Q                          = 7
   *            VDD(V)                         = 3.3
-  *            Main regulator output voltage  = Scale2 mode
+  *            Main regulator output voltage  = Scale1 mode
   *            Flash Latency(WS)              = 3
   * @param  None
   * @retval None
@@ -265,7 +265,7 @@ static void SystemClock_Config(void)
   /* The voltage scaling allows optimizing the power consumption when the device is 
      clocked below the maximum system frequency, to update the voltage scaling value 
      regarding system frequency refer to product datasheet.  */
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
   
   /* Enable HSI Oscillator and activate PLL with HSI as source */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;

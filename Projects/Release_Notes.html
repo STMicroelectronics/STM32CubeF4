@@ -6,10 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>Release Notes for Projects of STM32CubeF4 Firmware Package</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="../_htmresc/mini-st.css" />
   <!--[if lt IE 9]>
@@ -49,12 +52,103 @@
 </ul>
 <p>The exhaustive list of projects is provided in this table: <a href="STM32CubeProjectsList.html">STM32CubeProjectsList</a>.</p>
 </div>
-<div class="col-sm-12 col-lg-8">
-<h1 id="update-history">Update History</h1>
+<section id="update-history" class="col-sm-12 col-lg-8">
+<h1>Update History</h1>
 <div class="collapse">
-<input type="checkbox" id="collapse-section_1.26.0" checked aria-hidden="true"> <label for="collapse-section_1.26.0" aria-hidden="true">V1.26.0 / 12-February-2021</label>
+<input type="checkbox" id="collapse-section_1.26.1" aria-hidden="true"> <label for="collapse-section_1.26.1" aria-hidden="true">V1.26.1 / 26-March-2021</label>
 <div>
 <h2 id="main-changes">Main Changes</h2>
+<ul>
+<li>Update STM32F411/412/413 projects to set the correct regulator voltage scaling output selection (VOS) depending on the system clock frequency (SYSCLK):
+<ul>
+<li>Scale 1 mode &lt;= 100 MHz.</li>
+<li>Scale 2 mode &lt;= 84 MHz.</li>
+</ul></li>
+</ul>
+<h2 id="contents">Contents</h2>
+<h3 id="projects">Projects</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Board</th>
+<th style="text-align: left;">Project category</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: left;">License</th>
+<th style="text-align: left;">Path</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">STM32411E-Discovery</td>
+<td style="text-align: left;">Applications</td>
+<td style="text-align: left;"><strong>v1.2.1</strong></td>
+<td style="text-align: left;"><a href="http://www.st.com/SLA0044">SLA0044</a></td>
+<td style="text-align: left;">Projects/STM32411E-Discovery/Applications</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32411E-Discovery</td>
+<td style="text-align: left;">HAL Examples</td>
+<td style="text-align: left;"><strong>v1.1.1</strong></td>
+<td style="text-align: left;"><a href="https://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause</a></td>
+<td style="text-align: left;">Projects/STM32411E-Discovery/Examples</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32411E-Discovery</td>
+<td style="text-align: left;">HAL Templates</td>
+<td style="text-align: left;"><strong>v1.1.1</strong></td>
+<td style="text-align: left;"><a href="https://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause</a></td>
+<td style="text-align: left;">Projects/STM32411E-Discovery/Templates</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32F411RE-Nucleo</td>
+<td style="text-align: left;">Demonstrations</td>
+<td style="text-align: left;"><strong>v1.4.2</strong></td>
+<td style="text-align: left;"><a href="http://www.st.com/SLA0044">SLA0044</a></td>
+<td style="text-align: left;">Projects/STM32F411RE-Nucleo/Demonstrations</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32F411RE-Nucleo</td>
+<td style="text-align: left;">Applications</td>
+<td style="text-align: left;"><strong>v1.0.7</strong></td>
+<td style="text-align: left;"><a href="http://www.st.com/SLA0044">SLA0044</a></td>
+<td style="text-align: left;">Projects/STM32F411RE-Nucleo/Applications</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32F411RE-Nucleo</td>
+<td style="text-align: left;">HAL Examples</td>
+<td style="text-align: left;"><strong>v1.1.7</strong></td>
+<td style="text-align: left;"><a href="https://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause</a></td>
+<td style="text-align: left;">Projects/STM32F411RE-Nucleo/Examples</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32F411RE-Nucleo</td>
+<td style="text-align: left;">HAL Templates</td>
+<td style="text-align: left;"><strong>v1.1.1</strong></td>
+<td style="text-align: left;"><a href="https://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause</a></td>
+<td style="text-align: left;">Projects/STM32F411RE-Nucleo/Templates</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">STM32F411ZG-Nucleo</td>
+<td style="text-align: left;">Demonstrations</td>
+<td style="text-align: left;"><strong>v1.1.2</strong></td>
+<td style="text-align: left;"><a href="http://www.st.com/SLA0044">SLA0044</a></td>
+<td style="text-align: left;">Projects/STM32F411ZG-Nucleo/Demonstrations</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STM32F411ZH-Nucleo</td>
+<td style="text-align: left;">Demonstrations</td>
+<td style="text-align: left;"><strong>v1.1.2</strong></td>
+<td style="text-align: left;"><a href="http://www.st.com/SLA0044">SLA0044</a></td>
+<td style="text-align: left;">Projects/STM32F411ZH-Nucleo/Demonstrations</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section_1.26.0" aria-hidden="true"> <label for="collapse-section_1.26.0" aria-hidden="true">V1.26.0 / 12-February-2021</label>
+<div>
+<h2 id="main-changes-1">Main Changes</h2>
 <ul>
 <li>Updated license for all projects file sources.</li>
 <li>Add UART example showing use of HAL UART enhanced reception services (ReceptionToIdle) API for STM32446E-Nucleo and STM32F429ZI-Nucleo boards.</li>
@@ -69,8 +163,8 @@
 <li>Update Demo, applications and examples to support new LCD controller component <strong>NT35510</strong>.</li>
 </ul></li>
 </ul>
-<h2 id="contents">Contents</h2>
-<h3 id="projects">Projects</h3>
+<h2 id="contents-1">Contents</h2>
+<h3 id="projects-1">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -463,9 +557,9 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section_1.25.0" checked aria-hidden="true"> <label for="collapse-section_1.25.0" aria-hidden="true">V1.25.0 / 12-February-2020</label>
+<input type="checkbox" id="collapse-section_1.25.0" aria-hidden="true"> <label for="collapse-section_1.25.0" aria-hidden="true">V1.25.0 / 12-February-2020</label>
 <div>
-<h2 id="main-changes-1">Main Changes</h2>
+<h2 id="main-changes-2">Main Changes</h2>
 <ul>
 <li>USB Applications Impact:
 <ul>
@@ -487,8 +581,8 @@
 <li>Remove dhcp_stop() call in the net_sockets.c</li>
 </ul></li>
 </ul>
-<h2 id="contents-1">Contents</h2>
-<h3 id="projects-1">Projects</h3>
+<h2 id="contents-2">Contents</h2>
+<h3 id="projects-2">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -882,9 +976,9 @@
 </div>
 </div>
 <div class="collapse">
-<input type="checkbox" id="collapse-section_1.24.0" checked aria-hidden="true"> <label for="collapse-section_1.24.0" aria-hidden="true">V1.24.0 / 08-February-2019</label>
+<input type="checkbox" id="collapse-section_1.24.0" aria-hidden="true"> <label for="collapse-section_1.24.0" aria-hidden="true">V1.24.0 / 08-February-2019</label>
 <div>
-<h2 id="main-changes-2">Main Changes</h2>
+<h2 id="main-changes-3">Main Changes</h2>
 <ul>
 <li>Update HAL CRYP examples to be aligned with new HAL CRYP drivers</li>
 <li>Update HAL I2C examples to be compliant with new I2C API</li>
@@ -920,8 +1014,8 @@
 <li>Update FreeRTOS MPU applications by adding stream_buffer.c file in project source files to avoid compilation error with MDK-ARM</li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-2">Contents</h2>
-<h3 id="projects-2">Projects</h3>
+<h2 id="contents-3">Contents</h2>
+<h3 id="projects-3">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -1317,7 +1411,7 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.22.0" aria-hidden="true"> <label for="collapse-section_1.22.0" aria-hidden="true">V1.22.0 / 26-October-2018</label>
 <div>
-<h2 id="main-changes-3">Main Changes</h2>
+<h2 id="main-changes-4">Main Changes</h2>
 <ul>
 <li><p>Add new STemWin applications and demonstrations and TouchGFX demonstrations for STM32F4x9I_EVAL, STM32F429I-Discovery, STM32F469_EVAL and STM32F469-Discovery platforms.</p></li>
 <li><p>Update applications to refer to the new PDM libraries:</p></li>
@@ -1332,8 +1426,8 @@
 </ul></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-3">Contents</h2>
-<h3 id="projects-3">Projects</h3>
+<h2 id="contents-4">Contents</h2>
+<h3 id="projects-4">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -1804,14 +1898,14 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.21.0" aria-hidden="true"> <label for="collapse-section_1.21.0" aria-hidden="true">V1.21.0 / 23-February-2018</label>
 <div>
-<h2 id="main-changes-4">Main Changes</h2>
+<h2 id="main-changes-5">Main Changes</h2>
 <h3 id="maintenance-release">Maintenance release</h3>
 <ul>
 <li>Add new STemWin applications for STM32F4x9I_EVAL, STM32F429I-Discovery, STM32F469_EVAL and STM32F469-Discovery platforms.</li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component.</li>
 </ul>
-<h2 id="contents-4">Contents</h2>
-<h3 id="projects-4">Projects</h3>
+<h2 id="contents-5">Contents</h2>
+<h3 id="projects-5">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -2278,14 +2372,14 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.19.0" aria-hidden="true"> <label for="collapse-section_1.19.0" aria-hidden="true">V1.19.0 / 29-December-2017</label>
 <div>
-<h2 id="main-changes-5">Main Changes</h2>
+<h2 id="main-changes-6">Main Changes</h2>
 <ul>
 <li><p>Update CAN examples to support new HAL CAN driver</p></li>
 <li><p>Update FatFs projects to be aligned with new FatFs stack</p></li>
 <li><p>Update LwIP projects to be aligned with new LwIP stack V2.0.3</p></li>
 </ul>
-<h2 id="contents-5">Contents</h2>
-<h3 id="projects-5">Projects</h3>
+<h2 id="contents-6">Contents</h2>
+<h3 id="projects-6">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -2751,14 +2845,14 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.17.0" aria-hidden="true"> <label for="collapse-section_1.17.0" aria-hidden="true">V1.17.0 / 06-October-2017</label>
 <div>
-<h2 id="main-changes-6">Main Changes</h2>
+<h2 id="main-changes-7">Main Changes</h2>
 <ul>
 <li><p>Update projects to support new FatFs and STemWin versions</p></li>
 <li><p>Add new FreeRTOS MPU application</p></li>
 <li><p>Fix Linux compilation errors</p></li>
 </ul>
-<h2 id="contents-6">Contents</h2>
-<h3 id="projects-6">Projects</h3>
+<h2 id="contents-7">Contents</h2>
+<h3 id="projects-7">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -3224,7 +3318,7 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.15.0" aria-hidden="true"> <label for="collapse-section_1.15.0" aria-hidden="true">V1.15.0 / 17-February-2017</label>
 <div>
-<h2 id="main-changes-7">Main Changes</h2>
+<h2 id="main-changes-8">Main Changes</h2>
 <ul>
 <li><p>Add Examples, Applications and Demonstrations firmware for STM32F413H-Discovery board</p></li>
 <li><p>Add Low Layer examples and MIX examples on the STM32F410xx-Nucleo, STM32F429ZI-Nucleo and STM32F411REx-Nucleo boards</p></li>
@@ -3232,8 +3326,8 @@
 <li><p>Update overall projects to be aligned with latest version of HAL, BSP and Middleware drivers</p></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-7">Contents</h2>
-<h3 id="projects-7">Projects</h3>
+<h2 id="contents-8">Contents</h2>
+<h3 id="projects-8">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -3663,15 +3757,15 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.14.0" aria-hidden="true"> <label for="collapse-section_1.14.0" aria-hidden="true">V1.14.0 / 04-November-2016</label>
 <div>
-<h2 id="main-changes-8">Main Changes</h2>
+<h2 id="main-changes-9">Main Changes</h2>
 <ul>
 <li><p>Add 68 projects for <strong>STM32F413ZH-Nucleo</strong> board</p></li>
 <li><p>General updates to fix known defects and enhancements implementation</p></li>
 <li><p>Update overall projects for alignment with changes done in latest version of CMSIS device</p></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-8">Contents</h2>
-<h3 id="projects-8">Projects</h3>
+<h2 id="contents-9">Contents</h2>
+<h3 id="projects-9">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -4101,15 +4195,15 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.13.0" aria-hidden="true"> <label for="collapse-section_1.13.0" aria-hidden="true">V1.13.0 / 01-July-2016</label>
 <div>
-<h2 id="main-changes-9">Main Changes</h2>
+<h2 id="main-changes-10">Main Changes</h2>
 <ul>
 <li><p>General updates to fix known defects and enhancements implementation</p></li>
 <li><p>Update applications and demonstrations related to STemWin library in order to support the latest STemWin version</p></li>
 <li><p>Add new demonstration for STM32F412G-Discovery</p></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-9">Contents</h2>
-<h3 id="projects-9">Projects</h3>
+<h2 id="contents-10">Contents</h2>
+<h3 id="projects-10">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -4537,7 +4631,7 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.12.0" aria-hidden="true"> <label for="collapse-section_1.12.0" aria-hidden="true">V1.12.0 / 06-May-2016</label>
 <div>
-<h2 id="main-changes-10">Main Changes</h2>
+<h2 id="main-changes-11">Main Changes</h2>
 <ul>
 <li><p>General updates to fix known defects and enhancements implementation</p></li>
 <li><p>Add QSPI_PreInitConfig example on STM32446E-EVAL, STM32469I-EVAL and STM32469I-Discovery boards</p></li>
@@ -4546,8 +4640,8 @@
 <li><p>Projects are updated following changes in latest version of HAL and Middlewares</p></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-10">Contents</h2>
-<h3 id="projects-10">Projects</h3>
+<h2 id="contents-11">Contents</h2>
+<h3 id="projects-11">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -4974,7 +5068,7 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.11.0" aria-hidden="true"> <label for="collapse-section_1.11.0" aria-hidden="true">V1.11.0 / 29-January-2016</label>
 <div>
-<h2 id="main-changes-11">Main Changes</h2>
+<h2 id="main-changes-12">Main Changes</h2>
 <ul>
 <li><p>General updates to fix known defects and enhancements implementation</p></li>
 <li><p>Update HAL_TimeBase example to use the new HAL timebase template</p></li>
@@ -4982,8 +5076,8 @@
 <li><p>The FreeRTOS_LowPower application is removed comparing to STM32CubeF4 firmware package V1.10.0: this application will be reworked and will be supported in future release</p></li>
 <li><p>For the complete list of changes, please refer to the release notes of each firmware component</p></li>
 </ul>
-<h2 id="contents-11">Contents</h2>
-<h3 id="projects-11">Projects</h3>
+<h2 id="contents-12">Contents</h2>
+<h3 id="projects-12">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -5409,7 +5503,7 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.10.0" aria-hidden="true"> <label for="collapse-section_1.10.0" aria-hidden="true">V1.10.0 / 13-November-2015</label>
 <div>
-<h2 id="main-changes-12">Main Changes</h2>
+<h2 id="main-changes-13">Main Changes</h2>
 <ul>
 <li>General updates to fix known defects and enhancements implementation</li>
 <li>Add EEPROM emulation application on all supported boards</li>
@@ -5418,8 +5512,8 @@
 <li>Remove reference to TASKING toolchain</li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-12">Contents</h2>
-<h3 id="projects-12">Projects</h3>
+<h2 id="contents-13">Contents</h2>
+<h3 id="projects-13">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -5775,7 +5869,7 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.9.0" aria-hidden="true"> <label for="collapse-section_1.9.0" aria-hidden="true">V1.9.0 / 09-October-2015</label>
 <div>
-<h2 id="main-changes-13">Main Changes</h2>
+<h2 id="main-changes-14">Main Changes</h2>
 <ul>
 <li>Update SW4STM32 projects</li>
 <li>Fix in accordance with latest version of SW4STM32 toolchain</li>
@@ -5793,8 +5887,8 @@
 </ul></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware component</li>
 </ul>
-<h2 id="contents-13">Contents</h2>
-<h3 id="projects-13">Projects</h3>
+<h2 id="contents-14">Contents</h2>
+<h3 id="projects-14">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -6147,7 +6241,7 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.8.0" aria-hidden="true"> <label for="collapse-section_1.8.0" aria-hidden="true">V1.8.0 / 14-August-2015</label>
 <div>
-<h2 id="main-changes-14">Main Changes</h2>
+<h2 id="main-changes-15">Main Changes</h2>
 <ul>
 <li>Add Examples, Applications and Demonstration firmware for STM32F469xx/STM32F479xx devices and STM32469I_EVAL/STM32469I-Discovery boards</li>
 <li>Add Examples for STM32410xx_Nucleo board (14 in total)</li>
@@ -6157,8 +6251,8 @@
 <li>Note: Demonstration Firmware for STM32469I_EVAL and STM32469I-Discovery, provided within this package, doesn t embed TouchGFX demonstration module. Free evaluation version of the TouchGFX demonstration, based on Draupner Graphics commercial graphic library, is available at www.touchgfx.com/stmicroelectronics</li>
 <li>For the complete list of changes, please refer to the release notes of each firmware components</li>
 </ul>
-<h2 id="contents-14">Contents</h2>
-<h3 id="projects-14">Projects</h3>
+<h2 id="contents-15">Contents</h2>
+<h3 id="projects-15">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -6514,7 +6608,7 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.7.0" aria-hidden="true"> <label for="collapse-section_1.7.0" aria-hidden="true">V1.7.0 / 01-July-2015</label>
 <div>
-<h2 id="main-changes-15">Main Changes</h2>
+<h2 id="main-changes-16">Main Changes</h2>
 <ul>
 <li>Add Examples for STM32446E_Nucleo board (11 in total)</li>
 <li>Add the support System Workbench for STM32 (SW4STM32) toolchain for STM32446E_EVAL board projects</li>
@@ -6523,8 +6617,8 @@
 <li>Add the support of new 5.7 LCD reference for STM32F4x9I-EVAL</li>
 <li>For the complete list of changes, please refer to the release notes of each firmware components</li>
 </ul>
-<h2 id="contents-15">Contents</h2>
-<h3 id="projects-15">Projects</h3>
+<h2 id="contents-16">Contents</h2>
+<h3 id="projects-16">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -6897,7 +6991,7 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.6.0" aria-hidden="true"> <label for="collapse-section_1.6.0" aria-hidden="true">V1.6.0 / 25-May-2015</label>
 <div>
-<h2 id="main-changes-16">Main Changes</h2>
+<h2 id="main-changes-17">Main Changes</h2>
 <h3 id="maintenance-release-1">Maintenance release</h3>
 <ul>
 <li>FLASH_EraseProgram example: update to reset data and instruction cash memories after flash erase</li>
@@ -6906,8 +7000,8 @@
 <li>Demonstration for STM32F401-Discovery and STM32F4-Discovery boards: fix issue of wrong behavior after the second press on user button</li>
 <li>Fix compile issue in some projects (9 in total), mainly due to bad project settings</li>
 </ul>
-<h2 id="contents-16">Contents</h2>
-<h3 id="projects-16">Projects</h3>
+<h2 id="contents-17">Contents</h2>
+<h3 id="projects-17">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -7175,7 +7269,7 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.5.0" aria-hidden="true"> <label for="collapse-section_1.5.0" aria-hidden="true">V1.5.0 / 13-March-2015</label>
 <div>
-<h2 id="main-changes-17">Main Changes</h2>
+<h2 id="main-changes-18">Main Changes</h2>
 <ul>
 <li>Add Examples, Applications and Demonstration firmware for STM32F446xx devices and STM32446E_EVAL board</li>
 <li>All projects updated following changes in latest version of HAL and Middlewares</li>
@@ -7187,8 +7281,8 @@
 </ul></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware components</li>
 </ul>
-<h2 id="contents-17">Contents</h2>
-<h3 id="projects-17">Projects</h3>
+<h2 id="contents-18">Contents</h2>
+<h3 id="projects-18">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -7491,7 +7585,7 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.4.0" aria-hidden="true"> <label for="collapse-section_1.4.0" aria-hidden="true">V1.4.0 / 26-December-2014</label>
 <div>
-<h2 id="main-changes-18">Main Changes</h2>
+<h2 id="main-changes-19">Main Changes</h2>
 <ul>
 <li>All projects updated following changes in latest version of HAL and Middlewares</li>
 <li>Miscellaneous enhancements and bugs fix</li>
@@ -7504,8 +7598,8 @@
 <li><strong>Important note</strong>: some of MDK-ARM projects was created with v4.73, and others with v5.10 (mainly for STM32F411RE-Nucleo projects). If you are using MDK-ARM v5.10 (and later) you have to install a legacy patch to be able to open projects built with v4.73, here is the download <a href="http://www2.keil.com/mdk5/legacy">link</a></li>
 <li>For the complete list of changes, please refer to the release notes of each firmware components</li>
 </ul>
-<h2 id="contents-18">Contents</h2>
-<h3 id="projects-18">Projects</h3>
+<h2 id="contents-19">Contents</h2>
+<h3 id="projects-19">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -7766,19 +7860,19 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.3.0" aria-hidden="true"> <label for="collapse-section_1.3.0" aria-hidden="true">V1.3.0 / 26-June-2014</label>
 <div>
-<h2 id="main-changes-19">Main Changes</h2>
+<h2 id="main-changes-20">Main Changes</h2>
 <ul>
 <li><strong>All projects updated following changes in latest version of HAL, BSP and Middlewares</strong></li>
 <li>Add <strong>examples for JPEG images encoding and decoding</strong>, based on <strong>LibJPEG</strong>, for STM324x9I_EVAL, STM324xG_EVAL and STM32F429I-Discovery (under &lt;BoardName&gt;)</li>
 <li><strong>Add projects for STM32F411RE-Nucleo</strong> board (9 in total)</li>
-<li><strong>Add STemWin Simulation project</strong> (under 32_Simulation)</li>
+<li><strong>Add STemWin Simulation project</strong> (under _Simulation)</li>
 <li>Rename <strong>32F4xx-Nucleo</strong> into <strong>32F401RE-Nucleo</strong></li>
 <li>Miscellaneous enhancements and bugs fix</li>
 <li>For the complete list of changes, please refer to the release notes of each board Examples, Applications and Demonstrations</li>
 <li>Important note: some of MDK-ARM projects was created with v4.73, and others with v5.10 (mainly for STM32F411RE-Nucleo projects). If you are using MDK-ARM v5.10 (and later) you have to install a legacy patch to be able to open projects built with v4.73, here is the download <a href="http://www2.keil.com/mdk5/legacy">link</a></li>
 </ul>
-<h2 id="contents-19">Contents</h2>
-<h3 id="projects-19">Projects</h3>
+<h2 id="contents-20">Contents</h2>
+<h3 id="projects-20">Projects</h3>
 <table>
 <caption>Projects :<br />
 <br />
@@ -8031,15 +8125,15 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.1.0" aria-hidden="true"> <label for="collapse-section_1.1.0" aria-hidden="true">V1.1.0 / 26-February-2014</label>
 <div>
-<h2 id="main-changes-20">Main Changes</h2>
+<h2 id="main-changes-21">Main Changes</h2>
 <ul>
 <li>Add sources of STM324x9I-EVAL (both references MB1046 and MB1063), STM324xG-EVAL and STM32F429I-Discovery Demonstration (only for EWARM and MDK-ARM)</li>
 <li>Media sample files (<em>.jpg and </em>.emf) to be used with the demonstration are provided under Utilities</li>
 <li>Use updated version of STemWin V5.22</li>
 <li>Miscellaneous update on Examples, Applications, Demonstrations and Templates projects for some boards; for more details refer to the associated release notes</li>
 </ul>
-<h2 id="contents-20">Contents</h2>
-<h3 id="projects-20">Projects</h3>
+<h2 id="contents-21">Contents</h2>
+<h3 id="projects-21">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -8274,13 +8368,13 @@
 <div class="collapse">
 <input type="checkbox" id="collapse-section_1.0.0" aria-hidden="true"> <label for="collapse-section_1.0.0" aria-hidden="true">V1.0.0 / 18-February-2014</label>
 <div>
-<h2 id="main-changes-21">Main Changes</h2>
+<h2 id="main-changes-22">Main Changes</h2>
 <h3 id="maintenance-release-2">Maintenance release</h3>
 <ul>
 <li>First official release</li>
 </ul>
-<h2 id="contents-21">Contents</h2>
-<h3 id="projects-21">Projects</h3>
+<h2 id="contents-22">Contents</h2>
+<h3 id="projects-22">Projects</h3>
 <table>
 <caption>Projects :</caption>
 <thead>
@@ -8517,7 +8611,7 @@
 <div class="collapse">
 </div>
 </div>
-</div>
+</section>
 </div>
 <footer class="sticky">
 <p>For complete documentation on STM32F4xx,visit: [<a href="http://www.st.com/stm32f4">www.st.com/stm32f4</a>]</p>
