@@ -47,6 +47,10 @@ will be ensured by LEDs:
 This application may be used with a Smartphone (more detailed setup
 instructions are described in section "Hardware and Software environment").
 
+@par Keywords
+
+Connectivity, Wifi, Es-WiFi, TCP/IP, Client/Server, Smartphone, AT command, SPI 
+
 @par Directory contents
  - WiFi/WiFi_Client_Server/Inc/main.h                 eader for main.c module
  - WiFi/WiFi_Client_Server/Inc/stm32f4xx_hal_conf.h   HAL configuration file

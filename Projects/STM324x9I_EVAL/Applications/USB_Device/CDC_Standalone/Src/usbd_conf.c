@@ -289,7 +289,7 @@ void HAL_PCD_ResumeCallback(PCD_HandleTypeDef * hpcd)
 /**
   * @brief  ISOC Out Incomplete callback.
   * @param  hpcd: PCD handle
-  * @param  epnum: Endpoint Number  
+  * @param  epnum: Endpoint Number
   * @retval None
   */
 void HAL_PCD_ISOOUTIncompleteCallback(PCD_HandleTypeDef * hpcd, uint8_t epnum)
@@ -300,7 +300,7 @@ void HAL_PCD_ISOOUTIncompleteCallback(PCD_HandleTypeDef * hpcd, uint8_t epnum)
 /**
   * @brief  ISOC In Incomplete callback.
   * @param  hpcd: PCD handle
-  * @param  epnum: Endpoint Number  
+  * @param  epnum: Endpoint Number
   * @retval None
   */
 void HAL_PCD_ISOINIncompleteCallback(PCD_HandleTypeDef * hpcd, uint8_t epnum)
@@ -332,7 +332,7 @@ void HAL_PCD_DisconnectCallback(PCD_HandleTypeDef * hpcd)
                        LL Driver Interface (USB Device Library --> PCD)
 *******************************************************************************/
 /**
-  * @brief  Initializes the Low Level portion of the Device driver.  
+  * @brief  Initializes the Low Level portion of the Device driver.
   * @param  pdev: Device handle
   * @retval USBD Status
   */
@@ -394,15 +394,15 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef * pdev)
   HAL_PCD_Init(&hpcd);
 
   HAL_PCDEx_SetRxFiFo(&hpcd, 0x200);
-  HAL_PCDEx_SetTxFiFo(&hpcd, 0, 0x80);
-  HAL_PCDEx_SetTxFiFo(&hpcd, 1, 0x174);
+  HAL_PCDEx_SetTxFiFo(&hpcd, 0, 0x40);
+  HAL_PCDEx_SetTxFiFo(&hpcd, 1, 0x80);
 
 #endif
   return USBD_OK;
 }
 
 /**
-  * @brief  De-Initializes the Low Level portion of the Device driver. 
+  * @brief  De-Initializes the Low Level portion of the Device driver.
   * @param  pdev: Device handle
   * @retval USBD Status
   */
@@ -413,7 +413,7 @@ USBD_StatusTypeDef USBD_LL_DeInit(USBD_HandleTypeDef * pdev)
 }
 
 /**
-  * @brief  Starts the Low Level portion of the Device driver.    
+  * @brief  Starts the Low Level portion of the Device driver.
   * @param  pdev: Device handle
   * @retval USBD Status
   */
@@ -435,11 +435,11 @@ USBD_StatusTypeDef USBD_LL_Stop(USBD_HandleTypeDef * pdev)
 }
 
 /**
-  * @brief  Opens an endpoint of the Low Level Driver. 
+  * @brief  Opens an endpoint of the Low Level Driver.
   * @param  pdev: Device handle
   * @param  ep_addr: Endpoint Number
   * @param  ep_type: Endpoint Type
-  * @param  ep_mps: Endpoint Max Packet Size                 
+  * @param  ep_mps: Endpoint Max Packet Size
   * @retval USBD Status
   */
 USBD_StatusTypeDef USBD_LL_OpenEP(USBD_HandleTypeDef * pdev,
@@ -451,9 +451,9 @@ USBD_StatusTypeDef USBD_LL_OpenEP(USBD_HandleTypeDef * pdev,
 }
 
 /**
-  * @brief  Closes an endpoint of the Low Level Driver.  
+  * @brief  Closes an endpoint of the Low Level Driver.
   * @param  pdev: Device handle
-  * @param  ep_addr: Endpoint Number      
+  * @param  ep_addr: Endpoint Number
   * @retval USBD Status
   */
 USBD_StatusTypeDef USBD_LL_CloseEP(USBD_HandleTypeDef * pdev, uint8_t ep_addr)
@@ -465,7 +465,7 @@ USBD_StatusTypeDef USBD_LL_CloseEP(USBD_HandleTypeDef * pdev, uint8_t ep_addr)
 /**
   * @brief  Flushes an endpoint of the Low Level Driver.
   * @param  pdev: Device handle
-  * @param  ep_addr: Endpoint Number      
+  * @param  ep_addr: Endpoint Number
   * @retval USBD Status
   */
 USBD_StatusTypeDef USBD_LL_FlushEP(USBD_HandleTypeDef * pdev, uint8_t ep_addr)
@@ -477,7 +477,7 @@ USBD_StatusTypeDef USBD_LL_FlushEP(USBD_HandleTypeDef * pdev, uint8_t ep_addr)
 /**
   * @brief  Sets a Stall condition on an endpoint of the Low Level Driver.
   * @param  pdev: Device handle
-  * @param  ep_addr: Endpoint Number      
+  * @param  ep_addr: Endpoint Number
   * @retval USBD Status
   */
 USBD_StatusTypeDef USBD_LL_StallEP(USBD_HandleTypeDef * pdev, uint8_t ep_addr)
@@ -489,7 +489,7 @@ USBD_StatusTypeDef USBD_LL_StallEP(USBD_HandleTypeDef * pdev, uint8_t ep_addr)
 /**
   * @brief  Clears a Stall condition on an endpoint of the Low Level Driver.
   * @param  pdev: Device handle
-  * @param  ep_addr: Endpoint Number      
+  * @param  ep_addr: Endpoint Number
   * @retval USBD Status
   */
 USBD_StatusTypeDef USBD_LL_ClearStallEP(USBD_HandleTypeDef * pdev,
@@ -502,7 +502,7 @@ USBD_StatusTypeDef USBD_LL_ClearStallEP(USBD_HandleTypeDef * pdev,
 /**
   * @brief  Returns Stall condition.
   * @param  pdev: Device handle
-  * @param  ep_addr: Endpoint Number      
+  * @param  ep_addr: Endpoint Number
   * @retval Stall (1: yes, 0: No)
   */
 uint8_t USBD_LL_IsStallEP(USBD_HandleTypeDef * pdev, uint8_t ep_addr)
@@ -522,7 +522,7 @@ uint8_t USBD_LL_IsStallEP(USBD_HandleTypeDef * pdev, uint8_t ep_addr)
 /**
   * @brief  Assigns an USB address to the device
   * @param  pdev: Device handle
-  * @param  dev_addr: USB address      
+  * @param  dev_addr: USB address
   * @retval USBD Status
   */
 USBD_StatusTypeDef USBD_LL_SetUSBAddress(USBD_HandleTypeDef * pdev,
@@ -533,11 +533,11 @@ USBD_StatusTypeDef USBD_LL_SetUSBAddress(USBD_HandleTypeDef * pdev,
 }
 
 /**
-  * @brief  Transmits data over an endpoint 
+  * @brief  Transmits data over an endpoint
   * @param  pdev: Device handle
   * @param  ep_addr: Endpoint Number
-  * @param  pbuf: Pointer to data to be sent    
-  * @param  size: Data size    
+  * @param  pbuf: Pointer to data to be sent
+  * @param  size: Data size
   * @retval USBD Status
   */
 USBD_StatusTypeDef USBD_LL_Transmit(USBD_HandleTypeDef * pdev,
@@ -549,11 +549,11 @@ USBD_StatusTypeDef USBD_LL_Transmit(USBD_HandleTypeDef * pdev,
 }
 
 /**
-  * @brief  Prepares an endpoint for reception 
+  * @brief  Prepares an endpoint for reception
   * @param  pdev: Device handle
   * @param  ep_addr: Endpoint Number
-  * @param  pbuf:pointer to data to be received    
-  * @param  size: data size              
+  * @param  pbuf:pointer to data to be received
+  * @param  size: data size
   * @retval USBD Status
   */
 USBD_StatusTypeDef USBD_LL_PrepareReceive(USBD_HandleTypeDef * pdev,
@@ -565,7 +565,7 @@ USBD_StatusTypeDef USBD_LL_PrepareReceive(USBD_HandleTypeDef * pdev,
 }
 
 /**
-  * @brief  Returns the last transfered packet size.    
+  * @brief  Returns the last transfered packet size.
   * @param  pdev: Device handle
   * @param  ep_addr: Endpoint Number
   * @retval Recived Data Size
@@ -576,7 +576,7 @@ uint32_t USBD_LL_GetRxDataSize(USBD_HandleTypeDef * pdev, uint8_t ep_addr)
 }
 
 /**
-  * @brief  Delay routine for the USB Device Library      
+  * @brief  Delay routine for the USB Device Library
   * @param  Delay: Delay in ms
   * @retval None
   */

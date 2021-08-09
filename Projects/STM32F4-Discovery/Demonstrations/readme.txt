@@ -46,6 +46,9 @@ board and see the mouse moves according to the motion direction.
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Demonstrations, MEMS sensor, LIS302DL, LIS3DSCH, USB, standard mouse, mouse moves
 
 @par Directory contents
  

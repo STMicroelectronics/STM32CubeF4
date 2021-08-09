@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    USB_Host/MTP_Standalone/Src/mtp.c 
+  * @file    USB_Host/MTP_Standalone/Src/mtp.c
   * @author  MCD Application Team
   * @brief   This file provides APIs to explore MTP Storage Objects
   ******************************************************************************
@@ -32,7 +32,7 @@ static uint8_t MTP_GetWavObjectHandles(void);
 /* Private functions --------------------------------------------------------- */
 
 /**
-  * @brief  AUDIO_Start 
+  * @brief  AUDIO_Start
   *         Start Audio streaming
   * @param  None
   * @retval None
@@ -47,7 +47,7 @@ uint8_t MTP_Init(void)
     if (USBH_MTP_IsReady(&hUSBHost) > 0)
     {
       if (USBH_MTP_GetNumObjects
-          (&hUSBHost, 0, PTP_OFC_WAV, PTP_AT_Undefined, &NumObs) == USBH_OK)
+          (&hUSBHost, 0, PTP_OFC_WAV, 0xFFFFFFFF, &NumObs) == USBH_OK)
       {
         /* Get objects handlers */
         if (MTP_GetWavObjectHandles() == 0)
@@ -66,7 +66,7 @@ uint8_t MTP_Init(void)
 }
 
 /**
-  * @brief  Explores Wav Files. 
+  * @brief  Explores Wav Files.
   * @param  None
   * @retval Returns 0 if OK, otherwise 1.
   */
@@ -121,7 +121,7 @@ uint8_t MTP_ExploreWavFile(void)
   * @param  offset: Offset
   * @param  maxbytes: Max bytes
   * @param  object: Pointer to the file object
-  * @param  len: Pointer to the file length        
+  * @param  len: Pointer to the file length
   * @retval Returns Status 0 if OK, otherwise 1.
   */
 uint8_t MTP_GetData(uint32_t file_idx, uint32_t offset, uint32_t maxbytes,
@@ -146,7 +146,7 @@ uint16_t MTP_GetWavObjectNumber(void)
 /**
   * @brief  Gets Wav Object Names.
   * @param  object_index: Object index
-  * @param  filename: Pointer to the file name  
+  * @param  filename: Pointer to the file name
   * @retval Returns Status 0 if OK, otherwise 1.
   */
 uint8_t MTP_GetWavObjectName(uint16_t object_index, uint8_t * filename)
@@ -173,7 +173,7 @@ static uint8_t MTP_GetWavObjectHandles(void)
 {
   /* Get objects handlers */
   if (USBH_MTP_GetObjectHandles
-      (&hUSBHost, 0, PTP_OFC_WAV, PTP_AT_Undefined, &WavHandles) == USBH_OK)
+      (&hUSBHost, 0, PTP_OFC_WAV, 0xFFFFFFFF, &WavHandles) == USBH_OK)
   {
     return 0;
   }

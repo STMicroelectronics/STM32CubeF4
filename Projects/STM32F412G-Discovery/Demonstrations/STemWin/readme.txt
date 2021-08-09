@@ -73,7 +73,11 @@ Below you find an overview of the different offered module in the demonstration:
  --------------  
  The system info module provides information about the core, supported boards, 
  CPU speed and demonstration version.  
-      
+ 
+@par Keywords
+
+Demonstration, STemWin, FreeRTOS, RTOS, Graphics, Game, System, CPU, OSPI 
+     
 @par Hardware and Software environment
 
   - This application runs on STM32F412xx devices.  

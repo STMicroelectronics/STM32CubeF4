@@ -25,6 +25,10 @@
     - /Projects/STM32F401-Discovery/Applications/Audio/Audio_playback_and_record
     - /Projects/STM32F4-Discovery/Applications/Audio/Audio_playback_and_record    
 
+@par Keywords
+
+Connectivity, I2S, DMA, Audio codec
+
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */
  

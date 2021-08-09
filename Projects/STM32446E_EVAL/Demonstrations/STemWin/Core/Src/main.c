@@ -188,10 +188,7 @@ static void GUIThread(void const * argument)
   /* Set General Graphical proprieties */
   k_SetGuiProfile();  
     
-  if(k_CalibrationIsDone() == 0)
-  {
-    k_CalibrationInit();
-  }
+  k_CalibrationInit();
 
   /* Demo Startup */
   k_StartUp();

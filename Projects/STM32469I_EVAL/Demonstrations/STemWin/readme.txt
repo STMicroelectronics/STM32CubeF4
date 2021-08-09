@@ -101,7 +101,11 @@ Below you find an overview of the different offered module in the demonstration:
 @note Demonstration Firmware doesn't embed TouchGFX demonstration module. 
       Free evaluation version of the TouchGFX demonstration, based on Draupner Graphics’ 
       commercial graphic library, is available at www.touchgfx.com/stmicroelectronics
-      
+ 
+@par Keywords
+
+Demonstration, STemWin, FreeRTOS, RTOS, Graphics, Game, System, CPU, OSPI 
+     
 @par Hardware and Software environment
 
   - This application runs on STM32F469xx devices.  

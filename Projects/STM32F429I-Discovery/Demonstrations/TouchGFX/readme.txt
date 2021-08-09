@@ -32,6 +32,10 @@ The demonstration features the following modules:
     - Chrom-art Acceleration
     - Weather Demo
 
+@par Keywords
+
+Demonstration, TouchGFX
+
 @par How to use it ?
 
 Please use the STM32CubeProgrammer utility to flash the application's HEX file to the STM32 target.

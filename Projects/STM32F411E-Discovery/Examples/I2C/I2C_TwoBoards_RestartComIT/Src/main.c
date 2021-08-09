@@ -54,7 +54,8 @@ uint8_t aRxBuffer[RXBUFFERSIZE];
 
 #ifndef MASTER_BOARD
 /* Variable used to trig an address match code event */
-__IO uint32_t     uwTransferRequested = 0;
+__IO uint32_t     uwTransferReadRequested = 0;
+__IO uint32_t     uwTransferWriteRequested = 0;
 #endif
 
 /* Private function prototypes -----------------------------------------------*/
@@ -189,18 +190,18 @@ int main(void)
   /*  Before starting a transfer, you need to wait a Master request event.
       For simplicity reasons, this example is just waiting till an Address callback event,
       but application may perform other tasks while transfer operation is ongoing. */  
-  while(uwTransferRequested != 1)
+  while(uwTransferReadRequested != 1)
   {
   }
   
-  /*##-3- Put I2C peripheral in reception process ############################*/  
+  /*##-5- Put I2C peripheral in reception process ############################*/  
   if(HAL_I2C_Slave_Seq_Receive_IT(&I2cHandle, (uint8_t *)aRxBuffer, RXBUFFERSIZE, I2C_FIRST_FRAME) != HAL_OK)
   {
     /* Transfer error in reception process */
     Error_Handler();        
   }
   
-  /*##-4- Wait for the end of the transfer ###################################*/  
+  /*##-6- Wait for the end of the transfer ###################################*/  
   /*  Before starting a new communication transfer, you need to check the current   
       state of the peripheral; if it’s busy you need to wait for the end of current
       transfer before starting a new one.
@@ -211,7 +212,15 @@ int main(void)
   {
   } 
   
-  /*##-5- Start the transmission process #####################################*/  
+    /*##-7- Wait Address Match Code event ######################################*/  
+  /*  Before starting a transfer, you need to wait a Master request event.
+      For simplicity reasons, this example is just waiting till an Address callback event,
+      but application may perform other tasks while transfer operation is ongoing. */  
+  while(uwTransferWriteRequested != 1)
+  {
+  }
+  
+  /*##-8- Start the transmission process #####################################*/  
   /* While the I2C in reception process, user can transmit data through 
      "aTxBuffer" buffer */
   if(HAL_I2C_Slave_Seq_Transmit_IT(&I2cHandle, (uint8_t*)aTxBuffer, TXBUFFERSIZE, I2C_LAST_FRAME)!= HAL_OK)
@@ -323,6 +332,8 @@ void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *I2cHandle)
 #else
 void HAL_I2C_SlaveTxCpltCallback(I2C_HandleTypeDef *I2cHandle)
 {
+  /* Reset address match code event */
+  uwTransferWriteRequested = 0;
   /* Turn LED4 on: Transfer in transmission process is correct */
   BSP_LED_On(LED4);
 }
@@ -344,6 +355,8 @@ void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *I2cHandle)
 #else
 void HAL_I2C_SlaveRxCpltCallback(I2C_HandleTypeDef *I2cHandle)
 {
+  /* Reset address match code event */
+  uwTransferReadRequested = 0;
   /* Turn LED6 on: Transfer in reception process is correct */
   BSP_LED_On(LED6);
 }
@@ -354,13 +367,20 @@ void HAL_I2C_SlaveRxCpltCallback(I2C_HandleTypeDef *I2cHandle)
   * @brief  Slave Address Match callback.
   * @param  hi2c Pointer to a I2C_HandleTypeDef structure that contains
   *                the configuration information for the specified I2C.
-  * @param  TransferDirection: Master request Transfer Direction (Write/Read), value of @ref I2C_XferOptions_definition
+  * @param  TransferDirection: Master request Transfer Direction (Write/Read), value of @ref I2C_XferDirection_definition
   * @param  AddrMatchCode: Address Match Code
   * @retval None
   */
 void HAL_I2C_AddrCallback(I2C_HandleTypeDef *hi2c, uint8_t TransferDirection, uint16_t AddrMatchCode)
 {
-  uwTransferRequested = 1;
+  if(TransferDirection == I2C_DIRECTION_TRANSMIT)
+  {
+    uwTransferReadRequested = 1;
+  }
+  else if(TransferDirection == I2C_DIRECTION_RECEIVE)
+  {
+    uwTransferWriteRequested = 1;
+  }
 
   /* A new communication with a Master is initiated */
   /* Turn LED3 On: A Communication is initiated */

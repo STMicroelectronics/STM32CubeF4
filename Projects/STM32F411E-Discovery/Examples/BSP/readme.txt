@@ -54,7 +54,7 @@ First, push the User button to start first Test.
         Default volume is 50%.
         A click on the board will pause the audio file play (LED6 & LED4 ON).
 		    Another click resumes audio file play (only LED6 on)
-        @Note: Copy file "/Utilities/Media/Audio/art_of_gard_448K.bin" directly
+        @Note: Copy file "/Utilities/Media/Audio/art_of_gard_128K.bin" directly
         in the STM32 flash at @0x08020000
 
      4) AudioRecord_Test. Device: "MP45DT02TR-M" / "IMP34DT05TR"

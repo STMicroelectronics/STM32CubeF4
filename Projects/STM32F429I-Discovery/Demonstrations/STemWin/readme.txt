@@ -89,6 +89,10 @@ Below you find an overview of the diffrent offred module in the demonstration:
 @note The application needs to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
+@par Keywords
+
+Demonstration, STemWin, FreeRTOS, RTOS, Graphics, Game, System, CPU, OSPI 
+
 @par Hardware and Software environment
 
   - This example runs on STM32F429xx devices.

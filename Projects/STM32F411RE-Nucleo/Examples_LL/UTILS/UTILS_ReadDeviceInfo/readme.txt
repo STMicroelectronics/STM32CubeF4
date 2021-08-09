@@ -33,7 +33,7 @@ Then UID, Device ID and Revision ID will be saved in following global variables:
 
 @par Keywords
 
-Syste, Utils, Device info, UID, Device ID, Revision ID, Wafer, Lot number, 
+System, Utils, Device info, UID, Device ID, Revision ID, Wafer, Lot number, 
 
 @par Directory contents 
 

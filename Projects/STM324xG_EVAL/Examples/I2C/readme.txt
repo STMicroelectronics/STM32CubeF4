@@ -26,6 +26,11 @@
     - /Projects/STM32F4-Discovery/Examples/I2C/I2C_TwoBoards_ComDMA
     - /Projects/STM32F4-Discovery/Examples/I2C/I2C_TwoBoards_AdvComIT
 
+@par Keywords
+
+Connectivity, Communication, I2C, DMA, Interrupt, Polling, Master, Slave, Transmission, Reception, Fast mode plus,
+Command, Acknowledge
+
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */
  

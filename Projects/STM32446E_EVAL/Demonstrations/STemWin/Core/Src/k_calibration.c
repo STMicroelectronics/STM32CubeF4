@@ -32,28 +32,14 @@
 
 /* External variables --------------------------------------------------------*/
 /* Private typedef -----------------------------------------------------------*/
-typedef union
-{
-  struct
-  {
-    uint32_t     A1 : 15; 
-    uint32_t     B1 : 16;
-    uint32_t     Reserved : 1; 
-  }b;
-  uint32_t d32;
-}CALIBRATION_Data1Typedef; 
 
-typedef union
-{
-  struct
+typedef struct
   {
-    uint32_t      A2 : 15;
-    uint32_t      B2 : 16;
-    uint32_t      IsCalibrated : 1;
-  }b;
-  uint32_t d32;
-  
-}CALIBRATION_Data2Typedef; 
+    uint32_t     A; 
+    uint32_t     B;
+    uint32_t     IsCalibrated;
+  }CALIBRATION_DataTypedef;
+
 
 /* Private defines -----------------------------------------------------------*/
 /* Private macros ------------------------------------------------------------*/
@@ -67,9 +53,9 @@ static const char * _acPos[] = {
   "(lower right position)"
 };
 
-int16_t  A1, A2, B1, B2;
-CALIBRATION_Data1Typedef data1;
-CALIBRATION_Data2Typedef data2;
+int32_t  A1, A2, B1, B2;
+CALIBRATION_DataTypedef data1;
+CALIBRATION_DataTypedef data2;
 
 /**
   * @brief  wait for process state
@@ -184,15 +170,18 @@ void k_CalibrationInit(void)
 {
   int aPhysX[2], aPhysY[2], aLogX[2], aLogY[2], i;
 
-  data1.d32 = k_BkupRestoreParameter(RTC_BKP_DR0);
-  data2.d32 = k_BkupRestoreParameter(RTC_BKP_DR1);
-  
-  A2 = data2.b.A2;
-  B2 = data2.b.B2;    
-  A1 = data1.b.A1;
-  B1 = data1.b.B1;
-  
-  if(data2.b.IsCalibrated == 0)
+  data2.A= k_BkupRestoreParameter(RTC_BKP_DR15);
+  data2.B = k_BkupRestoreParameter(RTC_BKP_DR16);
+  data1.A = k_BkupRestoreParameter(RTC_BKP_DR17);
+  data1.B = k_BkupRestoreParameter(RTC_BKP_DR18);
+  data2.IsCalibrated = k_BkupRestoreParameter(RTC_BKP_DR19);
+
+  A2 = data2.A;
+  B2 = data2.B;    
+  A1 = data1.A;
+  B1 = data1.B;
+
+  if (data2.IsCalibrated == 0)
   {
     GUI_SetBkColor(GUI_WHITE);
     GUI_Clear();
@@ -216,14 +205,17 @@ void k_CalibrationInit(void)
     A2 = (1000 * ( aLogY[1] - aLogY[0]))/ ( aPhysY[1] - aPhysY[0]); 
     B2 = (1000 * aLogY[0]) - A2 * aPhysY[0]; 
     
-    data1.b.A1 = A1;
-    data1.b.B1 = B1;
-    k_BkupSaveParameter(RTC_BKP_DR0, data1.d32);
+    data1.A = A1;
+    data1.B = B1; 
+    k_BkupSaveParameter(RTC_BKP_DR17, data1.A);
+    k_BkupSaveParameter(RTC_BKP_DR18, data1.B);
     
-    data2.b.A2 = A2;
-    data2.b.B2 = B2;
-    data2.b.IsCalibrated = 1;
-    k_BkupSaveParameter(RTC_BKP_DR1, data2.d32);  
+    data2.A = A2;
+    data2.B = B2;
+    data2.IsCalibrated = 1;
+    k_BkupSaveParameter(RTC_BKP_DR15, data2.A);  
+    k_BkupSaveParameter(RTC_BKP_DR16, data2.B); 
+    k_BkupSaveParameter(RTC_BKP_DR19, data2.IsCalibrated); 
     
     /* Display the result */
     GUI_Clear();

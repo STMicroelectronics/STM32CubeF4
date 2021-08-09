@@ -49,7 +49,7 @@ LED2 toggles every 1000 ms.
 For more details about FreeRTOS implementation on STM32Cube, please refer to UM1722 "Developing Applications 
 on STM32Cube with RTOS".
 
-@par keywords
+@par Keywords
 
 RTOS, FreeRTOS, Thread, Signal, ISR, Interrupt
 

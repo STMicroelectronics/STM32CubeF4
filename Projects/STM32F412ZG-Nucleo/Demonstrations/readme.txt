@@ -94,6 +94,10 @@ access to uSD card to parse bmp images:
 @note The clock setting is configured to have the max product performance (max clock frequency) 
       so not optimized in term of power consumption.
 
+@par Keywords
+
+Demonstrations, Adafruit, Shield, TFT, Joystick, SD Card, Display 
+
 @par Directory contents
  
   - Demonstrations/Inc/stm32f4xx_hal_conf.h    HAL configuration file

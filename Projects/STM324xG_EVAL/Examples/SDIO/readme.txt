@@ -27,6 +27,10 @@
     - /Projects/STM324xG_EVAL/Applications/Display/LCD_Paint
     - /Projects/STM324xG_EVAL/Applications/USB_Device/MSC_Standalone
 
+@par Keywords
+
+SDIO, BSP, FatFS, SD Card, File system, FAT Volume, Format, Mount, Read, Write, FreeRTOS, RTOS, multidrives,
+Display, DSI, LCD, Image slider, GRAM, Touch screen, Connectivity, USB_Device, USB, MSC, Mass Storage
 
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */

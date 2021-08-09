@@ -44,5 +44,9 @@
      resolution   : up to 800x480.
      pixel format : RGB565, RGB888 or ARGB8888
  
+@par Keywords
+
+Graphic, Display, LCD, Pictures, SD Card, BMP, RGB565, RGB888, ARGB8888
+
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */

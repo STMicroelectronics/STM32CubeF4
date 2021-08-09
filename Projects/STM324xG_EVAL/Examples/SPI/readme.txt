@@ -26,6 +26,11 @@
     - /Projects/STM32F4-Discovery/Examples/SPI/SPI_FullDuplex_ComDMA
     - /Projects/STM32F4-Discovery/Examples/SPI/SPI_FullDuplex_AdvCom    
     
+@par Keywords
+
+Connectivity, Communication, SPI, Full-duplex, Polling, DMA, Interrupt, Transmission, Reception, Master, Slave, MISO, MOSI,
+Command, acknowledge
+
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */
  

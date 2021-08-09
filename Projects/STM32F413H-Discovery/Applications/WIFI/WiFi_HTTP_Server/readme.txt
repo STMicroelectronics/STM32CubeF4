@@ -46,6 +46,10 @@ This HTTP server contains a html page:
     STM32F413H-Discovery board
   + ADC conversion: it shows the temperature sensor converted value
 
+@par Keywords
+
+Connectivity, Wifi, Es-WiFi, HTTP Server, Web server
+
 @par Directory contents
  - WiFi/WiFi_HTTP_Server/Inc/main.h                   header for main.c module
  - WiFi/WiFi_HTTP_Server/Inc/stm32f4xx_hal_conf.h     HAL configuration file

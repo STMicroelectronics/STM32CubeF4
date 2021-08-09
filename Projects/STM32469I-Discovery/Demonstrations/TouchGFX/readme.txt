@@ -33,6 +33,10 @@ The demonstration features the following modules:
     - Custom Controls Demo
     - TouchGFX Presentation Demo
 
+@par Keywords
+
+Demonstration, TouchGFX
+
 @par How to use it ?
 
 Please use the STM32CubeProgrammer utility to flash the application's HEX file to the STM32 target.

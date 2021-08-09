@@ -76,7 +76,11 @@ Below you find an overview of the different offered module in the demonstration:
 
 @note The touch screen calibration is done only once in the first board flashing.
       The calibration can be done when pressing the wakeup button when resetting the board.
-      
+
+@par Keywords
+
+Demonstration, STemWin, FreeRTOS, RTOS, Graphics, Game, System, CPU, OSPI  
+     
 @par Hardware and Software environment
 
   - This application runs on STM32F413xx devices.  
