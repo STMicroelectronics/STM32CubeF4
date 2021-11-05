@@ -8,9 +8,9 @@ This guide mainly focuses on the proper use of Git.
 To report a bug/request please file an issue in the right repository (example for [STM32CubeF4](https://github.com/STMicroelectronics/STM32CubeF4/issues/new/choose)).
 
 Please check the following boxes before posting an issue:
-- [ ] `Make sure you are using the latest commit (major releases are Tagged, but corrections are available as new commits).`
-- [ ] `Make sure your issue is a question/feedback/suggestions RELATED TO the software provided in this repository.` Otherwise, it should be discussed on the [ST Community/STM32 MCUs forum](https://community.st.com/s/group/0F90X000000AXsASAW/stm32-mcus).
-- [ ] `Make sure your issue is not already reported/fixed on GitHub or discussed on a previous issue.` Please refer to this [dashboard](https://github.com/orgs/STMicroelectronics/projects/2) for the list of issues and pull-requests. Do not forget to browse into the **closed** issues.
+- [x] `Make sure you are using the latest commit (major releases are Tagged, but corrections are available as new commits).`
+- [x] `Make sure your issue is a question/feedback/suggestions RELATED TO the software provided in this repository.` Otherwise, it should be discussed on the [ST Community/STM32 MCUs forum](https://community.st.com/s/group/0F90X000000AXsASAW/stm32-mcus).
+- [x] `Make sure your issue is not already reported/fixed on GitHub or discussed on a previous issue.` Please refer to this [dashboard](https://github.com/orgs/STMicroelectronics/projects/2) for the list of issues and pull-requests. Do not forget to browse into the **closed** issues.
 
 ### 2. Posting the issue
 When you have checked the previous boxes. You will find two templates (Bug Report or Other Issue) available in the **Issues** tab of the repository.
