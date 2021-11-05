@@ -39,7 +39,7 @@ bool ResistiveTouchController::sampleTouch(int32_t& x, int32_t& y)
     if (state.TouchDetected)
     {
         x = state.X;
-        y = state.Y;
+        y = LCD_GetYSize() - state.Y;
         return true;
     }
     return false;
