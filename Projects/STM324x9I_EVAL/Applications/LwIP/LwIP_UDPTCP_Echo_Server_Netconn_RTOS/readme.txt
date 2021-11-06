@@ -28,16 +28,16 @@ To run this application, On the remote PC, open a command prompt window.
 At the command prompt, enter:
   C:\>echotool IP_address /p tcp /r 7 /n 15 /t 2 /d Testing LwIP TCP echo server
 or
-  C:\>echotool IP_address /p udp /r 7 l/ 7 /n 15 /t 2 /d Testing LwIP UDP echo server
+  C:\>echotool IP_address /p udp /r 7 /l 7 /n 15 /t 2 /d Testing LwIP UDP echo server
 where:
-    – IP_address is the actual board’s IP address. By default, the following 
+    â€“ IP_address is the actual boardâ€™s IP address. By default, the following 
     static IP address is used: 192.168.0.10
-    – /p transport layer protocol used for communication (TCP or UDP)
-    – /r is the actual remote port on the echo server (echo port)
+    â€“ /p transport layer protocol used for communication (TCP or UDP)
+    â€“ /r is the actual remote port on the echo server (echo port)
     - /l is the actual local port for the client (echo port)
-    – /n is the number of echo requests (for example, 15)
-    – /t is the connection timeout in seconds (for example, 2)
-    – /d is the message to be sent for echo 
+    â€“ /n is the number of echo requests (for example, 15)
+    â€“ /t is the connection timeout in seconds (for example, 2)
+    â€“ /d is the message to be sent for echo 
 
 If the LCD is used (#define USE_LCD in main.h), log messages will be displayed 
 to inform user about ethernet cable status and the IP address value, else this 
