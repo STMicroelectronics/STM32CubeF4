@@ -3518,7 +3518,7 @@ static HAL_StatusTypeDef UART_Transmit_IT(UART_HandleTypeDef *huart)
 
     if (--huart->TxXferCount == 0U)
     {
-      /* Disable the UART Transmit Complete Interrupt */
+      /* Disable the UART Transmit data register empty Interrupt */
       __HAL_UART_DISABLE_IT(huart, UART_IT_TXE);
 
       /* Enable the UART Transmit Complete Interrupt */
