@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -299,7 +298,7 @@ static void _OnPaint_back(BUTTON_Handle hObj) {
 }
 
 /**
-  * @brief  Paints foreward button
+  * @brief  Paints forward button
   * @param  hObj: button handle
   * @retval None
   */
@@ -341,7 +340,7 @@ static void _cbButton_back(WM_MESSAGE * pMsg) {
 }
 
 /**
-  * @brief  callback for foreward button
+  * @brief  callback for forward button
   * @param  pMsg: pointer to data structure of type WM_MESSAGE
   * @retval None
   */
@@ -1630,7 +1629,7 @@ static void _AddEntireFolder(char *Foldername)
 }
 
 /**
-  * @brief  Video window Starup
+  * @brief  Video window Startup
   * @param  hWin: pointer to the parent handle.
   * @param  xpos: X position 
   * @param  ypos: Y position
@@ -1657,5 +1656,3 @@ static void Startup(WM_HWIN hWin, uint16_t xpos, uint16_t ypos)
 /**
   * @}
   */
-  
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

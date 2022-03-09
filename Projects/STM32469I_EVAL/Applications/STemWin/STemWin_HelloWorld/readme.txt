@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -28,7 +29,7 @@ http://www.segger.com/emwin-samples.html
 To do this, user has only to replace the file "Basic_HelloWorld.c" into the
 project workspace by the downloaded one.
 
-The 4 LEDs are blinking to show that the program is runing
+The 4 LEDs are blinking to show that the program is running
 
 Note that the following user files may need to be updated:
   LCDConf_stm32469i_eval.c
@@ -44,7 +45,7 @@ Note that the following user files may need to be updated:
 @note The application need to ensure that the SysTick time base is always set to 1 millisecond
       to have correct HAL operation.
 
-@note If the application is not running normally as mentionned above , you can accordingly modify either
+@note If the application is not running normally as mentioned above , you can accordingly modify either
       the Heap and Stack of the application or the GUI_NUMBYTES define in the GUIConf.c file
 
 @par Keywords
@@ -79,5 +80,5 @@ In order to make the program work, you must do the following :
   - Rebuild all files and load your image into target memory
   - Run the example
  
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

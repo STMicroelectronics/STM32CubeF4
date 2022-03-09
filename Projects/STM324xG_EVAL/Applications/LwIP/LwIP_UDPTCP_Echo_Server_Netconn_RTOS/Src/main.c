@@ -10,13 +10,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -35,15 +34,10 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 struct netif gnetif; /* network interface structure */
-/* Semaphore to signal Ethernet Link state update */
-osSemaphoreId Netif_LinkSemaphore = NULL;
-/* Ethernet link thread Argument */
-struct link_str link_arg;
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void StartThread(void const * argument);
-static void ToggleLed4(void const * argument);
 static void BSP_Config(void);
 static void Netif_Config(void);
 extern void tcpecho_init(void);
@@ -105,19 +99,7 @@ static void StartThread(void const * argument)
 
   /* Initialize udp echo server */
   udpecho_init();
-  
-  /* Notify user about the network interface config */
-  User_notification(&gnetif);
-  
-#ifdef USE_DHCP
-  /* Start DHCPClient */
-  osThreadDef(DHCP, DHCP_thread, osPriorityBelowNormal, 0, configMINIMAL_STACK_SIZE * 2);
-  osThreadCreate (osThread(DHCP), &gnetif);
-#endif
-  
-  /* Start toogleLed4 task : Toggle LED4  every 250ms */
-  osThreadDef(LED4, ToggleLed4, osPriorityLow, 0, configMINIMAL_STACK_SIZE);
-  osThreadCreate(osThread(LED4), NULL);
+
   
   for( ;; )
   {
@@ -136,8 +118,8 @@ static void Netif_Config(void)
   ip_addr_t ipaddr;
   ip_addr_t netmask;
   ip_addr_t gw;
-	
-#ifdef USE_DHCP
+
+#if LWIP_DHCP
   ip_addr_set_zero_ip4(&ipaddr);
   ip_addr_set_zero_ip4(&netmask);
   ip_addr_set_zero_ip4(&gw);
@@ -145,21 +127,9 @@ static void Netif_Config(void)
   IP_ADDR4(&ipaddr,IP_ADDR0,IP_ADDR1,IP_ADDR2,IP_ADDR3);
   IP_ADDR4(&netmask,NETMASK_ADDR0,NETMASK_ADDR1,NETMASK_ADDR2,NETMASK_ADDR3);
   IP_ADDR4(&gw,GW_ADDR0,GW_ADDR1,GW_ADDR2,GW_ADDR3);
-#endif /* USE_DHCP */
-  
-  /* - netif_add(struct netif *netif, struct ip_addr *ipaddr,
-  struct ip_addr *netmask, struct ip_addr *gw,
-  void *state, err_t (* init)(struct netif *netif),
-  err_t (* input)(struct pbuf *p, struct netif *netif))
-  
-  Adds your network interface to the netif_list. Allocate a struct
-  netif and pass a pointer to this structure as the first argument.
-  Give pointers to cleared ip_addr structures when using DHCP,
-  or fill them with sane numbers otherwise. The state pointer may be NULL.
-  
-  The init function pointer must point to a initialization function for
-  your ethernet netif interface. The following code illustrates it's use.*/
-  
+#endif /* LWIP_DHCP */
+
+  /* add the network interface */
   netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &tcpip_input);
   
   /*  Registers the default network interface. */
@@ -176,22 +146,20 @@ static void Netif_Config(void)
     netif_set_down(&gnetif);
   }
 
-  /* Set the link callback function, this function is called on change of link status*/
-  netif_set_link_callback(&gnetif, ethernetif_update_config);
-  
-  /* create a binary semaphore used for informing ethernetif of frame reception */
-  osSemaphoreDef(Netif_SEM);
-  Netif_LinkSemaphore = osSemaphoreCreate(osSemaphore(Netif_SEM) , 1 );
-  
-  link_arg.netif = &gnetif;
-  link_arg.semaphore = Netif_LinkSemaphore;
-  /* Create the Ethernet link handler thread */
-#if defined(__GNUC__)
-  osThreadDef(LinkThr, ethernetif_set_link, osPriorityNormal, 0, configMINIMAL_STACK_SIZE * 5);
-#else
-  osThreadDef(LinkThr, ethernetif_set_link, osPriorityNormal, 0, configMINIMAL_STACK_SIZE * 2);
+  ethernet_link_status_updated(&gnetif);
+
+#if LWIP_NETIF_LINK_CALLBACK
+  netif_set_link_callback(&gnetif, ethernet_link_status_updated);
+
+  osThreadDef(EthLink, ethernet_link_thread, osPriorityNormal, 0, configMINIMAL_STACK_SIZE *2);
+  osThreadCreate (osThread(EthLink), &gnetif);
 #endif
-  osThreadCreate (osThread(LinkThr), &link_arg);
+
+#if LWIP_DHCP
+  /* Start DHCPClient */
+  osThreadDef(DHCP, DHCP_Thread, osPriorityBelowNormal, 0, configMINIMAL_STACK_SIZE * 2);
+  osThreadCreate (osThread(DHCP), &gnetif);
+#endif
 }
 
 /**
@@ -201,19 +169,6 @@ static void Netif_Config(void)
   */
 static void BSP_Config(void)
 {
-  GPIO_InitTypeDef GPIO_InitStructure;
-   
-  /* Enable PB14 to IT mode: Ethernet Link interrupt */ 
-  __HAL_RCC_GPIOB_CLK_ENABLE(); 
-  GPIO_InitStructure.Pin = GPIO_PIN_14;
-  GPIO_InitStructure.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStructure.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
-  
-  /* Enable EXTI Line interrupt */
-  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0xF, 0);
-  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
-  
   /* Configure LED1, LED2, and LED4 */
   BSP_LED_Init(LED1);
   BSP_LED_Init(LED2);
@@ -230,39 +185,11 @@ static void BSP_Config(void)
   LCD_LOG_Init();
   
   /* Show Header and Footer texts */
-  LCD_LOG_SetHeader((uint8_t *)"TCP UDP Server Application");
+  LCD_LOG_SetHeader((uint8_t *)"Webserver Application");
   LCD_LOG_SetFooter((uint8_t *)"STM324xG-EVAL board");
   
   LCD_UsrLog("  State: Ethernet Initialization ...\n");
 #endif
-}
-
-/**
-  * @brief  Toggle LED4 thread
-  * @param  pvParameters not used
-  * @retval None
-  */
-static void ToggleLed4(void const * argument)
-{
-  for( ;; )
-  {
-    /* Toggle LED4 each 250ms */
-    BSP_LED_Toggle(LED4);
-    osDelay(250);
-  }
-}
-
-/**
-  * @brief  EXTI line detection callbacks
-  * @param  GPIO_Pin: Specifies the pins connected EXTI line
-  * @retval None
-  */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-  if (GPIO_Pin == GPIO_PIN_14)
-  {
-    osSemaphoreRelease(Netif_LinkSemaphore);
-  }
 }
 
 /**
@@ -345,5 +272,3 @@ void assert_failed(uint8_t* file, uint32_t line)
   }
 }
 #endif
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

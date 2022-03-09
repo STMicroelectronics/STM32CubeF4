@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -33,12 +32,11 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 #define USE_LCD        /* enable LCD  */  
-#define USE_DHCP       /* enable DHCP, if disabled static address is used */
 
-#define DEST_IP_ADDR0   (uint8_t) 192
-#define DEST_IP_ADDR1   (uint8_t) 168
-#define DEST_IP_ADDR2   (uint8_t) 0
-#define DEST_IP_ADDR3   (uint8_t) 11
+#define DEST_IP_ADDR0   (uint8_t) 10
+#define DEST_IP_ADDR1   (uint8_t) 157
+#define DEST_IP_ADDR2   (uint8_t) 11
+#define DEST_IP_ADDR3   (uint8_t) 162
 
 #define UDP_SERVER_PORT    (uint16_t) 7   /* define the UDP local connection port */
 #define UDP_CLIENT_PORT    (uint16_t) 7   /* define the UDP remote connection port */
@@ -48,7 +46,7 @@
 #define IP_ADDR1   (uint8_t) 168
 #define IP_ADDR2   (uint8_t) 0
 #define IP_ADDR3   (uint8_t) 10
-   
+
 /*NETMASK*/
 #define NETMASK_ADDR0   (uint8_t) 255
 #define NETMASK_ADDR1   (uint8_t) 255
@@ -70,6 +68,3 @@
 #endif
 
 #endif /* __MAIN_H */
-
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

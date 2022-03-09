@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the FLASH Erase and Program example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -38,9 +39,9 @@ Once this operation is finished, the word programming operation will be performe
 using the HAL_FLASH_Program function. The written data is then checked and the
 result of the programming operation is stored into the MemoryProgramStatus variable.
 
-STM32 Discovery board's LEDs can be used to monitor the transfer status:
+STM32 Discovery boards LEDs can be used to monitor the transfer status:
  - LED4 (GREEN) is ON when there are no errors detected after programmation
- - LED5 (RED) is ON when there are errors dectected after programmation
+ - LED5 (RED) is ON when there are errors detected after programmation
  - LED6 (BLUE) is ON when there is an issue during erase procedure
  - LED3 (ORANGE) is ON when there is an issue during program procedure
 
@@ -80,5 +81,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the application
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

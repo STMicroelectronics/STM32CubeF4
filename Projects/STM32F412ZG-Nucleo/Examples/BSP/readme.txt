@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description NUCLEO-F412ZG Demo description.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -24,7 +25,7 @@ The BSP examples detects the presence of Adafruit 1.8" TFT shield with joystick 
 
 If the Adafruit shield is NOT connected, then:
  - Red led (led3) blinks waiting the user button is pushed.
- - Then red led swithces off and green & blue LEDs start blinking at high frequency.
+ - Then red led switches off and green & blue LEDs start blinking at high frequency.
  - Pushing user button again and again blinking frequency decreases until looping 
    to high frequency.
 
@@ -77,5 +78,5 @@ In order to make the program work, you must do the following :
 - Rebuild all files and load your image into target memory
 - Run the example
        
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

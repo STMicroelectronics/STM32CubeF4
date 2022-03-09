@@ -6,16 +6,15 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */ 
+  */
 
 /* Includes ------------------------------------------------------------------*/
 #include "LCDConf.h"
@@ -615,6 +614,7 @@ static void LCD_LL_Init(void)
 {
   static RCC_PeriphCLKInitTypeDef  PeriphClkInitStruct;
       /* DeInit */
+      hltdc.Instance = LTDC;
       HAL_LTDC_DeInit(&hltdc);
       
       /* Initializaton of ILI9341 component*/
@@ -944,7 +944,7 @@ static void DMA2D_AlphaBlendingBulk(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, 
   DMA2D->OPFCCR  = LTDC_PIXEL_FORMAT_ARGB8888;       /* Output     PFC Control Register (Defines the output pixel format) */
   
   /* Set up size */
-  DMA2D->NLR     = (uint32_t)(NumItems << 16) | 1;       /* Number of Line Register (Size configuration of area to be transfered) */
+  DMA2D->NLR     = (uint32_t)(NumItems << 16) | 1;       /* Number of Line Register (Size configuration of area to be transferred) */
   
   /* Execute operation */
   
@@ -996,7 +996,7 @@ static LCD_COLOR DMA2D_MixColors(LCD_COLOR Color, LCD_COLOR BkColor, U8 Intens)
   DMA2D->OPFCCR  = LTDC_PIXEL_FORMAT_ARGB8888;
   
   /* Set up size */
-  DMA2D->NLR     = (uint32_t)(1 << 16) | 1;              /* Number of Line Register (Size configuration of area to be transfered) */
+  DMA2D->NLR     = (uint32_t)(1 << 16) | 1;              /* Number of Line Register (Size configuration of area to be transferred) */
   
   /* Execute operation */
   DMA2D->CR     |= DMA2D_CR_START;                               /* Control Register (Start operation) */
@@ -1037,7 +1037,7 @@ static void DMA2D_ConvertColor(void * pSrc, void * pDst,  uint32_t PixelFormatSr
   DMA2D->OPFCCR  = PixelFormatDst;                  /* Output PFC Control Register (Defines the output pixel format) */
   
   /* Set up size */
-  DMA2D->NLR     = (uint32_t)(NumItems << 16) | 1;       /* Number of Line Register (Size configuration of area to be transfered) */
+  DMA2D->NLR     = (uint32_t)(NumItems << 16) | 1;       /* Number of Line Register (Size configuration of area to be transferred) */
   
   /* Execute operation */
   DMA2D->CR     |= DMA2D_CR_START;  
@@ -1137,7 +1137,7 @@ static void DMA2D_MixColorsBulk(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, LCD_
   DMA2D->OPFCCR  = LTDC_PIXEL_FORMAT_ARGB8888;
   
   /* Set up size */
-  DMA2D->NLR     = (uint32_t)(NumItems << 16) | 1;              /* Number of Line Register (Size configuration of area to be transfered) */
+  DMA2D->NLR     = (uint32_t)(NumItems << 16) | 1;              /* Number of Line Register (Size configuration of area to be transferred) */
   
   /* Execute operation */
   DMA2D->CR     |= DMA2D_CR_START;  
@@ -1273,7 +1273,7 @@ static void DMA2D_DrawBitmapL8(void * pSrc, void * pDst,  uint32_t OffSrc, uint3
   DMA2D->OPFCCR  = PixelFormatDst;                  /* Output PFC Control Register (Defines the output pixel format) */
   
   /* Set up size */
-  DMA2D->NLR     = (uint32_t)(xSize << 16) | ySize;      /* Number of Line Register (Size configuration of area to be transfered) */
+  DMA2D->NLR     = (uint32_t)(xSize << 16) | ySize;      /* Number of Line Register (Size configuration of area to be transferred) */
   
   /* Execute operation */
   DMA2D->CR     |= DMA2D_CR_START;                               /* Start operation */
@@ -1331,4 +1331,3 @@ static void BSP_LCD_DrawBitmap8bpp(int32_t LayerIndex, int32_t x, int32_t y, U8 
   PixelFormat = LCD_LL_GetPixelformat(LayerIndex);
   DMA2D_DrawBitmapL8((void *)p, (void *)AddrDst, OffLineSrc, OffLineDst, PixelFormat, xSize, ySize);
 }
-/*************************** End of file ****************************/

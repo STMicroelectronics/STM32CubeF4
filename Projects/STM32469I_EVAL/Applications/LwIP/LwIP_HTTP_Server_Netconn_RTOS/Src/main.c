@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    LwIP/LwIP_HTTP_Server_Netconn_RTOS/Src/main.c 
+  * @file    LwIP/LwIP_HTTP_Server_Netconn_RTOS/Src/main.c
   * @author  MCD Application Team
   * @brief   This sample code implements a http server application based on 
   *          Netconn API of LwIP stack and FreeRTOS. This application uses 
@@ -9,18 +9,18 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
 #include "ethernetif.h"
 #include "lwip/netif.h"
 #include "lwip/tcpip.h"
@@ -35,15 +35,10 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 struct netif gnetif; /* network interface structure */
-/* Semaphore to signal Ethernet Link state update */
-osSemaphoreId Netif_LinkSemaphore = NULL;
-/* Ethernet link thread Argument */
-struct link_str link_arg;
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void StartThread(void const * argument);
-static void ToggleLed4(void const * argument);
 static void BSP_Config(void);
 static void Netif_Config(void);
 static void Error_Handler(void);
@@ -63,120 +58,51 @@ int main(void)
        - Set NVIC Group Priority to 4
        - Global MSP (MCU Support Package) initialization
      */
-  HAL_Init();  
-  
+  HAL_Init();
+
   /* Configure the system clock to 180 MHz */
   SystemClock_Config();
-  
-  /* Init thread */
+
+  /* Initialize LCD and LEDs */
+  BSP_Config();
+
+  /* Init task */
 #if defined(__GNUC__)
   osThreadDef(Start, StartThread, osPriorityNormal, 0, configMINIMAL_STACK_SIZE * 5);
 #else
   osThreadDef(Start, StartThread, osPriorityNormal, 0, configMINIMAL_STACK_SIZE * 2);
 #endif
-  
+
   osThreadCreate (osThread(Start), NULL);
-  
+
   /* Start scheduler */
   osKernelStart();
-  
+
   /* We should never get here as control is now taken by the scheduler */
   for( ;; );
 }
 
 /**
-  * @brief  Start Thread 
+  * @brief  Start Thread
   * @param  argument not used
   * @retval None
   */
 static void StartThread(void const * argument)
 {
-  /* Initialize LCD and LEDs */
-  BSP_Config();
-  
   /* Create tcp_ip stack thread */
   tcpip_init(NULL, NULL);
-  
+
   /* Initialize the LwIP stack */
   Netif_Config();
-  
+
   /* Initialize webserver demo */
   http_server_netconn_init();
-  
-  /* Notify user about the network interface config */
-  User_notification(&gnetif);
-  
-#ifdef USE_DHCP
-  /* Start DHCPClient */
-  osThreadDef(DHCP, DHCP_thread, osPriorityBelowNormal, 0, configMINIMAL_STACK_SIZE * 2);
-  osThreadCreate (osThread(DHCP), &gnetif);
-#endif
-  
-  /* Start toogleLed4 task : Toggle LED4  every 250ms */
-  osThreadDef(LED4, ToggleLed4, osPriorityLow, 0, configMINIMAL_STACK_SIZE);
-  osThreadCreate (osThread(LED4), NULL);
-  
+
   for( ;; )
   {
-    /* Delete the Init Thread */ 
+    /* Delete the Init Thread */
     osThreadTerminate(NULL);
   }
-}
-
-/**
-  * @brief  Initializes the lwIP stack
-  * @param  None
-  * @retval None
-  */
-static void Netif_Config(void)
-{
-  ip_addr_t ipaddr;
-  ip_addr_t netmask;
-  ip_addr_t gw;
-	
-#ifdef USE_DHCP
-  ip_addr_set_zero_ip4(&ipaddr);
-  ip_addr_set_zero_ip4(&netmask);
-  ip_addr_set_zero_ip4(&gw);
-#else
-  IP_ADDR4(&ipaddr,IP_ADDR0,IP_ADDR1,IP_ADDR2,IP_ADDR3);
-  IP_ADDR4(&netmask,NETMASK_ADDR0,NETMASK_ADDR1,NETMASK_ADDR2,NETMASK_ADDR3);
-  IP_ADDR4(&gw,GW_ADDR0,GW_ADDR1,GW_ADDR2,GW_ADDR3);
-#endif /* USE_DHCP */
-    
-  netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &tcpip_input);
-  
-  /*  Registers the default network interface. */
-  netif_set_default(&gnetif);
-  
-  if (netif_is_link_up(&gnetif))
-  {
-    /* When the netif is fully configured this function must be called */
-    netif_set_up(&gnetif);
-  }
-  else
-  {
-    /* When the netif link is down this function must be called */
-    netif_set_down(&gnetif);
-  }
-
-  /* Set the link callback function, this function is called on change of link status*/
-  netif_set_link_callback(&gnetif, ethernetif_update_config);
-  
-  /* create a binary semaphore used for informing ethernetif of frame reception */
-  osSemaphoreDef(Netif_SEM);
-  Netif_LinkSemaphore = osSemaphoreCreate(osSemaphore(Netif_SEM) , 1 );
-  
-  link_arg.netif = &gnetif;
-  link_arg.semaphore = Netif_LinkSemaphore;
-  /* Create the Ethernet link handler thread */
-#if defined(__GNUC__)
-  osThreadDef(LinkThr, ethernetif_set_link, osPriorityNormal, 0, configMINIMAL_STACK_SIZE * 5);
-#else
-  osThreadDef(LinkThr, ethernetif_set_link, osPriorityNormal, 0, configMINIMAL_STACK_SIZE * 2);
-#endif
-
-  osThreadCreate (osThread(LinkThr), &link_arg);
 }
 
 /**
@@ -186,24 +112,12 @@ static void Netif_Config(void)
   */
 static void BSP_Config(void)
 {
-  /* Configure LED1, LED2, LED3 and LED4 */
-  BSP_LED_Init(LED1);
-  BSP_LED_Init(LED2);
-  BSP_LED_Init(LED3);
-  BSP_LED_Init(LED4);   
-  
-  /* Init MFX IO Expander */
-  BSP_IO_Init();
-  
-  /* Enable MFX IO Expander interrupt for ETH MII pin */
-  BSP_IO_ConfigPin(MII_INT_PIN, IO_MODE_IT_FALLING_EDGE);
-  
 #ifdef USE_LCD
 
-  /* Initialize DSI LCD */
+  /* Initialize the LCD */
   BSP_LCD_Init();
 
-  BSP_LCD_LayerDefaultInit(0, LCD_FB_START_ADDRESS);   
+  BSP_LCD_LayerDefaultInit(0, LCD_FB_START_ADDRESS);
   
   BSP_LCD_SetFont(&LCD_DEFAULT_FONT);
   
@@ -216,40 +130,55 @@ static void BSP_Config(void)
   
   LCD_UsrLog ((char *)"  State: Ethernet Initialization ...\n");
 
+#else
+  /* Configure LED1 and LED2 */
+  BSP_LED_Init(LED1);
+  BSP_LED_Init(LED2);
+
 #endif /* USE_LCD */
 }
 
 /**
-  * @brief  Toggle LED4 thread
-  * @param  pvParameters not used
+  * @brief  Configures the network interface
+  * @param  None
   * @retval None
   */
-static void ToggleLed4(void const * argument)
+static void Netif_Config(void)
 {
-  for( ;; )
-  {
-    /* Toggle LED4 each 250ms */
-    BSP_LED_Toggle(LED4);
-    osDelay(250);
-  }
-}
+  ip_addr_t ipaddr;
+  ip_addr_t netmask;
+  ip_addr_t gw;
 
-/**
-  * @brief EXTI line detection callbacks
-  * @param GPIO_Pin: Specifies the pins connected EXTI line
-  * @retval None
-  */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-  if (GPIO_Pin == MFX_IRQOUT_PIN)
-  {
-    /* Get the IT status register value */
-    if(BSP_IO_ITGetStatus(MII_INT_PIN))
-    {
-      osSemaphoreRelease(Netif_LinkSemaphore);
-    }
-    BSP_IO_ITClear();
-  }
+#if LWIP_DHCP
+  ip_addr_set_zero_ip4(&ipaddr);
+  ip_addr_set_zero_ip4(&netmask);
+  ip_addr_set_zero_ip4(&gw);
+#else
+  IP_ADDR4(&ipaddr,IP_ADDR0,IP_ADDR1,IP_ADDR2,IP_ADDR3);
+  IP_ADDR4(&netmask,NETMASK_ADDR0,NETMASK_ADDR1,NETMASK_ADDR2,NETMASK_ADDR3);
+  IP_ADDR4(&gw,GW_ADDR0,GW_ADDR1,GW_ADDR2,GW_ADDR3);
+#endif /* LWIP_DHCP */
+
+  /* add the network interface */
+  netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &tcpip_input);
+
+  /*  Registers the default network interface. */
+  netif_set_default(&gnetif);
+
+  ethernet_link_status_updated(&gnetif);
+
+#if LWIP_NETIF_LINK_CALLBACK
+  netif_set_link_callback(&gnetif, ethernet_link_status_updated);
+
+  osThreadDef(EthLink, ethernet_link_thread, osPriorityNormal, 0, configMINIMAL_STACK_SIZE *2);
+  osThreadCreate (osThread(EthLink), &gnetif);
+#endif
+
+#if LWIP_DHCP
+  /* Start DHCPClient */
+  osThreadDef(DHCP, DHCP_Thread, osPriorityBelowNormal, 0, configMINIMAL_STACK_SIZE * 2);
+  osThreadCreate (osThread(DHCP), &gnetif);
+#endif
 }
 
 /**
@@ -286,7 +215,7 @@ static void SystemClock_Config(void)
      clocked below the maximum system frequency, to update the voltage scaling value 
      regarding system frequency refer to product datasheet.  */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  
+
   /* Enable HSE Oscillator and activate PLL with HSE as source */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
@@ -313,12 +242,12 @@ static void SystemClock_Config(void)
   }
  
   /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
-     clocks dividers */
+  clocks dividers */
   RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;  
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;  
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
   ret = HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5);
   if(ret != HAL_OK)
   {
@@ -341,6 +270,7 @@ static void Error_Handler(void)
 }
 
 #ifdef  USE_FULL_ASSERT
+
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.
@@ -352,12 +282,10 @@ void assert_failed(uint8_t* file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  
+
   /* Infinite loop */
   while (1)
   {
   }
 }
 #endif
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

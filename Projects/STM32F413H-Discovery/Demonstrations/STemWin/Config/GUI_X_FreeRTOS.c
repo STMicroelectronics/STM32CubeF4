@@ -36,17 +36,12 @@ Purpose     : This file provides emWin Interface with FreeRTOS
   ******************************************************************************
   * @attention
   *
-  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
-  * You may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at:
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  *        http://www.st.com/software_license_agreement_liberty_v2
-  *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -177,7 +172,7 @@ void GUI_X_SignalEvent (void)
 
 Note:
 Logging is used in higher debug levels only. The typical target
-build does not use logging and does therefor not require any of
+build does not use logging and does therefore not require any of
 the logging routines below. For a release build without logging
 the routines below may be eliminated to save some space.
 (If the linker is not function aware and eliminates unreferenced
@@ -188,6 +183,3 @@ functions automatically)
 void GUI_X_Log (const char *s) { }
 void GUI_X_Warn (const char *s) { }
 void GUI_X_ErrorOut(const char *s) { }
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-

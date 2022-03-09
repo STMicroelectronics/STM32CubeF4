@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -283,7 +282,7 @@ static int8_t CDC_Itf_Receive(uint8_t * Buf, uint32_t * Len)
 
 /**
   * @brief  CDC_Itf_TransmitCplt
-  *         Data transmited callback
+  *         Data transmitted callback
   *
   * @note
   *         This function is IN transfer complete callback used to inform user that
@@ -427,7 +426,7 @@ static void TIM_Config(void)
   */
 void HAL_UART_ErrorCallback(UART_HandleTypeDef * UartHandle)
 {
-  /* Transfer error occured in reception and/or transmission process */
+  /* Transfer error occurred in reception and/or transmission process */
   Error_Handler();
 }
 
@@ -440,5 +439,3 @@ static void Error_Handler(void)
 {
   /* Add your own code here */
 }
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

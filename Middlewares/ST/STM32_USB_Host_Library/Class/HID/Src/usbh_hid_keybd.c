@@ -31,36 +31,36 @@ EndBSPDependencies */
 #include "usbh_hid_parser.h"
 
 /** @addtogroup USBH_LIB
-* @{
-*/
+  * @{
+  */
 
 /** @addtogroup USBH_CLASS
-* @{
-*/
+  * @{
+  */
 
 /** @addtogroup USBH_HID_CLASS
-* @{
-*/
+  * @{
+  */
 
 /** @defgroup USBH_HID_KEYBD
-* @brief    This file includes HID Layer Handlers for USB Host HID class.
-* @{
-*/
+  * @brief    This file includes HID Layer Handlers for USB Host HID class.
+  * @{
+  */
 
 /** @defgroup USBH_HID_KEYBD_Private_TypesDefinitions
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_HID_KEYBD_Private_Defines
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 #ifndef AZERTY_KEYBOARD
 #define QWERTY_KEYBOARD
 #endif
@@ -75,23 +75,23 @@ EndBSPDependencies */
 #define  KBR_MAX_NBR_PRESSED                            6
 
 /** @defgroup USBH_HID_KEYBD_Private_Macros
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 /** @defgroup USBH_HID_KEYBD_Private_FunctionPrototypes
-* @{
-*/
+  * @{
+  */
 static USBH_StatusTypeDef USBH_HID_KeybdDecode(USBH_HandleTypeDef *phost);
 /**
-* @}
-*/
+  * @}
+  */
 
 /** @defgroup USBH_HID_KEYBD_Private_Variables
-* @{
-*/
+  * @{
+  */
 
 HID_KEYBD_Info_TypeDef     keybd_info;
 uint32_t                   keybd_rx_report_buf[2];
@@ -330,10 +330,14 @@ USBH_StatusTypeDef USBH_HID_KeybdInit(USBH_HandleTypeDef *phost)
   uint32_t x;
   HID_HandleTypeDef *HID_Handle = (HID_HandleTypeDef *) phost->pActiveClass->pData;
 
-  keybd_info.lctrl = keybd_info.lshift = 0U;
-  keybd_info.lalt = keybd_info.lgui = 0U;
-  keybd_info.rctrl = keybd_info.rshift = 0U;
-  keybd_info.ralt = keybd_info.rgui = 0U;
+  keybd_info.lctrl = 0U;
+  keybd_info.lshift = 0U;
+  keybd_info.lalt = 0U;
+  keybd_info.lgui = 0U;
+  keybd_info.rctrl = 0U;
+  keybd_info.rshift = 0U;
+  keybd_info.ralt = 0U;
+  keybd_info.rgui = 0U;
 
 
   for (x = 0U; x < (sizeof(keybd_report_data) / sizeof(uint32_t)); x++)
@@ -344,10 +348,10 @@ USBH_StatusTypeDef USBH_HID_KeybdInit(USBH_HandleTypeDef *phost)
 
   if (HID_Handle->length > (sizeof(keybd_report_data)))
   {
-    HID_Handle->length = (sizeof(keybd_report_data));
+    HID_Handle->length = (uint16_t)(sizeof(keybd_report_data));
   }
   HID_Handle->pData = (uint8_t *)(void *)keybd_rx_report_buf;
-  USBH_HID_FifoInit(&HID_Handle->fifo, phost->device.Data, HID_QUEUE_SIZE * sizeof(keybd_report_data));
+  USBH_HID_FifoInit(&HID_Handle->fifo, phost->device.Data, (uint16_t)(HID_QUEUE_SIZE * sizeof(keybd_report_data)));
 
   return USBH_OK;
 }
@@ -417,7 +421,7 @@ static USBH_StatusTypeDef USBH_HID_KeybdDecode(USBH_HandleTypeDef *phost)
 uint8_t USBH_HID_GetASCIICode(HID_KEYBD_Info_TypeDef *info)
 {
   uint8_t   output;
-  if ((info->lshift == 1U) || (info->rshift))
+  if ((info->lshift != 0U) || (info->rshift != 0U))
   {
     output =  HID_KEYBRD_ShiftKey[HID_KEYBRD_Codes[info->keys[0]]];
   }

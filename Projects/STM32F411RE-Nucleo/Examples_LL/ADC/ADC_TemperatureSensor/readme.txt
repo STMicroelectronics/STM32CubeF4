@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the ADC_TemperatureSensor example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -43,11 +44,11 @@ from ADC data register and stores it into a variable, LED2 is turned on.
 
 ADC conversions raw data are computed to physical values
 using LL ADC driver helper macro:
- - Value of temperature (unit: degree Celcius)
+ - Value of temperature (unit: degree Celsius)
 
 For debug: variables to monitor with debugger watch window:
  - "uhADCxConvertedData": ADC group regular conversion data
- - "hADCxConvertedData_Temperature_DegreeCelsius": Value of temperature (unit: degree Celcius)
+ - "hADCxConvertedData_Temperature_DegreeCelsius": Value of temperature (unit: degree Celsius)
 
 Connection needed:
 None.
@@ -85,5 +86,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

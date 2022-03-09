@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -36,7 +35,7 @@ ADC_HandleTypeDef hadc;
 char const* TAGCHAR="t";
 char const** TAGS=&TAGCHAR;
 
-/* CGI handler for LED control */ 
+/* CGI handler for LED control */
 const char * LEDS_CGI_Handler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[]);
 
 /* Html request for "/leds.cgi" will start LEDS_CGI_Handler */
@@ -174,13 +173,11 @@ void http_server_init(void)
 {
   /* Httpd Init */
   httpd_init();
-  
+
   /* configure SSI handlers (ADC page SSI) */
   http_set_ssi_handler(ADC_Handler, (char const **)TAGS, 1);
-  
+
   /* configure CGI handlers (LEDs control CGI) */
   CGI_TAB[0] = LEDS_CGI;
-  http_set_cgi_handlers(CGI_TAB, 1);  
+  http_set_cgi_handlers(CGI_TAB, 1);
 }
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

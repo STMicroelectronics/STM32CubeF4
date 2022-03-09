@@ -49,58 +49,58 @@ EndBSPDependencies */
 #include "usbh_cdc.h"
 
 /** @addtogroup USBH_LIB
-* @{
-*/
+  * @{
+  */
 
 /** @addtogroup USBH_CLASS
-* @{
-*/
+  * @{
+  */
 
 /** @addtogroup USBH_CDC_CLASS
-* @{
-*/
+  * @{
+  */
 
 /** @defgroup USBH_CDC_CORE
-* @brief    This file includes CDC Layer Handlers for USB Host CDC class.
-* @{
-*/
+  * @brief    This file includes CDC Layer Handlers for USB Host CDC class.
+  * @{
+  */
 
 /** @defgroup USBH_CDC_CORE_Private_TypesDefinitions
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_CDC_CORE_Private_Defines
-* @{
-*/
+  * @{
+  */
 #define USBH_CDC_BUFFER_SIZE                 1024
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_CDC_CORE_Private_Macros
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_CDC_CORE_Private_Variables
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_CDC_CORE_Private_FunctionPrototypes
-* @{
-*/
+  * @{
+  */
 
 static USBH_StatusTypeDef USBH_CDC_InterfaceInit(USBH_HandleTypeDef *phost);
 
@@ -134,13 +134,13 @@ USBH_ClassTypeDef  CDC_Class =
   NULL,
 };
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_CDC_CORE_Private_Functions
-* @{
-*/
+  * @{
+  */
 
 /**
   * @brief  USBH_CDC_InterfaceInit
@@ -156,7 +156,7 @@ static USBH_StatusTypeDef USBH_CDC_InterfaceInit(USBH_HandleTypeDef *phost)
   CDC_HandleTypeDef *CDC_Handle;
 
   interface = USBH_FindInterface(phost, COMMUNICATION_INTERFACE_CLASS_CODE,
-                                 ABSTRACT_CONTROL_MODEL, COMMON_AT_COMMAND);
+                                   ABSTRACT_CONTROL_MODEL, COMMON_AT_COMMAND);
 
   if ((interface == 0xFFU) || (interface >= USBH_MAX_NUM_INTERFACES)) /* No Valid Interface */
   {
@@ -181,10 +181,10 @@ static USBH_StatusTypeDef USBH_CDC_InterfaceInit(USBH_HandleTypeDef *phost)
   }
 
   /* Initialize cdc handler */
-  USBH_memset(CDC_Handle, 0, sizeof(CDC_HandleTypeDef));
+  (void)USBH_memset(CDC_Handle, 0, sizeof(CDC_HandleTypeDef));
 
   /*Collect the notification endpoint address and length*/
-  if (phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[0].bEndpointAddress & 0x80U)
+  if ((phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[0].bEndpointAddress & 0x80U) != 0U)
   {
     CDC_Handle->CommItf.NotifEp = phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[0].bEndpointAddress;
     CDC_Handle->CommItf.NotifEpSize  = phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[0].wMaxPacketSize;
@@ -194,14 +194,14 @@ static USBH_StatusTypeDef USBH_CDC_InterfaceInit(USBH_HandleTypeDef *phost)
   CDC_Handle->CommItf.NotifPipe = USBH_AllocPipe(phost, CDC_Handle->CommItf.NotifEp);
 
   /* Open pipe for Notification endpoint */
-  USBH_OpenPipe(phost, CDC_Handle->CommItf.NotifPipe, CDC_Handle->CommItf.NotifEp,
-                phost->device.address, phost->device.speed, USB_EP_TYPE_INTR,
-                CDC_Handle->CommItf.NotifEpSize);
+  (void)USBH_OpenPipe(phost, CDC_Handle->CommItf.NotifPipe, CDC_Handle->CommItf.NotifEp,
+                      phost->device.address, phost->device.speed, USB_EP_TYPE_INTR,
+                      CDC_Handle->CommItf.NotifEpSize);
 
-  USBH_LL_SetToggle(phost, CDC_Handle->CommItf.NotifPipe, 0U);
+  (void)USBH_LL_SetToggle(phost, CDC_Handle->CommItf.NotifPipe, 0U);
 
   interface = USBH_FindInterface(phost, DATA_INTERFACE_CLASS_CODE,
-                                 RESERVED, NO_CLASS_SPECIFIC_PROTOCOL_CODE);
+                                   RESERVED, NO_CLASS_SPECIFIC_PROTOCOL_CODE);
 
   if ((interface == 0xFFU) || (interface >= USBH_MAX_NUM_INTERFACES)) /* No Valid Interface */
   {
@@ -210,7 +210,7 @@ static USBH_StatusTypeDef USBH_CDC_InterfaceInit(USBH_HandleTypeDef *phost)
   }
 
   /*Collect the class specific endpoint address and length*/
-  if (phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[0].bEndpointAddress & 0x80U)
+  if ((phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[0].bEndpointAddress & 0x80U) != 0U)
   {
     CDC_Handle->DataItf.InEp = phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[0].bEndpointAddress;
     CDC_Handle->DataItf.InEpSize  = phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[0].wMaxPacketSize;
@@ -221,7 +221,7 @@ static USBH_StatusTypeDef USBH_CDC_InterfaceInit(USBH_HandleTypeDef *phost)
     CDC_Handle->DataItf.OutEpSize  = phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[0].wMaxPacketSize;
   }
 
-  if (phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[1].bEndpointAddress & 0x80U)
+  if ((phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[1].bEndpointAddress & 0x80U) != 0U)
   {
     CDC_Handle->DataItf.InEp = phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[1].bEndpointAddress;
     CDC_Handle->DataItf.InEpSize  = phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[1].wMaxPacketSize;
@@ -239,19 +239,19 @@ static USBH_StatusTypeDef USBH_CDC_InterfaceInit(USBH_HandleTypeDef *phost)
   CDC_Handle->DataItf.InPipe = USBH_AllocPipe(phost, CDC_Handle->DataItf.InEp);
 
   /* Open channel for OUT endpoint */
-  USBH_OpenPipe(phost, CDC_Handle->DataItf.OutPipe, CDC_Handle->DataItf.OutEp,
-                phost->device.address, phost->device.speed, USB_EP_TYPE_BULK,
-                CDC_Handle->DataItf.OutEpSize);
+  (void)USBH_OpenPipe(phost, CDC_Handle->DataItf.OutPipe, CDC_Handle->DataItf.OutEp,
+                      phost->device.address, phost->device.speed, USB_EP_TYPE_BULK,
+                      CDC_Handle->DataItf.OutEpSize);
 
   /* Open channel for IN endpoint */
-  USBH_OpenPipe(phost, CDC_Handle->DataItf.InPipe, CDC_Handle->DataItf.InEp,
-                phost->device.address, phost->device.speed, USB_EP_TYPE_BULK,
-                CDC_Handle->DataItf.InEpSize);
+  (void)USBH_OpenPipe(phost, CDC_Handle->DataItf.InPipe, CDC_Handle->DataItf.InEp,
+                      phost->device.address, phost->device.speed, USB_EP_TYPE_BULK,
+                      CDC_Handle->DataItf.InEpSize);
 
   CDC_Handle->state = CDC_IDLE_STATE;
 
-  USBH_LL_SetToggle(phost, CDC_Handle->DataItf.OutPipe, 0U);
-  USBH_LL_SetToggle(phost, CDC_Handle->DataItf.InPipe, 0U);
+  (void)USBH_LL_SetToggle(phost, CDC_Handle->DataItf.OutPipe, 0U);
+  (void)USBH_LL_SetToggle(phost, CDC_Handle->DataItf.InPipe, 0U);
 
   return USBH_OK;
 }
@@ -268,28 +268,28 @@ static USBH_StatusTypeDef USBH_CDC_InterfaceDeInit(USBH_HandleTypeDef *phost)
 {
   CDC_HandleTypeDef *CDC_Handle = (CDC_HandleTypeDef *) phost->pActiveClass->pData;
 
-  if (CDC_Handle->CommItf.NotifPipe)
+  if ((CDC_Handle->CommItf.NotifPipe) != 0U)
   {
-    USBH_ClosePipe(phost, CDC_Handle->CommItf.NotifPipe);
-    USBH_FreePipe(phost, CDC_Handle->CommItf.NotifPipe);
+    (void)USBH_ClosePipe(phost, CDC_Handle->CommItf.NotifPipe);
+    (void)USBH_FreePipe(phost, CDC_Handle->CommItf.NotifPipe);
     CDC_Handle->CommItf.NotifPipe = 0U;     /* Reset the Channel as Free */
   }
 
-  if (CDC_Handle->DataItf.InPipe)
+  if ((CDC_Handle->DataItf.InPipe) != 0U)
   {
-    USBH_ClosePipe(phost, CDC_Handle->DataItf.InPipe);
-    USBH_FreePipe(phost, CDC_Handle->DataItf.InPipe);
+    (void)USBH_ClosePipe(phost, CDC_Handle->DataItf.InPipe);
+    (void)USBH_FreePipe(phost, CDC_Handle->DataItf.InPipe);
     CDC_Handle->DataItf.InPipe = 0U;     /* Reset the Channel as Free */
   }
 
-  if (CDC_Handle->DataItf.OutPipe)
+  if ((CDC_Handle->DataItf.OutPipe) != 0U)
   {
-    USBH_ClosePipe(phost, CDC_Handle->DataItf.OutPipe);
-    USBH_FreePipe(phost, CDC_Handle->DataItf.OutPipe);
+    (void)USBH_ClosePipe(phost, CDC_Handle->DataItf.OutPipe);
+    (void)USBH_FreePipe(phost, CDC_Handle->DataItf.OutPipe);
     CDC_Handle->DataItf.OutPipe = 0U;    /* Reset the Channel as Free */
   }
 
-  if (phost->pActiveClass->pData)
+  if ((phost->pActiveClass->pData) != NULL)
   {
     USBH_free(phost->pActiveClass->pData);
     phost->pActiveClass->pData = 0U;
@@ -442,9 +442,9 @@ USBH_StatusTypeDef  USBH_CDC_Stop(USBH_HandleTypeDef *phost)
   {
     CDC_Handle->state = CDC_IDLE_STATE;
 
-    USBH_ClosePipe(phost, CDC_Handle->CommItf.NotifPipe);
-    USBH_ClosePipe(phost, CDC_Handle->DataItf.InPipe);
-    USBH_ClosePipe(phost, CDC_Handle->DataItf.OutPipe);
+    (void)USBH_ClosePipe(phost, CDC_Handle->CommItf.NotifPipe);
+    (void)USBH_ClosePipe(phost, CDC_Handle->DataItf.InPipe);
+    (void)USBH_ClosePipe(phost, CDC_Handle->DataItf.OutPipe);
   }
   return USBH_OK;
 }
@@ -494,10 +494,10 @@ static USBH_StatusTypeDef SetLineCoding(USBH_HandleTypeDef *phost,
 }
 
 /**
-* @brief  This function prepares the state before issuing the class specific commands
-* @param  None
-* @retval None
-*/
+  * @brief  This function prepares the state before issuing the class specific commands
+  * @param  None
+  * @retval None
+  */
 USBH_StatusTypeDef USBH_CDC_SetLineCoding(USBH_HandleTypeDef *phost,
                                           CDC_LineCodingTypeDef *linecoding)
 {
@@ -513,7 +513,7 @@ USBH_StatusTypeDef USBH_CDC_SetLineCoding(USBH_HandleTypeDef *phost,
 #if (osCMSIS < 0x20000U)
     (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
 #else
-    (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, NULL);
+    (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
 #endif
 #endif
   }
@@ -522,10 +522,10 @@ USBH_StatusTypeDef USBH_CDC_SetLineCoding(USBH_HandleTypeDef *phost,
 }
 
 /**
-* @brief  This function prepares the state before issuing the class specific commands
-* @param  None
-* @retval None
-*/
+  * @brief  This function prepares the state before issuing the class specific commands
+  * @param  None
+  * @retval None
+  */
 USBH_StatusTypeDef  USBH_CDC_GetLineCoding(USBH_HandleTypeDef *phost,
                                            CDC_LineCodingTypeDef *linecoding)
 {
@@ -587,7 +587,7 @@ USBH_StatusTypeDef  USBH_CDC_Transmit(USBH_HandleTypeDef *phost, uint8_t *pbuff,
 #if (osCMSIS < 0x20000U)
     (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
 #else
-    (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, NULL);
+    (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
 #endif
 #endif
   }
@@ -596,10 +596,10 @@ USBH_StatusTypeDef  USBH_CDC_Transmit(USBH_HandleTypeDef *phost, uint8_t *pbuff,
 
 
 /**
-* @brief  This function prepares the state before issuing the class specific commands
-* @param  None
-* @retval None
-*/
+  * @brief  This function prepares the state before issuing the class specific commands
+  * @param  None
+  * @retval None
+  */
 USBH_StatusTypeDef  USBH_CDC_Receive(USBH_HandleTypeDef *phost, uint8_t *pbuff, uint32_t length)
 {
   USBH_StatusTypeDef Status = USBH_BUSY;
@@ -618,7 +618,7 @@ USBH_StatusTypeDef  USBH_CDC_Receive(USBH_HandleTypeDef *phost, uint8_t *pbuff, 
 #if (osCMSIS < 0x20000U)
     (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
 #else
-    (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, NULL);
+    (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
 #endif
 #endif
   }
@@ -626,10 +626,10 @@ USBH_StatusTypeDef  USBH_CDC_Receive(USBH_HandleTypeDef *phost, uint8_t *pbuff, 
 }
 
 /**
-* @brief  The function is responsible for sending data to the device
-*  @param  pdev: Selected device
-* @retval None
-*/
+  * @brief  The function is responsible for sending data to the device
+  *  @param  pdev: Selected device
+  * @retval None
+  */
 static void CDC_ProcessTransmission(USBH_HandleTypeDef *phost)
 {
   CDC_HandleTypeDef *CDC_Handle = (CDC_HandleTypeDef *) phost->pActiveClass->pData;
@@ -640,19 +640,19 @@ static void CDC_ProcessTransmission(USBH_HandleTypeDef *phost)
     case CDC_SEND_DATA:
       if (CDC_Handle->TxDataLength > CDC_Handle->DataItf.OutEpSize)
       {
-        USBH_BulkSendData(phost,
-                          CDC_Handle->pTxData,
-                          CDC_Handle->DataItf.OutEpSize,
-                          CDC_Handle->DataItf.OutPipe,
-                          1U);
+        (void)USBH_BulkSendData(phost,
+                                CDC_Handle->pTxData,
+                                CDC_Handle->DataItf.OutEpSize,
+                                CDC_Handle->DataItf.OutPipe,
+                                1U);
       }
       else
       {
-        USBH_BulkSendData(phost,
-                          CDC_Handle->pTxData,
-                          (uint16_t)CDC_Handle->TxDataLength,
-                          CDC_Handle->DataItf.OutPipe,
-                          1U);
+        (void)USBH_BulkSendData(phost,
+                                CDC_Handle->pTxData,
+                                (uint16_t)CDC_Handle->TxDataLength,
+                                CDC_Handle->DataItf.OutPipe,
+                                1U);
       }
 
       CDC_Handle->data_tx_state = CDC_SEND_DATA_WAIT;
@@ -690,7 +690,7 @@ static void CDC_ProcessTransmission(USBH_HandleTypeDef *phost)
 #if (osCMSIS < 0x20000U)
         (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
 #else
-        (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, NULL);
+        (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
 #endif
 #endif
       }
@@ -705,7 +705,7 @@ static void CDC_ProcessTransmission(USBH_HandleTypeDef *phost)
 #if (osCMSIS < 0x20000U)
           (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
 #else
-          (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, NULL);
+          (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
 #endif
 #endif
         }
@@ -717,10 +717,10 @@ static void CDC_ProcessTransmission(USBH_HandleTypeDef *phost)
   }
 }
 /**
-* @brief  This function responsible for reception of data from the device
-*  @param  pdev: Selected device
-* @retval None
-*/
+  * @brief  This function responsible for reception of data from the device
+  *  @param  pdev: Selected device
+  * @retval None
+  */
 
 static void CDC_ProcessReception(USBH_HandleTypeDef *phost)
 {
@@ -733,10 +733,10 @@ static void CDC_ProcessReception(USBH_HandleTypeDef *phost)
 
     case CDC_RECEIVE_DATA:
 
-      USBH_BulkReceiveData(phost,
-                           CDC_Handle->pRxData,
-                           CDC_Handle->DataItf.InEpSize,
-                           CDC_Handle->DataItf.InPipe);
+      (void)USBH_BulkReceiveData(phost,
+                                 CDC_Handle->pRxData,
+                                 CDC_Handle->DataItf.InEpSize,
+                                 CDC_Handle->DataItf.InPipe);
 
       CDC_Handle->data_rx_state = CDC_RECEIVE_DATA_WAIT;
 
@@ -768,7 +768,7 @@ static void CDC_ProcessReception(USBH_HandleTypeDef *phost)
 #if (osCMSIS < 0x20000U)
         (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
 #else
-        (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, NULL);
+        (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
 #endif
 #endif
       }
@@ -780,10 +780,10 @@ static void CDC_ProcessReception(USBH_HandleTypeDef *phost)
 }
 
 /**
-* @brief  The function informs user that data have been received
-*  @param  pdev: Selected device
-* @retval None
-*/
+  * @brief  The function informs user that data have been received
+  *  @param  pdev: Selected device
+  * @retval None
+  */
 __weak void USBH_CDC_TransmitCallback(USBH_HandleTypeDef *phost)
 {
   /* Prevent unused argument(s) compilation warning */
@@ -791,10 +791,10 @@ __weak void USBH_CDC_TransmitCallback(USBH_HandleTypeDef *phost)
 }
 
 /**
-* @brief  The function informs user that data have been sent
-*  @param  pdev: Selected device
-* @retval None
-*/
+  * @brief  The function informs user that data have been sent
+  *  @param  pdev: Selected device
+  * @retval None
+  */
 __weak void USBH_CDC_ReceiveCallback(USBH_HandleTypeDef *phost)
 {
   /* Prevent unused argument(s) compilation warning */
@@ -802,10 +802,10 @@ __weak void USBH_CDC_ReceiveCallback(USBH_HandleTypeDef *phost)
 }
 
 /**
-* @brief  The function informs user that Settings have been changed
-*  @param  pdev: Selected device
-* @retval None
-*/
+  * @brief  The function informs user that Settings have been changed
+  *  @param  pdev: Selected device
+  * @retval None
+  */
 __weak void USBH_CDC_LineCodingChanged(USBH_HandleTypeDef *phost)
 {
   /* Prevent unused argument(s) compilation warning */
@@ -813,25 +813,25 @@ __weak void USBH_CDC_LineCodingChanged(USBH_HandleTypeDef *phost)
 }
 
 /**
-* @}
-*/
+  * @}
+  */
 
 /**
-* @}
-*/
+  * @}
+  */
 
 /**
-* @}
-*/
-
-
-/**
-* @}
-*/
+  * @}
+  */
 
 
 /**
-* @}
-*/
+  * @}
+  */
+
+
+/**
+  * @}
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

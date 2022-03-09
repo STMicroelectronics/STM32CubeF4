@@ -7,13 +7,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -42,7 +41,7 @@ void FLASH_If_Init(void)
   * @brief  This function does an erase of all user flash area
   * @param  StartSector: start of user flash area
   * @retval 0: user flash area successfully erased
-  *         1: error occured 
+  *         1: error occurred 
   */
 int8_t FLASH_If_Erase(uint32_t StartSector)
 {
@@ -111,5 +110,3 @@ uint32_t FLASH_If_Write(__IO uint32_t* FlashAddress, uint32_t* Data ,uint16_t Da
 
   return (0);
 }
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

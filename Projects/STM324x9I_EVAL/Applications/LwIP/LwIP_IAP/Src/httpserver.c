@@ -209,6 +209,7 @@ static err_t http_recv(void *arg, struct tcp_pcb *pcb,  struct pbuf *p, err_t er
   char *data, *ptr, filename[40], login[LOGIN_SIZE+1];
   struct fs_file file = {0, 0};
   struct http_state *hs;
+  struct pbuf *ptmp = p;
 
 #ifdef USE_LCD
   char message[46];
@@ -469,8 +470,17 @@ static err_t http_recv(void *arg, struct tcp_pcb *pcb,  struct pbuf *p, err_t er
         else
         {
           /* write data in flash */
-          if(len)
-          IAP_HTTP_writedata(ptr,len);
+          len = ptmp->len;
+          len-= DataOffset;
+          /* write data in flash */
+          while(ptmp != NULL)
+          {
+            if(len)
+            IAP_HTTP_writedata(ptr,len);
+            ptmp = ptmp->next;
+            len = ptmp->len;
+            ptr = ptmp->payload;
+          }
         }
         pbuf_free(p);
       }
@@ -538,7 +548,7 @@ static err_t http_accept(void *arg, struct tcp_pcb *pcb, err_t err)
 }
 
 /**
-  * @brief  intialize HTTP webserver  
+  * @brief  initialize HTTP webserver  
   * @param  none
   * @retval None
   */

@@ -8,13 +8,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2015 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2015 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                      www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -35,6 +34,10 @@ static int8_t TEMPLATE_CUSTOM_HID_Init(void);
 static int8_t TEMPLATE_CUSTOM_HID_DeInit(void);
 static int8_t TEMPLATE_CUSTOM_HID_OutEvent(uint8_t event_idx, uint8_t state);
 /* Private variables ---------------------------------------------------------*/
+extern USBD_HandleTypeDef USBD_Device;
+
+__ALIGN_BEGIN static uint8_t TEMPLATE_CUSTOM_HID_ReportDesc[USBD_CUSTOM_HID_REPORT_DESC_SIZE] __ALIGN_END = {0};
+
 USBD_CUSTOM_HID_ItfTypeDef USBD_CustomHID_template_fops =
 {
   TEMPLATE_CUSTOM_HID_ReportDesc,
@@ -84,8 +87,11 @@ static int8_t TEMPLATE_CUSTOM_HID_OutEvent(uint8_t event_idx, uint8_t state)
   UNUSED(state);
 
   /* Start next USB packet transfer once data processing is completed */
-  USBD_CUSTOM_HID_ReceivePacket(&USBD_Device);
+  if (USBD_CUSTOM_HID_ReceivePacket(&USBD_Device) != (uint8_t)USBD_OK)
+  {
+    return -1;
+  }
 
   return (0);
 }
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+

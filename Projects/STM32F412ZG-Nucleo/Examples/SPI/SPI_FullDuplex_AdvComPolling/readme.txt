@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the SPI Full Duplex Polling example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -114,7 +115,7 @@ In Slave board, these steps are executed:
 
 These previously steps are repeated in an infinitely loop.
 
-NUCLEO-F412ZG board's LEDs can be used to monitor the transfer status:
+NUCLEO-F412ZG boards LEDs can be used to monitor the transfer status:
  - LED1 (green) toggles on Master board waiting for user button to be pushed.
  - LED1 (green) toggles on Master board at end of each loop.
  - LED3 (red) toggles on both boards when the read comparison is OK.
@@ -172,5 +173,5 @@ In order to make the program work, you must do the following :
     o Comment "#define MASTER_BOARD" and load the project in Slave Board
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */ 

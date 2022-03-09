@@ -2,17 +2,16 @@
   ******************************************************************************
   * @file    USB_Device/CustomHID_Standalone/Src/usbd_desc.c
   * @author  MCD Application Team
-  * @brief   This file provides the USBD descriptors and string formating method.
+  * @brief   This file provides the USBD descriptors and string formatting method.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -27,8 +26,8 @@
 #define USBD_PID                      0x5750
 #define USBD_LANGID_STRING            0x409
 #define USBD_MANUFACTURER_STRING      "STMicroelectronics"
-#define USBD_PRODUCT_HS_STRING        "Custome HID in HS Mode"
-#define USBD_PRODUCT_FS_STRING        "Custome HID in FS Mode"
+#define USBD_PRODUCT_HS_STRING        "Custom HID in HS Mode"
+#define USBD_PRODUCT_FS_STRING        "Custom HID in FS Mode"
 #define USBD_CONFIGURATION_HS_STRING  "HID Config"
 #define USBD_INTERFACE_HS_STRING      "HID Interface"
 #define USBD_CONFIGURATION_FS_STRING  "HID Config"
@@ -279,5 +278,3 @@ static void IntToUnicode (uint32_t value , uint8_t *pbuf , uint8_t len)
     pbuf[ 2* idx + 1] = 0;
   }
 }
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

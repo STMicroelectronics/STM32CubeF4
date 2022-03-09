@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -118,7 +117,7 @@ static void TouchscreenCalibration_SetHint(void)
   BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize() / 2 - 35, (uint8_t *)"Before using the Touchscreen", CENTER_MODE);
   BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize() / 2 - 15, (uint8_t *)"you need to calibrate it.", CENTER_MODE);
   BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize() / 2 + 7, (uint8_t *)"Wait until black circles appear,", CENTER_MODE);
-  BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize() / 2 + 30, (uint8_t *)"Then press precisly on them.", CENTER_MODE);
+  BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize() / 2 + 30, (uint8_t *)"Then press precisely on them.", CENTER_MODE);
   BSP_LCD_SetFont(&Font12);
 }
 
@@ -285,5 +284,3 @@ uint8_t TouchScreen_IsCalibrationDone(void)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

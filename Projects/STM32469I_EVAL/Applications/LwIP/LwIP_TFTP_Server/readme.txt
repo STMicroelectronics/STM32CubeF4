@@ -9,19 +9,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
-  * You may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at:
-  *
-  *        http://www.st.com/software_license_agreement_liberty_v2
-  *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -44,7 +37,10 @@ will be ensured by LEDs:
   + LED2: ethernet cable is not connected.
 
 If a DHCP server is available, a dynamic IP address can be allocated by enabling 
-the DHCP process (#define USE_DHCP in main.h) 
+the DHCP process (#define LWIP_DHCP in lwipopts.h).
+
+If a DHCP server is not available, after timeout connection, the device only gets a static 
+IP address(the switch from static to dynamic IP adress is not available in this application).
 
 Note: Files to be transferred must have a short file name format (8.3), 
       maximum 8 characters for name and 3 characters for type, example:
@@ -132,5 +128,5 @@ In order to make the program work, you must do the following :
  - Run the application
  - Use PC utility TFTPD32 to perform file transfers, refer to UM1713 for details about this tool usage
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

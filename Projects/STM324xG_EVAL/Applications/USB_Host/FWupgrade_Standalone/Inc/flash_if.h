@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -40,7 +39,7 @@ Note: the 1st and the second sectors 0x08000000-0x0800BFFF are reserved
 for the Firmware upgrade code */
 #define APPLICATION_ADDRESS        (uint32_t)0x0800C000
 
-/* Last Page Adress */
+/* Last Page Address */
 #define USER_FLASH_LAST_PAGE_ADDRESS  0x080FFFFF - 4
 
 /* Define the user application size */
@@ -72,5 +71,3 @@ uint32_t FLASH_If_Write(uint32_t Address, uint32_t Data);
 #endif
 
 #endif  /* __FLASH_IF_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

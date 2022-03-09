@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the FatFs with uSD card drive in RTOS mode application
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -55,7 +56,7 @@ It is possible to fine tune needed FatFs features by modifying defines values
 in FatFs configuration file “ffconf.h” available under the project includes 
 directory, in a way to fit the application requirements. 
 
-STM32 Eval board's LEDs can be used to monitor the application status:
+STM32 Eval boards LEDs can be used to monitor the application status:
   - LED1 is ON when the application runs successfully.
   - LED3 is ON when any error occurs.
 
@@ -76,7 +77,7 @@ on STM32Cube with FatFs".
 
 
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
-	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+	  The LCD clear can be ensured by hardware through the boards power off/power on or by software calling the BSP_LCD_Reset() function.
 
 @par Keywords
 
@@ -118,5 +119,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the application
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

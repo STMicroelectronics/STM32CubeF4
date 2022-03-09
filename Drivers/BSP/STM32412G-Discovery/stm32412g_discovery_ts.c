@@ -7,29 +7,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -137,9 +120,12 @@ uint8_t BSP_TS_InitEx(uint16_t ts_SizeX, uint16_t ts_SizeY, uint8_t  orientation
   /* Initialize the communication channel to sensor (I2C) if necessary */
   /* that is initialization is done only once after a power up         */
   ft6x06_ts_drv.Init(I2C_Address);
- 
-  /* Scan FT6x36 TouchScreen IC controller ID register by I2C Read */
-  /* Verify this is a FT6x36, otherwise this is an error case      */
+
+  /* TouchScreen IC controller reset sequence */
+  BSP_TS_Reset();
+
+  /* Scan TouchScreen IC controller ID register by I2C Read */
+  /* Verify this is a FT6x36 or FT3x67, otherwise this is an error case      */
   if(ft6x06_ts_drv.ReadID(TS_I2C_ADDRESS) == FT6x36_ID_VALUE)
   {
     /* Found FT6x36 : Initialize the TS driver structure */
@@ -150,7 +136,7 @@ uint8_t BSP_TS_InitEx(uint16_t ts_SizeX, uint16_t ts_SizeY, uint8_t  orientation
     /* Get LCD chosen orientation */
     if(orientation == TS_ORIENTATION_PORTRAIT)
     {
-      tsOrientation = TS_SWAP_X | TS_SWAP_Y;                
+      tsOrientation = TS_SWAP_X | TS_SWAP_Y;
     }
     else if(orientation == TS_ORIENTATION_LANDSCAPE_ROT180)
     {
@@ -158,7 +144,7 @@ uint8_t BSP_TS_InitEx(uint16_t ts_SizeX, uint16_t ts_SizeY, uint8_t  orientation
     }    
     else
     {
-      tsOrientation = TS_SWAP_XY | TS_SWAP_Y;                 
+      tsOrientation = TS_SWAP_XY | TS_SWAP_Y;
     }
 
     if(ts_status == TS_OK)
@@ -173,9 +159,45 @@ uint8_t BSP_TS_InitEx(uint16_t ts_SizeX, uint16_t ts_SizeY, uint8_t  orientation
   }
   else
   {
-    ts_status = TS_DEVICE_NOT_FOUND;
-  }
+#if defined (USE_STM32412G_DISCOVERY_REVD)
+    ft3x67_ts_drv.Init(I2C_Address);
+    BSP_TS_Reset();
 
+    if(ft3x67_ts_drv.ReadID(TS_I2C_ADDRESS) == FT3X67_ID_VALUE)
+    {
+      /* Found FT3x67 : Initialize the TS driver structure */
+      tsDriver = &ft3x67_ts_drv;
+
+      I2C_Address    = TS_I2C_ADDRESS;
+
+      /* Get LCD chosen orientation */
+      if(orientation == TS_ORIENTATION_PORTRAIT)
+      {
+        tsOrientation = TS_SWAP_X | TS_SWAP_Y;
+      }
+      else if(orientation == TS_ORIENTATION_LANDSCAPE_ROT180)
+      {
+        tsOrientation = TS_SWAP_XY;
+      }
+      else
+      {
+        tsOrientation = TS_SWAP_XY | TS_SWAP_Y;
+      }
+
+      if(ts_status == TS_OK)
+      {
+        /* Software reset the TouchScreen */
+        tsDriver->Reset(I2C_Address);
+
+        /* Calibrate, Configure and Start the TouchScreen driver */
+        tsDriver->Start(I2C_Address);
+
+      } /* of if(ts_status == TS_OK) */
+    }
+#else /* USE_STM32412G_DISCOVERY_REVD */
+    ts_status = TS_DEVICE_NOT_FOUND;
+#endif /* USE_STM32412G_DISCOVERY_REVD */
+  }
   return (ts_status);
 }
 
@@ -389,6 +411,20 @@ uint8_t BSP_TS_ResetTouchData(TS_StateTypeDef *TS_State)
 #endif /* TS_MULTI_TOUCH_SUPPORTED == 1 */
 
 /**
+  * @brief  Function used to Hardware reset the touch screen.
+  */
+void BSP_TS_Reset(void)
+{
+  /* TouchScreen IC controller reset sequence */
+  HAL_GPIO_WritePin(TS_RST_GPIO_PORT, TS_RST_PIN, GPIO_PIN_RESET);
+  HAL_Delay(10);
+  HAL_GPIO_WritePin(TS_RST_GPIO_PORT, TS_RST_PIN, GPIO_PIN_SET);
+
+  while (HAL_GPIO_ReadPin(TS_RST_GPIO_PORT , TS_RST_PIN)!= GPIO_PIN_RESET);
+  while (HAL_GPIO_ReadPin(TS_INT_GPIO_PORT , TS_INT_PIN)!= GPIO_PIN_SET);
+}
+
+/**
   * @brief  Initializes the TS_INT pin MSP.
   */
 __weak void BSP_TS_INT_MspInit(void)
@@ -404,6 +440,14 @@ __weak void BSP_TS_INT_MspInit(void)
   gpio_init_structure.Speed = GPIO_SPEED_FAST;
   gpio_init_structure.Mode = GPIO_MODE_IT_FALLING;
   HAL_GPIO_Init(TS_INT_GPIO_PORT, &gpio_init_structure);
+
+  /* Configure reset pin */
+  TS_RST_GPIO_CLK_ENABLE();
+  gpio_init_structure.Pin = TS_RST_PIN;
+  gpio_init_structure.Pull = GPIO_PULLUP;
+  gpio_init_structure.Speed = GPIO_SPEED_HIGH;
+  gpio_init_structure.Mode = GPIO_MODE_INPUT;
+  HAL_GPIO_Init(TS_RST_GPIO_PORT, &gpio_init_structure);
 }
 
 /**
@@ -421,5 +465,3 @@ __weak void BSP_TS_INT_MspInit(void)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

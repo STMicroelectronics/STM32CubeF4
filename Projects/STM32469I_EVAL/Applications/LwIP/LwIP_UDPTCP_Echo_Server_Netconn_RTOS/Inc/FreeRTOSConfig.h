@@ -100,7 +100,7 @@
 #if defined(__GNUC__)
 #define configTOTAL_HEAP_SIZE                ( ( size_t ) ( 20 * 1024 ) )
 #else
-#define configTOTAL_HEAP_SIZE                ( ( size_t ) ( 15 * 1024 ) )
+#define configTOTAL_HEAP_SIZE                ( ( size_t ) ( 20 * 1024 ) )
 #endif
 #define configMAX_TASK_NAME_LEN              ( 16 )
 #define configUSE_TRACE_FACILITY             1

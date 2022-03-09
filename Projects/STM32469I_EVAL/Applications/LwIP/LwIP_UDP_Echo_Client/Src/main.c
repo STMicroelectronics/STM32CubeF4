@@ -9,13 +9,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -75,9 +74,6 @@ int main(void)
   
   udp_echoclient_connect();
   
-  /* Notify user about the network interface config */
-  User_notification(&gnetif);
-  
   /* Infinite loop */
   while (1)
   {  
@@ -88,10 +84,13 @@ int main(void)
     /* Handle timeouts */
     sys_check_timeouts();
 
-#ifdef USE_DHCP
-    /* handle periodic timers for LwIP */
+#if LWIP_NETIF_LINK_CALLBACK
+    Ethernet_Link_Periodic_Handle(&gnetif);
+#endif
+
+#if LWIP_DHCP
     DHCP_Periodic_Handle(&gnetif);
-#endif 
+#endif
   }
 }
 
@@ -109,16 +108,8 @@ static void BSP_Config(void)
   
   /* Set Systick Interrupt to the highest priority */
   HAL_NVIC_SetPriority(SysTick_IRQn, 0x0, 0x0);
-  
-  /* Init MFX IO Expander */
-  BSP_IO_Init();
-  
-  /* Enable MFX IO Expander interrupt for ETH MII pin */
-  BSP_IO_ConfigPin(MII_INT_PIN, IO_MODE_IT_FALLING_EDGE);
 
-  /* Configure Key Button */
-  BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_EXTI);
-  
+
 #ifdef USE_LCD
   
   /* Initialize DSI LCD */
@@ -150,36 +141,31 @@ static void Netif_Config(void)
   ip_addr_t ipaddr;
   ip_addr_t netmask;
   ip_addr_t gw;
-
-#ifdef USE_DHCP
+  
+#if LWIP_DHCP
   ip_addr_set_zero_ip4(&ipaddr);
   ip_addr_set_zero_ip4(&netmask);
   ip_addr_set_zero_ip4(&gw);
 #else
-  IP_ADDR4(&ipaddr,IP_ADDR0,IP_ADDR1,IP_ADDR2,IP_ADDR3);
-  IP_ADDR4(&netmask,NETMASK_ADDR0,NETMASK_ADDR1,NETMASK_ADDR2,NETMASK_ADDR3);
-  IP_ADDR4(&gw,GW_ADDR0,GW_ADDR1,GW_ADDR2,GW_ADDR3);
-#endif /* USE_DHCP */
-
-  /* Add the network interface */
+  
+  /* IP address default setting */
+  IP4_ADDR(&ipaddr, IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3);
+  IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1 , NETMASK_ADDR2, NETMASK_ADDR3);
+  IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
+  
+#endif
+  
+  /* add the network interface */
   netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &ethernet_input);
   
   /* Registers the default network interface. */
   netif_set_default(&gnetif);
   
-  if (netif_is_link_up(&gnetif))
-  {
-    /* When the netif is fully configured this function must be called */
-    netif_set_up(&gnetif);
-  }
-  else
-  {
-    /* When the netif link is down this function must be called */
-    netif_set_down(&gnetif);
-  }
+  ethernet_link_status_updated(&gnetif);
   
-  /* Set the link callback function, this function is called on change of link status */
-  netif_set_link_callback(&gnetif, ethernetif_update_config);
+#if LWIP_NETIF_LINK_CALLBACK
+  netif_set_link_callback(&gnetif, ethernet_link_status_updated);
+#endif
 }
 
 /**
@@ -189,17 +175,7 @@ static void Netif_Config(void)
   */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-  
-  if (GPIO_Pin == MFX_IRQOUT_PIN)
-  {
-    /* Get the IT status register value */
-    if(BSP_IO_ITGetStatus(MII_INT_PIN))
-    {
-      ethernetif_set_link(&gnetif);
-    }
-    BSP_IO_ITClear();
-  }
-  else if (GPIO_Pin == GPIO_PIN_13)
+  if (GPIO_Pin == GPIO_PIN_13)
   {
      /*connect to tcp server */ 
      udp_echoclient_send();
@@ -313,5 +289,3 @@ void assert_failed(uint8_t* file, uint32_t line)
   }
 }
 #endif
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

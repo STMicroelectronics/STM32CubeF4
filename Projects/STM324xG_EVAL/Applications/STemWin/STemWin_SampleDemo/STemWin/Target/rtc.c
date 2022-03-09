@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -77,7 +76,7 @@ void HAL_RTC_MspInit(RTC_HandleTypeDef *hrtc)
 {
   RCC_OscInitTypeDef Osc;
   
-  /*##-1- Configue LSE as RTC clock soucre ###################################*/ 
+  /*##-1- Configure LSE as RTC clock source ###################################*/ 
   Osc.OscillatorType = RCC_OSCILLATORTYPE_LSE;
   Osc.LSEState = RCC_LSE_ON;
   Osc.HSIState = RCC_HSI_OFF;
@@ -138,5 +137,3 @@ uint32_t BACKUP_RestoreParameter(uint32_t address)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

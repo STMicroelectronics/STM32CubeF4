@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -390,7 +389,7 @@ uint16_t EE_ReadVariable(uint16_t VirtAddress, uint16_t* Data)
 }
 
 /**
-  * @brief  Writes/upadtes variable data in EEPROM.
+  * @brief  Writes/updates variable data in EEPROM.
   * @param  VirtAddress: Variable virtual address
   * @param  Data: 16 bit data to be written
   * @retval Success or error status:
@@ -421,7 +420,7 @@ uint16_t EE_WriteVariable(uint16_t VirtAddress, uint16_t Data)
   * @brief  Erases PAGE and PAGE1 and writes VALID_PAGE header to PAGE
   * @param  None
   * @retval Status of the last operation (Flash write or erase) done during
-  *         EEPROM formating
+  *         EEPROM formatting
   */
 static HAL_StatusTypeDef EE_Format(void)
 {
@@ -568,7 +567,7 @@ static uint16_t EE_VerifyPageFullWriteVariable(uint16_t VirtAddress, uint16_t Da
   /* Get the valid Page end Address */
   PageEndAddress = (uint32_t)((EEPROM_START_ADDRESS - 1) + (uint32_t)((ValidPage + 1) * PAGE_SIZE));
 
-  /* Check each active page address starting from begining */
+  /* Check each active page address starting from beginning */
   while (Address < PageEndAddress)
   {
     /* Verify if Address and Address+2 contents are 0xFFFFFFFF */
@@ -707,5 +706,3 @@ static uint16_t EE_PageTransfer(uint16_t VirtAddress, uint16_t Data)
 /**
   * @}
   */ 
-
-/******************* (C) COPYRIGHT 2017 STMicroelectronics *****END OF FILE****/

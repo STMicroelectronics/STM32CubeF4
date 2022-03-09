@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the ADC Trigger Mode example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -42,7 +43,7 @@ time to 12bit data is 12 cycles so the total conversion time is (12+3)/36= 0.41u
 
 User can vary the ADC3 channel7(for STM324xG-EVAL) voltage using the Eval Board potentiometer.
 
-STM32 Eval board's LEDs can be used to monitor the transfer status:
+STM32 Eval boards LEDs can be used to monitor the transfer status:
   - LED3 is ON when there are an error in initialization.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -87,5 +88,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the LCD DSI in command mode example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -30,7 +31,7 @@ Layer0 is initialized to display a brief description of the example. It will be
 used for images display also.
 
 In this example, the display area is splitted in tow part right and left. When the
-end of refresh event occured, a part of display area is refreshed/displayed while
+end of refresh event occurred, a part of display area is refreshed/displayed while
 the other part is prepared to be displayed in next end of refresh.
 
 Partial Refresh with splitting method is based on the following steps:
@@ -92,5 +93,5 @@ In order to make the program work, you must do the following :
  - Run the example
 
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

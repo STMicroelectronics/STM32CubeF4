@@ -8,13 +8,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -185,7 +184,7 @@ void Configure_DMA(void)
   NVIC_EnableIRQ(DMA1_Stream1_IRQn);
 
   
-  /* (3) Configure the DMA1 functionnal parameters */
+  /* (3) Configure the DMA1 functional parameters */
   LL_DMA_SetChannelSelection(DMA1, LL_DMA_STREAM_5, LL_DMA_CHANNEL_1);
 
   LL_DMA_ConfigTransfer(DMA1, LL_DMA_STREAM_5, LL_DMA_DIRECTION_PERIPH_TO_MEMORY | \
@@ -198,7 +197,7 @@ void Configure_DMA(void)
   LL_DMA_SetDataLength(DMA1, LL_DMA_STREAM_5, ubNbDataToTransmit);
   LL_DMA_ConfigAddresses(DMA1, LL_DMA_STREAM_5, (uint32_t)LL_I2C_DMA_GetRegAddr(I2C1), (uint32_t)&(aReceiveBuffer), LL_DMA_GetDataTransferDirection(DMA1, LL_DMA_STREAM_5));
 
-  /* (4) Configure the DMA1_Channel1 functionnal parameters */
+  /* (4) Configure the DMA1_Channel1 functional parameters */
   
   LL_DMA_SetChannelSelection(DMA1, LL_DMA_STREAM_1, LL_DMA_CHANNEL_0);
   
@@ -607,7 +606,7 @@ void Handle_I2C_Slave(void)
   /* End of I2C_SlaveReceiver_MasterTransmitter_DMA Process */
   LL_I2C_ClearFlag_STOP(I2C1);
 
-  /* Check if datas request to turn on the LED2 */
+  /* Check if data request to turn on the LED2 */
   if(Buffercmp8((uint8_t*)aReceiveBuffer, (uint8_t*)aLedOn, (ubNbDataToReceive-1)) == 0)
   {
     /* Turn LED2 On:
@@ -950,5 +949,3 @@ void assert_failed(uint8_t *file, uint32_t line)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

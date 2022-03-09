@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -542,7 +541,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     hItem = WM_GetDialogItem(pMsg->hWin, ID_MULTIPAGE);
     
 
-   /* Create and attache the MULTIPAGE dialog windows */
+   /* Create and attach the MULTIPAGE dialog windows */
     hDialog = GUI_CreateDialogBox(_aDialogSystemInformation, 
                                   GUI_COUNTOF(_aDialogSystemInformation), 
                                   &_cbSystemInformation, WM_UNATTACHED, 0, 0);
@@ -592,6 +591,3 @@ static void Startup(WM_HWIN hWin, uint16_t xpos, uint16_t ypos)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-

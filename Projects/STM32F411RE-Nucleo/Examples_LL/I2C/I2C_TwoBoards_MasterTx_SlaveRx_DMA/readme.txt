@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the I2C_TwoBoards_MasterTx_SlaveRx_DMA I2C example (DMA Mode).
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -61,7 +62,7 @@ A first program launch, BOARD SLAVE waiting Address Match code through Handle_I2
 LED2 blinks quickly on both BOARD to wait for user-button press. 
 
 Example execution:
-To perform this example, two steps are necessary to prevent a wrong start/stop detection due to the initialization of the oposite GPIO board.
+To perform this example, two steps are necessary to prevent a wrong start/stop detection due to the initialization of the opposite GPIO board.
 
 So at first step, press the User push-button on BOARD SLAVE to activate Slave peripheral and then prepare acknowledge for Slave address reception.
 At second step, press the User push-button on BOARD MASTER to activate Master peripheral and then to initiate a write request by Master.
@@ -127,5 +128,5 @@ In order to make the program work, you must do the following :
     o Uncomment "#define SLAVE_BOARD" and load the project in Slave Board
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

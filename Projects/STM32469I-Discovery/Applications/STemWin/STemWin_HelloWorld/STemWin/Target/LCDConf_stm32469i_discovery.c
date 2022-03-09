@@ -40,13 +40,12 @@ Purpose     : Display controller configuration (single layer)
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -263,7 +262,7 @@ static void LCD_LL_Reset(void)
   HAL_GPIO_WritePin(GPIOH, GPIO_PIN_7, GPIO_PIN_RESET);
   HAL_Delay(20); /* wait 20 ms */
 
-  /* Desactivate XRES */
+  /* Deactivate XRES */
   HAL_GPIO_WritePin(GPIOH, GPIO_PIN_7, GPIO_PIN_SET);
   HAL_Delay(10); /* wait 10 ms */
 #endif  /* (USE_STM32469I_DISCO_REVA) */
@@ -309,6 +308,7 @@ void BSP_LCD_MspInit(void)
 static void LTDC_Init(void)
 {
   /* DeInit */
+  hltdc_disco.Instance = LTDC;
   HAL_LTDC_DeInit(&hltdc_disco);
 
   /* LTDC Config */
@@ -759,7 +759,7 @@ static void DMA2D_DrawBitmapL8(void * pSrc, void * pDst,  U32 OffSrc, U32 OffDst
   DMA2D->OPFCCR  = PixelFormatDst;                   /* Output PFC Control Register (Defines the output pixel format) */
 
   /* Set up size */
-  DMA2D->NLR     = (U32)(xSize << 16) | ySize;       /* Number of Line Register (Size configuration of area to be transfered) */
+  DMA2D->NLR     = (U32)(xSize << 16) | ySize;       /* Number of Line Register (Size configuration of area to be transferred) */
 
   /* Execute operation */
   DMA2D->CR     |= DMA2D_CR_START;                   /* Start operation */
@@ -883,7 +883,7 @@ void HAL_DSI_EndOfRefreshCallback(DSI_HandleTypeDef *hdsi)
     __HAL_DSI_WRAPPER_DISABLE(hdsi);
     for(index = 0; index < GUI_NUM_LAYERS; index ++)
     {
-      /* Update LTDC configuaration */
+      /* Update LTDC configuration */
       LTDC_LAYER(&hltdc_disco, index)->CFBAR  = LCD_Addr[index] + LCD_ActiveRegion  * HACT * 2;
     }
     __HAL_LTDC_RELOAD_IMMEDIATE_CONFIG(&hltdc_disco);
@@ -1142,4 +1142,3 @@ void DSI_IRQHandler(void)
 {
   HAL_DSI_IRQHandler(&hdsi_disco);
 }
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

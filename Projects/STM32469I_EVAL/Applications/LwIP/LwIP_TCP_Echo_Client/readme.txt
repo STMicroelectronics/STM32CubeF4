@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the LwIP TCP Echo Client Application.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -28,8 +29,8 @@ To run this application, On the remote PC, open a command prompt window.
 At the command prompt, enter:
     C:\>echotool /p tcp /s
 where:
-    – /p transport layer protocol used for communication (TCP)
-    – /s is the actual mode of connection (Server mode)
+    - /p transport layer protocol used for communication (TCP)
+    - /s is the actual mode of connection (Server mode)
     
 Each time the user pushes the TAMPER button of the STM32469I-EVAL board, an echo 
 request is sent to the server
@@ -41,7 +42,10 @@ will be ensured by LEDs:
   + LED2: ethernet cable is not connected.
 
 If a DHCP server is available, a dynamic IP address can be allocated by enabling 
-the DHCP process (#define USE_DHCP in main.h)
+the DHCP process (#define LWIP_DHCP in lwipopts.h).
+
+If a DHCP server is not available, after timeout connection, the device only gets a static 
+IP address(the switch from static to dynamic IP adress is not available in this application).
 
 If DHCP is used, user should define its PC Host IP address ( DEST_IP_ADDR0 [0..3] in main.h file.
 
@@ -73,7 +77,7 @@ For more details about this application, refer to UM1713 "STM32Cube interfacing 
 
 
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
-	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+	  The LCD clear can be ensured by hardware through the boards power off/power on or by software calling the BSP_LCD_Reset() function.
 
 @par Keywords
 
@@ -122,5 +126,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the application
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

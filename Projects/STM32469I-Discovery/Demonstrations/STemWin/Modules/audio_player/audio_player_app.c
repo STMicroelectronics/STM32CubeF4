@@ -6,16 +6,15 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */  
+  */
 /* Includes ------------------------------------------------------------------*/
 #include "audio_player_app.h"
 
@@ -90,7 +89,7 @@ AUDIOPLAYER_ErrorTypdef  AUDIOPLAYER_Init(uint8_t volume)
   __IO uint32_t ldness_value;
 #endif /* AUDIO_USE_SPIRIT_EQUALIZER */
 
-  /* Try to Init Audio interface in diffrent config in case of failure */
+  /* Try to Init Audio interface in different config in case of failure */
   BSP_AUDIO_OUT_Init(OUTPUT_DEVICE_AUTO, volume, I2S_AUDIOFREQ_48K);
   BSP_AUDIO_OUT_SetAudioFrameSlot(CODEC_AUDIOFRAME_SLOT_02);
   
@@ -103,7 +102,7 @@ AUDIOPLAYER_ErrorTypdef  AUDIOPLAYER_Init(uint8_t volume)
   /* Enable the Eq */
   SpiritEQ_Init((TSpiritEq *)AUDIO_EqInstance, I2S_AUDIOFREQ_48K);
   
-  /* Retreive stored settings and set band params */
+  /* Retrieve stored settings and set band params */
   SpiritEQ_FltGet((TSpiritEq *)AUDIO_EqInstance, &AUDIO_EQ_Bands[0], 0 );
   AUDIO_EQ_Bands[0].gainDb = k_BkupRestoreParameter(CALIBRATION_AUDIOPLAYER_EQU1_BKP);
   SET_BAND_PRMS(&AUDIO_EQ_Bands[0], SPIRIT_EQ_FLT_TYPE_SHELVING_LOWPASS , 0, 1000, AUDIO_EQ_Bands[0].gainDb);
@@ -603,5 +602,3 @@ static void Audio_Thread(void const * argument)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

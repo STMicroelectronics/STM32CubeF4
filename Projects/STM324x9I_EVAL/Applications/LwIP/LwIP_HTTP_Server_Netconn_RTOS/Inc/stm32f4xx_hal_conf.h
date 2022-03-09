@@ -6,16 +6,15 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */  
+  */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32F4xx_HAL_CONF_H
@@ -33,7 +32,7 @@
   * @brief This is the list of modules to be used in the HAL driver 
   */
 #define HAL_MODULE_ENABLED  
-/* #define HAL_ADC_MODULE_ENABLED */ 
+/* #define HAL_ADC_MODULE_ENABLED */
 /* #define HAL_CAN_MODULE_ENABLED */
 /* #define HAL_CAN_LEGACY_MODULE_ENABLED */  
 /* #define HAL_CRC_MODULE_ENABLED */
@@ -41,7 +40,7 @@
 /* #define HAL_DAC_MODULE_ENABLED */  
 /* #define HAL_DCMI_MODULE_ENABLED */ 
 #define HAL_DMA_MODULE_ENABLED
-#define HAL_DMA2D_MODULE_ENABLED 
+#define HAL_DMA2D_MODULE_ENABLED
 #define HAL_ETH_MODULE_ENABLED 
 #define HAL_FLASH_MODULE_ENABLED 
 /* #define HAL_NAND_MODULE_ENABLED */
@@ -55,15 +54,15 @@
 /* #define HAL_I2S_MODULE_ENABLED */
 /* #define HAL_IWDG_MODULE_ENABLED */
 /* #define HAL_IRDA_MODULE_ENABLED */
-#define HAL_LTDC_MODULE_ENABLED 
+#define HAL_LTDC_MODULE_ENABLED
 #define HAL_PWR_MODULE_ENABLED   
 #define HAL_RCC_MODULE_ENABLED 
 /* #define HAL_RNG_MODULE_ENABLED */   
 /* #define HAL_RTC_MODULE_ENABLED */
-/* #define HAL_SAI_MODULE_ENABLED */  
+/* #define HAL_SAI_MODULE_ENABLED */
 /* #define HAL_SD_MODULE_ENABLED */  
 /* #define HAL_SPI_MODULE_ENABLED */   
-#define HAL_TIM_MODULE_ENABLED   
+#define HAL_TIM_MODULE_ENABLED
 #define HAL_UART_MODULE_ENABLED 
 /* #define HAL_USART_MODULE_ENABLED */
 /* #define HAL_SMARTCARD_MODULE_ENABLED */ 
@@ -189,12 +188,12 @@
 /* Section 1 : Ethernet peripheral configuration */
 
 /* MAC ADDRESS: MAC_ADDR0:MAC_ADDR1:MAC_ADDR2:MAC_ADDR3:MAC_ADDR4:MAC_ADDR5 */
-#define MAC_ADDR0   2U
-#define MAC_ADDR1   0U
-#define MAC_ADDR2   0U
-#define MAC_ADDR3   0U
-#define MAC_ADDR4   0U
-#define MAC_ADDR5   0U
+#define ETH_MAC_ADDR0   2U
+#define ETH_MAC_ADDR1   0U
+#define ETH_MAC_ADDR2   0U
+#define ETH_MAC_ADDR3   0U
+#define ETH_MAC_ADDR4   0U
+#define ETH_MAC_ADDR5   0U
 
 /* Definition of the Ethernet driver buffers size and count */   
 #define ETH_RX_BUF_SIZE                ETH_MAX_PACKET_SIZE /* buffer size for receive               */
@@ -446,6 +445,3 @@
 #endif
 
 #endif /* __STM32F4xx_HAL_CONF_H */
- 
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

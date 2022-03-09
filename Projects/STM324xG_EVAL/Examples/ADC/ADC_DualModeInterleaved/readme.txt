@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the Dual interleaved mode and DMA mode3 example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -45,7 +46,7 @@ In this example, the system clock is 144MHz, APB2 =72MHz and ADC clock = APB2 /2
 Since ADCCLK= 36MHz and Conversion rate = 6 cycle
 ==> Conversion Time = 36M/6cyc = 6Msps.
 
-STM32 Eval board's LEDs can be used to monitor the transfer status:
+STM32 Eval boards LEDs can be used to monitor the transfer status:
  - LED1 is ON when the conversion is complete.
  - LED3 is ON when there are an error in initialization. 
   
@@ -95,5 +96,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

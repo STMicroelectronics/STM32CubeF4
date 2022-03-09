@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the USART_SyncCommunication_FullDuplex_IT example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -23,7 +24,7 @@
 This example shows how to configure GPIO, USART, DMA and SPI peripherals for transmitting
 bytes from/to an USART peripheral to/from an SPI peripheral (in slave mode) by using Interrupt
 mode through the STM32F4xx USART LL API (SPI is using DMA for 
-receving/transmitting characters sent from/received by USART). Peripheral initialization is
+receiving/transmitting characters sent from/received by USART). Peripheral initialization is
 done using LL unitary services functions for optimization purpose (performance and size).
 
 This example works with only one NUCLEO-F411RE.
@@ -84,5 +85,5 @@ In order to make the program work, you must do the following :
  - Run the example
  - Launch the program. Press on User push-button on board to initiate data transfers.
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

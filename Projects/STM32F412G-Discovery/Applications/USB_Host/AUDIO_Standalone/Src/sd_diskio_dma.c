@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -138,7 +137,7 @@ DRESULT SD_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
     while((ReadStatus == 0) && ((HAL_GetTick() - timeout) < SD_TIMEOUT))
     {
     }
-    /* incase of a timeout return error */
+    /* in case of a timeout return error */
     if (ReadStatus == 0)
     {
       res = RES_ERROR;
@@ -188,7 +187,7 @@ DRESULT SD_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
     while((WriteStatus == 0) && ((HAL_GetTick() - timeout) < SD_TIMEOUT))
     {
     }
-    /* incase of a timeout return error */
+    /* in case of a timeout return error */
     if (WriteStatus == 0)
     {
       res = RES_ERROR;
@@ -287,5 +286,3 @@ void BSP_SD_ReadCpltCallback(void)
 {
   ReadStatus = 1;
 }
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-

@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -38,16 +37,16 @@ void Error_Handler(void);
 #define USE_CHANNEL_DELAY
 
 /* Select Mics */
-//#define PLAY_DFSDM2_DATIN01     /* Use Mics: U2 and U3 from extention board */
-#define PLAY_DFSDM2_DATIN06     /* Use Mics: U2 and U5 from extention board */
-//#define PLAY_DFSDM2_DATIN07     /* Use Mics: U2 and U4 from extention board */
-//#define PLAY_DFSDM2_DATIN16     /* Use Mics: U3 and U5 from extention board */
-//#define PLAY_DFSDM2_DATIN17     /* Use Mics: U3 and U4 from extention board */
-//#define PLAY_DFSDM2_DATIN67     /* Use Mics: U5 and U4 from extention board */
-//#define PLAY_DFSDM12_DATIN10    /* Use Mics: U1 and U2 from extention board or U16 and U17 from discovery */
-//#define PLAY_DFSDM12_DATIN11    /* Use Mics: U1 and U3 from extention board */
-//#define PLAY_DFSDM12_DATIN16    /* Use Mics: U1 and U5 from extention board */
-//#define PLAY_DFSDM12_DATIN17    /* Use Mics: U1 and U4 from extention board */
+//#define PLAY_DFSDM2_DATIN01     /* Use Mics: U2 and U3 from extension board */
+#define PLAY_DFSDM2_DATIN06     /* Use Mics: U2 and U5 from extension board */
+//#define PLAY_DFSDM2_DATIN07     /* Use Mics: U2 and U4 from extension board */
+//#define PLAY_DFSDM2_DATIN16     /* Use Mics: U3 and U5 from extension board */
+//#define PLAY_DFSDM2_DATIN17     /* Use Mics: U3 and U4 from extension board */
+//#define PLAY_DFSDM2_DATIN67     /* Use Mics: U5 and U4 from extension board */
+//#define PLAY_DFSDM12_DATIN10    /* Use Mics: U1 and U2 from extension board or U16 and U17 from discovery */
+//#define PLAY_DFSDM12_DATIN11    /* Use Mics: U1 and U3 from extension board */
+//#define PLAY_DFSDM12_DATIN16    /* Use Mics: U1 and U5 from extension board */
+//#define PLAY_DFSDM12_DATIN17    /* Use Mics: U1 and U4 from extension board */
 
 
 
@@ -162,5 +161,3 @@ void Error_Handler(void);
                                                         }while(0)                                                  
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

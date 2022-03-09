@@ -30,21 +30,21 @@ extern "C" {
 
 
 /** @addtogroup USBH_LIB
-* @{
-*/
+  * @{
+  */
 
 /** @addtogroup USBH_CLASS
-* @{
-*/
+  * @{
+  */
 
 /** @addtogroup USBH_TEMPLATE_CLASS
-* @{
-*/
+  * @{
+  */
 
 /** @defgroup USBH_TEMPLATE_CLASS
-* @brief This file is the Header file for usbh_template.c
-* @{
-*/
+  * @brief This file is the Header file for usbh_template.c
+  * @{
+  */
 
 
 /**
@@ -52,49 +52,49 @@ extern "C" {
   */
 
 /** @defgroup USBH_TEMPLATE_CLASS_Exported_Types
-* @{
-*/
+  * @{
+  */
 
 /* States for TEMPLATE State Machine */
 
 
 /**
-* @}
-*/
+  * @}
+  */
 
 /** @defgroup USBH_TEMPLATE_CLASS_Exported_Defines
-* @{
-*/
+  * @{
+  */
 
 /**
-* @}
-*/
+  * @}
+  */
 
 /** @defgroup USBH_TEMPLATE_CLASS_Exported_Macros
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 /** @defgroup USBH_TEMPLATE_CLASS_Exported_Variables
-* @{
-*/
+  * @{
+  */
 extern USBH_ClassTypeDef  TEMPLATE_Class;
 #define USBH_TEMPLATE_CLASS    &TEMPLATE_Class
 
 /**
-* @}
-*/
+  * @}
+  */
 
 /** @defgroup USBH_TEMPLATE_CLASS_Exported_FunctionsPrototype
-* @{
-*/
+  * @{
+  */
 USBH_StatusTypeDef USBH_TEMPLATE_IOProcess(USBH_HandleTypeDef *phost);
 USBH_StatusTypeDef USBH_TEMPLATE_Init(USBH_HandleTypeDef *phost);
 /**
-* @}
-*/
+  * @}
+  */
 
 #ifdef __cplusplus
 }
@@ -103,19 +103,19 @@ USBH_StatusTypeDef USBH_TEMPLATE_Init(USBH_HandleTypeDef *phost);
 #endif /* __USBH_TEMPLATE_H */
 
 /**
-* @}
-*/
+  * @}
+  */
 
 /**
-* @}
-*/
+  * @}
+  */
 
 /**
-* @}
-*/
+  * @}
+  */
 
 /**
-* @}
-*/
+  * @}
+  */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
 

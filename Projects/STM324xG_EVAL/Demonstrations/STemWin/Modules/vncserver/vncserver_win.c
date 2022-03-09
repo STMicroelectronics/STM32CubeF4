@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -305,7 +304,7 @@ static void _cbDialogNumPad(WM_MESSAGE * pMsg) {
         } else {
           Key = _aKey[Id - GUI_ID_USER - 11];                        /* Get the text from the array */
         }
-        GUI_SendKeyMsg(Key, Pressed);                                /* Send a key message to the focussed window */
+        GUI_SendKeyMsg(Key, Pressed);                                /* Send a key message to the focused window */
       }
       break;
     }
@@ -447,7 +446,7 @@ static void _cbDialog_VNC(WM_MESSAGE * pMsg) {
             hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_START);
             BUTTON_SetText(hItem, (const char*) "Hide");
             
-            /* Cange connection png pic from disconnected to connecting */
+            /* Change connection png pic from disconnected to connecting */
             hItem = WM_GetDialogItem(pMsg->hWin, ID_IMAGE_STATE);
             IMAGE_SetBitmap(hItem, &bmhourglass32);
             
@@ -840,7 +839,7 @@ static void VNCServer_Start(void)
   WM_HWIN hItem;
   
   hItem = WM_GetDialogItem(hWinVNC, ID_MULTIEDIT_VNC);
-  MULTIEDIT_AddText(hItem, (const char *) "VNC Server intialization ...\r\n");
+  MULTIEDIT_AddText(hItem, (const char *) "VNC Server initialization ...\r\n");
   
   /* Start VNC */
   if (GUI_VNC_X_StartServer(0, 0))
@@ -957,7 +956,7 @@ void _VNCServer_Notify(uint8_t ID)
       hItem = WM_GetDialogItem(hWinVNC, ID_MULTIEDIT_VNC);
       MULTIEDIT_AddText(hItem, (const char *) "The network cable is not connected \n\r");
       
-      /* Cange connection png pic from connecting to disconnected */
+      /* Change connection png pic from connecting to disconnected */
       hItem = WM_GetDialogItem(hWinVNC, ID_IMAGE_STATE);
       IMAGE_SetBitmap(hItem, &bmDelete32);
       
@@ -978,7 +977,7 @@ void _VNCServer_Notify(uint8_t ID)
       hItem = WM_GetDialogItem(hWinVNC, ID_MULTIEDIT_VNC);
       MULTIEDIT_AddText(hItem, (const char *) "Looking for a DHCP sever ...\n\r");
       
-      /* Cange connection png pic from connected to connecting */
+      /* Change connection png pic from connected to connecting */
       hItem = WM_GetDialogItem(hWinVNC, ID_IMAGE_STATE);
       IMAGE_SetBitmap(hItem, &bmhourglass32);
       
@@ -1055,5 +1054,3 @@ void _VNCServer_GetAssignedAddress(uint8_t type, uint8_t addr3, uint8_t addr2, u
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

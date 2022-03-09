@@ -6,16 +6,15 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */  
+  */
 /* Includes ------------------------------------------------------------------*/
 #include "audio_recorder_app.h"
 
@@ -671,7 +670,7 @@ static uint32_t WavProcess_HeaderInit(uint8_t* pHeader, WAV_InfoTypedef* pAudioI
   
   /* Write the file length ---------------------------------------------------*/
   /* The sampling time: this value will be written back at the end of the 
-     recording operation.  Example: 661500 Btyes = 0x000A17FC, byte[7]=0x00, byte[4]=0xFC */
+     recording operation.  Example: 661500 Bytes = 0x000A17FC, byte[7]=0x00, byte[4]=0xFC */
   pHeader[4] = 0x00;
   pHeader[5] = 0x4C;
   pHeader[6] = 0x1D;
@@ -750,7 +749,7 @@ static uint32_t WavProcess_HeaderUpdate(uint8_t* pHeader, WAV_InfoTypedef* pAudi
 {
   /* Write the file length ---------------------------------------------------*/
   /* The sampling time: this value will be written back at the end of the 
-     recording operation.  Example: 661500 Btyes = 0x000A17FC, byte[7]=0x00, byte[4]=0xFC */
+     recording operation.  Example: 661500 Bytes = 0x000A17FC, byte[7]=0x00, byte[4]=0xFC */
   pHeader[4] = (uint8_t)(haudio.in.fptr);
   pHeader[5] = (uint8_t)(haudio.in.fptr >> 8);
   pHeader[6] = (uint8_t)(haudio.in.fptr >> 16);
@@ -773,5 +772,3 @@ static uint32_t WavProcess_HeaderUpdate(uint8_t* pHeader, WAV_InfoTypedef* pAudi
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

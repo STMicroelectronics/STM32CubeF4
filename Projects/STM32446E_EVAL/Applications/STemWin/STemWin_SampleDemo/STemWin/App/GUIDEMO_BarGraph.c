@@ -40,13 +40,12 @@ Purpose     : Shows a bargraph with alpha effect
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -231,7 +230,7 @@ GUI_CONST_STORAGE GUI_FONT GUI_FontD9_AA4 = {
 
 /*********************************************************************
 *
-*       Alpha bitmap for the orange dot at the left of the diagramm
+*       Alpha bitmap for the orange dot at the left of the diagram
 */
 static GUI_CONST_STORAGE unsigned long _acCircleOrange_14x14[] = {
   0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFA0094F3, 0x860094F3, 0x790094F3, 0x140094F3, 0x140094F3, 0x790094F3, 0x860094F3, 0xFA0094F3, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
@@ -532,6 +531,3 @@ void GUIDEMO_BarGraph(void) {
 void GUIDEMO_BarGraph(void) {}
 
 #endif
-
-/*************************** End of file ****************************/
-

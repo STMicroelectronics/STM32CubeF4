@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -210,7 +209,7 @@ void tftp_cleanup_rd(struct udp_pcb *upcb, tftp_connection_args *args)
   /* close the filesystem */
   f_close(&file_SD);
   f_mount(NULL, (TCHAR const*)"",0);
-  /* Free the tftp_connection_args structure reserverd for */
+  /* Free the tftp_connection_args structure reserved for */
   mem_free(args);
 
   /* Disconnect the udp_pcb*/  
@@ -233,7 +232,7 @@ void tftp_cleanup_wr(struct udp_pcb *upcb, tftp_connection_args *args)
   /* close the filesystem */
   f_close(&file_CR);
   f_mount(NULL, (TCHAR const*)"",0);
-  /* Free the tftp_connection_args structure reserverd for */
+  /* Free the tftp_connection_args structure reserved for */
   mem_free(args);
 
   /* Disconnect the udp_pcb*/
@@ -544,7 +543,7 @@ void process_tftp_request(struct pbuf *pkt_buf, const ip_addr_t *addr, u16_t por
 
     case TFTP_WRQ: /* TFTP WRQ (write request) */
     {
-      /* Read the name of the file asked by the client to be received and writen in the SD card */
+      /* Read the name of the file asked by the client to be received and written in the SD card */
       tftp_extract_filename(FileName, pkt_buf->payload);
   
       /* Could not open filesystem */

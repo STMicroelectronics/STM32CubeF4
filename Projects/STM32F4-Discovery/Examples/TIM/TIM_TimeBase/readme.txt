@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the TIM Time Base example
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -37,7 +38,7 @@ The TIM3 ARR register value is equal to 10000 - 1,
 Update rate = TIM3 counter clock / (Period + 1) = 1 Hz,
 So the TIM3 generates an interrupt each 1 s
 
-When the counter value reaches the auto-reload register value, the TIM upadate 
+When the counter value reaches the auto-reload register value, the TIM updates 
 interrupt is generated and, in the handler routine, PD.12 is toggled at the following frequency: 0.5Hz. 
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -83,5 +84,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

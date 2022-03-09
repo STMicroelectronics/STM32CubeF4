@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of Cyclic Redundancy Check example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -37,7 +38,7 @@ GPIO, DMA and NVIC). You may update this function to change CRC configuration.
 The calculated CRC code is compared to displayed on the debugger in uwCRCValue variable.
 Once calculated, the CRC value is compared to the CRC expected value.
 
-STM32 Eval board's LEDs can be used to monitor the example status:
+STM32 Eval boards LEDs can be used to monitor the example status:
   - LED1 is ON when Right CRC calculated value
   - LED3 is ON when Wrong CRC calculated value there are an error in initialization.
 
@@ -83,6 +84,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
  
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
- */
- 
+
+  */

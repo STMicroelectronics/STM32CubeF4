@@ -3,19 +3,18 @@
   * @file    Examples_LL/DAC/DAC_GenerateWaveform_TriggerHW/Src/main.c
   * @author  MCD Application Team
   * @brief   This example describes how to use the DAC peripheral to generate
-  *          a voltage waveform from digital data stream transfered by DMA.
+  *          a voltage waveform from digital data stream transferred by DMA.
   *          This example is based on the STM32F4xx DAC LL API;
   *          Peripheral initialization done using LL unitary services functions.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -234,7 +233,7 @@ void Configure_DMA(void)
                      LL_DMA_STREAM_5);
   
   /* Note: In this example, the only DMA interruption activated is            */
-  /*       tranfer error.                                                     */
+  /*       transfer error.                                                     */
   /*       If needed, DMA interruptions of half of transfer                   */
   /*       and transfer complete can be activated.                            */
   /*       Refer to DMA examples.                                             */
@@ -662,5 +661,3 @@ void assert_failed(uint8_t *file, uint32_t line)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

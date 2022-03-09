@@ -23,57 +23,57 @@
 #include "usbh_template.h"
 
 /** @addtogroup USBH_LIB
-* @{
-*/
+  * @{
+  */
 
 /** @addtogroup USBH_CLASS
-* @{
-*/
+  * @{
+  */
 
 /** @addtogroup USBH_TEMPLATE_CLASS
-* @{
-*/
+  * @{
+  */
 
 /** @defgroup USBH_TEMPLATE_CORE
-* @brief    This file includes TEMPLATE Layer Handlers for USB Host TEMPLATE class.
-* @{
-*/
+  * @brief    This file includes TEMPLATE Layer Handlers for USB Host TEMPLATE class.
+  * @{
+  */
 
 /** @defgroup USBH_TEMPLATE_CORE_Private_TypesDefinitions
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_TEMPLATE_CORE_Private_Defines
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_TEMPLATE_CORE_Private_Macros
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_TEMPLATE_CORE_Private_Variables
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_TEMPLATE_CORE_Private_FunctionPrototypes
-* @{
-*/
+  * @{
+  */
 
 static USBH_StatusTypeDef USBH_TEMPLATE_InterfaceInit(USBH_HandleTypeDef *phost);
 static USBH_StatusTypeDef USBH_TEMPLATE_InterfaceDeInit(USBH_HandleTypeDef *phost);
@@ -91,13 +91,13 @@ USBH_ClassTypeDef  TEMPLATE_Class =
   USBH_TEMPLATE_Process
 };
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_TEMPLATE_CORE_Private_Functions
-* @{
-*/
+  * @{
+  */
 
 /**
   * @brief  USBH_TEMPLATE_InterfaceInit
@@ -214,25 +214,25 @@ USBH_StatusTypeDef USBH_TEMPLATE_IOProcess(USBH_HandleTypeDef *phost)
 }
 
 /**
-* @}
-*/
+  * @}
+  */
 
 /**
-* @}
-*/
+  * @}
+  */
 
 /**
-* @}
-*/
-
-
-/**
-* @}
-*/
+  * @}
+  */
 
 
 /**
-* @}
-*/
+  * @}
+  */
+
+
+/**
+  * @}
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the Triple interleaved mode and DMA mode2 Example
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -56,7 +57,7 @@ Please select PC0 option on JP3 jumper called Potentiometer
 The ADC measure is realized on PC.00, so you need to connect this pin to a power supply (do not forget to connect the power supply 
 GND to the EVAL board GND).
 
-STM32 board's LEDs can be used to monitor the transfer status:
+STM32 boards LEDs can be used to monitor the transfer status:
  - LED1 is ON when the conversion is complete.
  - LED3 is ON when there are an error in initialization. 
 
@@ -74,7 +75,7 @@ User should monitor aADCTripleConvertedValue variable to get the converted value
       to have correct HAL operation.
 
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
-	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+	  The LCD clear can be ensured by hardware through the boards power off/power on or by software calling the BSP_LCD_Reset() function.
 
 @par Keywords
 
@@ -89,7 +90,7 @@ Analog, ADC, Analog to Digital, Triple mode, Interleaved, Continuous conversion,
   - ADC/ADC_TripleModeInterleaved/Src/main.c                  Main program
   - ADC/ADC_TripleModeInterleaved/Src/stm32f4xx_hal_msp.c     HAL MSP file
   - ADC/ADC_TripleModeInterleaved/Src/system_stm32f4xx.c      STM32F4xx system source file
-  - ADC/ADC_TripleModeInterleaved/simulation.xls              Draw to clarify explenation (readme extension)
+  - ADC/ADC_TripleModeInterleaved/simulation.xls              Draw to clarify explanation (readme extension)
 
 @par Hardware and Software environment 
 
@@ -109,5 +110,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

@@ -9,13 +9,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -26,6 +25,9 @@
 #include "lwip/tcpip.h"
 #include "app_ethernet.h"
 #include "httpserver-netconn.h"
+#ifdef USE_LCD
+#include "lcd_log.h"
+#endif
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -36,6 +38,7 @@ struct netif gnetif; /* network interface structure */
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void StartThread(void const * argument);
+static void BSP_Config(void);
 static void Netif_Config(void);
 
 /* Private functions ---------------------------------------------------------*/
@@ -58,6 +61,9 @@ int main(void)
   /* Configure the system clock to 180 MHz */
   SystemClock_Config();
   
+  /* Initialize LCD and LEDs */
+  BSP_Config();
+
   /* Init thread */
 #if defined(__GNUC__)
   osThreadDef(Start, StartThread, osPriorityNormal, 0, configMINIMAL_STACK_SIZE * 5);
@@ -89,15 +95,6 @@ static void StartThread(void const * argument)
   
   /* Initialize webserver demo */
   http_server_netconn_init();
-  
-  /* Notify user about the network interface config */
-  User_notification(&gnetif);
-  
-#ifdef USE_DHCP
-  /* Start DHCPClient */
-  osThreadDef(DHCP, DHCP_thread, osPriorityBelowNormal, 0, configMINIMAL_STACK_SIZE * 2);
-  osThreadCreate (osThread(DHCP), &gnetif);
-#endif
 
   for( ;; )
   {
@@ -107,7 +104,44 @@ static void StartThread(void const * argument)
 }
 
 /**
-  * @brief  Initializes the lwIP stack
+  * @brief  Initializes the STM324x9I-EVAL's LCD and LEDs resources.
+  * @param  None
+  * @retval None
+  */
+static void BSP_Config(void)
+{
+#ifdef USE_LCD
+
+  /* Initialize the LCD */
+  BSP_LCD_Init();
+
+  /* Initialize the LCD Layers */
+  BSP_LCD_LayerDefaultInit(1, LCD_FB_START_ADDRESS);
+
+  /* Set LCD Foreground Layer  */
+  BSP_LCD_SelectLayer(1);
+  
+  BSP_LCD_SetFont(&LCD_DEFAULT_FONT);
+  
+  /* Initialize LCD Log module */
+  LCD_LOG_Init();
+  
+  /* Show Header and Footer texts */
+  LCD_LOG_SetHeader((uint8_t *)"Webserver Application Netconn API");
+  LCD_LOG_SetFooter((uint8_t *)"STM324x9I-EVAL board");
+  
+  LCD_UsrLog ((char *)"  State: Ethernet Initialization ...\n");
+
+#else
+  /* Configure LED1 and LED2 */
+  BSP_LED_Init(LED1);
+  BSP_LED_Init(LED2);
+
+#endif /* USE_LCD */
+}
+
+/**
+  * @brief  Configures the network interface
   * @param  None
   * @retval None
   */
@@ -116,8 +150,8 @@ static void Netif_Config(void)
   ip_addr_t ipaddr;
   ip_addr_t netmask;
   ip_addr_t gw;
-	
-#ifdef USE_DHCP
+
+#if LWIP_DHCP
   ip_addr_set_zero_ip4(&ipaddr);
   ip_addr_set_zero_ip4(&netmask);
   ip_addr_set_zero_ip4(&gw);
@@ -125,23 +159,28 @@ static void Netif_Config(void)
   IP_ADDR4(&ipaddr,IP_ADDR0,IP_ADDR1,IP_ADDR2,IP_ADDR3);
   IP_ADDR4(&netmask,NETMASK_ADDR0,NETMASK_ADDR1,NETMASK_ADDR2,NETMASK_ADDR3);
   IP_ADDR4(&gw,GW_ADDR0,GW_ADDR1,GW_ADDR2,GW_ADDR3);
-#endif /* USE_DHCP */
-    
+#endif /* LWIP_DHCP */
+
+  /* add the network interface */
   netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &tcpip_input);
-  
+
   /*  Registers the default network interface. */
   netif_set_default(&gnetif);
-  
-  if (netif_is_link_up(&gnetif))
-  {
-    /* When the netif is fully configured this function must be called.*/
-    netif_set_up(&gnetif);
-  }
-  else
-  {
-    /* When the netif link is down this function must be called */
-    netif_set_down(&gnetif);
-  }
+
+  ethernet_link_status_updated(&gnetif);
+
+#if LWIP_NETIF_LINK_CALLBACK
+  netif_set_link_callback(&gnetif, ethernet_link_status_updated);
+
+  osThreadDef(EthLink, ethernet_link_thread, osPriorityNormal, 0, configMINIMAL_STACK_SIZE *2);
+  osThreadCreate (osThread(EthLink), &gnetif);
+#endif
+
+#if LWIP_DHCP
+  /* Start DHCPClient */
+  osThreadDef(DHCP, DHCP_Thread, osPriorityBelowNormal, 0, configMINIMAL_STACK_SIZE * 2);
+  osThreadCreate (osThread(DHCP), &gnetif);
+#endif
 }
 
 /**
@@ -229,5 +268,3 @@ void assert_failed(uint8_t* file, uint32_t line)
   }
 }
 #endif
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

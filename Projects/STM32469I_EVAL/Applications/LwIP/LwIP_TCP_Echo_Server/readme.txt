@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the LwIP TCP Echo Server Application.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -29,13 +30,13 @@ At the command prompt, enter:
   C:\>echotool IP_address /p tcp /r 7 /n 15 /t 2 /d Testing LwIP TCP echo server
 
 where:
-    – IP_address is the actual board’s IP address. By default, the following 
+    - IP_address is the actual board’s IP address. By default, the following 
     static IP address is used: 192.168.0.10
-    – /p transport layer protocol used for communication (TCP)
-    – /r is the actual remote port on the echo server (echo port)
-    – /n is the number of echo requests (for example, 15)
-    – /t is the connection timeout in seconds (for example, 2)
-    – /d is the message to be sent for echo 
+    - /p transport layer protocol used for communication (TCP)
+    - /r is the actual remote port on the echo server (echo port)
+    - /n is the number of echo requests (for example, 15)
+    - /t is the connection timeout in seconds (for example, 2)
+    - /d is the message to be sent for echo 
 
 If the LCD is used (#define USE_LCD in main.h), log messages will be displayed 
 to inform user about ethernet cable status and the IP address value, else this 
@@ -44,7 +45,10 @@ will be ensured by LEDs:
   + LED2: ethernet cable is not connected.
 
 If a DHCP server is available, a dynamic IP address can be allocated by enabling 
-the DHCP process (#define USE_DHCP in main.h)
+the DHCP process (#define LWIP_DHCP in lwipopts.h).
+
+If a DHCP server is not available, after timeout connection, the device only gets a static 
+IP address(the switch from static to dynamic IP adress is not available in this application).
 
 Note: In this application the Ethernet Link ISR need the HAL time base to configure 
 the Ethernet MAC, so the Ethernet Link interrupt priority must be set lower (numerically greater) 
@@ -73,7 +77,7 @@ For more details about this application, refer to UM1713 "STM32Cube interfacing 
 
 
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
-	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+	  The LCD clear can be ensured by hardware through the boards power off/power on or by software calling the BSP_LCD_Reset() function.
 
 @par Keywords
 
@@ -122,5 +126,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the application
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

@@ -98,7 +98,7 @@ to exclude the API function. */
 /*------------- CMSIS-RTOS V2 specific defines -----------*/
 /* When using CMSIS-RTOSv2 set configSUPPORT_STATIC_ALLOCATION to 1
  * is mandatory to avoid compile errors.
- * CMSIS-RTOS V2 implmentation requires the following defines
+ * CMSIS-RTOS V2 implementation requires the following defines
  *
 //#define configSUPPORT_STATIC_ALLOCATION          1   <-- cmsis_os threads are created using xTaskCreateStatic() API
 //#define configMAX_PRIORITIES                    (56) <-- Priority range in CMSIS-RTOS V2 is [0 .. 56]
@@ -152,7 +152,7 @@ header file. */
 #define vPortSVCHandler    SVC_Handler
 #define xPortPendSVHandler PendSV_Handler
 
-/* IMPORTANT: FreeRTOS is using the SysTick as internal time base, thus make sure the system and peripherials are
+/* IMPORTANT: FreeRTOS is using the SysTick as internal time base, thus make sure the system and peripherals are
               using a different time base (TIM based for example).
  */
 //#define xPortSysTickHandler SysTick_Handler

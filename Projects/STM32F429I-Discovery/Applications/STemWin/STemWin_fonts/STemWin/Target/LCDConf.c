@@ -2,13 +2,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -614,6 +613,7 @@ static void LCD_LL_Init(void)
   static RCC_PeriphCLKInitTypeDef  PeriphClkInitStruct;
   
   /* DeInit */
+  hltdc.Instance = LTDC;
   HAL_LTDC_DeInit(&hltdc);
   
   /* Initializaton of ILI9341 component*/
@@ -691,7 +691,7 @@ void DMA2D_IRQHandler(void)
   */
 static void _DMA2D_ExecOperation(void) 
 {  
-  /* If no concurent operation, do not wait */
+  /* If no concurrent operation, do not wait */
   if ( TransferInProgress == 0 )
     return;
   
@@ -816,7 +816,7 @@ static void _DMA_Fill(int LayerIndex, void * pDst, int xSize, int ySize, int Off
 /**
   * @brief  DMA2D Alpha blending bulk
   * @param  pColorFG : Foregroung color
-  * @param  pColorBG : Backgroung color
+  * @param  pColorBG : Background color
   * @param  pColorDst: Destination color
   * @param  NumItems : Number of lines
   * @retval None
@@ -852,7 +852,7 @@ static void _DMA_AlphaBlendingBulk(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, L
 /**
   * @brief  Mixing bulk colors
   * @param  pColorFG : Foregroung color
-  * @param  pColorBG : Backgroung color
+  * @param  pColorBG : Background color
   * @param  pColorDst: Destination color
   * @param  Intens   : Color intensity
   * @param  NumItems : Number of lines
@@ -1801,5 +1801,3 @@ void LCD_X_Config(void)
   /* Set up custom function for Alpha drawing operations */
   GUI_SetFuncDrawAlpha(_LCD_DrawMemdevAlpha, _LCD_DrawBitmapAlpha);
 }
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

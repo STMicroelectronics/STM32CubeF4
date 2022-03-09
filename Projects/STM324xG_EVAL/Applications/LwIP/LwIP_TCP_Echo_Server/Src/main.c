@@ -9,13 +9,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -77,7 +76,6 @@ int main(void)
   tcp_echoserver_init();
   
   /* Notify user about the network interface config */
-  User_notification(&gnetif);
 
   /* Infinite loop */
   while (1)
@@ -89,33 +87,23 @@ int main(void)
     /* Handle timeouts */
     sys_check_timeouts();
 
-#ifdef USE_DHCP
-    /* handle periodic timers for LwIP */
+#if LWIP_NETIF_LINK_CALLBACK
+    Ethernet_Link_Periodic_Handle(&gnetif);
+#endif
+
+#if LWIP_DHCP
     DHCP_Periodic_Handle(&gnetif);
-#endif 
+#endif
   }
 }
 
 /**
-  * @brief  Configurates the BSP.
+  * @brief  Configures the BSP.
   * @param  None
   * @retval None
   */
 static void BSP_Config(void)
 {
-  GPIO_InitTypeDef GPIO_InitStructure;
-  
-  /* Enable PB14 to IT mode: Ethernet Link interrupt */ 
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-  GPIO_InitStructure.Pin = GPIO_PIN_14;
-  GPIO_InitStructure.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStructure.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
- 
-  /* Enable EXTI Line interrupt */
-  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0xF, 0);
-  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn); 
-  
   /* Configure LED1, LED2 */
   BSP_LED_Init(LED1);
   BSP_LED_Init(LED2);
@@ -151,48 +139,30 @@ static void Netif_Config(void)
   ip_addr_t netmask;
   ip_addr_t gw;
   
-#ifdef USE_DHCP
+#if LWIP_DHCP
   ip_addr_set_zero_ip4(&ipaddr);
   ip_addr_set_zero_ip4(&netmask);
   ip_addr_set_zero_ip4(&gw);
 #else
-  IP_ADDR4(&ipaddr,IP_ADDR0,IP_ADDR1,IP_ADDR2,IP_ADDR3);
-  IP_ADDR4(&netmask,NETMASK_ADDR0,NETMASK_ADDR1,NETMASK_ADDR2,NETMASK_ADDR3);
-  IP_ADDR4(&gw,GW_ADDR0,GW_ADDR1,GW_ADDR2,GW_ADDR3);
-#endif /* USE_DHCP */
   
-  /* Add the network interface */    
+  /* IP address default setting */
+  IP4_ADDR(&ipaddr, IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3);
+  IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1 , NETMASK_ADDR2, NETMASK_ADDR3);
+  IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
+  
+#endif
+  
+  /* add the network interface */
   netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &ethernet_input);
   
-  /* Registers the default network interface */
+  /*  Registers the default network interface */
   netif_set_default(&gnetif);
   
-  if (netif_is_link_up(&gnetif))
-  {
-    /* When the netif is fully configured this function must be called */
-    netif_set_up(&gnetif);
-  }
-  else
-  {
-    /* When the netif link is down this function must be called */
-    netif_set_down(&gnetif);
-  }
+  ethernet_link_status_updated(&gnetif);
   
-  /* Set the link callback function, this function is called on change of link status*/
-  netif_set_link_callback(&gnetif, ethernetif_update_config);
-}
-
-/**
-  * @brief  EXTI line detection callbacks
-  * @param  GPIO_Pin: Specifies the pins connected EXTI line
-  * @retval None
-  */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-  if (GPIO_Pin == GPIO_PIN_14)
-  {
-    ethernetif_set_link(&gnetif);
-  }
+#if LWIP_NETIF_LINK_CALLBACK
+  netif_set_link_callback(&gnetif, ethernet_link_status_updated);
+#endif
 }
 
 /**
@@ -275,5 +245,3 @@ void assert_failed(uint8_t* file, uint32_t line)
   }
 }
 #endif
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

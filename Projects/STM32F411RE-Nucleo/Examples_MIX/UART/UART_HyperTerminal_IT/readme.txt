@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the UART HAL/LL mixed Hyperterminal example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -71,7 +72,7 @@ TxBuffer buffer content will be displayed in the Hyperterminal interface.
 In a second step the received data in the RxBuffer buffer will be sent back to 
 Hyperterminal and displayed.
 
-STM32 Nucleo board's LEDs can be used to monitor the transfer status:
+STM32 Nucleo boards LEDs can be used to monitor the transfer status:
  - LED2 toggles when the transmission process is complete.
  - LED2 stays ON when the reception process is complete.
  - LED2 is OFF when there is an error in transmission/reception process.  
@@ -147,5 +148,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

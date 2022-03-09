@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the SPI Full Duplex Polling example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -75,7 +76,7 @@ result.
 Finally, aRxBuffer and aTxBuffer are compared through Buffercmp() in order to 
 check buffers correctness.  
 
-STM32 board's LEDs can be used to monitor the transfer status:
+STM32 boards LEDs can be used to monitor the transfer status:
  - LED2 toggles quickly on master board waiting User push-button to be pressed.
  - LED2 turns ON when the transmission process is complete.
  - LED4 turns ON when the reception process is complete.
@@ -98,7 +99,7 @@ STM32 board's LEDs can be used to monitor the transfer status:
       to have correct HAL operation.
 
 @note The connection of the LCD reset pin to a dedicated GPIO PH7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
-	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+	  The LCD clear can be ensured by hardware through the boards power off/power on or by software calling the BSP_LCD_Reset() function.
 
 @par Keywords
 
@@ -137,6 +138,5 @@ In order to make the program work, you must do the following:
     o Comment "#define MASTER_BOARD" and load the project in Slave Board
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
- */
- 
+
+  */

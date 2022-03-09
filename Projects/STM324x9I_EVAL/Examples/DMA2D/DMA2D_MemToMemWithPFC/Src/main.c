@@ -8,13 +8,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -105,7 +104,7 @@ int main(void)
 
 /**
   * @brief DMA2D configuration.
-  * @note  This function Configure tha DMA2D peripheral :
+  * @note  This function Configure the DMA2D peripheral :
   *        1) Configure the transfer mode : memory to memory W/ pixel format conversion
   *        2) Configure the output color mode as ARGB8888
   *        3) Configure the output memory address at SRAM memory  
@@ -151,7 +150,7 @@ static void DMA2D_Config(void)
 
 /**
   * @brief LCD Configuration.
-  * @note  This function Configure tha LTDC peripheral :
+  * @note  This function Configure the LTDC peripheral :
   *        1) Configure the Pixel Clock for the LCD
   *        2) Configure the LTDC Timing and Polarity
   *        3) Configure the LTDC Layer 1 :
@@ -195,9 +194,9 @@ static void LCD_Config(void)
   LtdcHandle.Init.AccumulatedVBP = 11; 
   /* Accumulated active width = Hsync + HBP + Active Width - 1 */ 
   LtdcHandle.Init.AccumulatedActiveH = 283;
-  /* Accumulated active height = Vsync + VBP + Active Heigh - 1 */
+  /* Accumulated active height = Vsync + VBP + Active Height - 1 */
   LtdcHandle.Init.AccumulatedActiveW = 522;
-  /* Total height = Vsync + VBP + Active Heigh + VFP - 1 */
+  /* Total height = Vsync + VBP + Active Height + VFP - 1 */
   LtdcHandle.Init.TotalHeigh = 285;
   /* Total width = Hsync + HBP + Active Width + HFP - 1 */
   LtdcHandle.Init.TotalWidth = 524;
@@ -435,5 +434,3 @@ void assert_failed(uint8_t* file, uint32_t line)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -10,13 +10,14 @@
   * @brief   Description of the LCD DSI enter and exit DSI ULPM Mode on data lane 
   *          and clock lane example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -49,12 +50,12 @@ The LTDC is reading continuously the LCD Frame buffer from SDRAM, sent it to DSI
 via the DSI DPHY to the KoD display that decodes DSI packets and refresh its internal Graphic RAM to display on glass.
 
 The Frame number display is managed by Line Event callback in which the Frame number is incremented
-each time a line event occurs. When entering to ULPM, The Frame number is unchanged untill the
+each time a line event occurs. When entering to ULPM, The Frame number is unchanged until the
 exit from this mode.
 
 LED1 ON: DSI PHY Data and clock lane in ULPM mode
 LED1 OFF: DSI PHY Data and clock lane in run mode
-LED3 ON: an error occured.
+LED3 ON: an error occurred.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate
       delay (in milliseconds) based on variable incremented in SysTick ISR. This
@@ -98,5 +99,5 @@ In order to make the program work, you must do the following :
  - Run the example
 
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

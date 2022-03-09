@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -75,7 +74,7 @@ int main(void)
   tftpd_init();
 
   /* Notify user about the network interface config */
-  User_notification(&gnetif);
+//  User_notification(&gnetif);
 
   /* Link the SD Card disk I/O driver */
   FATFS_LinkDriver(&SD_Driver, SD_Path);
@@ -90,8 +89,11 @@ int main(void)
     /* Handle timeouts */
     sys_check_timeouts();
 
-#ifdef USE_DHCP
-    /* handle periodic timers for LwIP */
+#if LWIP_NETIF_LINK_CALLBACK
+    Ethernet_Link_Periodic_Handle(&gnetif);
+#endif
+
+#if LWIP_DHCP
     DHCP_Periodic_Handle(&gnetif);
 #endif
   }
@@ -108,14 +110,6 @@ static void BSP_Config(void)
   BSP_LED_Init(LED1);
   BSP_LED_Init(LED2);
 
-  /* Set Systick Interrupt to the highest priority */
-  HAL_NVIC_SetPriority(SysTick_IRQn, 0x0, 0x0);
-  
-  /* Init IO Expander */
-  BSP_IO_Init();
-  /* Enable IO Expander interrupt for ETH MII pin */
-  BSP_IO_ConfigPin(MII_INT_PIN, IO_MODE_IT_FALLING_EDGE);
-
 #ifdef USE_LCD
 
   /* Initialize the LCD */
@@ -128,14 +122,14 @@ static void BSP_Config(void)
   BSP_LCD_SelectLayer(1);
   
   BSP_LCD_SetFont(&LCD_DEFAULT_FONT);
-  
+
   /* Initialize LCD Log module */
   LCD_LOG_Init();
-  
+
   /* Show Header and Footer texts */
   LCD_LOG_SetHeader((uint8_t *)"TFTP server Application");
   LCD_LOG_SetFooter((uint8_t *)"STM324x9I-EVAL board");
-  
+
   LCD_UsrLog ("  State: Ethernet Initialization ...\n");
 
 #endif
@@ -151,51 +145,31 @@ static void Netif_Config(void)
   ip_addr_t ipaddr;
   ip_addr_t netmask;
   ip_addr_t gw;
-
-#ifdef USE_DHCP
+  
+#if LWIP_DHCP
   ip_addr_set_zero_ip4(&ipaddr);
   ip_addr_set_zero_ip4(&netmask);
   ip_addr_set_zero_ip4(&gw);
 #else
-  IP_ADDR4(&ipaddr,IP_ADDR0,IP_ADDR1,IP_ADDR2,IP_ADDR3);
-  IP_ADDR4(&netmask,NETMASK_ADDR0,NETMASK_ADDR1,NETMASK_ADDR2,NETMASK_ADDR3);
-  IP_ADDR4(&gw,GW_ADDR0,GW_ADDR1,GW_ADDR2,GW_ADDR3);
-#endif /* USE_DHCP */
   
-  /* Add the network interface */    
+  /* IP address default setting */
+  IP4_ADDR(&ipaddr, IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3);
+  IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1 , NETMASK_ADDR2, NETMASK_ADDR3);
+  IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
+  
+#endif
+  
+  /* add the network interface */
   netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &ethernet_input);
   
   /*  Registers the default network interface */
   netif_set_default(&gnetif);
-
-  if (netif_is_link_up(&gnetif))
-  {
-    /* When the netif is fully configured this function must be called */
-    netif_set_up(&gnetif);
-  }
-  else
-  {
-    /* When the netif link is down this function must be called */
-    netif_set_down(&gnetif);
-  }
-
-  /* Set the link callback function, this function is called on change of link status*/
-  netif_set_link_callback(&gnetif, ethernetif_update_config);
-}
-
-/**
-  * @brief EXTI line detection callbacks
-  * @param GPIO_Pin: Specifies the pins connected EXTI line
-  * @retval None
-  */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-  /* Get the IT status register value */
-  if(BSP_IO_ITGetStatus(MII_INT_PIN))
-  {
-    ethernetif_set_link(&gnetif);
-  }
-  BSP_IO_ITClear();
+  
+  ethernet_link_status_updated(&gnetif);
+  
+#if LWIP_NETIF_LINK_CALLBACK
+  netif_set_link_callback(&gnetif, ethernet_link_status_updated);
+#endif
 }
 
 /**
@@ -230,7 +204,7 @@ static void SystemClock_Config(void)
      clocked below the maximum system frequency, to update the voltage scaling value 
      regarding system frequency refer to product datasheet.  */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  
+
   /* Enable HSE Oscillator and activate PLL with HSE as source */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
@@ -241,10 +215,10 @@ static void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 7;
   HAL_RCC_OscConfig(&RCC_OscInitStruct);
-  
+
   /* Activate the Over-Drive mode */
   HAL_PWREx_EnableOverDrive();
-  
+
   /* Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 
   clocks dividers */
   RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
@@ -267,12 +241,10 @@ void assert_failed(uint8_t* file, uint32_t line)
 {
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  
+
   /* Infinite loop */
   while (1)
   {
   }
 }
 #endif
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

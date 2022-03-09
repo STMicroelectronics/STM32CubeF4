@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the ADC_MultiChannelSingleConversion example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -51,7 +52,7 @@ ADC conversions raw data are computed to physical values
 using LL ADC driver helper macro:
  - Value of voltage on GPIO pin (on which is mapped ADC channel) (unit: mV)
  - Value of internal voltage reference VrefInt (unit: mV)
- - Value of temperature (unit: degree Celcius)
+ - Value of temperature (unit: degree Celsius)
  - Value of analog reference voltage (Vref+), connected to analog voltage supply Vdda (unit: mV)
 
 For debug: variables to monitor with debugger watch window:
@@ -59,7 +60,7 @@ For debug: variables to monitor with debugger watch window:
  - "ubDmaTransferStatus": status of DMA transfer of ADC group regular conversions
  - "uhADCxConvertedData_VoltageGPIO_mVolt":        Value of voltage on GPIO pin (on which is mapped ADC channel) (unit: mV)
  - "uhADCxConvertedData_VrefInt_mVolt":            Value of internal voltage reference VrefInt (unit: mV)
- - "hADCxConvertedData_Temperature_DegreeCelsius": Value of temperature (unit: degree Celcius)
+ - "hADCxConvertedData_Temperature_DegreeCelsius": Value of temperature (unit: degree Celsius)
  - "uhADCxConvertedData_VrefAnalog_mVolt":         Value of analog reference voltage (Vref+), connected to analog voltage supply Vdda (unit: mV)
 
 Connection needed:
@@ -105,5 +106,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

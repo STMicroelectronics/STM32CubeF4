@@ -67,9 +67,9 @@ extern "C" {
 /* DEBUG macros */
 #if (USBH_DEBUG_LEVEL > 0U)
 #define  USBH_UsrLog(...)   do { \
-                            printf(__VA_ARGS__); \
-                            printf("\n"); \
-} while (0)
+                                 printf(__VA_ARGS__); \
+                                 printf("\n"); \
+                               } while (0)
 #else
 #define USBH_UsrLog(...) do {} while (0)
 #endif
@@ -77,20 +77,20 @@ extern "C" {
 #if (USBH_DEBUG_LEVEL > 1U)
 
 #define  USBH_ErrLog(...) do { \
-                            printf("ERROR: ") ; \
-                            printf(__VA_ARGS__); \
-                            printf("\n"); \
-} while (0)
+                               printf("ERROR: ") ; \
+                               printf(__VA_ARGS__); \
+                               printf("\n"); \
+                             } while (0)
 #else
 #define USBH_ErrLog(...) do {} while (0)
 #endif
 
 #if (USBH_DEBUG_LEVEL > 2U)
 #define  USBH_DbgLog(...)   do { \
-                            printf("DEBUG : ") ; \
-                            printf(__VA_ARGS__); \
-                            printf("\n"); \
-} while (0)
+                                 printf("DEBUG : ") ; \
+                                 printf(__VA_ARGS__); \
+                                 printf("\n"); \
+                               } while (0)
 #else
 #define USBH_DbgLog(...) do {} while (0)
 #endif

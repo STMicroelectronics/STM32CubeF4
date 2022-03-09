@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the USB Host Firmware Upgrade application
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -68,7 +69,7 @@ application is built by the following configuration settings:
       inside the system_stm32f4xx.c file.
 	  
 @note The connection of the LCD reset pin to a dedicated GPIO PH7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
-	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+	  The LCD clear can be ensured by hardware through the boards power off/power on or by software calling the BSP_LCD_Reset() function.
 
 @par Keywords
 
@@ -141,7 +142,7 @@ state time. Depending on the state time of the Key button, one of the following 
  - If Key Button is pressed for less than< 3 seconds at firmware startup:
    Only the DOWNLOAD command is executed.
 
-STM32 Discovery board's LEDs can be used to monitor the application status:
+STM32 Discovery boards LEDs can be used to monitor the application status:
  - Red LED blinks in infinite loop 
 	 –> Error: USB key disconnected.
 
@@ -182,5 +183,5 @@ STM32 Discovery board's LEDs can be used to monitor the application status:
 	 –> DOWNLOAD and UPLOAD done with success; and the MCU waiting until you press the Key button before
       executing the JUMP command.
 	  
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the UART Hyperterminal example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -75,7 +76,7 @@ Hyperterminal and displayed.
 The end of this two steps are monitored through the HAL_UART_GetState() function
 result.
 
-STM32 board's LEDs can be used to monitor the transfer status:
+STM32 boards LEDs can be used to monitor the transfer status:
  - LED1 turns ON when the transmission process is complete.
  - LED3 turns ON if transmission/reception is complete and OK.
  - LED3 turns OFF when there is an error in transmission/reception process (HAL_UART_ErrorCallback is called).
@@ -153,5 +154,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

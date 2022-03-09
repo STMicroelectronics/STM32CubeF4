@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the PWR Current Consumption example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -97,7 +98,7 @@ Here below a detailed description of the example code:
             - IWDG OFF
             - Automatic Wake-up using RTC clocked by LSE/LSI (after ~20s)
    
-STM32 Eval board's LEDs can be used to monitor the example status:
+STM32 Eval boards LEDs can be used to monitor the example status:
   3. After exit from Low power mode the LED4 is turned ON
   4. The sequence will be repeated from step 1
   - LED3 is ON when there is an error
@@ -155,5 +156,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

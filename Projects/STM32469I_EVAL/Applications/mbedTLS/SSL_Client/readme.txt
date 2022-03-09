@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of SSL Client application.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   @endverbatim
@@ -35,14 +36,14 @@ Scenario 2:
 ===========
 In this second scenario, the the client (STM32F469I_EVAL):
 - connects to local network either through DHCP or static IP address.
-- establishes a secured connect to a second STM32F469I_EVAL borad running 
+- establishes a secured connect to a second STM32F469I_EVAL board running 
   the "SSL_Sever" application.
 - sends an encrypted message to the second board.
 - receives an answser from the server board.
 
 Application logs are displayed on the LCD.
 
-In case of sucess the green led is toggling.
+In case of success the green led is toggling.
 In case of errors the red led is toggling.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -93,7 +94,7 @@ https://tools.ietf.org/html/rfc6460. Thus to get this application working both t
 	 - Using a Windows PC as server, running Windows 7 operating system or later.
      - using two STM32F469I_EVAL boards the first as server, the second as client.
   
-  - Senario 1:
+  - Scenario 1:
       - Remote PC Set-up
 	  - Make sure that the PC is in the same local network as the baord.
 	  - Using a Linux Machine
@@ -104,7 +105,7 @@ https://tools.ietf.org/html/rfc6460. Thus to get this application working both t
 	    - Follow the instructions in the file "Firmware\Utilities\PC_Software\ssl_server\readme.txt" to run the ssl_server application.
 	    - the "ssl_server" will wait for remote connections.
 		
-  - Senario 2:
+  - Scenario 2:
       - a second STM32F469I_EVAL running the "mdedTLS/SSL_Server" application
   
   - STM32F769I-Discovery Set-up 
@@ -129,5 +130,5 @@ In order to make the program work, you must do the following :
 	  to the same LAN. Edit the values MAC_ADDR0, MAC_ADDR1, MAC_ADDR2, MAC_ADDR3, MAC_ADDR4, MAC_ADDR5
 	  in the file "stm32f4xx_hal_conf.h"
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

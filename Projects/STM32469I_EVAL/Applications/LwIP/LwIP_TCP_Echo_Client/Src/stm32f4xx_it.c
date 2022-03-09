@@ -3,23 +3,16 @@
   * @file    LwIP/LwIP_TCP_Echo_Client/Src/stm32f4xx_it.c 
   * @author  MCD Application Team
   * @brief   Main Interrupt Service Routines.
-  *   
+  *
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
-  * You may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at:
-  *
-  *        http://www.st.com/software_license_agreement_liberty_v2
-  *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -121,16 +114,6 @@ void SysTick_Handler(void)
 }
 
 /**
-  * @brief  This function handles External line 8 interrupt request.
-  * @param  None
-  * @retval None
-  */
-void EXTI9_5_IRQHandler(void)
-{
-  HAL_GPIO_EXTI_IRQHandler(MFX_IRQOUT_PIN);
-}
-
-/**
   * @brief  This function handles EXTI15_10
   * @param  None
   * @retval None
@@ -155,5 +138,3 @@ void EXTI15_10_IRQHandler(void)
 /*void PPP_IRQHandler(void)
 {
 }*/
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

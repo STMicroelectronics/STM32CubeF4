@@ -11,7 +11,7 @@
   *          ===================================================================
   *           This module manages the MTP class following the
   *           "Media Transfer Protocol (MTP) specification Version 1.11 April 6th, 2011".
-  *           the implmentation is compatible with the PTP model as an extension
+  *           the implementation is compatible with the PTP model as an extension
   *           of the existing Picture Transfer Protocol defined by the ISO 15740 specification
   *
   *  @endverbatim
@@ -43,57 +43,57 @@ EndBSPDependencies */
 #include "usbh_mtp.h"
 
 /** @addtogroup USBH_LIB
-* @{
-*/
+  * @{
+  */
 
 /** @addtogroup USBH_CLASS
-* @{
-*/
+  * @{
+  */
 
 /** @addtogroup USBH_MTP_CLASS
-* @{
-*/
+  * @{
+  */
 
 /** @defgroup USBH_MTP_CORE
-* @brief    This file includes MTP Layer Handlers for USB Host MTP class.
-* @{
-*/
+  * @brief    This file includes MTP Layer Handlers for USB Host MTP class.
+  * @{
+  */
 
 /** @defgroup USBH_MTP_CORE_Private_TypesDefinitions
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_MTP_CORE_Private_Defines
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_MTP_CORE_Private_Macros
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_MTP_CORE_Private_Variables
-* @{
-*/
+  * @{
+  */
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_MTP_CORE_Private_FunctionPrototypes
-* @{
-*/
+  * @{
+  */
 
 static USBH_StatusTypeDef USBH_MTP_InterfaceInit(USBH_HandleTypeDef *phost);
 static USBH_StatusTypeDef USBH_MTP_InterfaceDeInit(USBH_HandleTypeDef *phost);
@@ -121,13 +121,13 @@ USBH_ClassTypeDef  MTP_Class =
   NULL,
 };
 /**
-* @}
-*/
+  * @}
+  */
 
 
 /** @defgroup USBH_MTP_CORE_Private_Functions
-* @{
-*/
+  * @{
+  */
 
 /**
   * @brief  USBH_MTP_InterfaceInit
@@ -148,7 +148,7 @@ static USBH_StatusTypeDef USBH_MTP_InterfaceInit(USBH_HandleTypeDef *phost)
     return USBH_FAIL;
   }
 
-  USBH_SelectInterface(phost, interface);
+  (void)USBH_SelectInterface(phost, interface);
 
   status = USBH_SelectInterface(phost, interface);
 
@@ -174,7 +174,7 @@ static USBH_StatusTypeDef USBH_MTP_InterfaceInit(USBH_HandleTypeDef *phost)
   }
 
   /* Initialize mtp handler */
-  USBH_memset(MTP_Handle, 0, sizeof(MTP_HandleTypeDef));
+  (void)USBH_memset(MTP_Handle, 0, sizeof(MTP_HandleTypeDef));
 
   /*Collect the control endpoint address and length*/
   MTP_Handle->NotificationEp = phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[endpoint].bEndpointAddress;
@@ -183,11 +183,11 @@ static USBH_StatusTypeDef USBH_MTP_InterfaceInit(USBH_HandleTypeDef *phost)
   MTP_Handle->events.poll = phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[endpoint].bInterval;
 
   /* Open pipe for Notification endpoint */
-  USBH_OpenPipe(phost, MTP_Handle->NotificationPipe,MTP_Handle->NotificationEp,
-                phost->device.address, phost->device.speed, USB_EP_TYPE_INTR,
-                MTP_Handle->NotificationEpSize);
+  (void)USBH_OpenPipe(phost, MTP_Handle->NotificationPipe, MTP_Handle->NotificationEp,
+                      phost->device.address, phost->device.speed, USB_EP_TYPE_INTR,
+                      MTP_Handle->NotificationEpSize);
 
-  USBH_LL_SetToggle(phost, MTP_Handle->NotificationPipe, 0U);
+  (void)USBH_LL_SetToggle(phost, MTP_Handle->NotificationPipe, 0U);
 
   endpoint = MTP_FindDataInEndpoint(phost);
   if ((endpoint == 0xFFU) || (endpoint >= USBH_MAX_NUM_ENDPOINTS))
@@ -202,11 +202,11 @@ static USBH_StatusTypeDef USBH_MTP_InterfaceInit(USBH_HandleTypeDef *phost)
   MTP_Handle->DataInPipe = USBH_AllocPipe(phost, MTP_Handle->DataInEp);
 
   /* Open pipe for DATA IN endpoint */
-  USBH_OpenPipe(phost, MTP_Handle->DataInPipe, MTP_Handle->DataInEp,
-                phost->device.address, phost->device.speed, USB_EP_TYPE_BULK,
-                MTP_Handle->DataInEpSize);
+  (void)USBH_OpenPipe(phost, MTP_Handle->DataInPipe, MTP_Handle->DataInEp,
+                      phost->device.address, phost->device.speed, USB_EP_TYPE_BULK,
+                      MTP_Handle->DataInEpSize);
 
-  USBH_LL_SetToggle(phost, MTP_Handle->DataInPipe, 0U);
+  (void)USBH_LL_SetToggle(phost, MTP_Handle->DataInPipe, 0U);
 
   endpoint = MTP_FindDataOutEndpoint(phost);
   if ((endpoint == 0xFFU) || (endpoint >= USBH_MAX_NUM_ENDPOINTS))
@@ -221,11 +221,11 @@ static USBH_StatusTypeDef USBH_MTP_InterfaceInit(USBH_HandleTypeDef *phost)
   MTP_Handle->DataOutPipe = USBH_AllocPipe(phost, MTP_Handle->DataOutEp);
 
   /* Open pipe for DATA OUT endpoint */
-  USBH_OpenPipe(phost, MTP_Handle->DataOutPipe, MTP_Handle->DataOutEp,
-                phost->device.address, phost->device.speed, USB_EP_TYPE_BULK,
-                MTP_Handle->DataOutEpSize);
+  (void)USBH_OpenPipe(phost, MTP_Handle->DataOutPipe, MTP_Handle->DataOutEp,
+                      phost->device.address, phost->device.speed, USB_EP_TYPE_BULK,
+                      MTP_Handle->DataOutEpSize);
 
-  USBH_LL_SetToggle(phost, MTP_Handle->DataOutPipe, 0U);
+  (void)USBH_LL_SetToggle(phost, MTP_Handle->DataOutPipe, 0U);
 
   MTP_Handle->state = MTP_OPENSESSION;
   MTP_Handle->is_ready = 0U;
@@ -243,13 +243,13 @@ static uint8_t MTP_FindCtlEndpoint(USBH_HandleTypeDef *phost)
 {
   uint8_t interface, endpoint;
 
-  for (interface = 0U;  interface < USBH_MAX_NUM_INTERFACES ; interface ++)
+  for (interface = 0U;  interface < USBH_MAX_NUM_INTERFACES; interface ++)
   {
     if (phost->device.CfgDesc.Itf_Desc[interface].bInterfaceClass == USB_MTP_CLASS)
     {
       for (endpoint = 0U;  endpoint < USBH_MAX_NUM_ENDPOINTS ; endpoint ++)
       {
-        if ((phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[endpoint].bEndpointAddress & 0x80U) &&
+        if (((phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[endpoint].bEndpointAddress & 0x80U) != 0U) &&
             (phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[endpoint].wMaxPacketSize > 0U) &&
             ((phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[endpoint].bmAttributes & USBH_EP_INTERRUPT) == USBH_EP_INTERRUPT))
         {
@@ -308,7 +308,7 @@ static uint8_t MTP_FindDataInEndpoint(USBH_HandleTypeDef *phost)
       for (endpoint = 0U;  endpoint < USBH_MAX_NUM_ENDPOINTS; endpoint ++)
       {
 
-        if ((phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[endpoint].bEndpointAddress & 0x80U) &&
+        if (((phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[endpoint].bEndpointAddress & 0x80U) != 0U) &&
             (phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[endpoint].wMaxPacketSize > 0U) &&
             ((phost->device.CfgDesc.Itf_Desc[interface].Ep_Desc[endpoint].bmAttributes & USBH_EP_BULK) == USBH_EP_BULK))
         {
@@ -334,22 +334,22 @@ static USBH_StatusTypeDef USBH_MTP_InterfaceDeInit(USBH_HandleTypeDef *phost)
 
   if (MTP_Handle->DataOutPipe != 0U)
   {
-    USBH_ClosePipe(phost, MTP_Handle->DataOutPipe);
-    USBH_FreePipe(phost, MTP_Handle->DataOutPipe);
+    (void)USBH_ClosePipe(phost, MTP_Handle->DataOutPipe);
+    (void)USBH_FreePipe(phost, MTP_Handle->DataOutPipe);
     MTP_Handle->DataOutPipe = 0U;     /* Reset the Channel as Free */
   }
 
   if (MTP_Handle->DataInPipe != 0U)
   {
-    USBH_ClosePipe(phost, MTP_Handle->DataInPipe);
-    USBH_FreePipe(phost, MTP_Handle->DataInPipe);
+    (void)USBH_ClosePipe(phost, MTP_Handle->DataInPipe);
+    (void)USBH_FreePipe(phost, MTP_Handle->DataInPipe);
     MTP_Handle->DataInPipe = 0U;     /* Reset the Channel as Free */
   }
 
   if (MTP_Handle->NotificationPipe != 0U)
   {
-    USBH_ClosePipe(phost, MTP_Handle->NotificationPipe);
-    USBH_FreePipe(phost, MTP_Handle->NotificationPipe);
+    (void)USBH_ClosePipe(phost, MTP_Handle->NotificationPipe);
+    (void)USBH_FreePipe(phost, MTP_Handle->NotificationPipe);
     MTP_Handle->NotificationPipe = 0U;     /* Reset the Channel as Free */
   }
 
@@ -376,7 +376,7 @@ static USBH_StatusTypeDef USBH_MTP_ClassRequest(USBH_HandleTypeDef *phost)
 #if (osCMSIS < 0x20000U)
   (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
 #else
-  (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, NULL);
+  (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
 #endif
 #else
   /* Prevent unused argument(s) compilation warning */
@@ -414,7 +414,7 @@ static USBH_StatusTypeDef USBH_MTP_Process(USBH_HandleTypeDef *phost)
 #if (osCMSIS < 0x20000U)
         (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
 #else
-        (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, NULL);
+        (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
 #endif
 #endif
       }
@@ -444,7 +444,7 @@ static USBH_StatusTypeDef USBH_MTP_Process(USBH_HandleTypeDef *phost)
 #if (osCMSIS < 0x20000U)
         (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
 #else
-        (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, NULL);
+        (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
 #endif
 #endif
       }
@@ -469,7 +469,7 @@ static USBH_StatusTypeDef USBH_MTP_Process(USBH_HandleTypeDef *phost)
 #if (osCMSIS < 0x20000U)
         (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
 #else
-        (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, NULL);
+        (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
 #endif
 #endif
       }
@@ -502,14 +502,14 @@ static USBH_StatusTypeDef USBH_MTP_Process(USBH_HandleTypeDef *phost)
 #if (osCMSIS < 0x20000U)
         (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
 #else
-        (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, NULL);
+        (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
 #endif
 #endif
       }
       break;
 
     case  MTP_IDLE:
-      USBH_MTP_Events(phost);
+      (void)USBH_MTP_Events(phost);
 
 #if (USBH_USE_OS == 1U)
       osDelay(10U);
@@ -517,7 +517,7 @@ static USBH_StatusTypeDef USBH_MTP_Process(USBH_HandleTypeDef *phost)
 #if (osCMSIS < 0x20000U)
       (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
 #else
-      (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, NULL);
+      (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
 #endif
 #endif
 
@@ -589,7 +589,7 @@ USBH_StatusTypeDef USBH_MTP_SelectStorage(USBH_HandleTypeDef *phost, uint8_t sto
   USBH_StatusTypeDef status = USBH_FAIL;
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
 
-  if ((storage_idx < MTP_Handle->info.storids.n) && (MTP_Handle->is_ready))
+  if ((storage_idx < MTP_Handle->info.storids.n) && (MTP_Handle->is_ready == 1U))
   {
     MTP_Handle->params.CurrentStorageId = MTP_Handle->info.storids.Storage[storage_idx];
     status  = USBH_OK;
@@ -609,7 +609,7 @@ USBH_StatusTypeDef USBH_MTP_GetStorageInfo(USBH_HandleTypeDef *phost, uint8_t st
   USBH_StatusTypeDef status = USBH_FAIL;
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
 
-  if ((storage_idx < MTP_Handle->info.storids.n) && (MTP_Handle->is_ready))
+  if ((storage_idx < MTP_Handle->info.storids.n) && (MTP_Handle->is_ready == 1U))
   {
     *info = MTP_Handle->info.storinfo[storage_idx];
     status  = USBH_OK;
@@ -632,7 +632,7 @@ USBH_StatusTypeDef USBH_MTP_GetNumObjects(USBH_HandleTypeDef *phost,
   USBH_StatusTypeDef status = USBH_FAIL;
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
   uint32_t timeout = phost->Timer;
-  if ((storage_idx < MTP_Handle->info.storids.n) && (MTP_Handle->is_ready))
+  if ((storage_idx < MTP_Handle->info.storids.n) && (MTP_Handle->is_ready == 1U))
   {
     while ((status = USBH_PTP_GetNumObjects(phost,
                                             MTP_Handle->info.storids.Storage[storage_idx],
@@ -666,7 +666,7 @@ USBH_StatusTypeDef USBH_MTP_GetObjectHandles(USBH_HandleTypeDef *phost,
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
   uint32_t timeout = phost->Timer;
 
-  if ((storage_idx < MTP_Handle->info.storids.n) && (MTP_Handle->is_ready))
+  if ((storage_idx < MTP_Handle->info.storids.n) && (MTP_Handle->is_ready == 1U))
   {
     while ((status = USBH_PTP_GetObjectHandles(phost,
                                                MTP_Handle->info.storids.Storage[storage_idx],
@@ -698,7 +698,7 @@ USBH_StatusTypeDef USBH_MTP_GetObjectInfo(USBH_HandleTypeDef *phost,
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
   uint32_t timeout = phost->Timer;
 
-  if (MTP_Handle->is_ready)
+  if ((MTP_Handle->is_ready) != 0U)
   {
     while ((status = USBH_PTP_GetObjectInfo(phost, handle, objectinfo)) == USBH_BUSY)
     {
@@ -726,7 +726,7 @@ USBH_StatusTypeDef USBH_MTP_DeleteObject(USBH_HandleTypeDef *phost,
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
   uint32_t timeout = phost->Timer;
 
-  if (MTP_Handle->is_ready)
+  if ((MTP_Handle->is_ready) != 0U)
   {
     while ((status = USBH_PTP_DeleteObject(phost, handle, objectformatcode)) == USBH_BUSY)
     {
@@ -755,7 +755,7 @@ USBH_StatusTypeDef USBH_MTP_GetObject(USBH_HandleTypeDef *phost,
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
   uint32_t timeout = phost->Timer;
 
-  if (MTP_Handle->is_ready)
+  if ((MTP_Handle->is_ready) != 0U)
   {
     while ((status = USBH_PTP_GetObject(phost, handle, object)) == USBH_BUSY)
     {
@@ -786,7 +786,7 @@ USBH_StatusTypeDef USBH_MTP_GetPartialObject(USBH_HandleTypeDef *phost,
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
   uint32_t timeout = phost->Timer;
 
-  if (MTP_Handle->is_ready)
+  if ((MTP_Handle->is_ready) != 0U)
   {
     while ((status = USBH_PTP_GetPartialObject(phost, handle, offset, maxbytes,
                                                object, len)) == USBH_BUSY)
@@ -817,7 +817,7 @@ USBH_StatusTypeDef USBH_MTP_GetObjectPropsSupported(USBH_HandleTypeDef *phost,
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
   uint32_t timeout = phost->Timer;
 
-  if (MTP_Handle->is_ready)
+  if ((MTP_Handle->is_ready) != 0U)
   {
     while ((status = USBH_PTP_GetObjectPropsSupported(phost, ofc, propnum,
                                                       props)) == USBH_BUSY)
@@ -847,7 +847,7 @@ USBH_StatusTypeDef USBH_MTP_GetObjectPropDesc(USBH_HandleTypeDef *phost,
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
   uint32_t timeout = phost->Timer;
 
-  if (MTP_Handle->is_ready)
+  if ((MTP_Handle->is_ready) != 0U)
   {
     while ((status = USBH_PTP_GetObjectPropDesc(phost, opc, ofc, opd)) == USBH_BUSY)
     {
@@ -876,7 +876,7 @@ USBH_StatusTypeDef USBH_MTP_GetObjectPropList(USBH_HandleTypeDef *phost,
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
   uint32_t timeout = phost->Timer;
 
-  if (MTP_Handle->is_ready)
+  if ((MTP_Handle->is_ready) != 0U)
   {
     while ((status = USBH_PTP_GetObjectPropList(phost, handle, pprops,
                                                 nrofprops)) == USBH_BUSY)
@@ -906,7 +906,7 @@ USBH_StatusTypeDef USBH_MTP_SendObject(USBH_HandleTypeDef *phost,
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
   uint32_t timeout = phost->Timer;
 
-  if (MTP_Handle->is_ready)
+  if ((MTP_Handle->is_ready) != 0U)
   {
     while ((status = USBH_PTP_SendObject(phost, handle, object, size)) == USBH_BUSY)
     {
@@ -920,10 +920,10 @@ USBH_StatusTypeDef USBH_MTP_SendObject(USBH_HandleTypeDef *phost,
 }
 
 /**
- * @brief  Handle HID Control process
- * @param  phost: Host handle
- * @retval USBH Status
- */
+  * @brief  Handle HID Control process
+  * @param  phost: Host handle
+  * @retval USBH Status
+  */
 static USBH_StatusTypeDef USBH_MTP_Events(USBH_HandleTypeDef *phost)
 {
   USBH_StatusTypeDef status = USBH_BUSY;
@@ -935,10 +935,10 @@ static USBH_StatusTypeDef USBH_MTP_Events(USBH_HandleTypeDef *phost)
       if ((phost->Timer & 1U) == 0U)
       {
         MTP_Handle->events.timer = phost->Timer;
-        USBH_InterruptReceiveData(phost,
-                                  (uint8_t *)(void *) & (MTP_Handle->events.container),
-                                  (uint8_t)MTP_Handle->NotificationEpSize,
-                                  MTP_Handle->NotificationPipe);
+        (void)USBH_InterruptReceiveData(phost,
+                                        (uint8_t *)(void *) & (MTP_Handle->events.container),
+                                        (uint8_t)MTP_Handle->NotificationEpSize,
+                                        MTP_Handle->NotificationPipe);
 
 
         MTP_Handle->events.state = MTP_EVENTS_GETDATA;
@@ -954,10 +954,10 @@ static USBH_StatusTypeDef USBH_MTP_Events(USBH_HandleTypeDef *phost)
       {
         MTP_Handle->events.timer = phost->Timer;
 
-        USBH_InterruptReceiveData(phost,
-                                  (uint8_t *)(void *) & (MTP_Handle->events.container),
-                                  (uint8_t)MTP_Handle->NotificationEpSize,
-                                  MTP_Handle->NotificationPipe);
+        (void)USBH_InterruptReceiveData(phost,
+                                        (uint8_t *)(void *) & (MTP_Handle->events.container),
+                                        (uint8_t)MTP_Handle->NotificationEpSize,
+                                        MTP_Handle->NotificationPipe);
 
       }
       break;
@@ -1072,7 +1072,7 @@ USBH_StatusTypeDef USBH_MTP_GetDevicePropDesc(USBH_HandleTypeDef *phost,
   MTP_HandleTypeDef *MTP_Handle = (MTP_HandleTypeDef *)phost->pActiveClass->pData;
   uint32_t timeout = phost->Timer;
 
-  if (MTP_Handle->is_ready)
+  if ((MTP_Handle->is_ready) != 0U)
   {
     while ((status = USBH_PTP_GetDevicePropDesc(phost, propcode, devicepropertydesc)) == USBH_BUSY)
     {
@@ -1097,25 +1097,25 @@ __weak void USBH_MTP_EventsCallback(USBH_HandleTypeDef *phost, uint32_t event, u
   UNUSED(param);
 }
 /**
-* @}
-*/
+  * @}
+  */
 
 /**
-* @}
-*/
+  * @}
+  */
 
 /**
-* @}
-*/
-
-
-/**
-* @}
-*/
+  * @}
+  */
 
 
 /**
-* @}
-*/
+  * @}
+  */
+
+
+/**
+  * @}
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

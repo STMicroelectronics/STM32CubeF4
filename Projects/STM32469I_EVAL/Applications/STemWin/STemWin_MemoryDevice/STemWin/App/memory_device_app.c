@@ -6,20 +6,19 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
 /* Includes ------------------------------------------------------------------*/
 #include "GUI.h"
 
-/* Bitmap ressources */
+/* Bitmap resources */
 #include "garage.c"
 #include "Wheel2.c"
 #include "Wheel3.c"
@@ -69,7 +68,7 @@ static int _GetImage(IMAGE * pImage)
   pImage->ySize = pImage->pBitmap->YSize;
   /* Allocate the needed memdev pictures */
   pImage->hMem  = GUI_MEMDEV_CreateFixed(0, 0, pImage->xSize, pImage->ySize, GUI_MEMDEV_NOTRANS, GUI_MEMDEV_APILIST_32, GUICC_M8888I);
-  /* Exit if any issue occured on the memdev creation */
+  /* Exit if any issue occurred on the memdev creation */
   if (pImage->hMem == 0) 
   {
     return 1;
@@ -115,7 +114,7 @@ static int _RotateAndZoomImage(void)
   /* Clean up LCD context, draw a given background */  
   GUI_DrawBitmap(&bmgarage, 0, 0);
   
-  /* Create the LCD memory devices if not existant */
+  /* Create the LCD memory devices if not existent */
   if (hLCD == 0) 
   {
     hLCD = GUI_MEMDEV_CreateFixed(0, 0, xSize, ySize, GUI_MEMDEV_NOTRANS, GUI_MEMDEV_APILIST_32, GUICC_M8888I);
@@ -127,7 +126,7 @@ static int _RotateAndZoomImage(void)
     /* Initialise the memdev with what's displayed */
     GUI_MEMDEV_CopyFromLCD(hLCD);
   }  
-  /* Create the Destination memory devices if not existant */
+  /* Create the Destination memory devices if not existent */
   if (hDst == 0)
   {
     /* Exit if any issue when creating the memdev */
@@ -310,7 +309,7 @@ static int _ShiftRotateAndZoomImage(void)
       return 1;
     }
   }
-  /* Create the zoom detination memory device if not existing */
+  /* Create the zoom destination memory device if not existing */
   if (hDstEnlarge == 0) 
   {
     hDstEnlarge = GUI_MEMDEV_CreateFixed(xSize / 6, TITLE_SIZE, (xSize * 2) / 3, ySize, GUI_MEMDEV_NOTRANS, GUI_MEMDEV_APILIST_32, GUICC_M8888I);
@@ -500,12 +499,10 @@ void MainTask(void)
   GUI_SetBkColor(GUI_BLACK);
   GUI_SetColor(GUI_WHITE);
   GUI_Clear();
-  GUI_DispStringHCenterAt("Error occured. Application stopped!", xSize / 2, ySize / 2);
+  GUI_DispStringHCenterAt("Error occurred. Application stopped!", xSize / 2, ySize / 2);
   /* Loop on the error message */
   while (1) 
   {
     GUI_Delay(100);
   }
 }
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

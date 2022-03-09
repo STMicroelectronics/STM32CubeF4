@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the LCD DSI images slider application.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -27,7 +28,7 @@ Thanks to Tearing Effect and Partial refresh features that allow user to provoke
 a refresh whenever he wants and on the specified region he desires, the refresh 
 of LCD is more rapid than any time before.
 
-At the begining, the quadspi is intialized to put images in. Then TS and LCD DSI 
+At the beginning, the quadspi is intialized to put images in. Then TS and LCD DSI 
 are initialized then a first image is displayed.
 In this example, the refresh of LCD is made in partial mode (left then right). 
 
@@ -36,7 +37,7 @@ horizontal draw. The default mode is horizontal. User can change the mode by
 pressing Tamper button.
 
 By moving the finger on TS, a new image will progressively displayed on LCD while
-the old one disapears progresively. When HORIZONTAL_DRAW mode is active, moving 
+the old one disappears progressively. When HORIZONTAL_DRAW mode is active, moving 
 finger left or right causes the display of next or previous image. 
 When VERTICAL_DRAW mode is active, moving finger up or down causes the display of 
 next or previous image.
@@ -87,5 +88,5 @@ In order to make the program work, you must do the following :
  - Run the application 
 
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

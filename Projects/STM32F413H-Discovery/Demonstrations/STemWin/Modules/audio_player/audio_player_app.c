@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -60,7 +59,7 @@ static void AUDIO_Error_CallBack(void);
 AUDIOPLAYER_ErrorTypdef  AUDIOPLAYER_Init(uint8_t volume)
 {
   portENTER_CRITICAL();
-   /* Try to Init Audio interface in diffrent config in case of failure */
+   /* Try to Init Audio interface in different config in case of failure */
   BSP_AUDIO_OUT_Init(OUTPUT_DEVICE_AUTO, volume, I2S_AUDIOFREQ_48K);
   
   /* Initialize internal audio structure */
@@ -468,5 +467,3 @@ static void Audio_Thread(void const * argument)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

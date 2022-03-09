@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the PWR Current Consumption example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -47,7 +48,7 @@ To run this example, user has to follow the following steps:
 
  3. This example can not be used in DEBUG mode,this is due to the fact that the 
     Cortex-M4 core is no longer clocked during low power mode so debugging 
-    features are disbaled
+    features are disabled
 
 Here below a detailed description of the example code:
 
@@ -173,5 +174,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

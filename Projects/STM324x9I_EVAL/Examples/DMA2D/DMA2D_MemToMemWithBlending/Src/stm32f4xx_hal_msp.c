@@ -6,16 +6,15 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */ 
+  */
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -99,7 +98,7 @@ void HAL_LTDC_MspInit(LTDC_HandleTypeDef *hltdc)
   
   /*##-2- Configure peripheral GPIO ##########################################*/
   /******************** LTDC Pins configuration *************************/
-  /* LTDC pins configuraiton: PI12 -- 15 */  
+  /* LTDC pins configuration: PI12 -- 15 */  
   GPIO_Init_Structure.Pin       = GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15; 
   GPIO_Init_Structure.Mode      = GPIO_MODE_AF_PP;
   GPIO_Init_Structure.Pull      = GPIO_NOPULL;
@@ -107,7 +106,7 @@ void HAL_LTDC_MspInit(LTDC_HandleTypeDef *hltdc)
   GPIO_Init_Structure.Alternate = GPIO_AF14_LTDC;  
   HAL_GPIO_Init(GPIOI, &GPIO_Init_Structure);
 
-  /* LTDC pins configuraiton: PJ0 -- 15 */  
+  /* LTDC pins configuration: PJ0 -- 15 */  
   GPIO_Init_Structure.Pin       = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | \
                                   GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 | \
                                   GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | \
@@ -118,7 +117,7 @@ void HAL_LTDC_MspInit(LTDC_HandleTypeDef *hltdc)
   GPIO_Init_Structure.Alternate = GPIO_AF14_LTDC;  
   HAL_GPIO_Init(GPIOJ, &GPIO_Init_Structure);  
 
-  /* LTDC pins configuraiton: PK0 -- 7 */  
+  /* LTDC pins configuration: PK0 -- 7 */  
   GPIO_Init_Structure.Pin       = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | \
                                   GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7; 
   GPIO_Init_Structure.Mode      = GPIO_MODE_AF_PP;
@@ -157,5 +156,3 @@ void HAL_LTDC_MspDeInit(LTDC_HandleTypeDef *hltdc)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

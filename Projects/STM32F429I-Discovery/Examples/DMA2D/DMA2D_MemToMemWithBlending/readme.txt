@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the DMA2D Memory to Memory with blending example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -49,7 +50,7 @@
  \Middlewares\ST\STemWin\Software\BmpCvtST.exe
  Use the bitmap files under resources repository
        
-STM32 Discovery board's LEDs can be used to monitor the transfer status:
+STM32 Discovery boards LEDs can be used to monitor the transfer status:
  - LED3 is ON when the transfer is complete.
  - LED4 is ON when there is a transfer error.
  - LED3/LED4 are ON when there is an error in transfer/Init process.
@@ -97,5 +98,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

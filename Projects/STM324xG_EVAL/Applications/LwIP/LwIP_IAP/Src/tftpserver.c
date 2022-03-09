@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -153,7 +152,7 @@ static err_t IAP_tftp_send_ack_packet(struct udp_pcb *upcb, const ip_addr_t *to,
   * @brief  Processes data transfers after a TFTP write request
   * @param  _args: used as pointer on TFTP connection args
   * @param  upcb: pointer on udp_pcb structure
-  * @param  pkt_buf: pointer on a pbuf stucture
+  * @param  pkt_buf: pointer on a pbuf structure
   * @param  ip_addr: pointer on the receive IP_address structure
   * @param  port: receive port address
   * @retval None
@@ -428,5 +427,3 @@ void IAP_tftpd_init(void)
 }
 
 #endif /* USE_IAP_TFTP */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

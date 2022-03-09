@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -39,8 +38,9 @@
    
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-void User_notification(struct netif *netif);
-#ifdef USE_DHCP
+void ethernet_link_status_updated(struct netif *netif);
+void Ethernet_Link_Periodic_Handle(struct netif *netif);
+#if LWIP_DHCP
 void DHCP_Process(struct netif *netif);
 void DHCP_Periodic_Handle(struct netif *netif);
 #endif  
@@ -50,6 +50,3 @@ void DHCP_Periodic_Handle(struct netif *netif);
 #endif
 
 #endif /* __APP_ETHERNET_H */
-
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

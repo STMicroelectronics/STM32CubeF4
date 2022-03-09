@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2015 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2015 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                      www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -41,7 +40,9 @@ extern "C" {
 /** @defgroup USBD_HID_Exported_Defines
   * @{
   */
+#ifndef HID_EPIN_ADDR
 #define HID_EPIN_ADDR                              0x81U
+#endif /* HID_EPIN_ADDR */
 #define HID_EPIN_SIZE                              0x04U
 
 #define USB_HID_CONFIG_DESC_SIZ                    34U
@@ -89,6 +90,23 @@ typedef struct
   uint32_t AltSetting;
   HID_StateTypeDef state;
 } USBD_HID_HandleTypeDef;
+
+/*
+ * HID Class specification version 1.1
+ * 6.2.1 HID Descriptor
+ */
+
+typedef struct
+{
+  uint8_t           bLength;
+  uint8_t           bDescriptorType;
+  uint16_t          bcdHID;
+  uint8_t           bCountryCode;
+  uint8_t           bNumDescriptors;
+  uint8_t           bHIDDescriptorType;
+  uint16_t          wItemLength;
+} __PACKED USBD_HIDDescTypeDef;
+
 /**
   * @}
   */
@@ -136,4 +154,3 @@ uint32_t USBD_HID_GetPollingInterval(USBD_HandleTypeDef *pdev);
   * @}
   */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

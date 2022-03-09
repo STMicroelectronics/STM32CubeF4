@@ -8,13 +8,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -536,7 +535,7 @@ void Handle_I2C_Slave(void)
   /* End of I2C_SlaveReceiver_MasterTransmitter_DMA Process */
   LL_I2C_ClearFlag_STOP(I2C1);
 
-  /* Check if datas request to turn on the LED2 */
+  /* Check if data request to turn on the LED2 */
   if(Buffercmp8((uint8_t*)aReceiveBuffer, (uint8_t*)aLedOn, (ubReceiveIndex-1)) == 0)
   {
     /* Turn LED2 On:
@@ -588,7 +587,7 @@ uint8_t Buffercmp8(uint8_t* pBuffer1, uint8_t* pBuffer2, uint8_t BufferLength)
   *        -5- Loop until Address Acknowledgement received (ADDR flag raised).
   *        -6- Clear ADDR flag and loop until end of transfer (ubNbDataToTransmit == 0).
   *             -6.1 Transmit data (TXE flag raised).
-  *        -7- End of tranfer, Data consistency are checking into Slave process.
+  *        -7- End of transfer, Data consistency are checking into Slave process.
   * @param  None
   * @retval None
   */
@@ -689,7 +688,7 @@ void Handle_I2C_Master(void)
 #endif /* USE_TIMEOUT */
   }
 
-  /* (7) End of tranfer, Data consistency are checking into Slave process *****/
+  /* (7) End of transfer, Data consistency are checking into Slave process *****/
   /* Generate Stop condition */
   LL_I2C_GenerateStopCondition(I2C1);
 
@@ -809,5 +808,3 @@ void assert_failed(uint8_t *file, uint32_t line)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

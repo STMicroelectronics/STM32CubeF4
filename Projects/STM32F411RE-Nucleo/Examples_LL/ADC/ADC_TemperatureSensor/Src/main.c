@@ -13,13 +13,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -90,7 +89,7 @@ __IO uint32_t ubUserButtonPressed = 0;
 __IO uint16_t uhADCxConvertedData = VAR_CONVERTED_DATA_INIT_VALUE; /* ADC group regular conversion data */
 
 /* Variables for ADC conversion data computation to physical values */
-__IO uint16_t hADCxConvertedData_Temperature_DegreeCelsius = 0;  /* Value of temperature calculated from ADC conversion data (unit: degree Celcius) */
+__IO uint16_t hADCxConvertedData_Temperature_DegreeCelsius = 0;  /* Value of temperature calculated from ADC conversion data (unit: degree Celsius) */
 
 /* Variable to report status of ADC group regular unitary conversion          */
 /*  0: ADC group regular unitary conversion is not completed                  */
@@ -207,7 +206,7 @@ int main(void)
     /* Note: Temperature from ADC internal temperature sensor is stored into  */
     /*       into variable                                                    */
     /*       "hADCxConvertedData_Temperature_DegreeCelsius".                  */
-    /*       (unit: degree Celcius)                                           */
+    /*       (unit: degree Celsius)                                           */
     /*       (for debug: see variable content into watch window).             */
   }
 }
@@ -231,7 +230,7 @@ int main(void)
   *           the setting of these parameters is bypassed without error
   *           reporting:
   *           it can be the expected behavior in case of recall of this 
-  *           function to update only a few parameters (which update fullfills
+  *           function to update only a few parameters (which update fulfills
   *           the ADC state).
   *           Otherwise, it is up to the user to set the appropriate error 
   *           reporting in user application.
@@ -814,5 +813,3 @@ void assert_failed(uint8_t *file, uint32_t line)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

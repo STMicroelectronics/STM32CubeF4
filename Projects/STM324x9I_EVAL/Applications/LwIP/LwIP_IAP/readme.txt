@@ -8,13 +8,14 @@
   * @brief   Description of the in-application programming (IAP) over 
   *          Ethernet.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -46,12 +47,15 @@ will be ensured by LEDs:
 * allow to control the four LEDs located in the STM324x9I_EVAL board
 * show the ADC3 channel 7 analog input converted value
 
-- STM324x9I_EVAL_Systick.bin: can be used to be transfered and executed. It toggles the 4 LEDs.
+- STM324x9I_EVAL_Systick.bin: can be used to be transferred and executed. It toggles the 4 LEDs.
 
 2-  The required userID and password are set, and can be modified, in the main.h file.
 
 If a DHCP server is available, a dynamic IP address can be allocated by enabling 
-the DHCP process (#define USE_DHCP in main.h)
+the DHCP process (#define LWIP_DHCP in lwipopts.h).
+
+If a DHCP server is not available, after timeout connection, the device only gets a static 
+IP address(the switch from static to dynamic IP adress is not available in this application).
 
 Note: In this application the Ethernet Link ISR need the HAL time base to configure 
 the Ethernet MAC, so the Ethernet Link interrupt priority must be set lower (numerically greater) 
@@ -126,5 +130,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the application
  
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

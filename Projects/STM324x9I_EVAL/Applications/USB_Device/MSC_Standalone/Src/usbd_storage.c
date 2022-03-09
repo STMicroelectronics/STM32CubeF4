@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -73,7 +72,7 @@ USBD_StorageTypeDef USBD_DISK_fops = {
 /* Private functions --------------------------------------------------------- */
 
 /**
-  * @brief  Initailizes the storage unit (medium)       
+  * @brief  Initializes the storage unit (medium)
   * @param  lun: Logical unit number
   * @retval Status (0 : Ok / -1 : Error)
   */
@@ -84,7 +83,7 @@ int8_t STORAGE_Init(uint8_t lun)
 }
 
 /**
-  * @brief  Returns the medium capacity.      
+  * @brief  Returns the medium capacity.
   * @param  lun: Logical unit number
   * @param  block_num: Number of total block number
   * @param  block_size: Block size
@@ -108,7 +107,7 @@ int8_t STORAGE_GetCapacity(uint8_t lun, uint32_t * block_num,
 }
 
 /**
-  * @brief  Checks whether the medium is ready.  
+  * @brief  Checks whether the medium is ready.
   * @param  lun: Logical unit number
   * @retval Status (0: Ok / -1: Error)
   */
@@ -158,6 +157,7 @@ int8_t STORAGE_Read(uint8_t lun, uint8_t * buf, uint32_t blk_addr,
                     uint16_t blk_len)
 {
   int8_t ret = -1;
+  uint32_t timeout = 100000;
 
   if (BSP_SD_IsDetected() != SD_NOT_PRESENT)
   {
@@ -172,6 +172,10 @@ int8_t STORAGE_Read(uint8_t lun, uint8_t * buf, uint32_t blk_addr,
     /* Wait until SD card is ready to use for new operation */
     while (BSP_SD_GetCardState() != SD_TRANSFER_OK)
     {
+      if (timeout-- == 0)
+      {
+        return ret;
+      }
     }
     ret = 0;
   }
@@ -189,6 +193,7 @@ int8_t STORAGE_Write(uint8_t lun, uint8_t * buf, uint32_t blk_addr,
                      uint16_t blk_len)
 {
   int8_t ret = -1;
+  uint32_t timeout = 100000;
 
   if (BSP_SD_IsDetected() != SD_NOT_PRESENT)
   {
@@ -203,6 +208,10 @@ int8_t STORAGE_Write(uint8_t lun, uint8_t * buf, uint32_t blk_addr,
     /* Wait until SD card is ready to use for new operation */
     while (BSP_SD_GetCardState() != SD_TRANSFER_OK)
     {
+      if (timeout-- == 0)
+      {
+        return ret;
+      }
     }
     ret = 0;
   }
@@ -210,7 +219,7 @@ int8_t STORAGE_Write(uint8_t lun, uint8_t * buf, uint32_t blk_addr,
 }
 
 /**
-  * @brief  Returns the Max Supported LUNs.   
+  * @brief  Returns the Max Supported LUNs.
   * @param  None
   * @retval Lun(s) number
   */
@@ -238,5 +247,3 @@ void BSP_SD_ReadCpltCallback(void)
 {
   readstatus = 1;
 }
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the FLASH Erase and Program example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -45,9 +46,15 @@ be returned to user (through variable 'SectorError').
 Once this operation is finished, sector word programming operation will be performed 
 in the Flash memory. The written data is then read back and checked.
 
+<<<<<<< HEAD
 STM32F4-Discovery RevB & RevC board's LEDs can be used to monitor the transfer status:
+ - LED4 (GREEN) is ON when there are no errors detected after data programming
+ - LED5 (RED) is ON when there are errors detected after data programming
+=======
+STM32F4-Discovery RevB & RevC boards LEDs can be used to monitor the transfer status:
  - LED4 (GREEN) is ON when there are no errors detected after data programing
  - LED5 (RED) is ON when there are errors detected after data programing
+>>>>>>> Ticket 117528 - [GitHub] Fix typos in the readme.txt of LWIP application
  - LED6 (BLUE) is ON when there is an issue during erase procedure
  - LED3 (ORANGE) is ON when there is an issue during program procedure
 
@@ -89,5 +96,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

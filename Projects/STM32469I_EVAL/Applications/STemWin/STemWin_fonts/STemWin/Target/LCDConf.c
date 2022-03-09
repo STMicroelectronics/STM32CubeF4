@@ -2,13 +2,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -505,7 +504,7 @@ static void LCD_LL_Reset(void)
   HAL_GPIO_WritePin(GPIOK, GPIO_PIN_7, GPIO_PIN_RESET);
   HAL_Delay(20); /* wait 20 ms */
 
-  /* Desactivate XRES */
+  /* Deactivate XRES */
   HAL_GPIO_WritePin(GPIOK, GPIO_PIN_7, GPIO_PIN_SET);
   HAL_Delay(10); /* wait 10 ms */
 }
@@ -559,6 +558,7 @@ void BSP_LCD_MspInit(void)
 static void LTDC_Init(void)
 {
   /* DeInit */
+  hltdc.Instance = LTDC;
   HAL_LTDC_DeInit(&hltdc);
 
   /* LTDC Config */
@@ -799,7 +799,7 @@ void DMA2D_IRQHandler(void)
   */
 static void _DMA2D_ExecOperation(void) 
 {  
-  /* If no concurent operation, do not wait */
+  /* If no concurrent operation, do not wait */
   if ( TransferInProgress == 0 )
     return;
   
@@ -924,7 +924,7 @@ static void _DMA_Fill(int LayerIndex, void * pDst, int xSize, int ySize, int Off
 /**
   * @brief  DMA2D Alpha blending bulk
   * @param  pColorFG : Foregroung color
-  * @param  pColorBG : Backgroung color
+  * @param  pColorBG : Background color
   * @param  pColorDst: Destination color
   * @param  NumItems : Number of lines
   * @retval None
@@ -960,7 +960,7 @@ static void _DMA_AlphaBlendingBulk(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, L
 /**
   * @brief  Mixing bulk colors
   * @param  pColorFG : Foregroung color
-  * @param  pColorBG : Backgroung color
+  * @param  pColorBG : Background color
   * @param  pColorDst: Destination color
   * @param  Intens   : Color intensity
   * @param  NumItems : Number of lines
@@ -1645,7 +1645,7 @@ void HAL_DSI_EndOfRefreshCallback(DSI_HandleTypeDef *hdsi)
     for(index = 0; index < GUI_NUM_LAYERS; index ++)
     {
       TestAdd = LCD_Addr[index];
-      /* Update LTDC configuaration */      
+      /* Update LTDC configuration */      
       LTDC_LAYER(&hltdc, index)->CFBAR  = TestAdd + LCD_ActiveRegion  * HACT * 2;
     }
     __HAL_LTDC_RELOAD_CONFIG(&hltdc);
@@ -2035,5 +2035,3 @@ void DSI_IRQHandler(void)
 {
   HAL_DSI_IRQHandler(&hdsi);
 }
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -89,7 +88,7 @@ uint32_t Storage_Init(void)
 {
   BSP_SD_Init();
   
-  /****************** FatFs Volume Acess ******************************/
+  /****************** FatFs Volume Access ******************************/
   if (f_mount(0, &fs))
   {
     return 1;
@@ -102,7 +101,7 @@ uint32_t Storage_Init(void)
   * @param  DirName: the Directory name to open
   * @param  FileName: the file name to open
   * @param  BufferAddress: A pointer to a buffer to copy the file to
-  * @param  FileLen: the File lenght
+  * @param  FileLen: the File length
   * @retval err: Error status (0=> success, 1=> fail)
   */
 uint32_t Storage_OpenReadFile(uint32_t Address, const char* BmpName)
@@ -173,7 +172,7 @@ uint32_t Storage_OpenReadFile(uint32_t Address, const char* BmpName)
   * @param  DirName: the Directory name to open
   * @param  FileName: the file name to open
   * @param  BufferAddress: A pointer to a buffer to copy the file to
-  * @param  FileLen: the File lenght
+  * @param  FileLen: the File length
   * @retval err: Error status (0=> success, 1=> fail)
   */
 uint32_t Storage_CheckBitmapFile(const char* BmpName, uint32_t *FileLen)
@@ -292,5 +291,3 @@ uint8_t Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint16_t BufferLength)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

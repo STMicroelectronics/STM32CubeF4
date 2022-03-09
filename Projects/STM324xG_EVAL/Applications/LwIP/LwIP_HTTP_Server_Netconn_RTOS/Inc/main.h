@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -34,25 +33,24 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 #define USE_LCD        /* enable LCD  */  
-#define USE_DHCP       /* enable DHCP, if disabled static address is used*/
  
 /*Static IP ADDRESS*/
-#define IP_ADDR0   192
-#define IP_ADDR1   168
-#define IP_ADDR2   0
-#define IP_ADDR3   10
-   
+#define IP_ADDR0   ((uint8_t)192U)
+#define IP_ADDR1   ((uint8_t)168U)
+#define IP_ADDR2   ((uint8_t)0U)
+#define IP_ADDR3   ((uint8_t)10U)
+
 /*NETMASK*/
-#define NETMASK_ADDR0   255
-#define NETMASK_ADDR1   255
-#define NETMASK_ADDR2   255
-#define NETMASK_ADDR3   0
+#define NETMASK_ADDR0   ((uint8_t)255U)
+#define NETMASK_ADDR1   ((uint8_t)255U)
+#define NETMASK_ADDR2   ((uint8_t)255U)
+#define NETMASK_ADDR3   ((uint8_t)0U)
 
 /*Gateway Address*/
-#define GW_ADDR0   192
-#define GW_ADDR1   168
-#define GW_ADDR2   0
-#define GW_ADDR3   1 
+#define GW_ADDR0   ((uint8_t)192U)
+#define GW_ADDR1   ((uint8_t)168U)
+#define GW_ADDR2   ((uint8_t)0U)
+#define GW_ADDR3   ((uint8_t)1U)
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
@@ -62,7 +60,3 @@
 #endif
 
 #endif /* __MAIN_H */
-
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-

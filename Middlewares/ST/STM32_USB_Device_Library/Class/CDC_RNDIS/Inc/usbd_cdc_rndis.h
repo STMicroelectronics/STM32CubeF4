@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2015 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2019 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                      www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -41,10 +40,15 @@ extern "C" {
 /** @defgroup usbd_cdc_rndis_Exported_Defines
   * @{
   */
-
+#ifndef CDC_RNDIS_IN_EP
 #define CDC_RNDIS_IN_EP                                   0x81U  /* EP1 for data IN */
+#endif /* CDC_RNDIS_IN_EP */
+#ifndef CDC_RNDIS_OUT_EP
 #define CDC_RNDIS_OUT_EP                                  0x01U  /* EP1 for data OUT */
+#endif /* CDC_RNDIS_OUT_EP */
+#ifndef CDC_RNDIS_CMD_EP
 #define CDC_RNDIS_CMD_EP                                  0x82U  /* EP2 for CDC_RNDIS commands */
+#endif /* CDC_RNDIS_CMD_EP */
 
 #ifndef CDC_RNDIS_CMD_ITF_NBR
 #define CDC_RNDIS_CMD_ITF_NBR                             0x00U /* Command Interface Number 0 */
@@ -243,7 +247,7 @@ typedef struct
 
 typedef struct
 {
-  uint32_t        data[2000 / 4]; /* Force 32bits alignment */
+  uint32_t        data[CDC_RNDIS_MAX_DATA_SZE / 4U]; /* Force 32-bit alignment */
   uint8_t         CmdOpCode;
   uint8_t         CmdLength;
   uint8_t         ResponseRdy;     /* Indicates if the Device Response to an CDC_RNDIS msg is ready */
@@ -264,15 +268,6 @@ typedef struct
   __IO uint32_t   NotificationStatus;
   __IO uint32_t   PacketFilter;
 } USBD_CDC_RNDIS_HandleTypeDef;
-
-
-typedef enum
-{
-  NETWORK_CONNECTION = 0x00,
-  RESPONSE_AVAILABLE = 0x01,
-  CONNECTION_SPEED_CHANGE = 0x2A
-} USBD_CDC_RNDIS_NotifCodeTypeDef;
-
 
 /* Messages Sent by the Host ---------------------*/
 
@@ -507,7 +502,7 @@ uint8_t USBD_CDC_RNDIS_SetTxBuffer(USBD_HandleTypeDef *pdev,
                                    uint8_t *pbuff, uint32_t length);
 
 uint8_t USBD_CDC_RNDIS_SendNotification(USBD_HandleTypeDef *pdev,
-                                        USBD_CDC_RNDIS_NotifCodeTypeDef Notif,
+                                        USBD_CDC_NotifCodeTypeDef Notif,
                                         uint16_t bVal, uint8_t *pData);
 /**
   * @}
@@ -526,4 +521,3 @@ uint8_t USBD_CDC_RNDIS_SendNotification(USBD_HandleTypeDef *pdev,
   * @}
   */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -8,13 +8,14 @@
   * @author  MCD Application Team
   * @brief   Description of the HASH digest calculation using SHA1 and MD5 example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -30,12 +31,12 @@ The SHA-1 message digest result is a 160 bit data, and the MD5 message digest
 result is a 128 bit data.
 The expected HASH digests (for SHA1 and MD5) are already computed using an online
 HASH tool. Those values are compared to those computed by the HASH peripheral.
-In case there is a missmatch the red LED is turned ON.
+In case there is a mismatch the red LED is turned ON.
 In case the SHA1 digest is computed correctly the green LED (LED1) is turned ON.
 In case the MD5 digest is computed correctly the blue LED (LED4) is turned ON.
 
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
-	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+	  The LCD clear can be ensured by hardware through the boards power off/power on or by software calling the BSP_LCD_Reset() function.
 
 @par Keywords
 
@@ -67,6 +68,5 @@ In order to make the program work, you must do the following :
  - Run the example 
 
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
- */
- 
+
+  */

@@ -6,16 +6,15 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */ 
+  */
 
 /* Includes ------------------------------------------------------------------*/
 #include "LCDConf.h"
@@ -202,7 +201,7 @@ void HAL_LTDC_MspInit(LTDC_HandleTypeDef *hltdc)
   
   /* Configure peripheral GPIO */
 
-  /* LTDC pins configuraiton: PI12 -- 15 */  
+  /* LTDC pins configuration: PI12 -- 15 */  
   GPIO_Init_Structure.Pin       = GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15; 
   GPIO_Init_Structure.Mode      = GPIO_MODE_AF_PP;
   GPIO_Init_Structure.Pull      = GPIO_NOPULL;
@@ -210,7 +209,7 @@ void HAL_LTDC_MspInit(LTDC_HandleTypeDef *hltdc)
   GPIO_Init_Structure.Alternate = GPIO_AF14_LTDC;  
   HAL_GPIO_Init(GPIOI, &GPIO_Init_Structure);
 
-  /* LTDC pins configuraiton: PJ0 -- 15 */  
+  /* LTDC pins configuration: PJ0 -- 15 */  
   GPIO_Init_Structure.Pin       = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | \
                                   GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 | \
                                   GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | \
@@ -221,7 +220,7 @@ void HAL_LTDC_MspInit(LTDC_HandleTypeDef *hltdc)
   GPIO_Init_Structure.Alternate = GPIO_AF14_LTDC;  
   HAL_GPIO_Init(GPIOJ, &GPIO_Init_Structure);  
 
-  /* LTDC pins configuraiton: PK0 -- 7 */  
+  /* LTDC pins configuration: PK0 -- 7 */  
   GPIO_Init_Structure.Pin       = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | \
                                   GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7; 
   GPIO_Init_Structure.Mode      = GPIO_MODE_AF_PP;
@@ -520,6 +519,7 @@ static void LCD_LL_Init(void)
   static RCC_PeriphCLKInitTypeDef  PeriphClkInitStruct;
   
   /* DeInit */
+  hltdc.Instance = LTDC;
   HAL_LTDC_DeInit(&hltdc);
   
   /* Set LCD Timings */
@@ -748,5 +748,3 @@ static void CUSTOM_DrawBitmap32bpp(int LayerIndex, int x, int y, U8 const * p, i
   OffLineDst = layer_prop[LayerIndex].xSize - xSize;
   DMA2D_CopyBuffer(LayerIndex, (void *)p, (void *)AddrDst, xSize, ySize, OffLineSrc, OffLineDst);
 }
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-

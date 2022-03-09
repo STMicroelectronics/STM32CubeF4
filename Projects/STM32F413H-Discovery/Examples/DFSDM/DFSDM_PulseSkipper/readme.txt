@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the DFSDM audio record example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -30,19 +31,19 @@ configurated to enable output clock generation, to choose audio clock as output 
 and output clock divider will be set to generate output clock on MP34DT01 frequency clock range.
 Audio clock will be configurated to 49.142MHz, so DFSDM output clock divider will be set to 24.
 
-The user can select 2 microphones  at the same time from the extention board MB1299
-if it is fitted otherwise the 2 microphones embeded on STM32F413H-Discovery will be used.
+The user can select 2 microphones  at the same time from the extension board MB1299
+if it is fitted otherwise the 2 microphones embedded on STM32F413H-Discovery will be used.
 
-//#define PLAY_DFSDM2_DATIN01     /* Use Mics: U2 and U3 from extention board */
-//#define PLAY_DFSDM2_DATIN06     /* Use Mics: U2 and U4 from extention board */
-//#define PLAY_DFSDM2_DATIN07     /* Use Mics: U2 and U5 from extention board */
-//#define PLAY_DFSDM2_DATIN16     /* Use Mics: U3 and U4 from extention board */
-//#define PLAY_DFSDM2_DATIN17     /* Use Mics: U3 and U5 from extention board */
-//#define PLAY_DFSDM2_DATIN67     /* Use Mics: U4 and U5 from extention board */
-#define PLAY_DFSDM12_DATIN10    /* Use Mics: U1 and U2 from extention board or U16 and U17 from discovery */
-//#define PLAY_DFSDM12_DATIN11    /* Use Mics: U1 and U3 from extention board */
-//#define PLAY_DFSDM12_DATIN16    /* Use Mics: U1 and U4 from extention board */
-//#define PLAY_DFSDM12_DATIN17    /* Use Mics: U1 and U5 from extention board */
+//#define PLAY_DFSDM2_DATIN01     /* Use Mics: U2 and U3 from extension board */
+//#define PLAY_DFSDM2_DATIN06     /* Use Mics: U2 and U4 from extension board */
+//#define PLAY_DFSDM2_DATIN07     /* Use Mics: U2 and U5 from extension board */
+//#define PLAY_DFSDM2_DATIN16     /* Use Mics: U3 and U4 from extension board */
+//#define PLAY_DFSDM2_DATIN17     /* Use Mics: U3 and U5 from extension board */
+//#define PLAY_DFSDM2_DATIN67     /* Use Mics: U4 and U5 from extension board */
+#define PLAY_DFSDM12_DATIN10    /* Use Mics: U1 and U2 from extension board or U16 and U17 from discovery */
+//#define PLAY_DFSDM12_DATIN11    /* Use Mics: U1 and U3 from extension board */
+//#define PLAY_DFSDM12_DATIN16    /* Use Mics: U1 and U4 from extension board */
+//#define PLAY_DFSDM12_DATIN17    /* Use Mics: U1 and U5 from extension board */
 
 In addition, this example shows how to implement a pulse skipper to generate a delay on a selected channel.
 In main.h, uncomment #define USE_CHANNEL_DELAY to enable pulse skipper.
@@ -119,5 +120,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example 
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

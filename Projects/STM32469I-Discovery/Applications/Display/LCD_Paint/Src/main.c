@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -216,7 +215,7 @@ static void GetPosition(void)
   BSP_TS_GetState(&TS_State);
   if(TS_State.touchDetected)
   {
-    /* A touch occured, read the touch coordinates */
+    /* A touch occurred, read the touch coordinates */
     /* Get X and Y position of the first touch post calibrated */
     x = TouchScreen_Get_Calibrated_X(TS_State.touchX[0]);
     y = TouchScreen_Get_Calibrated_Y(TS_State.touchY[0]);
@@ -586,7 +585,7 @@ static void Save_Picture(void)
   */
 static void LTDC_Operation(uint32_t Enable_LTDC)
 {
-  /* Desactivate the DSI wrapper */
+  /* Deactivate the DSI wrapper */
   DSI->WCR &= ~(DSI_WCR_DSIEN);
 
   if(Enable_LTDC == 1)
@@ -825,5 +824,3 @@ void assert_failed(uint8_t* file, uint32_t line)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

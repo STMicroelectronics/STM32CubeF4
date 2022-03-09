@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of STemWin memory device application. 
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -58,7 +59,7 @@ Display, STemWin, Memory device, LCD, GUI, Demonstration, Touch screen
     - STemWin/STemWin_MemoryDevice/STemWin/App/generated/Wheel4.c	Wheel4 picture
     - STemWin/STemWin_MemoryDevice/STemWin/App/generated/Wheel5.c	Wheel5 picture
     - STemWin/STemWin_MemoryDevice/STemWin/App/generated/garage.c 	garage picture
-    - STemWin/STemWin_MemoryDevice/STemWin/App/memory_device_app.c     memory devce application
+    - STemWin/STemWin_MemoryDevice/STemWin/App/memory_device_app.c     memory device application
     - STemWin/STemWin_MemoryDevice/STemWin/Target/GUIConf.c		Display controller initialization
     - STemWin/STemWin_MemoryDevice/STemWin/Target/GUIConf.h		Header for GUIConf.c
     - STemWin/STemWin_MemoryDevice/STemWin/Target/LCDConf.c		Configuration file for the GUI library
@@ -81,5 +82,5 @@ In order to make the program work, you must do the following :
   - Rebuild all files and load your image into target memory
   - Run the application
  
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

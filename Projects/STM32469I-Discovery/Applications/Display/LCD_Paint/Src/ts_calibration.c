@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -131,7 +130,7 @@ static void TouchscreenCalibration_SetHint(void)
   BSP_LCD_SetFont(&Font24);
   BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize() / 2 + 7, (uint8_t *)"WAIT until the black circle appears", CENTER_MODE);
   BSP_LCD_SetFont(&Font20);
-  BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize() / 2 + 30, (uint8_t *)"THEN Press precisly on the black circles", CENTER_MODE);
+  BSP_LCD_DisplayStringAt(0, BSP_LCD_GetYSize() / 2 + 30, (uint8_t *)"THEN Press precisely on the black circles", CENTER_MODE);
   BSP_LCD_SetFont(&Font12);
 }
 
@@ -285,5 +284,3 @@ uint8_t TouchScreen_IsCalibrationDone(void)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

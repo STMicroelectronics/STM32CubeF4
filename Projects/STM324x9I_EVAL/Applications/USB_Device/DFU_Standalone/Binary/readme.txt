@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the binary template application.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -42,5 +43,5 @@ The offset address of this binary is 0x0800C000 which matches the definition in 
   - This application has been tested with STM324x9I-EVAL RevB evaluation board and can be
     easily tailored to any other supported device and development board.
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

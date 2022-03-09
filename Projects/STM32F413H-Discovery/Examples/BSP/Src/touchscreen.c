@@ -6,13 +6,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -325,7 +324,7 @@ static uint32_t Touchscreen_Handle_NewTouch(void)
     /* Erase previous information on bottom text bar */
     BSP_LCD_FillRect(0, 0, BSP_LCD_GetXSize(), 85);
 
-    /* Desactivate drawing footprint of touch 1 and touch 2 until validated against boundaries of touch pad values */
+    /* Deactivate drawing footprint of touch 1 and touch 2 until validated against boundaries of touch pad values */
     drawTouch1 = drawTouch2 = 0;
 
     /* Get X and Y position of the first touch post calibrated */
@@ -749,5 +748,3 @@ static uint8_t Get_ButtonNum(uint16_t x1, uint16_t y1)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

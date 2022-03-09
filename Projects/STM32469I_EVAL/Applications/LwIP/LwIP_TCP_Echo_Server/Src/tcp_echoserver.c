@@ -52,7 +52,7 @@ enum tcp_echoserver_states
   ES_CLOSING
 };
 
-/* structure for maintaing connection infos to be passed as argument 
+/* structure for maintaining connection infos to be passed as argument 
    to LwIP callbacks*/
 struct tcp_echoserver_struct
 {
@@ -252,7 +252,7 @@ static err_t tcp_echoserver_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p
   }
   else
   {
-    /* unkown es->state, trash data  */
+    /* unknown es->state, trash data  */
     tcp_recved(tpcb, p->tot_len);
     es->p = NULL;
     pbuf_free(p);

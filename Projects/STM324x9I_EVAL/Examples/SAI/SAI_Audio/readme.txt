@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the SAI Audio Example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -49,7 +50,7 @@ when it reaches end of file. But it can be tailored to use different media stora
 devices; SDCard (through SDIO), external Memory (through FMC),... or to play 
 in streaming mode (ie. from USB port in device or host mode).
 
-Once started, STM32 Eval board's LEDs behaviour is described below:
+Once started, STM32 Eval boards LEDs behaviour is described below:
  - LED1 and LED4 are turned ON 
  - LED2 and LED3 are toggling inversely
 
@@ -117,5 +118,5 @@ In order to make the program work, you must do the following :
          @note This example runs only with (no optimization) on stm32f4xx_hal_dma.c file. 
  - Connect a headphone and a speaker to the audio jack connectors (CN23/CN24).
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

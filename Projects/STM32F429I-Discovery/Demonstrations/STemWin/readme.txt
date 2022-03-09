@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of STM32F429I-Discovery Demonstration
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -31,7 +32,7 @@ The demonstration firmware is built around the graphical library STemWin and the
 real time operating system and uses almost the whole STM32 capability to offer a large scope
 of usage based on the STM32Cube HAL, BSP and several Middleware components.
   
-Below you find an overview of the diffrent offred module in the demonstration:
+Below you find an overview of the different offred module in the demonstration:
 
  + System
  --------
@@ -113,6 +114,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */
- 

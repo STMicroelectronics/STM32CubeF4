@@ -361,8 +361,8 @@
               <MiscControls>--C99</MiscControls>
               <Define>STM32F429xx,USE_HAL_DRIVER,USE_STM32F4XX_NUCLEO_144</Define>
               <Undefine />
-              <IncludePath>../Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../../../../../../Drivers/CMSIS/Include;../../../../../../Drivers/STM32F4xx_HAL_Driver/Inc;../../../../../../Drivers/BSP/Components;../../../../../../Drivers/BSP/STM32F4xx_Nucleo_144;../../../../../../Drivers/BSP/Components/Common;../../../../../../Utilities/Log;../../../../../../Utilities/Fonts;../../../../../../Utilities/CPU</IncludePath>
-            </VariousControls>
+              <IncludePath>../Inc;../../../../../../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../../../../../../Drivers/STM32F4xx_HAL_Driver/Inc;../../../../../../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../../../../../../Drivers/BSP/STM32F4xx_Nucleo_144;../../../../../../Drivers/BSP/Components;../../../../../../Middlewares/Third_Party/LwIP/src/include/;../../../../../../Middlewares/Third_Party/LwIP/system;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../../../../../../Middlewares/Third_Party/FreeRTOS/Source/include;../../../../../../Middlewares/Third_Party/mbedTLS/include;../../../../../../Utilities/Log;../../../../../../Utilities/Fonts</IncludePath>
+			</VariousControls>
           </Cads>
           <Aads>
             <interw>1</interw>
@@ -448,7 +448,7 @@
             </File><File>
               <FileName>stm32f4xx_hal_eth.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_eth.c</FilePath>
+			  <FilePath>../../../../../../Drivers/STM32F4xx_HAL_Driver/Src/Legacy/stm32f4xx_hal_eth.c</FilePath>
               
             </File><File>
               <FileName>stm32f4xx_hal_dma.c</FileName>

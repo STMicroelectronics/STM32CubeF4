@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of STemWin fonts application. 
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                               www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -49,7 +50,7 @@ for this, we have to save the text file (containing the text to be displayed) in
 Font generation
 ---------------
  - Opens font converter tool (available under "Middlewares/ST/STemWin/Software")
- - choose the adequate font (depending on the choosen language)
+ - choose the adequate font (depending on the chosen language)
  - disable all characters ranges (Edit/Disable all characters)
  - load the generated pattern (text.txt saved as "unicode" format)
  - save the font
@@ -125,5 +126,5 @@ In order to make the program work, you must do the following :
   - Rebuild all files and load your image into target memory
   - Run the application
  
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

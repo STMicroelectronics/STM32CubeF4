@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the ADC RegularConversion DMA example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -35,13 +36,13 @@ time to 12bit data is 12 cycles so the total conversion time is (12+3)/22.5= 0.6
 Please select PC0 option on JP3 jumper called Potentiometer
 User can vary the ADC_CHANNEL_10 voltage using the Eval Board potentiometer (RV1) connected to PC.0.
 
-STM32 Eval board's LEDs can be used to monitor the transfer status:
+STM32 Eval boards LEDs can be used to monitor the transfer status:
   - LED1 is ON when the conversion is complete.
   - LED3 is ON when there is an error in ADC initialization, in ADC channel configuration 
     or during conversion process.
 
 @note The connection of the LCD reset pin to a dedicated GPIO PK7 instead of the STM32F469 NRST pin may cause residual display on LCD with applications/examples that do not require display.
-	  The LCD clear can be ensured by hardware through the board's power off/power on or by software calling the BSP_LCD_Reset() function.
+	  The LCD clear can be ensured by hardware through the boards power off/power on or by software calling the BSP_LCD_Reset() function.
 
 @par Keywords
 
@@ -75,5 +76,5 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

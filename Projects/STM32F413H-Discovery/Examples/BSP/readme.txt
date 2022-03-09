@@ -7,13 +7,14 @@
   * @author  MCD Application Team
   * @brief   Description of the BSP example.
   ******************************************************************************
+  * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics. All rights reserved.
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                       opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
    @endverbatim
@@ -30,7 +31,7 @@ This frequency permit to reach 25 Mhz clock needed for SD operation and in line
 with microSD specification. 
 
 
-This example shows how to use the different functionalities of LCD, SD card, QSPI, 
+This example shows how to use the different functionalities of LCD, SD card, QUADSPI, 
 PSRAM by switching between all tests using USER selection button. 
 
 #### LCD ####
@@ -40,7 +41,7 @@ with different fonts, to display different shapes and to draw a bitmap.
 #### TOUCH SCREEN ####
 This example shows how to use Touch Screen mounted on the LCD. 
  - TS demo 1: Test of single touch: The touched circle will be filled with its color.
- - TS demo 2: Test of dual touch: Use two fingers to display 2 cirles on the LCD,
+ - TS demo 2: Test of dual touch: Use two fingers to display 2 circles on the LCD,
               their positions will be displayed.
  - TS demo 3: Test of TS interruption: Each time a new interrupt is detected when touching 
               the LCD, a rectangle correspondent to the touched area will be colored.              
@@ -136,5 +137,5 @@ In order to make the program work, you must do the following :
         end address to 0x0803FFFF. This is already done for the example project
  - Connect a headphone with a built-in microphone to the audio jack connector (CN5).
  
- * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
+
  */

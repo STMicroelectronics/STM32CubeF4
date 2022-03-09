@@ -2,19 +2,18 @@
   ******************************************************************************
   * @file    es_wifi_io.c
   * @author  MCD Application Team
-  * @brief   This file implments the IO operations to deal with the es-wifi
+  * @brief   This file implements the IO operations to deal with the es-wifi
   *          module. It mainly Inits and Deinits the SPI interface. Send and
   *          receive data over it.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -128,7 +127,7 @@ int8_t SPI_WIFI_Init(void)
   hspi.Init.CLKPolarity       = SPI_POLARITY_LOW;
   hspi.Init.CLKPhase          = SPI_PHASE_1EDGE;
   hspi.Init.NSS               = SPI_NSS_SOFT;
-  hspi.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;  /* 50/4= 12.5MHz (Inventek WIFI module supportes up to 20MHz)*/
+  hspi.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;  /* 50/4= 12.5MHz (Inventek WIFI module supports up to 20MHz)*/
   hspi.Init.FirstBit          = SPI_FIRSTBIT_MSB;
   hspi.Init.TIMode            = SPI_TIMODE_DISABLE;
   hspi.Init.CRCCalculation    = SPI_CRCCALCULATION_DISABLE;
@@ -264,5 +263,3 @@ void SPI_WIFI_Delay(uint32_t Delay)
 {
   HAL_Delay(Delay);
 }
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

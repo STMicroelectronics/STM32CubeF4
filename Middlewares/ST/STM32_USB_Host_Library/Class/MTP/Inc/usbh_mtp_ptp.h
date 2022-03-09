@@ -224,10 +224,10 @@ PTP_ContainerTypedef;
 
 #define PTP_USB_BULK_HS_MAX_PACKET_LEN_WRITE              1024U
 #define PTP_USB_BULK_HS_MAX_PACKET_LEN_READ               1024U
-#define PTP_USB_BULK_HDR_LEN                              (2U * sizeof(uint32_t) + 2U * sizeof(uint16_t))
+#define PTP_USB_BULK_HDR_LEN                              ((2U * sizeof(uint32_t)) + (2U * sizeof(uint16_t)))
 #define PTP_USB_BULK_PAYLOAD_LEN_WRITE                    (PTP_USB_BULK_HS_MAX_PACKET_LEN_WRITE-PTP_USB_BULK_HDR_LEN)
 #define PTP_USB_BULK_PAYLOAD_LEN_READ                     (PTP_USB_BULK_HS_MAX_PACKET_LEN_READ - PTP_USB_BULK_HDR_LEN)
-#define PTP_USB_BULK_REQ_LEN                              (PTP_USB_BULK_HDR_LEN + 5U * sizeof(uint32_t))
+#define PTP_USB_BULK_REQ_LEN                              (PTP_USB_BULK_HDR_LEN + (5U * sizeof(uint32_t)))
 #define PTP_USB_BULK_REQ_RESP_MAX_LEN                     63U
 
 typedef struct
