@@ -696,6 +696,8 @@ HAL_StatusTypeDef HAL_ETH_UnRegisterCallback(ETH_HandleTypeDef *heth, HAL_ETH_Ca
   */
 HAL_StatusTypeDef HAL_ETH_Start(ETH_HandleTypeDef *heth)
 {
+  __IO uint32_t tmpreg1;
+  
   if (heth->gState == HAL_ETH_STATE_READY)
   {
     heth->gState = HAL_ETH_STATE_BUSY;
@@ -708,9 +710,19 @@ HAL_StatusTypeDef HAL_ETH_Start(ETH_HandleTypeDef *heth)
 
     /* Enable the MAC transmission */
     SET_BIT(heth->Instance->MACCR, ETH_MACCR_TE);
+    /* Wait until the write operation will be taken into account :
+    at least four TX_CLK/RX_CLK clock cycles */
+    tmpreg1 = (heth->Instance)->MACCR;
+    HAL_Delay(ETH_REG_WRITE_DELAY);
+    (heth->Instance)->MACCR = tmpreg1;
 
     /* Enable the MAC reception */
     SET_BIT(heth->Instance->MACCR, ETH_MACCR_RE);
+    /* Wait until the write operation will be taken into account :
+    at least four TX_CLK/RX_CLK clock cycles */
+    tmpreg1 = (heth->Instance)->MACCR;
+    HAL_Delay(ETH_REG_WRITE_DELAY);
+    (heth->Instance)->MACCR = tmpreg1;
 
     /* Flush Transmit FIFO */
     ETH_FlushTransmitFIFO(heth);
@@ -739,6 +751,8 @@ HAL_StatusTypeDef HAL_ETH_Start(ETH_HandleTypeDef *heth)
   */
 HAL_StatusTypeDef HAL_ETH_Start_IT(ETH_HandleTypeDef *heth)
 {
+  __IO uint32_t tmpreg1;
+  
   if (heth->gState == HAL_ETH_STATE_READY)
   {
     heth->gState = HAL_ETH_STATE_BUSY;
@@ -764,9 +778,19 @@ HAL_StatusTypeDef HAL_ETH_Start_IT(ETH_HandleTypeDef *heth)
 
     /* Enable the MAC transmission */
     SET_BIT(heth->Instance->MACCR, ETH_MACCR_TE);
+    /* Wait until the write operation will be taken into account :
+    at least four TX_CLK/RX_CLK clock cycles */
+    tmpreg1 = (heth->Instance)->MACCR;
+    HAL_Delay(ETH_REG_WRITE_DELAY);
+    (heth->Instance)->MACCR = tmpreg1;
 
     /* Enable the MAC reception */
     SET_BIT(heth->Instance->MACCR, ETH_MACCR_RE);
+    /* Wait until the write operation will be taken into account :
+    at least four TX_CLK/RX_CLK clock cycles */
+    tmpreg1 = (heth->Instance)->MACCR;
+    HAL_Delay(ETH_REG_WRITE_DELAY);
+    (heth->Instance)->MACCR = tmpreg1;
 
     /* Flush Transmit FIFO */
     ETH_FlushTransmitFIFO(heth);
@@ -802,24 +826,38 @@ HAL_StatusTypeDef HAL_ETH_Start_IT(ETH_HandleTypeDef *heth)
   */
 HAL_StatusTypeDef HAL_ETH_Stop(ETH_HandleTypeDef *heth)
 {
+  __IO uint32_t tmpreg1;
+  
   if (heth->gState == HAL_ETH_STATE_STARTED)
   {
     /* Set the ETH peripheral state to BUSY */
     heth->gState = HAL_ETH_STATE_BUSY;
     /* Disable the DMA transmission */
-    CLEAR_BIT(heth->Instance->MACCR, ETH_MACCR_TE);
+    CLEAR_BIT(heth->Instance->DMAOMR, ETH_DMAOMR_ST);
 
     /* Disable the DMA reception */
     CLEAR_BIT(heth->Instance->DMAOMR, ETH_DMAOMR_SR);
 
     /* Disable the MAC reception */
     CLEAR_BIT(heth->Instance->MACCR, ETH_MACCR_RE);
+	
+    /* Wait until the write operation will be taken into account :
+    at least four TX_CLK/RX_CLK clock cycles */
+    tmpreg1 = (heth->Instance)->MACCR;
+    HAL_Delay(ETH_REG_WRITE_DELAY);
+    (heth->Instance)->MACCR = tmpreg1;
 
     /* Flush Transmit FIFO */
     ETH_FlushTransmitFIFO(heth);
 
     /* Disable the MAC transmission */
     CLEAR_BIT(heth->Instance->MACCR, ETH_MACCR_TE);
+	
+    /* Wait until the write operation will be taken into account :
+    at least four TX_CLK/RX_CLK clock cycles */
+    tmpreg1 = (heth->Instance)->MACCR;
+    HAL_Delay(ETH_REG_WRITE_DELAY);
+    (heth->Instance)->MACCR = tmpreg1;
 
     heth->gState = HAL_ETH_STATE_READY;
 
@@ -840,6 +878,7 @@ HAL_StatusTypeDef HAL_ETH_Stop(ETH_HandleTypeDef *heth)
   */
 HAL_StatusTypeDef HAL_ETH_Stop_IT(ETH_HandleTypeDef *heth)
 {
+  __IO uint32_t tmpreg1;
   ETH_DMADescTypeDef *dmarxdesc;
   uint32_t descindex;
 
@@ -852,18 +891,29 @@ HAL_StatusTypeDef HAL_ETH_Stop_IT(ETH_HandleTypeDef *heth)
                                     ETH_DMAIER_FBEIE | ETH_DMAIER_AISE | ETH_DMAIER_RBUIE));
 
     /* Disable the DMA transmission */
-    CLEAR_BIT(heth->Instance->MACCR, ETH_MACCR_TE);
+    CLEAR_BIT(heth->Instance->DMAOMR, ETH_DMAOMR_ST);
 
     /* Disable the DMA reception */
     CLEAR_BIT(heth->Instance->DMAOMR, ETH_DMAOMR_SR);
 
     /* Disable the MAC reception */
     CLEAR_BIT(heth->Instance->MACCR, ETH_MACCR_RE);
+    /* Wait until the write operation will be taken into account :
+    at least four TX_CLK/RX_CLK clock cycles */
+    tmpreg1 = (heth->Instance)->MACCR;
+    HAL_Delay(ETH_REG_WRITE_DELAY);
+    (heth->Instance)->MACCR = tmpreg1;
+	
     /* Flush Transmit FIFO */
     ETH_FlushTransmitFIFO(heth);
 
     /* Disable the MAC transmission */
     CLEAR_BIT(heth->Instance->MACCR, ETH_MACCR_TE);
+    /* Wait until the write operation will be taken into account :
+    at least four TX_CLK/RX_CLK clock cycles */
+    tmpreg1 = (heth->Instance)->MACCR;
+    HAL_Delay(ETH_REG_WRITE_DELAY);
+    (heth->Instance)->MACCR = tmpreg1;
 
     /* Clear IOC bit to all Rx descriptors */
     for (descindex = 0; descindex < (uint32_t)ETH_RX_DESC_CNT; descindex++)
@@ -2312,6 +2362,7 @@ void HAL_ETH_SetMDIOClockRange(ETH_HandleTypeDef *heth)
 HAL_StatusTypeDef HAL_ETH_SetMACFilterConfig(ETH_HandleTypeDef *heth, ETH_MACFilterConfigTypeDef *pFilterConfig)
 {
   uint32_t filterconfig;
+  __IO uint32_t tmpreg1;
 
   if (pFilterConfig == NULL)
   {
@@ -2331,6 +2382,12 @@ HAL_StatusTypeDef HAL_ETH_SetMACFilterConfig(ETH_HandleTypeDef *heth, ETH_MACFil
                   pFilterConfig->ControlPacketsFilter);
 
   MODIFY_REG(heth->Instance->MACFFR, ETH_MACFFR_MASK, filterconfig);
+  
+  /* Wait until the write operation will be taken into account :
+  at least four TX_CLK/RX_CLK clock cycles */
+  tmpreg1 = (heth->Instance)->MACFFR;
+  HAL_Delay(ETH_REG_WRITE_DELAY);
+  (heth->Instance)->MACFFR = tmpreg1;
 
   return HAL_OK;
 }
@@ -2417,13 +2474,28 @@ HAL_StatusTypeDef HAL_ETH_SetSourceMACAddrMatch(ETH_HandleTypeDef *heth, uint32_
   */
 HAL_StatusTypeDef HAL_ETH_SetHashTable(ETH_HandleTypeDef *heth, uint32_t *pHashTable)
 {
+  __IO uint32_t tmpreg1;
+  
   if (pHashTable == NULL)
   {
     return HAL_ERROR;
   }
 
   heth->Instance->MACHTHR = pHashTable[0];
+  
+  /* Wait until the write operation will be taken into account :
+  at least four TX_CLK/RX_CLK clock cycles */
+  tmpreg1 = (heth->Instance)->MACHTHR;
+  HAL_Delay(ETH_REG_WRITE_DELAY);
+  (heth->Instance)->MACHTHR = tmpreg1;
+  
   heth->Instance->MACHTLR = pHashTable[1];
+  
+  /* Wait until the write operation will be taken into account :
+  at least four TX_CLK/RX_CLK clock cycles */
+  tmpreg1 = (heth->Instance)->MACHTLR;
+  HAL_Delay(ETH_REG_WRITE_DELAY);
+  (heth->Instance)->MACHTLR = tmpreg1;
 
   return HAL_OK;
 }
@@ -2439,6 +2511,8 @@ HAL_StatusTypeDef HAL_ETH_SetHashTable(ETH_HandleTypeDef *heth, uint32_t *pHashT
   */
 void HAL_ETH_SetRxVLANIdentifier(ETH_HandleTypeDef *heth, uint32_t ComparisonBits, uint32_t VLANIdentifier)
 {
+  __IO uint32_t tmpreg1;
+  
   MODIFY_REG(heth->Instance->MACVLANTR, ETH_MACVLANTR_VLANTI, VLANIdentifier);
   if (ComparisonBits == ETH_VLANTAGCOMPARISON_16BIT)
   {
@@ -2448,6 +2522,12 @@ void HAL_ETH_SetRxVLANIdentifier(ETH_HandleTypeDef *heth, uint32_t ComparisonBit
   {
     SET_BIT(heth->Instance->MACVLANTR, ETH_MACVLANTR_VLANTC);
   }
+  
+  /* Wait until the write operation will be taken into account :
+  at least four TX_CLK/RX_CLK clock cycles */
+  tmpreg1 = (heth->Instance)->MACVLANTR;
+  HAL_Delay(ETH_REG_WRITE_DELAY);
+  (heth->Instance)->MACVLANTR = tmpreg1;
 }
 
 /**
@@ -2478,6 +2558,8 @@ void HAL_ETH_EnterPowerDownMode(ETH_HandleTypeDef *heth, ETH_PowerDownConfigType
   */
 void HAL_ETH_ExitPowerDownMode(ETH_HandleTypeDef *heth)
 {
+  __IO uint32_t tmpreg1;
+  
   /* clear wake up sources */
   CLEAR_BIT(heth->Instance->MACPMTCSR, ETH_MACPMTCSR_WFE | ETH_MACPMTCSR_MPE | ETH_MACPMTCSR_GU);
 
@@ -2486,6 +2568,12 @@ void HAL_ETH_ExitPowerDownMode(ETH_HandleTypeDef *heth)
     /* Exit power down mode */
     CLEAR_BIT(heth->Instance->MACPMTCSR, ETH_MACPMTCSR_PD);
   }
+  
+  /* Wait until the write operation will be taken into account :
+  at least four TX_CLK/RX_CLK clock cycles */
+  tmpreg1 = (heth->Instance)->MACPMTCSR;
+  HAL_Delay(ETH_REG_WRITE_DELAY);
+  (heth->Instance)->MACPMTCSR = tmpreg1;
 
   /* Disable PMT interrupt */
   SET_BIT(heth->Instance->MACIMR, ETH_MACIMR_PMTIM);
