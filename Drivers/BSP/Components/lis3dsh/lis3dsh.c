@@ -217,6 +217,7 @@ void LIS3DSH_Click_IntConfig(void)
   LIS3DSH_InterruptStruct.Interrupt_Request = LIS3DSH_INTERRUPT_REQUEST_LATCHED;
   LIS3DSH_InterruptStruct.Interrupt_Signal = LIS3DSH_INTERRUPT_SIGNAL_HIGH;
   LIS3DSH_InterruptStruct.State_Machine1_Enable = LIS3DSH_SM_DISABLE;
+  LIS3DSH_InterruptStruct.State_Machine1_Interrupt = LIS3DSH_SM_INT1;
   LIS3DSH_InterruptStruct.State_Machine2_Enable = LIS3DSH_SM_ENABLE;
   LIS3DSH_InterruptStruct.State_Machine2_Interrupt = LIS3DSH_SM_INT1;
   LIS3DSH_InterruptConfig(&LIS3DSH_InterruptStruct);
