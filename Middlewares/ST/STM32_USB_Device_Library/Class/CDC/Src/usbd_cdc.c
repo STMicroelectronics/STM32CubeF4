@@ -109,7 +109,6 @@ static uint8_t USBD_CDC_EP0_RxReady(USBD_HandleTypeDef *pdev);
 static uint8_t *USBD_CDC_GetFSCfgDesc(uint16_t *length);
 static uint8_t *USBD_CDC_GetHSCfgDesc(uint16_t *length);
 static uint8_t *USBD_CDC_GetOtherSpeedCfgDesc(uint16_t *length);
-static uint8_t *USBD_CDC_GetOtherSpeedCfgDesc(uint16_t *length);
 uint8_t *USBD_CDC_GetDeviceQualifierDescriptor(uint16_t *length);
 #endif /* USE_USBD_COMPOSITE  */
 
