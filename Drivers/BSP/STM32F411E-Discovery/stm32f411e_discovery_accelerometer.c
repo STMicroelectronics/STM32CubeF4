@@ -73,7 +73,7 @@ static ACCELERO_DrvTypeDef *AccelerometerDrv;
   */
 
 /**
-  * @brief  Set accelerometer Initialization.
+  * @brief  Set accelerometer Initialization. Modified to setup interruption in INT1
   * @retval ACCELERO_OK if no problem during initialization
   */
 uint8_t BSP_ACCELERO_Init(void)
@@ -91,7 +91,7 @@ uint8_t BSP_ACCELERO_Init(void)
     /* MEMS configuration ----------------------------------------------------*/
     /* Fill the accelerometer structure */
     Accelero_InitStructure.Power_Mode         = LSM303DLHC_NORMAL_MODE;
-    Accelero_InitStructure.AccOutput_DataRate = LSM303DLHC_ODR_50_HZ;
+    Accelero_InitStructure.AccOutput_DataRate = LSM303DLHC_ODR_1_HZ;
     Accelero_InitStructure.Axes_Enable        = LSM303DLHC_AXES_ENABLE;
     Accelero_InitStructure.AccFull_Scale      = LSM303DLHC_FULLSCALE_2G;
     Accelero_InitStructure.BlockData_Update   = LSM303DLHC_BlockUpdate_Continous;
@@ -123,6 +123,9 @@ uint8_t BSP_ACCELERO_Init(void)
     /* Configure the accelerometer LPF main parameters */
     AccelerometerDrv->FilterConfig(ctrl);
 
+    /* Configure the accelerometer interrupt1*/
+    AccelerometerDrv->EnableIT(LSM303DLHC_IT1_DRY1);
+
     ret = ACCELERO_OK;
   }
   else if(Lsm303agrDrv.ReadID() == I_AM_LSM303AGR)
@@ -133,7 +136,7 @@ uint8_t BSP_ACCELERO_Init(void)
     /* MEMS configuration ----------------------------------------------------*/
     /* Fill the accelerometer structure */
     Accelero_InitStructure.Power_Mode         = LSM303AGR_NORMAL_MODE;
-    Accelero_InitStructure.AccOutput_DataRate = LSM303AGR_ODR_50_HZ;
+    Accelero_InitStructure.AccOutput_DataRate = LSM303AGR_ODR_200_HZ;
     Accelero_InitStructure.Axes_Enable        = LSM303AGR_AXES_ENABLE;
     Accelero_InitStructure.AccFull_Scale      = LSM303AGR_FULLSCALE_2G;
     Accelero_InitStructure.BlockData_Update   = LSM303AGR_BlockUpdate_Continous;
@@ -164,6 +167,8 @@ uint8_t BSP_ACCELERO_Init(void)
 
     /* Configure the accelerometer LPF main parameters */
     AccelerometerDrv->FilterConfig(ctrl);
+    /* Configure the accelerometer interrupt1*/
+	AccelerometerDrv->EnableIT(LSM303AGR_IT1_DRY1);
 
     ret = ACCELERO_OK;
   }
@@ -217,6 +222,7 @@ void BSP_ACCELERO_GetXYZ(int16_t *pDataXYZ)
     }
   }
 }
+
 
 /**
   * @}
