@@ -905,6 +905,11 @@ __weak uint32_t HAL_RCC_GetSysClockFreq(void)
       /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLLM) * PLLN
       SYSCLK = PLL_VCO / PLLP */
       pllm = RCC->PLLCFGR & RCC_PLLCFGR_PLLM;
+
+      if(pllm == 0){
+        return 0;
+      }
+
       if(__HAL_RCC_GET_PLL_OSCSOURCE() != RCC_PLLSOURCE_HSI)
       {
         /* HSE used as PLL clock source */
