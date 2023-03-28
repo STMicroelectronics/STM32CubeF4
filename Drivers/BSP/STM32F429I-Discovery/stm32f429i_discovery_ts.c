@@ -145,10 +145,26 @@ void BSP_TS_GetState(TS_StateTypeDef* TsState)
   if(TsState->TouchDetected)
   {
     TsDrv->GetXY(TS_I2C_ADDRESS, &x, &y);
-    
+
+#if defined (USE_STM32F429I_DISCOVERY_REVD)
+    if (y > 3700)
+    {
+      y = 3700;
+    }
+    else if (y < 180)
+    {
+      y = 180;
+    }
+
     /* Y value first correction */
-    y -= 360;  
-    
+    y = 3700 - y;
+#else
+
+    /* Y value first correction */
+    y -= 360;
+
+#endif
+
     /* Y value second correction */
     yr = y / 11;
     

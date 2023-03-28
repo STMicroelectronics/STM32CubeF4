@@ -18,8 +18,8 @@
   */
 /* IMPORTANT: One of the following flags must be defined in the preprocessor */
 /* options in order to select the target board revision: !!!!!!!!!! */
-/* USE_STM32F429I_DISCO */          /* Applicable for all boards execept STM32F429I DISCOVERY REVD */
-/* USE_STM32F429I_DISCOVERY_REVD */ /* Applicable only for STM32F429I DISCOVERY REVD */
+/* USE_STM32F429I_DISCO */          /* Applicable for all boards except STM32F429I DISCOVERY REVD and above */
+/* USE_STM32F429I_DISCOVERY_REVD */ /* Applicable only for STM32F429I DISCOVERY REVD and above */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32F429I_DISCOVERY_H
