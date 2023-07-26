@@ -1407,7 +1407,7 @@ void HAL_RCC_CSSCallback(void);
                                          ((__SOURCE__) == RCC_RTCCLKSOURCE_HSE_DIV30) || \
                                          ((__SOURCE__) == RCC_RTCCLKSOURCE_HSE_DIV31))
 
-#define IS_RCC_PLLM_VALUE(VALUE) ((VALUE) <= 63U)
+#define IS_RCC_PLLM_VALUE(VALUE) ((2U <= (VALUE)) && ((VALUE) <= 63U))
 
 #define IS_RCC_PLLP_VALUE(VALUE) (((VALUE) == 2U) || ((VALUE) == 4U) || ((VALUE) == 6U) || ((VALUE) == 8U))
 

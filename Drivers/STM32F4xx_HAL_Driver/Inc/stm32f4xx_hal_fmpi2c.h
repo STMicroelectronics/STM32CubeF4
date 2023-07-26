@@ -218,6 +218,10 @@ typedef struct __FMPI2C_HandleTypeDef
 
   __IO uint32_t              AddrEventCount; /*!< FMPI2C Address Event counter                 */
 
+  __IO uint32_t              Devaddress;     /*!< FMPI2C Target device address                 */
+
+  __IO uint32_t              Memaddress;     /*!< FMPI2C Target memory address                 */
+
 #if (USE_HAL_FMPI2C_REGISTER_CALLBACKS == 1)
   void (* MasterTxCpltCallback)(struct __FMPI2C_HandleTypeDef *hfmpi2c);
   /*!< FMPI2C Master Tx Transfer completed callback */

@@ -512,6 +512,7 @@ typedef  void (*pFMPSMBUS_AddrCallbackTypeDef)(FMPSMBUS_HandleTypeDef *hfmpsmbus
   * @param  __HANDLE__ specifies the FMPSMBUS Handle.
   * @param  __FLAG__ specifies the flag to clear.
   *          This parameter can be any combination of the following values:
+  *            @arg @ref FMPSMBUS_FLAG_TXE     Transmit data register empty
   *            @arg @ref FMPSMBUS_FLAG_ADDR    Address matched (slave mode)
   *            @arg @ref FMPSMBUS_FLAG_AF      NACK received flag
   *            @arg @ref FMPSMBUS_FLAG_STOPF   STOP detection flag
@@ -524,7 +525,9 @@ typedef  void (*pFMPSMBUS_AddrCallbackTypeDef)(FMPSMBUS_HandleTypeDef *hfmpsmbus
   *
   * @retval None
   */
-#define __HAL_FMPSMBUS_CLEAR_FLAG(__HANDLE__, __FLAG__) ((__HANDLE__)->Instance->ICR = (__FLAG__))
+#define __HAL_FMPSMBUS_CLEAR_FLAG(__HANDLE__, __FLAG__)  (((__FLAG__) == FMPSMBUS_FLAG_TXE) ? \
+                                                       ((__HANDLE__)->Instance->ISR |= (__FLAG__)) : \
+                                                       ((__HANDLE__)->Instance->ICR = (__FLAG__)))
 
 /** @brief  Enable the specified FMPSMBUS peripheral.
   * @param  __HANDLE__ specifies the FMPSMBUS Handle.

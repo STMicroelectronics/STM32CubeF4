@@ -1780,7 +1780,7 @@ __weak void HAL_SMARTCARD_AbortReceiveCpltCallback (SMARTCARD_HandleTypeDef *hsc
   *                the configuration information for SMARTCARD module.
   * @retval HAL state
   */
-HAL_SMARTCARD_StateTypeDef HAL_SMARTCARD_GetState(SMARTCARD_HandleTypeDef *hsc)
+HAL_SMARTCARD_StateTypeDef HAL_SMARTCARD_GetState(const SMARTCARD_HandleTypeDef *hsc)
 {
   uint32_t temp1= 0x00U, temp2 = 0x00U;
   temp1 = hsc->gState;
@@ -1795,7 +1795,7 @@ HAL_SMARTCARD_StateTypeDef HAL_SMARTCARD_GetState(SMARTCARD_HandleTypeDef *hsc)
   *              the configuration information for the specified SMARTCARD.
   * @retval SMARTCARD Error Code
   */
-uint32_t HAL_SMARTCARD_GetError(SMARTCARD_HandleTypeDef *hsc)
+uint32_t HAL_SMARTCARD_GetError(const SMARTCARD_HandleTypeDef *hsc)
 {
   return hsc->ErrorCode;
 }

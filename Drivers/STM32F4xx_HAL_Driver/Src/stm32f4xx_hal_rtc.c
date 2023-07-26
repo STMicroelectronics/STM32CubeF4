@@ -306,37 +306,49 @@ HAL_StatusTypeDef HAL_RTC_Init(RTC_HandleTypeDef *hrtc)
   /* Set RTC state */
   hrtc->State = HAL_RTC_STATE_BUSY;
 
-  /* Disable the write protection for RTC registers */
-  __HAL_RTC_WRITEPROTECTION_DISABLE(hrtc);
-
-  /* Enter Initialization mode */
-  status = RTC_EnterInitMode(hrtc);
-
-  if (status == HAL_OK)
+  /* Check whether the calendar needs to be initialized */
+  if (__HAL_RTC_IS_CALENDAR_INITIALIZED(hrtc) == 0U)
   {
-    /* Clear RTC_CR FMT, OSEL and POL Bits */
-    hrtc->Instance->CR &= ((uint32_t)~(RTC_CR_FMT | RTC_CR_OSEL | RTC_CR_POL));
-    /* Set RTC_CR register */
-    hrtc->Instance->CR |= (uint32_t)(hrtc->Init.HourFormat | hrtc->Init.OutPut | hrtc->Init.OutPutPolarity);
+    /* Disable the write protection for RTC registers */
+    __HAL_RTC_WRITEPROTECTION_DISABLE(hrtc);
 
-    /* Configure the RTC PRER */
-    hrtc->Instance->PRER = (uint32_t)(hrtc->Init.SynchPrediv);
-    hrtc->Instance->PRER |= (uint32_t)(hrtc->Init.AsynchPrediv << RTC_PRER_PREDIV_A_Pos);
+    /* Enter Initialization mode */
+    status = RTC_EnterInitMode(hrtc);
 
-    /* Exit Initialization mode */
-    status = RTC_ExitInitMode(hrtc);
+    if (status == HAL_OK)
+    {
+      /* Clear RTC_CR FMT, OSEL and POL Bits */
+      hrtc->Instance->CR &= ((uint32_t)~(RTC_CR_FMT | RTC_CR_OSEL | RTC_CR_POL));
+      /* Set RTC_CR register */
+      hrtc->Instance->CR |= (uint32_t)(hrtc->Init.HourFormat | hrtc->Init.OutPut | hrtc->Init.OutPutPolarity);
+
+      /* Configure the RTC PRER */
+      hrtc->Instance->PRER = (uint32_t)(hrtc->Init.SynchPrediv);
+      hrtc->Instance->PRER |= (uint32_t)(hrtc->Init.AsynchPrediv << RTC_PRER_PREDIV_A_Pos);
+
+      /* Exit Initialization mode */
+      status = RTC_ExitInitMode(hrtc);
+    }
+
+    if (status == HAL_OK)
+    {
+      hrtc->Instance->TAFCR &= (uint32_t)~RTC_OUTPUT_TYPE_PUSHPULL;
+      hrtc->Instance->TAFCR |= (uint32_t)(hrtc->Init.OutPutType);
+    }
+
+    /* Enable the write protection for RTC registers */
+    __HAL_RTC_WRITEPROTECTION_ENABLE(hrtc);
+  }
+  else
+  {
+    /* The calendar is already initialized */
+    status = HAL_OK;
   }
 
   if (status == HAL_OK)
   {
-    hrtc->Instance->TAFCR &= (uint32_t)~RTC_OUTPUT_TYPE_PUSHPULL;
-    hrtc->Instance->TAFCR |= (uint32_t)(hrtc->Init.OutPutType);
-
     hrtc->State = HAL_RTC_STATE_READY;
   }
-
-  /* Enable the write protection for RTC registers */
-  __HAL_RTC_WRITEPROTECTION_ENABLE(hrtc);
 
   return status;
 }

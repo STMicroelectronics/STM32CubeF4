@@ -526,7 +526,7 @@ typedef struct
   * @{
   */
 #define RCC_I2SCLKSOURCE_PLLI2S         0x00000000U
-#define RCC_I2SCLKSOURCE_EXT            0x00000001U
+#define RCC_I2SCLKSOURCE_EXT            RCC_CFGR_I2SSRC
 /**
   * @}
   */
@@ -6101,7 +6101,7 @@ typedef struct
   *            @arg RCC_I2SCLKSOURCE_EXT: External clock mapped on the I2S_CKIN pin
   *                                       used as I2S clock source.
   */
-#define __HAL_RCC_I2S_CONFIG(__SOURCE__) (*(__IO uint32_t *) RCC_CFGR_I2SSRC_BB = (__SOURCE__))
+#define __HAL_RCC_I2S_CONFIG(__SOURCE__) (MODIFY_REG(RCC->CFGR, RCC_CFGR_I2SSRC, (__SOURCE__)))
 
 
 /** @brief  Macro to get the I2S clock source (I2SCLK).

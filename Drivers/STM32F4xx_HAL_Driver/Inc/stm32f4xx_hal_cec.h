@@ -163,7 +163,7 @@ typedef struct
 
   CEC_InitTypeDef         Init;           /*!< CEC communication parameters */
 
-  uint8_t                 *pTxBuffPtr;    /*!< Pointer to CEC Tx transfer Buffer */
+  const uint8_t           *pTxBuffPtr;    /*!< Pointer to CEC Tx transfer Buffer */
 
   uint16_t                TxXferCount;    /*!< CEC Tx Transfer Counter */
 
@@ -660,8 +660,8 @@ HAL_StatusTypeDef HAL_CEC_UnRegisterRxCpltCallback(CEC_HandleTypeDef *hcec);
   */
 /* I/O operation functions  ***************************************************/
 HAL_StatusTypeDef HAL_CEC_Transmit_IT(CEC_HandleTypeDef *hcec, uint8_t InitiatorAddress, uint8_t DestinationAddress,
-                                      uint8_t *pData, uint32_t Size);
-uint32_t HAL_CEC_GetLastReceivedFrameSize(CEC_HandleTypeDef *hcec);
+                                      const uint8_t *pData, uint32_t Size);
+uint32_t HAL_CEC_GetLastReceivedFrameSize(const CEC_HandleTypeDef *hcec);
 void HAL_CEC_ChangeRxBuffer(CEC_HandleTypeDef *hcec, uint8_t *Rxbuffer);
 void HAL_CEC_IRQHandler(CEC_HandleTypeDef *hcec);
 void HAL_CEC_TxCpltCallback(CEC_HandleTypeDef *hcec);
@@ -675,8 +675,8 @@ void HAL_CEC_ErrorCallback(CEC_HandleTypeDef *hcec);
   * @{
   */
 /* Peripheral State functions  ************************************************/
-HAL_CEC_StateTypeDef HAL_CEC_GetState(CEC_HandleTypeDef *hcec);
-uint32_t HAL_CEC_GetError(CEC_HandleTypeDef *hcec);
+HAL_CEC_StateTypeDef HAL_CEC_GetState(const CEC_HandleTypeDef *hcec);
+uint32_t HAL_CEC_GetError(const CEC_HandleTypeDef *hcec);
 /**
   * @}
   */

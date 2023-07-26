@@ -260,7 +260,7 @@ typedef enum
   * @{
   */
 static void SAI_FillFifo(SAI_HandleTypeDef *hsai);
-static uint32_t SAI_InterruptFlag(SAI_HandleTypeDef *hsai, uint32_t mode);
+static uint32_t SAI_InterruptFlag(const SAI_HandleTypeDef *hsai, uint32_t mode);
 static HAL_StatusTypeDef SAI_InitI2S(SAI_HandleTypeDef *hsai, uint32_t protocol, uint32_t datasize, uint32_t nbslot);
 static HAL_StatusTypeDef SAI_InitPCM(SAI_HandleTypeDef *hsai, uint32_t protocol, uint32_t datasize, uint32_t nbslot);
 
@@ -1243,6 +1243,9 @@ HAL_StatusTypeDef HAL_SAI_DMAStop(SAI_HandleTypeDef *hsai)
   /* Process Locked */
   __HAL_LOCK(hsai);
 
+  /* Disable SAI peripheral */
+  SAI_Disable(hsai);
+
   /* Disable the SAI DMA request */
   hsai->Instance->CR1 &= ~SAI_xCR1_DMAEN;
 
@@ -1274,9 +1277,6 @@ HAL_StatusTypeDef HAL_SAI_DMAStop(SAI_HandleTypeDef *hsai)
     }
   }
 
-  /* Disable SAI peripheral */
-  SAI_Disable(hsai);
-
   /* Flush the fifo */
   SET_BIT(hsai->Instance->CR2, SAI_xCR2_FFLUSH);
 
@@ -1301,6 +1301,9 @@ HAL_StatusTypeDef HAL_SAI_Abort(SAI_HandleTypeDef *hsai)
 
   /* Process Locked */
   __HAL_LOCK(hsai);
+
+  /* Disable SAI peripheral */
+  SAI_Disable(hsai);
 
   /* Check SAI DMA is enabled or not */
   if ((hsai->Instance->CR1 & SAI_xCR1_DMAEN) == SAI_xCR1_DMAEN)
@@ -1340,9 +1343,6 @@ HAL_StatusTypeDef HAL_SAI_Abort(SAI_HandleTypeDef *hsai)
   /* Disabled All interrupt and clear all the flag */
   hsai->Instance->IMR = 0U;
   hsai->Instance->CLRFR = 0xFFFFFFFFU;
-
-  /* Disable SAI peripheral */
-  SAI_Disable(hsai);
 
   /* Flush the fifo */
   SET_BIT(hsai->Instance->CR2, SAI_xCR2_FFLUSH);
@@ -1909,7 +1909,7 @@ __weak void HAL_SAI_ErrorCallback(SAI_HandleTypeDef *hsai)
   *               the configuration information for SAI module.
   * @retval HAL state
   */
-HAL_SAI_StateTypeDef HAL_SAI_GetState(SAI_HandleTypeDef *hsai)
+HAL_SAI_StateTypeDef HAL_SAI_GetState(const SAI_HandleTypeDef *hsai)
 {
   return hsai->State;
 }
@@ -1920,7 +1920,7 @@ HAL_SAI_StateTypeDef HAL_SAI_GetState(SAI_HandleTypeDef *hsai)
   *              the configuration information for the specified SAI Block.
   * @retval SAI Error Code
   */
-uint32_t HAL_SAI_GetError(SAI_HandleTypeDef *hsai)
+uint32_t HAL_SAI_GetError(const SAI_HandleTypeDef *hsai)
 {
   return hsai->ErrorCode;
 }
@@ -2138,7 +2138,7 @@ static void SAI_FillFifo(SAI_HandleTypeDef *hsai)
   * @param  mode SAI_MODE_DMA or SAI_MODE_IT
   * @retval the list of the IT flag to enable
  */
-static uint32_t SAI_InterruptFlag(SAI_HandleTypeDef *hsai, uint32_t mode)
+static uint32_t SAI_InterruptFlag(const SAI_HandleTypeDef *hsai, uint32_t mode)
 {
   uint32_t tmpIT = SAI_IT_OVRUDR;
 
