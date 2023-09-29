@@ -196,7 +196,7 @@ static void COMMAND_ProgramFlashMemory(void)
 {
   uint32_t programcounter = 0x00;
   uint8_t readflag = TRUE;
-  uint16_t bytesread;
+  uint32_t bytesread;
 
   /* RAM Address Initialization */
   RamAddress = (uint32_t) & RAM_Buf;
