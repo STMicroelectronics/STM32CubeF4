@@ -92,7 +92,7 @@ uint32_t BSP_EEPROM_WaitEepromStandbyState(void);
 /* USER Callbacks: This function is declared as __weak in EEPROM driver and 
    should be implemented into user application.  
    BSP_EEPROM_TIMEOUT_UserCallback() function is called whenever a timeout condition 
-   occure during communication (waiting on an event that doesn't occur, bus 
+   occur during communication (waiting on an event that doesn't occur, bus 
    errors, busy devices ...). */
 void     BSP_EEPROM_TIMEOUT_UserCallback(void);
 

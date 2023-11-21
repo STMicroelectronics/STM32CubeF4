@@ -53,7 +53,7 @@ access to FAT volume, when using FatFs APIs. In addition, user can check if the
 written text file is available on the uSD card.
 
 It is possible to fine tune needed FatFs features by modifying defines values 
-in FatFs configuration file “ffconf.h” available under the project includes 
+in FatFs configuration file "ffconf.h" available under the project includes 
 directory, in a way to fit the application requirements. 
 
 STM32 Eval boards LEDs can be used to monitor the application status:
@@ -90,7 +90,7 @@ FatFS, SDMMC, SD Card, File system, FAT Volume, Format, Mount, Read, Write, RTOS
   - FatFs/FatFs_uSD_RTOS/Inc/main.h                        Main program header file
   - FatFs/FatFs_uSD_RTOS/Inc/sd_diskio_dma_rtos.h          FatFS sd diskio driver header file
   - FatFs/FatFs_uSD_RTOS/Inc/ffconf.h                      FAT file system module configuration file   
-  - FatFs/FatFs_uSD_RTOS/Inc/FreeRTOSConfig.h              FreeRTOS configuation file            
+  - FatFs/FatFs_uSD_RTOS/Inc/FreeRTOSConfig.h              FreeRTOS configuration file            
   - FatFs/FatFs_uSD_RTOS/Src/stm32f4xx_it.c                Interrupt handlers
   - FatFs/FatFs_uSD_RTOS/Src/main.c                        Main program
   - FatFs/FatFs_uSD_RTOS/Src/sd_diskio_dma_rtos.c          FatFS sd diskio driver implementation

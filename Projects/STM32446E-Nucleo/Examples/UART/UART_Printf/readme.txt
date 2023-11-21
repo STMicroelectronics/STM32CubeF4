@@ -26,10 +26,10 @@ The UART outputs a message on the HyperTerminal.
 
 The STM32 Nucleo boards integrate the ST-LINK/V2.1 interfacing with the PC and 
 offering the following capabilities:
-  – Debug and programming port
-  – Virtual com port interface
-  – Mass storage interface
-  – USB power management request for more than 100 mA power
+  â€“ Debug and programming port
+  â€“ Virtual com port interface
+  â€“ Mass storage interface
+  â€“ USB power management request for more than 100 mA power
 
 Once connected to your PC via the ST-LINK port, the STM32 Nucleo board is enumerated 
 as a serial communication port USART2 and listed under Ports (COM & LPT) of Windows
@@ -47,7 +47,7 @@ The communication port USART2 is configured as follows:
     - Hardware flow control disabled (RTS and CTS signals)
     - Receive and transmit enabled
 
-To identify the Nucleo board VCP, you have just to perform the follwing actions on
+To identify the Nucleo board VCP, you have just to perform the following actions on
 your Windows PC: 
     - Click Start, and enter Device Manager into the Search field. Click Device Manager .
     - Double-click Ports (COM & LPT).
@@ -98,7 +98,7 @@ Connectivity, UART, Printf, Baud rate, RS-232, HyperTerminal, full-duplex
     boards and can be easily tailored to any other supported device 
     and development board.
 
-  - For This example to work properly, a 2.2 µF Capacitor must be present on the board in slot C26.
+  - For This example to work properly, a 2.2 ÂµF Capacitor must be present on the board in slot C26.
 
   - STM32F4xx-Nucleo Set-up    
     - Connect the Nucleo board to your PC with a USB cable type A to mini-B 

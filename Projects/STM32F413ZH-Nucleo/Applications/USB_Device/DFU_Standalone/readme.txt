@@ -32,9 +32,9 @@ function to configure the system clock (SYSCLK) to run at 100 MHz. The Full Spee
 internally a 48-MHz clock which is coming from the PLL I2S.
 
 The 48 MHz clock for the USB FS can be derived from one of the two following sources:
-  – PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
+  â€“ PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLVCO/PLLQ).
-  – PLLI2S clock (clocked by the HSE): If the USB uses the PLLI2S as clock source, the PLLI2S clock must be programmed
+  â€“ PLLI2S clock (clocked by the HSE): If the USB uses the PLLI2S as clock source, the PLLI2S clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLI2SVCO/PLLI2SQ).
 
 The DFU transactions are based on Endpoint 0 (control endpoint) transfer. All requests and status 
@@ -88,7 +88,7 @@ For more details about the STM32Cube USB Device library, please refer to UM1734
 @par USB Library Configuration
       
 It is possible to fine tune needed USB Device features by modifying defines values in USBD configuration
-file “usbd_conf.h” available under the project includes directory, in a way to fit the application
+file "usbd_conf.h" available under the project includes directory, in a way to fit the application
 requirements, such as:      
  - USBD_DFU_APP_DEFAULT_ADD, specifying the address from where user's application will be downloaded.
 

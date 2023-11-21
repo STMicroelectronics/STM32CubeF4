@@ -70,7 +70,7 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_HS" and "USE_USB_HS_IN_FS" when using USB High Speed (HS) Core in FS mode
 
 It is possible to fine tune needed USB Host features by modifying defines values in USBH configuration
-file “usbh_conf.h” available under the project includes directory, in a way to fit the application
+file "usbh_conf.h" available under the project includes directory, in a way to fit the application
 requirements, such as:
   - Level of debug: USBH_DEBUG_LEVEL
                   0: No debug messages

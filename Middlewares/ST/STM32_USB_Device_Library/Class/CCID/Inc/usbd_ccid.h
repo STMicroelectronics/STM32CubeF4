@@ -263,7 +263,7 @@ typedef struct
 } USBD_CCID_ParamTypeDef;
 
 /*
- * CCID Class specification revsion 1.1
+ * CCID Class specification revision 1.1
  * Smart Card Device Class Descriptor Table
  */
 

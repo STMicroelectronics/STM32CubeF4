@@ -139,7 +139,7 @@ uint8_t BSP_IO_Init(void)
 }
 
 /**
-  * @brief  DeInit allows Mfx Inititialization to be executed again
+  * @brief  DeInit allows Mfx Initialization to be executed again
   * @note   BSP_IO_Init() has no effect if the IoDrv is already initialized
   *         BSP_IO_DeInit() allows to erase the pointer such to allow init to be effective
   * @retval IO_OK

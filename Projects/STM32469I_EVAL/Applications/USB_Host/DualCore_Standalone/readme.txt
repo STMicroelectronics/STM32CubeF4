@@ -35,9 +35,9 @@ internally a 48-MHz clock which is coming from a specific output of two PLLs PLL
 In the High Speed (HS) mode the USB clock (60 MHz) is driven by the ULPI.
 
 The 48 MHz clock for the USB FS can be derived from one of the two following sources:
-  – PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
+  â€“ PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLVCO/PLLQ).
-  – PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI clock must be programmed
+  â€“ PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLSAIVCO/PLLSAIP).
 
 When the application is started, the connected USB MSC device to HS port is detected in MSC mode and
@@ -71,7 +71,7 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_HS" and "USE_USB_FS" when using USB Dual Core Mode
 
 It is possible to fine tune needed USB Host features by modifying defines values in USBH configuration
-file “usbh_conf.h” available under the project includes directory, in a way to fit the application
+file "usbh_conf.h" available under the project includes directory, in a way to fit the application
 requirements, such as:
   - Level of debug: USBH_DEBUG_LEVEL
                   0: No debug messages

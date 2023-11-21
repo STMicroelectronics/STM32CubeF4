@@ -431,7 +431,7 @@ static void AudioPlay_SetHint(void)
 
 /**
   * @brief  Display audio file and control information
-  * @param  format : structure containing informations of the audio file
+  * @param  format : structure containing information of the audio file
   * @retval None
   */
 static void AudioPlay_DisplayInfos(WAVE_FormatTypeDef * format)

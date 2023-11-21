@@ -47,7 +47,7 @@ In-Application Programming, IAP, USART, Binary, flash
 
  - "IAP/IAP_Main/EWARM": contains pre-configured project for EWARM toolchain
  
- - "IAP/IAP_Main/SW4STM32": contains preconfigured project for SW4STM32 toolchain (main program)
+ - "IAP/IAP_Main/STM32CubeIDE": contains preconfigured project for STM32CubeIDE toolchain (main program)
 
  - "IAP/IAP_Main/src": contains the IAP firmware source files
     - IAP/IAP_Main/src/main.c              Main program
@@ -171,9 +171,9 @@ In order to load the IAP code, you have do the following:
       - Load project image: Debug->Start/Stop Debug Session
       - Run program: Debug->Run (F5)
       
-   - System Workbench for STM32: 
-      - Open System Workbench for STM32 toolchain
-      - Browse to the SW4STM32 workspace directory, select the project (.project file in \IAP_Main\SW4STM32 \STM32446E-EVAL directory).
+   - STM32CubeIDE: 
+      - Open STM32CubeIDE toolchain
+      - Browse to the STM32CubeIDE workspace directory, select the project (.project file in \IAP_Main\STM32CubeIDE \STM32446E-EVAL directory).
       - Rebuild all project files: Select the project in the "Project explorer" window then click on Project->build project menu.
       - Run program: Run->Debug
 

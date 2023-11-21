@@ -52,8 +52,8 @@ STM32F4-Discovery RevB & RevC board's LEDs can be used to monitor the transfer s
  - LED5 (RED) is ON when there are errors detected after data programming
 =======
 STM32F4-Discovery RevB & RevC boards LEDs can be used to monitor the transfer status:
- - LED4 (GREEN) is ON when there are no errors detected after data programing
- - LED5 (RED) is ON when there are errors detected after data programing
+ - LED4 (GREEN) is ON when there are no errors detected after data programming
+ - LED5 (RED) is ON when there are errors detected after data programming
 >>>>>>> Ticket 117528 - [GitHub] Fix typos in the readme.txt of LWIP application
  - LED6 (BLUE) is ON when there is an issue during erase procedure
  - LED3 (ORANGE) is ON when there is an issue during program procedure

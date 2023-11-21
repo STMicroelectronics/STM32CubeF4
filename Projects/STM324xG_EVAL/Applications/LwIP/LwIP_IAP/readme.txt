@@ -43,7 +43,7 @@ If a DHCP server is available, a dynamic IP address can be allocated by enabling
 the DHCP process (#define LWIP_DHCP in lwipopts.h) 
 
 If a DHCP server is not available, after timeout connection, the device only gets a static
-IP address(the switch from static to dynamic IP adress is not available in this application).
+IP address(the switch from static to dynamic IP address is not available in this application).
 
 1- LwIP/LwIP_IAP/Binary directory contains the following binaries: 
 
@@ -57,7 +57,7 @@ IP address(the switch from static to dynamic IP adress is not available in this 
 
 - STM324xG_EVAL_HTTP_Server: run a http server application whuich can be executed to:
 
-* provide informations about STM32F4 and LwIP stack.
+* provide information about STM32F4 and LwIP stack.
 
 * allow to control the four LEDs located in the STM324xG_EVAL board
 

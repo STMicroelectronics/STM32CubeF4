@@ -188,7 +188,7 @@ void ADC_IRQHandler(void)
   
   /* Check whether ADC group regular end of unitary conversion caused         */
   /* the ADC interruption.                                                    */
-  /* Note: On this STM32 serie, ADC group regular end of conversion           */
+  /* Note: On this STM32 series, ADC group regular end of conversion           */
   /*       must be selected among end of unitary conversion                   */
   /*       or end of sequence conversions.                                    */
   /*       Refer to function "LL_ADC_REG_SetFlagEndOfConversion()".           */

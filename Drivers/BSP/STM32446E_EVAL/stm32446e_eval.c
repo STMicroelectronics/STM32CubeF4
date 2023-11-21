@@ -61,11 +61,11 @@ typedef struct
   */
 
 /**
-  * @brief STM32446E EVAL BSP Driver version number V2.1.1
+  * @brief STM32446E EVAL BSP Driver version number V2.1.2
   */
 #define __STM32446E_EVAL_BSP_VERSION_MAIN   (0x02) /*!< [31:24] main version */
 #define __STM32446E_EVAL_BSP_VERSION_SUB1   (0x01) /*!< [23:16] sub1 version */
-#define __STM32446E_EVAL_BSP_VERSION_SUB2   (0x01) /*!< [15:8]  sub2 version */
+#define __STM32446E_EVAL_BSP_VERSION_SUB2   (0x02) /*!< [15:8]  sub2 version */
 #define __STM32446E_EVAL_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */
 #define __STM32446E_EVAL_BSP_VERSION         ((__STM32446E_EVAL_BSP_VERSION_MAIN << 24)\
                                              |(__STM32446E_EVAL_BSP_VERSION_SUB1 << 16)\
@@ -1093,7 +1093,10 @@ void LCD_IO_WriteData(uint16_t Data)
   * @param  Size Size of byte to transmit to the register
   * @retval None
   */
-void LCD_IO_WriteMultipleData(uint8_t *pData, uint32_t Size)
+#if defined ( __GNUC__ ) && !defined (__ARMCC_VERSION) && !defined (__CC_ARM) /* GNU Compiler */
+__attribute__((optimize("O1")))
+#endif /* __GNUC__ */
+__NOINLINE void LCD_IO_WriteMultipleData(uint8_t *pData, uint32_t Size)
 {
   uint32_t counter;
   uint16_t *ptr = (uint16_t *) pData;

@@ -46,7 +46,7 @@ determinate the rotation direction.
 
   To emulate a quadrature encoder, TIM3 is configured in toggle mode to generate
 2 quadrature signals on (PC6 and PC7) at 10KHz. Each 1s, signals change phase
-(+90°/-90°) to emulate a Forward/Backward rotation.  
+(+90Â°/-90Â°) to emulate a Forward/Backward rotation.  
 
   TIM1 is configured in encoder mode interface, counting on TI1 and TI2.
   The counting direction corresponds to the rotation direction of the connected 

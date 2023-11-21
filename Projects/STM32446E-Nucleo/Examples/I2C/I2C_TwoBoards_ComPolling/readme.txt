@@ -55,7 +55,7 @@ the configuration of the needed I2C resources according to the used hardware (CL
 GPIO). You may update this function to change I2C configuration.
 
 The I2C communication is then initiated.
-The project is splitted in two parts the Master Board and the Slave Board
+The project is split in two parts the Master Board and the Slave Board
 - Master Board
   The HAL_I2C_Master_Receive() and the HAL_I2C_Master_Transmit() functions 
   allow respectively the reception and the transmission of a predefined data buffer
@@ -124,7 +124,7 @@ Connectivity, Communication, I2C, Polling, Master, Slave, Transmission, Receptio
   - This example has been tested with STM32F4xx-Nucleo board Rev C and can be
     easily tailored to any other supported device and development board.
 
-  - For This example to work properly, a 2.2 µF Capacitor must be present on the board in slot C26.    
+  - For This example to work properly, a 2.2 ÂµF Capacitor must be present on the board in slot C26.    
       
   - STM32F4xx-Nucleo Set-up
     - Connect Master board PB6 to Slave Board PB6

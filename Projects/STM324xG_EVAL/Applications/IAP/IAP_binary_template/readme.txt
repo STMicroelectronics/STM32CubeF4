@@ -78,10 +78,10 @@ In order to load the SysTick example with the IAP, you must do the following:
     - A binary file "STM324xG_EVAL_SysTick.bin" will be generated under "STM324xG_EVAL" folder. 
     - Finally load this image with IAP application
 
- - System Workbench for STM32: 
-    - Open System Workbench for STM32 toolchain
-    - Browse to the SW4STM32 workspace directory, select the project 
-      (.project file in \IAP_Binary_Template\SW4STM32 \STM324xG_EVAL directory).
+ - STM32CubeIDE: 
+    - Open STM32CubeIDE toolchain
+    - Browse to the STM32CubeIDE workspace directory, select the project 
+      (.project file in \IAP_Binary_Template\STM32CubeIDE \STM324xG_EVAL directory).
     - Rebuild all project files: Select the project in the "Project explorer" window 
       then click on Project->build project menu.
     - Load this image with the IAP application (Select option 1 in IAP_Main menu)

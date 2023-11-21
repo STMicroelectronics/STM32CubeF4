@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    LwIP/LwIP_TFTP_Server/Src/app_ethernet.c
   * @author  MCD Application Team
-  * @brief   Ethernet specefic module
+  * @brief   Ethernet specific module
   ******************************************************************************
   * @attention
   *

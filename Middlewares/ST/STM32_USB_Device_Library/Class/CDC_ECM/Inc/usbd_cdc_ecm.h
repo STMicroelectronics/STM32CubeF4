@@ -243,15 +243,19 @@ extern USBD_ClassTypeDef  USBD_CDC_ECM;
 uint8_t  USBD_CDC_ECM_RegisterInterface(USBD_HandleTypeDef *pdev,
                                         USBD_CDC_ECM_ItfTypeDef *fops);
 
-uint8_t  USBD_CDC_ECM_SetTxBuffer(USBD_HandleTypeDef *pdev, uint8_t *pbuff,
-                                  uint32_t length);
-
 uint8_t  USBD_CDC_ECM_SetRxBuffer(USBD_HandleTypeDef *pdev, uint8_t *pbuff);
 
 uint8_t  USBD_CDC_ECM_ReceivePacket(USBD_HandleTypeDef *pdev);
 
+#ifdef USE_USBD_COMPOSITE
+uint8_t  USBD_CDC_ECM_TransmitPacket(USBD_HandleTypeDef *pdev, uint8_t ClassId);
+uint8_t  USBD_CDC_ECM_SetTxBuffer(USBD_HandleTypeDef *pdev, uint8_t *pbuff,
+                                  uint32_t length, uint8_t ClassId);
+#else
 uint8_t  USBD_CDC_ECM_TransmitPacket(USBD_HandleTypeDef *pdev);
-
+uint8_t  USBD_CDC_ECM_SetTxBuffer(USBD_HandleTypeDef *pdev, uint8_t *pbuff,
+                                  uint32_t length);
+#endif /* USE_USBD_COMPOSITE */
 uint8_t  USBD_CDC_ECM_SendNotification(USBD_HandleTypeDef *pdev,
                                        USBD_CDC_NotifCodeTypeDef  Notif,
                                        uint16_t bVal, uint8_t *pData);

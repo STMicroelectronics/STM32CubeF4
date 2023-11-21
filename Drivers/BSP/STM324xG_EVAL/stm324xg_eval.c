@@ -58,11 +58,11 @@ typedef struct
   */
 
 /**
-  * @brief STM324xG EVAL BSP Driver version number V3.0.3
+  * @brief STM324xG EVAL BSP Driver version number V3.0.4
   */
 #define __STM324xG_EVAL_BSP_VERSION_MAIN   (0x03) /*!< [31:24] main version */
 #define __STM324xG_EVAL_BSP_VERSION_SUB1   (0x00) /*!< [23:16] sub1 version */
-#define __STM324xG_EVAL_BSP_VERSION_SUB2   (0x03) /*!< [15:8]  sub2 version */
+#define __STM324xG_EVAL_BSP_VERSION_SUB2   (0x04) /*!< [15:8]  sub2 version */
 #define __STM324xG_EVAL_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */ 
 #define __STM324xG_EVAL_BSP_VERSION         ((__STM324xG_EVAL_BSP_VERSION_MAIN << 24)\
                                              |(__STM324xG_EVAL_BSP_VERSION_SUB1 << 16)\
@@ -590,7 +590,7 @@ static void I2Cx_Write(uint8_t Addr, uint8_t Reg, uint8_t Value)
   /* Check the communication status */
   if(status != HAL_OK)
   {
-    /* I2C error occured */
+    /* I2C error occurred */
     I2Cx_Error(Addr);
   }
 }
@@ -613,7 +613,7 @@ static HAL_StatusTypeDef I2Cx_ReadMultiple(uint8_t Addr, uint16_t Reg, uint16_t 
   /* Check the communication status */
   if(status != HAL_OK)
   {
-    /* I2C error occured */
+    /* I2C error occurred */
     I2Cx_Error(Addr);
   }
   return status;    
@@ -661,10 +661,10 @@ static HAL_StatusTypeDef I2Cx_IsDeviceReady(uint16_t DevAddress, uint32_t Trials
   */
 static void I2Cx_Error(uint8_t Addr)
 {
-  /* De-initialize the IOE comunication BUS */
+  /* De-initialize the IOE communication BUS */
   HAL_I2C_DeInit(&heval_I2c);
   
-  /* Re-Initiaize the IOE comunication BUS */
+  /* Re-Initiaize the IOE communication BUS */
   I2Cx_Init();  
 }
 

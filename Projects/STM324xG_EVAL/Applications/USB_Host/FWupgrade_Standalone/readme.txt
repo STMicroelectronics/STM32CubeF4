@@ -40,11 +40,11 @@ It's worth noting that the system clock (SYSCLK) can be configured, depending on
  - SYSCLK is set to 180 MHz: for only HS Core, since no embedded PHY is used.
 
 This application uses the USB Host to:
- - DOWNLOAD: Reads the defined image (.bin) file “DOWNLOAD_FILENAME” from the thumb drive and writes it
+ - DOWNLOAD: Reads the defined image (.bin) file "DOWNLOAD_FILENAME" from the thumb drive and writes it
              to the embedded Flash memory.
  - UPLOAD:   Reads the entire embedded Flash memory and saves the contents to the defined file name 
-             “UPLOAD_FILENAME” in the thumb drive.
- - JUMP:     Executes the user code at the defined user application start address “APPLICATION_ADDRESS”.
+             "UPLOAD_FILENAME" in the thumb drive.
+ - JUMP:     Executes the user code at the defined user application start address "APPLICATION_ADDRESS".
              Image which must be defined from this flash address: 0x0800C000
   
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
@@ -132,7 +132,7 @@ In order to make the program work, you must do the following :
 
 1. Load the binary image of the user program to the root directory of a USB key. You can use the 
    provided binary images under the USB_Host/FWupgrade_Standalone/Binary folder. 
-   The binary should be renamed to “image.bin”.
+   The binary should be renamed to "image.bin".
 
 2. Program the firmware upgrade application into the internal Flash memory.
    a. Open the project (under USB_Host/FWupgrade_Standalone) with your preferred toolchain.
@@ -142,8 +142,8 @@ After the board reset and depending on the Key button state:
    1. Key button pressed: The firmware upgrade application is executed.
    2. Key button not pressed: A test on the user application start address will be performed and one of
       the below processes is executed:
-      – User vector table available: User application is executed.
-      – User vector table not available: firmware upgrade application is executed.
+      â€“ User vector table available: User application is executed.
+      â€“ User vector table not available: firmware upgrade application is executed.
 
 During the firmware upgrade application execution, there is a continuous check on the Key button pressed
 state time. Depending on the state time of the Key button, one of the following processes is executed:
@@ -154,43 +154,43 @@ state time. Depending on the state time of the Key button, one of the following 
 
 STM32 Eval boards LEDs can be used to monitor the application status:
  - Red LED blinks in infinite loop 
-	 –> Error: USB key disconnected.
+	 â€“> Error: USB key disconnected.
 
  - Red LED blinks in infinite loop and Orange/Blue LEDs are ON 
-	 –> Error: Flash programming error.
+	 â€“> Error: Flash programming error.
 	
  - Red LED blinks in infinite loop and Green LED is ON 
-	 –> Error: Download done and USB key disconnected.
+	 â€“> Error: Download done and USB key disconnected.
 
  - Red LED blinks in infinite loop and Blue/Orange/Green LEDs are ON
-	 –> Error: Binary file not available
+	 â€“> Error: Binary file not available
 
  - Red/Blue/Orange LEDs blink in infinite loop
-	 –> Error: Buffer size limit, Exceed 32Kbyte
+	 â€“> Error: Buffer size limit, Exceed 32Kbyte
 	
  - Red LED blinks in infinite loop and Blue LED is ON
-	 –> Error: No available Flash memory size to load the binary file.
+	 â€“> Error: No available Flash memory size to load the binary file.
 	
  - Red/Orange LEDs blink in infinite loop
-	 –> Error: Flash erase error.
+	 â€“> Error: Flash erase error.
 
  - Red/Blue LEDs are ON
-	 –> UPLOAD condition verified and the user should release the Key button.
+	 â€“> UPLOAD condition verified and the user should release the Key button.
 	
  - Blue LED is ON
-	 –> DOWNLOAD ongoing.
+	 â€“> DOWNLOAD ongoing.
 	
  - Orange/Red LEDs are ON
-	 –> DOWNLOAD done and UPLOAD is ongoing.
+	 â€“> DOWNLOAD done and UPLOAD is ongoing.
 
  - Orange/Blue LEDs are ON
-	 –> UPLOAD is ongoing.
+	 â€“> UPLOAD is ongoing.
 	
  - Red LED blinks in infinite loop and Orange LED is ON
-	 –> USB key read out protection ON.
+	 â€“> USB key read out protection ON.
 	
  - Green LED is ON
-	 –> DOWNLOAD and UPLOAD done with success; and the MCU waiting until you press the Key button before
+	 â€“> DOWNLOAD and UPLOAD done with success; and the MCU waiting until you press the Key button before
       executing the JUMP command.
   
 

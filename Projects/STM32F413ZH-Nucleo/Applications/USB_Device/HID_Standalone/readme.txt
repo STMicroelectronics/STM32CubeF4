@@ -34,9 +34,9 @@ function to configure the system clock (SYSCLK) to run at 100 MHz. The Full Spee
 internally a 48-MHz clock which is coming from the PLL I2S.
 
 The 48 MHz clock for the USB FS can be derived from one of the two following sources:
-  – PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
+  â€“ PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLVCO/PLLQ).
-  – PLLI2S clock (clocked by the HSE): If the USB uses the PLLI2S as clock source, the PLLI2S clock must be programmed
+  â€“ PLLI2S clock (clocked by the HSE): If the USB uses the PLLI2S as clock source, the PLLI2S clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLI2SVCO/PLLI2SQ).
  
 This application supports remote wakeup (which is the ability of a USB device to bring a suspended bus back

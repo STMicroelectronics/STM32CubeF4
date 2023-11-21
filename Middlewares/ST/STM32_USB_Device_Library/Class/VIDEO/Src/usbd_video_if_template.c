@@ -234,14 +234,16 @@ static int8_t VIDEO_Itf_Data(uint8_t **pbuf, uint16_t *psize, uint16_t *pcktidx)
     *psize = (uint16_t)UVC_PACKET_SIZE;
 
     /* Get the pointer to the next packet to be transmitted */
-    *pbuf = (uint8_t *)(*(ImagePtr + img_count) + (packet_index * ((uint16_t)(UVC_PACKET_SIZE - (UVC_HEADER_PACKET_CNT * 2U)))));
+    *pbuf = (uint8_t *)(*(ImagePtr + img_count) + \
+                        (packet_index * ((uint16_t)(UVC_PACKET_SIZE - (UVC_HEADER_PACKET_CNT * 2U)))));
   }
   else if ((packet_index == packet_count))
   {
     if (packet_remainder != 0U)
     {
       /* Get the pointer to the next packet to be transmitted */
-      *pbuf = (uint8_t *)(*(ImagePtr + img_count) + (packet_index * ((uint16_t)(UVC_PACKET_SIZE - (UVC_HEADER_PACKET_CNT * 2U)))));
+      *pbuf = (uint8_t *)(*(ImagePtr + img_count) + \
+                          (packet_index * ((uint16_t)(UVC_PACKET_SIZE - (UVC_HEADER_PACKET_CNT * 2U)))));
 
       /* Set the current packet size */
       *psize = (uint16_t)(packet_remainder + (UVC_HEADER_PACKET_CNT * 2U));

@@ -33,15 +33,15 @@ function to configure the system clock (SYSCLK) to run at 180 MHz. The Full Spee
 internally a 48-MHz clock which is coming from the PLL SAI.
 
 The 48 MHz clock for the USB FS can be derived from one of the two following sources:
-  – PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
+  â€“ PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLVCO/PLLQ).
-  – PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI clock must be programmed
+  â€“ PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLSAIVCO/PLLSAIP).
 
 When the application is started, the connected USB flash disk device is detected in MSC mode and gets 
 initialized. The STM32 MCU behaves as a MSC Host, it enumerates the device and extracts VID, PID, 
 manufacturer name, Serial no and product name information and displays it on the LCD screen. 
-This application is based on read/write file and explore the USB flash disk content trough a MSC routine.
+This application is based on read/write file and explore the USB flash disk content through a MSC routine.
 LCD and joystick are provided by Adafruit 1.8" TFT shield to be plugged on Arduino connectors.
 
 User can start any operations using User button:
@@ -64,7 +64,7 @@ For more details about the STM32Cube USB Host library, please refer to UM1720
 @par USB Library Configuration
 
 It is possible to fine tune needed USB Host features by modifying defines values in USBH configuration
-file “usbh_conf.h” available under the project includes directory, in a way to fit the application
+file "usbh_conf.h" available under the project includes directory, in a way to fit the application
 requirements, such as:
 - Level of debug: USBH_DEBUG_LEVEL
                   0: No debug messages

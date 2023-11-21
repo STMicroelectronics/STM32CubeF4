@@ -79,7 +79,8 @@ static void SC_SendData(SC_ADPU_CommandsTypeDef *SCADPU, SC_ADPU_ResponseTypeDef
   */
 void SC_Handler(SC_State *SCState, SC_ADPU_CommandsTypeDef *SC_ADPU, SC_ADPU_ResponseTypeDef *SC_Response)
 {
-  uint32_t i, j;
+  uint32_t i;
+  uint32_t j;
 
   switch (*SCState)
   {
@@ -316,8 +317,11 @@ static void SC_AnswerReq(SC_State *SC_state, uint8_t *atr_buffer, uint8_t length
   */
 static uint8_t SC_decode_Answer2reset(uint8_t *card)
 {
-  uint32_t i, flag = 0U, protocol;
-  uint8_t index = 0U, level = 0U;
+  uint32_t i = 0U;
+  uint32_t flag = 0U;
+  uint32_t protocol;
+  uint8_t index = 0U;
+  uint8_t level = 0U;
 
   /******************************TS/T0 Decode************************************/
   index++;

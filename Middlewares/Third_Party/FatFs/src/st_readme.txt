@@ -19,6 +19,10 @@
   ******************************************************************************
   @endverbatim
 
+### V2.1.5/18-08-2023 ###
+============================
++ Add LICENSE.md file at the root directory.
+
 ### V2.1.4/18-10-2019 ###
 ============================
 + Fix wrong usage of the "memcpy" in the SD_Write() function

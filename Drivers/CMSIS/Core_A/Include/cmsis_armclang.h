@@ -1,11 +1,11 @@
 /**************************************************************************//**
  * @file     cmsis_armclang.h
  * @brief    CMSIS compiler specific macros, functions, instructions
- * @version  V1.0.2
- * @date     10. January 2018
+ * @version  V1.2.1
+ * @date     05. May 2021
  ******************************************************************************/
 /*
- * Copyright (c) 2009-2018 Arm Limited. All rights reserved.
+ * Copyright (c) 2009-2021 Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,10 +26,6 @@
 #define __CMSIS_ARMCLANG_H
 
 #pragma clang system_header   /* treat file as system include file */
-
-#ifndef __ARM_COMPAT_H
-#include <arm_compat.h>    /* Compatibility header for Arm Compiler 5 intrinsics */
-#endif
 
 /* CMSIS compiler specific defines */
 #ifndef   __ASM
@@ -102,6 +98,9 @@
 #ifndef   __PACKED
   #define __PACKED                               __attribute__((packed))
 #endif
+#ifndef   __COMPILER_BARRIER
+  #define __COMPILER_BARRIER()                   __ASM volatile("":::"memory")
+#endif
 
 /* ##########################  Core Instruction Access  ######################### */
 /**
@@ -127,29 +126,17 @@
 /**
   \brief   Instruction Synchronization Barrier
  */
-#define __ISB() do {\
-                   __schedule_barrier();\
-                   __builtin_arm_isb(0xF);\
-                   __schedule_barrier();\
-                } while (0U)
+#define __ISB()                           __builtin_arm_isb(0xF)
 
 /**
   \brief   Data Synchronization Barrier
  */
-#define __DSB() do {\
-                   __schedule_barrier();\
-                   __builtin_arm_dsb(0xF);\
-                   __schedule_barrier();\
-                } while (0U)
+#define __DSB()                           __builtin_arm_dsb(0xF)
 
 /**
   \brief   Data Memory Barrier
  */
-#define __DMB() do {\
-                   __schedule_barrier();\
-                   __builtin_arm_dmb(0xF);\
-                   __schedule_barrier();\
-                } while (0U)
+#define __DMB()                           __builtin_arm_dmb(0xF)
 
 /**
   \brief   Reverse byte order (32 bit)
@@ -214,7 +201,23 @@ __STATIC_FORCEINLINE uint32_t __ROR(uint32_t op1, uint32_t op2)
   \param [in]  value  Value to count the leading zeros
   \return             number of leading zeros in value
  */
-#define __CLZ           (uint8_t)__builtin_clz
+__STATIC_FORCEINLINE uint8_t __CLZ(uint32_t value)
+{
+  /* Even though __builtin_clz produces a CLZ instruction on ARM, formally
+     __builtin_clz(0) is undefined behaviour, so handle this case specially.
+     This guarantees ARM-compatible results if happening to compile on a non-ARM
+     target, and ensures the compiler doesn't decide to activate any
+     optimisations using the logic "value was passed to __builtin_clz, so it
+     is non-zero".
+     ARM Compiler 6.10 and possibly earlier will optimise this test away, leaving a
+     single CLZ instruction.
+   */
+  if (value == 0U)
+  {
+    return 32U;
+  }
+  return __builtin_clz(value);
+}
 
 /**
   \brief   LDR Exclusive (8 bit)
@@ -295,8 +298,115 @@ __STATIC_FORCEINLINE uint32_t __ROR(uint32_t op1, uint32_t op2)
  */
 #define __USAT             __builtin_arm_usat
 
+/* ###################  Compiler specific Intrinsics  ########################### */
+/** \defgroup CMSIS_SIMD_intrinsics CMSIS SIMD Intrinsics
+  Access to dedicated SIMD instructions
+  @{
+*/
+
+#if (defined (__ARM_FEATURE_DSP) && (__ARM_FEATURE_DSP == 1))
+
+#define     __SADD8                 __builtin_arm_sadd8
+#define     __SADD16                __builtin_arm_sadd16
+#define     __QADD8                 __builtin_arm_qadd8
+#define     __QSUB8                 __builtin_arm_qsub8
+#define     __QADD16                __builtin_arm_qadd16
+#define     __SHADD16               __builtin_arm_shadd16
+#define     __QSUB16                __builtin_arm_qsub16
+#define     __SHSUB16               __builtin_arm_shsub16
+#define     __QASX                  __builtin_arm_qasx
+#define     __SHASX                 __builtin_arm_shasx
+#define     __QSAX                  __builtin_arm_qsax
+#define     __SHSAX                 __builtin_arm_shsax
+#define     __SXTB16                __builtin_arm_sxtb16
+#define     __SMUAD                 __builtin_arm_smuad
+#define     __SMUADX                __builtin_arm_smuadx
+#define     __SMLAD                 __builtin_arm_smlad
+#define     __SMLADX                __builtin_arm_smladx
+#define     __SMLALD                __builtin_arm_smlald
+#define     __SMLALDX               __builtin_arm_smlaldx
+#define     __SMUSD                 __builtin_arm_smusd
+#define     __SMUSDX                __builtin_arm_smusdx
+#define     __SMLSDX                __builtin_arm_smlsdx
+#define     __USAT16                __builtin_arm_usat16
+#define     __SSUB8                 __builtin_arm_ssub8
+#define     __SXTB16                __builtin_arm_sxtb16
+#define     __SXTAB16               __builtin_arm_sxtab16
+
+
+__STATIC_FORCEINLINE  int32_t __QADD( int32_t op1,  int32_t op2)
+{
+  int32_t result;
+
+  __ASM volatile ("qadd %0, %1, %2" : "=r" (result) : "r" (op1), "r" (op2) );
+  return(result);
+}
+
+__STATIC_FORCEINLINE  int32_t __QSUB( int32_t op1,  int32_t op2)
+{
+  int32_t result;
+
+  __ASM volatile ("qsub %0, %1, %2" : "=r" (result) : "r" (op1), "r" (op2) );
+  return(result);
+}
+
+#define __PKHBT(ARG1,ARG2,ARG3)          ( ((((uint32_t)(ARG1))          ) & 0x0000FFFFUL) |  \
+                                           ((((uint32_t)(ARG2)) << (ARG3)) & 0xFFFF0000UL)  )
+
+#define __PKHTB(ARG1,ARG2,ARG3)          ( ((((uint32_t)(ARG1))          ) & 0xFFFF0000UL) |  \
+                                           ((((uint32_t)(ARG2)) >> (ARG3)) & 0x0000FFFFUL)  )
+
+__STATIC_FORCEINLINE int32_t __SMMLA (int32_t op1, int32_t op2, int32_t op3)
+{
+  int32_t result;
+
+  __ASM volatile ("smmla %0, %1, %2, %3" : "=r" (result): "r"  (op1), "r" (op2), "r" (op3) );
+  return(result);
+}
+
+#endif /* (__ARM_FEATURE_DSP == 1) */
 
 /* ###########################  Core Function Access  ########################### */
+
+/**
+  \brief   Enable IRQ Interrupts
+  \details Enables IRQ interrupts by clearing the I-bit in the CPSR.
+           Can only be executed in Privileged modes.
+ */
+__STATIC_FORCEINLINE void __enable_irq(void)
+{
+  __ASM volatile ("cpsie i" : : : "memory");
+}
+
+/**
+  \brief   Disable IRQ Interrupts
+  \details Disables IRQ interrupts by setting the I-bit in the CPSR.
+  Can only be executed in Privileged modes.
+ */
+__STATIC_FORCEINLINE void __disable_irq(void)
+{
+  __ASM volatile ("cpsid i" : : : "memory");
+}
+
+/**
+  \brief   Enable FIQ
+  \details Enables FIQ interrupts by clearing the F-bit in the CPSR.
+           Can only be executed in Privileged modes.
+ */
+__STATIC_FORCEINLINE void __enable_fault_irq(void)
+{
+  __ASM volatile ("cpsie f" : : : "memory");
+}
+
+/**
+  \brief   Disable FIQ
+  \details Disables FIQ interrupts by setting the F-bit in the CPSR.
+           Can only be executed in Privileged modes.
+ */
+__STATIC_FORCEINLINE void __disable_fault_irq(void)
+{
+  __ASM volatile ("cpsid f" : : : "memory");
+}
 
 /**
   \brief   Get FPSCR
@@ -327,7 +437,7 @@ __STATIC_FORCEINLINE uint32_t __get_CPSR(void)
  */
 __STATIC_FORCEINLINE void __set_CPSR(uint32_t cpsr)
 {
-__ASM volatile ("MSR cpsr, %0" : : "r" (cpsr) : "memory");
+  __ASM volatile ("MSR cpsr, %0" : : "r" (cpsr) : "cc", "memory");
 }
 
 /** \brief  Get Mode
@@ -335,7 +445,7 @@ __ASM volatile ("MSR cpsr, %0" : : "r" (cpsr) : "memory");
  */
 __STATIC_FORCEINLINE uint32_t __get_mode(void)
 {
-	return (__get_CPSR() & 0x1FU);
+  return (__get_CPSR() & 0x1FU);
 }
 
 /** \brief  Set Mode
@@ -349,7 +459,7 @@ __STATIC_FORCEINLINE void __set_mode(uint32_t mode)
 /** \brief  Get Stack Pointer
     \return Stack Pointer value
  */
-__STATIC_FORCEINLINE uint32_t __get_SP()
+__STATIC_FORCEINLINE uint32_t __get_SP(void)
 {
   uint32_t result;
   __ASM volatile("MOV  %0, sp" : "=r" (result) : : "memory");
@@ -367,7 +477,7 @@ __STATIC_FORCEINLINE void __set_SP(uint32_t stack)
 /** \brief  Get USR/SYS Stack Pointer
     \return USR/SYS Stack Pointer value
  */
-__STATIC_FORCEINLINE uint32_t __get_SP_usr()
+__STATIC_FORCEINLINE uint32_t __get_SP_usr(void)
 {
   uint32_t cpsr;
   uint32_t result;
@@ -375,8 +485,8 @@ __STATIC_FORCEINLINE uint32_t __get_SP_usr()
     "MRS     %0, cpsr   \n"
     "CPS     #0x1F      \n" // no effect in USR mode
     "MOV     %1, sp     \n"
-    "MSR     cpsr_c, %2 \n" // no effect in USR mode
-    "ISB" :  "=r"(cpsr), "=r"(result) : "r"(cpsr) : "memory"
+    "MSR     cpsr_c, %0 \n" // no effect in USR mode
+    "ISB" :  "=r"(cpsr), "=r"(result) : : "memory"
    );
   return result;
 }
@@ -391,8 +501,8 @@ __STATIC_FORCEINLINE void __set_SP_usr(uint32_t topOfProcStack)
     "MRS     %0, cpsr   \n"
     "CPS     #0x1F      \n" // no effect in USR mode
     "MOV     sp, %1     \n"
-    "MSR     cpsr_c, %2 \n" // no effect in USR mode
-    "ISB" : "=r"(cpsr) : "r" (topOfProcStack), "r"(cpsr) : "memory"
+    "MSR     cpsr_c, %0 \n" // no effect in USR mode
+    "ISB" : "=r"(cpsr) : "r" (topOfProcStack) : "memory"
    );
 }
 
@@ -472,7 +582,7 @@ __STATIC_INLINE void __FPU_Enable(void)
     "        VMOV    D14,R2,R2         \n"
     "        VMOV    D15,R2,R2         \n"
 
-#if __ARM_NEON == 1
+#if (defined(__ARM_NEON) && (__ARM_NEON == 1))
     //Initialise D32 registers to 0
     "        VMOV    D16,R2,R2         \n"
     "        VMOV    D17,R2,R2         \n"
@@ -493,10 +603,11 @@ __STATIC_INLINE void __FPU_Enable(void)
 #endif
 
     //Initialise FPSCR to a known state
-    "        VMRS    R2,FPSCR          \n"
-    "        LDR     R3,=0x00086060    \n" //Mask off all bits that do not have to be preserved. Non-preserved bits can/should be zero.
-    "        AND     R2,R2,R3          \n"
-    "        VMSR    FPSCR,R2            "
+    "        VMRS    R1,FPSCR          \n"
+    "        LDR     R2,=0x00086060    \n" //Mask off all bits that do not have to be preserved. Non-preserved bits can/should be zero.
+    "        AND     R1,R1,R2          \n"
+    "        VMSR    FPSCR,R1            "
+    : : : "cc", "r1", "r2"
   );
 }
 

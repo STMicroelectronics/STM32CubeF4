@@ -80,7 +80,7 @@ Timers, Input, signals, PWM, External signal, Frequency, Duty cycle, Measure
     board and can be easily tailored to any other supported device 
     and development board.
 
-  - For This example to work properly, a 2.2 µF Capacitor must be present on the board in slot C26.
+  - For This example to work properly, a 2.2 ÂµF Capacitor must be present on the board in slot C26.
 
   - STM32F4xx-Nucleo Set-up
     - Connect the external signal to measure to the TIM1 CH2 pin PA.09 (pin 21 in CN10  

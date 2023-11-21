@@ -171,7 +171,7 @@
 
 /* Two channels are used:
    - one channel as input which is connected to I2S SCK in stereo mode
-   - one channel as outupt which divides the frequency on the input
+   - one channel as output which divides the frequency on the input
 */
 
 #define AUDIO_TIMx_CLK_ENABLE()             __HAL_RCC_TIM4_CLK_ENABLE()

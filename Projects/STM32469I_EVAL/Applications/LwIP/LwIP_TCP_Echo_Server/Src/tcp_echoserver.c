@@ -123,7 +123,7 @@ static err_t tcp_echoserver_accept(void *arg, struct tcp_pcb *newpcb, err_t err)
   /* set priority for the newly accepted tcp connection newpcb */
   tcp_setprio(newpcb, TCP_PRIO_MIN);
 
-  /* allocate structure es to maintain tcp connection informations */
+  /* allocate structure es to maintain tcp connection information */
   es = (struct tcp_echoserver_struct *)mem_malloc(sizeof(struct tcp_echoserver_struct));
   if (es != NULL)
   {

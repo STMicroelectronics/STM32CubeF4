@@ -99,7 +99,7 @@ static int8_t CDC_Itf_Init(void)
 
   /* ##-2- Put UART peripheral in IT reception process ######################## */
   /* Any data received will be stored in "UserTxBuffer" buffer */
-  if (HAL_UART_Receive_IT(&UartHandle, (uint8_t *) UserTxBuffer, 1) != HAL_OK)
+  if (HAL_UART_Receive_IT(&UartHandle, (uint8_t *)(UserTxBuffer + UserTxBufPtrIn), 1) != HAL_OK)
   {
     /* Transfer error in reception process */
     Error_Handler();

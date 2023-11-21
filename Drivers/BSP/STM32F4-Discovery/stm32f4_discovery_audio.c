@@ -220,7 +220,7 @@ uint8_t BSP_AUDIO_OUT_Init(uint16_t OutputDevice, uint8_t Volume, uint32_t Audio
   
   if(ret == AUDIO_OK)
   {
-    /* Retieve audio codec identifier */
+    /* Retrieve audio codec identifier */
     if(((cs43l22_drv.ReadID(AUDIO_I2C_ADDRESS)) & CS43L22_ID_MASK) == CS43L22_ID)
     {  
       /* Initialize the audio driver structure */

@@ -40,7 +40,7 @@ It's worth noting that the system clock (SYSCLK) can be configured, depending on
 When the application is started, the connected HID device (Mouse/Keyboard) is detected in HID mode and 
 gets initialized. The STM32 MCU behaves as a HID Host, it enumerates the device and extracts VID, PID, 
 manufacturer name, Serial no and product name information and displays it on the LCD screen. 
-This application is based on interacting with a HID device (Mouse/Keyboard) trough a HID routine.
+This application is based on interacting with a HID device (Mouse/Keyboard) through a HID routine.
 
 A menu is displayed and the user can select any operation from the menu using the Joystick buttons:
  - "Start HID" operation starts the appropriate HID application to the attached HID Device.
@@ -75,7 +75,7 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_FS" when using USB Full Speed (FS) Core 
 
 It is possible to fine tune needed USB Host features by modifying defines values in USBH configuration
-file “usbh_conf.h” available under the project includes directory, in a way to fit the application
+file "usbh_conf.h" available under the project includes directory, in a way to fit the application
 requirements, such as:
 - Level of debug: USBH_DEBUG_LEVEL
                   0: No debug messages
@@ -97,7 +97,7 @@ Connectivity, USB_Host, HID, Full Speed, High Speed, Joystick, Mouse, Keyboard, 
   - USB_Host/HID_Standalone/Src/menu.c                  HID State Machine
   - USB_Host/HID_Standalone/Src/usbh_conf.c             General low level driver configuration
   - USB_Host/HID_Standalone/Src/mouse.c                 HID mouse functions file
-  - USB_Host/HID_Standalone/Src/keybaord.c              HID keyboard functions file
+  - USB_Host/HID_Standalone/Src/keyboard.c              HID keyboard functions file
   - USB_Host/HID_Standalone/Inc/main.h                  Main program header file
   - USB_Host/HID_Standalone/Inc/stm32f4xx_it.h          Interrupt handlers header file
   - USB_Host/HID_Standalone/Inc/lcd_log_conf.h          LCD log configuration file

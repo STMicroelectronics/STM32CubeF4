@@ -173,7 +173,7 @@ static ES_WIFI_SecurityType_t ParseSecurity(char* ptr)
 }
 
 /**
-  * @brief  Parses ES module informations and save them in the handle.
+  * @brief  Parses ES module information and save them in the handle.
   * @param  Obj: pointer to module handle
   * @param  ptr: pointer to string
   * @retval None.
@@ -789,7 +789,7 @@ ES_WIFI_Status_t ES_WIFI_GetNetworkSettings(ES_WIFIObject_t *Obj)
 }
 
 /**
-  * @brief  retrn the MAC address of the es module.
+  * @brief  return the MAC address of the es module.
   * @param  Obj: pointer to module handle
   * @param  mac: pointer to the MAC address array.
   * @retval Operation Status.
@@ -810,7 +810,7 @@ ES_WIFI_Status_t ES_WIFI_GetMACAddress(ES_WIFIObject_t *Obj, uint8_t *mac)
 }
 
 /**
-  * @brief  retrn the IP address of the es module.
+  * @brief  return the IP address of the es module.
   * @param  Obj: pointer to module handle
   * @param  mac: pointer to the IP address array.
   * @retval Operation Status.

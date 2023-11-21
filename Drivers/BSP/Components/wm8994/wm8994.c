@@ -2,35 +2,16 @@
   ******************************************************************************
   * @file    wm8994.c
   * @author  MCD Application Team
-  * @version V2.1.0
-  * @date    22-February-2016
-  * @brief   This file provides the WM8994 Audio Codec driver.   
+  * @brief   This file provides the WM8994 Audio Codec driver.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  * Copyright (c) 2016 STMicroelectronics.
+  * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -106,6 +87,8 @@ AUDIO_DrvTypeDef wm8994_drv =
 
 static uint32_t outputEnabled = 0;
 static uint32_t inputEnabled = 0;
+static uint8_t ColdStartup = 1;
+
 /**
   * @}
   */ 
@@ -117,6 +100,7 @@ static uint8_t CODEC_IO_Write(uint8_t Addr, uint16_t Reg, uint16_t Value);
 /**
   * @}
   */ 
+
 
 /** @defgroup WM8994_Private_Functions
   * @{
@@ -139,25 +123,31 @@ uint32_t wm8994_Init(uint16_t DeviceAddr, uint16_t OutputInputDevice, uint8_t Vo
   uint16_t output_device = OutputInputDevice & 0xFF;
   uint16_t input_device = OutputInputDevice & 0xFF00;
   uint16_t power_mgnt_reg_1 = 0;
+  uint16_t tmp;
   
   /* Initialize the Control interface of the Audio Codec */
   AUDIO_IO_Init();
   /* wm8994 Errata Work-Arounds */
-  counter += CODEC_IO_Write(DeviceAddr, 0x102, 0x0003);
-  counter += CODEC_IO_Write(DeviceAddr, 0x817, 0x0000);
-  counter += CODEC_IO_Write(DeviceAddr, 0x102, 0x0000);
-  
+  tmp = 0x0003;
+  counter += CODEC_IO_Write(DeviceAddr, 0x102, tmp);
+  tmp = 0x0000;
+  counter += CODEC_IO_Write(DeviceAddr, 0x817, tmp);
+  counter += CODEC_IO_Write(DeviceAddr, 0x102, tmp);
+
   /* Enable VMID soft start (fast), Start-up Bias Current Enabled */
-  counter += CODEC_IO_Write(DeviceAddr, 0x39, 0x006C);
-  
+  tmp = 0x006C;
+  counter += CODEC_IO_Write(DeviceAddr, WM8994_ANTIPOP2, tmp);
+
     /* Enable bias generator, Enable VMID */
   if (input_device > 0)
   {
-    counter += CODEC_IO_Write(DeviceAddr, 0x01, 0x0013);
+    tmp = 0x0013;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_1, tmp);
   }
   else
   {
-    counter += CODEC_IO_Write(DeviceAddr, 0x01, 0x0003);
+    tmp = 0x0003;
+	counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_1, tmp);
   }
 
   /* Add Delay */
@@ -167,42 +157,49 @@ uint32_t wm8994_Init(uint16_t DeviceAddr, uint16_t OutputInputDevice, uint8_t Vo
   if (output_device > 0)
   {
     outputEnabled = 1;
+
     switch (output_device)
     {
     case OUTPUT_DEVICE_SPEAKER:
       /* Enable DAC1 (Left), Enable DAC1 (Right),
       Disable DAC2 (Left), Disable DAC2 (Right)*/
-      counter += CODEC_IO_Write(DeviceAddr, 0x05, 0x0C0C);
+      tmp = 0x0C0C;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_5, tmp);
 
       /* Enable the AIF1 Timeslot 0 (Left) to DAC 1 (Left) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x601, 0x0000);
+      tmp = 0x0000;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_LMR, tmp);
 
       /* Enable the AIF1 Timeslot 0 (Right) to DAC 1 (Right) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x602, 0x0000);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_RMR, tmp);
 
       /* Disable the AIF1 Timeslot 1 (Left) to DAC 2 (Left) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x604, 0x0002);
+      tmp = 0x0002;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_LMR, tmp);
 
       /* Disable the AIF1 Timeslot 1 (Right) to DAC 2 (Right) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x605, 0x0002);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_RMR, tmp);
       break;
 
     case OUTPUT_DEVICE_HEADPHONE:
       /* Disable DAC1 (Left), Disable DAC1 (Right),
       Enable DAC2 (Left), Enable DAC2 (Right)*/
-      counter += CODEC_IO_Write(DeviceAddr, 0x05, 0x0303);
+      tmp = 0x0303;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_5, tmp);
 
       /* Enable the AIF1 Timeslot 0 (Left) to DAC 1 (Left) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x601, 0x0001);
+      tmp = 0x0001;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_LMR, tmp);
 
       /* Enable the AIF1 Timeslot 0 (Right) to DAC 1 (Right) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x602, 0x0001);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_RMR, tmp);
 
       /* Disable the AIF1 Timeslot 1 (Left) to DAC 2 (Left) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x604, 0x0000);
+      tmp = 0x0000;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_LMR, tmp);
 
       /* Disable the AIF1 Timeslot 1 (Right) to DAC 2 (Right) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x605, 0x0000);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_RMR, tmp);
       break;
 
     case OUTPUT_DEVICE_BOTH:
@@ -210,41 +207,46 @@ uint32_t wm8994_Init(uint16_t DeviceAddr, uint16_t OutputInputDevice, uint8_t Vo
       {
         /* Enable DAC1 (Left), Enable DAC1 (Right),
         also Enable DAC2 (Left), Enable DAC2 (Right)*/
-        counter += CODEC_IO_Write(DeviceAddr, 0x05, 0x0303 | 0x0C0C);
+    	tmp = 0x0303 | 0x0C0C;
+        counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_5, tmp);
         
         /* Enable the AIF1 Timeslot 0 (Left) to DAC 1 (Left) mixer path
         Enable the AIF1 Timeslot 1 (Left) to DAC 1 (Left) mixer path */
-        counter += CODEC_IO_Write(DeviceAddr, 0x601, 0x0003);
+        tmp = 0x0003;
+        counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_LMR, tmp);
         
         /* Enable the AIF1 Timeslot 0 (Right) to DAC 1 (Right) mixer path
         Enable the AIF1 Timeslot 1 (Right) to DAC 1 (Right) mixer path */
-        counter += CODEC_IO_Write(DeviceAddr, 0x602, 0x0003);
+        counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_RMR, tmp);
         
         /* Enable the AIF1 Timeslot 0 (Left) to DAC 2 (Left) mixer path
         Enable the AIF1 Timeslot 1 (Left) to DAC 2 (Left) mixer path  */
-        counter += CODEC_IO_Write(DeviceAddr, 0x604, 0x0003);
+        counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_LMR, tmp);
         
         /* Enable the AIF1 Timeslot 0 (Right) to DAC 2 (Right) mixer path
         Enable the AIF1 Timeslot 1 (Right) to DAC 2 (Right) mixer path */
-        counter += CODEC_IO_Write(DeviceAddr, 0x605, 0x0003);
+        counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_RMR, tmp);
       }
       else
       {
         /* Enable DAC1 (Left), Enable DAC1 (Right),
         also Enable DAC2 (Left), Enable DAC2 (Right)*/
-        counter += CODEC_IO_Write(DeviceAddr, 0x05, 0x0303 | 0x0C0C);
+        tmp =  0x0303 | 0x0C0C;
+        counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_5, tmp);
         
         /* Enable the AIF1 Timeslot 0 (Left) to DAC 1 (Left) mixer path */
-        counter += CODEC_IO_Write(DeviceAddr, 0x601, 0x0001);
+        tmp = 0x0001;
+        counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_LMR, tmp);
         
         /* Enable the AIF1 Timeslot 0 (Right) to DAC 1 (Right) mixer path */
-        counter += CODEC_IO_Write(DeviceAddr, 0x602, 0x0001);
+        counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_RMR, tmp);
         
         /* Enable the AIF1 Timeslot 1 (Left) to DAC 2 (Left) mixer path */
-        counter += CODEC_IO_Write(DeviceAddr, 0x604, 0x0002);
+        tmp = 0x0002;
+        counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_LMR, tmp);
         
         /* Enable the AIF1 Timeslot 1 (Right) to DAC 2 (Right) mixer path */
-        counter += CODEC_IO_Write(DeviceAddr, 0x605, 0x0002);      
+        counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_RMR, tmp);      
       }
       break;
 
@@ -252,19 +254,22 @@ uint32_t wm8994_Init(uint16_t DeviceAddr, uint16_t OutputInputDevice, uint8_t Vo
     default:
       /* Disable DAC1 (Left), Disable DAC1 (Right),
       Enable DAC2 (Left), Enable DAC2 (Right)*/
-      counter += CODEC_IO_Write(DeviceAddr, 0x05, 0x0303);
+      tmp = 0x0303;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_5, tmp);
 
       /* Enable the AIF1 Timeslot 0 (Left) to DAC 1 (Left) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x601, 0x0001);
+      tmp = 0x0001;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_LMR, tmp);
 
       /* Enable the AIF1 Timeslot 0 (Right) to DAC 1 (Right) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x602, 0x0001);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_RMR, tmp);
 
       /* Disable the AIF1 Timeslot 1 (Left) to DAC 2 (Left) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x604, 0x0000);
+      tmp = 0x0000;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_LMR, tmp);
 
       /* Disable the AIF1 Timeslot 1 (Right) to DAC 2 (Right) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x605, 0x0000);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_RMR, tmp);
       break;
     }
   }
@@ -283,104 +288,126 @@ uint32_t wm8994_Init(uint16_t DeviceAddr, uint16_t OutputInputDevice, uint8_t Vo
       /* Enable AIF1ADC2 (Left), Enable AIF1ADC2 (Right)
        * Enable DMICDAT2 (Left), Enable DMICDAT2 (Right)
        * Enable Left ADC, Enable Right ADC */
-      counter += CODEC_IO_Write(DeviceAddr, 0x04, 0x0C30);
+      tmp = 0x0C30;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_4, tmp);
 
       /* Enable AIF1 DRC2 Signal Detect & DRC in AIF1ADC2 Left/Right Timeslot 1 */
-      counter += CODEC_IO_Write(DeviceAddr, 0x450, 0x00DB);
+      tmp = 0x00DB;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DRC2, tmp);
 
       /* Disable IN1L, IN1R, IN2L, IN2R, Enable Thermal sensor & shutdown */
-      counter += CODEC_IO_Write(DeviceAddr, 0x02, 0x6000);
+      tmp = 0x6000;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_2, tmp);
 
       /* Enable the DMIC2(Left) to AIF1 Timeslot 1 (Left) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x608, 0x0002);
+      tmp = 0x0002;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC2_LMR, tmp);
 
       /* Enable the DMIC2(Right) to AIF1 Timeslot 1 (Right) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x609, 0x0002);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC2_RMR, tmp);
 
       /* GPIO1 pin configuration GP1_DIR = output, GP1_FN = AIF1 DRC2 signal detect */
-      counter += CODEC_IO_Write(DeviceAddr, 0x700, 0x000E);
+      tmp = 0x000E;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_GPIO1, tmp);
       break;
 
     case INPUT_DEVICE_INPUT_LINE_1 :
       /* IN1LN_TO_IN1L, IN1LP_TO_VMID, IN1RN_TO_IN1R, IN1RP_TO_VMID */
-      counter += CODEC_IO_Write(DeviceAddr, 0x28, 0x0011);
+      tmp = 0x0011;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_INPUT_MIXER_2, tmp);
 
       /* Disable mute on IN1L_TO_MIXINL and +30dB on IN1L PGA output */
-      counter += CODEC_IO_Write(DeviceAddr, 0x29, 0x0035);
+      tmp = 0x0035;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_INPUT_MIXER_3, tmp);
 
       /* Disable mute on IN1R_TO_MIXINL, Gain = +30dB */
-      counter += CODEC_IO_Write(DeviceAddr, 0x2A, 0x0035);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_INPUT_MIXER_4, tmp);
 
       /* Enable AIF1ADC1 (Left), Enable AIF1ADC1 (Right)
        * Enable Left ADC, Enable Right ADC */
-      counter += CODEC_IO_Write(DeviceAddr, 0x04, 0x0303);
+      tmp = 0x0303;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_4, tmp);
 
       /* Enable AIF1 DRC1 Signal Detect & DRC in AIF1ADC1 Left/Right Timeslot 0 */
-      counter += CODEC_IO_Write(DeviceAddr, 0x440, 0x00DB);
+      tmp = 0x00DB;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DRC1, tmp);
 
       /* Enable IN1L and IN1R, Disable IN2L and IN2R, Enable Thermal sensor & shutdown */
-      counter += CODEC_IO_Write(DeviceAddr, 0x02, 0x6350);
+      tmp = 0x6350;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_2, tmp);
 
       /* Enable the ADCL(Left) to AIF1 Timeslot 0 (Left) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x606, 0x0002);
+      tmp = 0x0002;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC1_LMR, tmp);
 
       /* Enable the ADCR(Right) to AIF1 Timeslot 0 (Right) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x607, 0x0002);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC1_RMR, tmp);
 
       /* GPIO1 pin configuration GP1_DIR = output, GP1_FN = AIF1 DRC1 signal detect */
-      counter += CODEC_IO_Write(DeviceAddr, 0x700, 0x000D);
+      tmp = 0x000D;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_GPIO1, tmp);
       break;
 
     case INPUT_DEVICE_DIGITAL_MICROPHONE_1 :
       /* Enable AIF1ADC1 (Left), Enable AIF1ADC1 (Right)
        * Enable DMICDAT1 (Left), Enable DMICDAT1 (Right)
        * Enable Left ADC, Enable Right ADC */
-      counter += CODEC_IO_Write(DeviceAddr, 0x04, 0x030C);
+      tmp = 0x030C;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_4, tmp);
 
       /* Enable AIF1 DRC2 Signal Detect & DRC in AIF1ADC1 Left/Right Timeslot 0 */
-      counter += CODEC_IO_Write(DeviceAddr, 0x440, 0x00DB);
+      tmp = 0x00DB;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DRC1, tmp);
 
       /* Disable IN1L, IN1R, IN2L, IN2R, Enable Thermal sensor & shutdown */
-      counter += CODEC_IO_Write(DeviceAddr, 0x02, 0x6350);
+      tmp = 0x6350;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_2, tmp);
 
       /* Enable the DMIC2(Left) to AIF1 Timeslot 0 (Left) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x606, 0x0002);
+      tmp = 0x0002;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC1_LMR, tmp);
 
       /* Enable the DMIC2(Right) to AIF1 Timeslot 0 (Right) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x607, 0x0002);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC1_RMR, tmp);
 
       /* GPIO1 pin configuration GP1_DIR = output, GP1_FN = AIF1 DRC1 signal detect */
-      counter += CODEC_IO_Write(DeviceAddr, 0x700, 0x000D);
+      tmp = 0x000D;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_GPIO1, tmp);
       break; 
     case INPUT_DEVICE_DIGITAL_MIC1_MIC2 :
       /* Enable AIF1ADC1 (Left), Enable AIF1ADC1 (Right)
        * Enable DMICDAT1 (Left), Enable DMICDAT1 (Right)
        * Enable Left ADC, Enable Right ADC */
-      counter += CODEC_IO_Write(DeviceAddr, 0x04, 0x0F3C);
+      tmp = 0x0F3C;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_4, tmp);
 
       /* Enable AIF1 DRC2 Signal Detect & DRC in AIF1ADC2 Left/Right Timeslot 1 */
-      counter += CODEC_IO_Write(DeviceAddr, 0x450, 0x00DB);
+      tmp = 0x00DB;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DRC2, tmp);
       
       /* Enable AIF1 DRC2 Signal Detect & DRC in AIF1ADC1 Left/Right Timeslot 0 */
-      counter += CODEC_IO_Write(DeviceAddr, 0x440, 0x00DB);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DRC1, tmp);
 
       /* Disable IN1L, IN1R, Enable IN2L, IN2R, Thermal sensor & shutdown */
-      counter += CODEC_IO_Write(DeviceAddr, 0x02, 0x63A0);
+      tmp = 0x63A0;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_2, tmp);
 
       /* Enable the DMIC2(Left) to AIF1 Timeslot 0 (Left) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x606, 0x0002);
+      tmp = 0x0002;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC1_LMR, tmp);
 
       /* Enable the DMIC2(Right) to AIF1 Timeslot 0 (Right) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x607, 0x0002);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC1_RMR, tmp);
 
       /* Enable the DMIC2(Left) to AIF1 Timeslot 1 (Left) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x608, 0x0002);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC2_LMR, tmp);
 
       /* Enable the DMIC2(Right) to AIF1 Timeslot 1 (Right) mixer path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x609, 0x0002);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC2_RMR, tmp);
       
       /* GPIO1 pin configuration GP1_DIR = output, GP1_FN = AIF1 DRC1 signal detect */
-      counter += CODEC_IO_Write(DeviceAddr, 0x700, 0x000D);
+      tmp = 0x000D;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_GPIO1, tmp);
       break;    
     case INPUT_DEVICE_INPUT_LINE_2 :
     default:
@@ -399,155 +426,216 @@ uint32_t wm8994_Init(uint16_t DeviceAddr, uint16_t OutputInputDevice, uint8_t Vo
   {
   case  AUDIO_FREQUENCY_8K:
     /* AIF1 Sample Rate = 8 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0003);
+    tmp = 0x0003;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
     
   case  AUDIO_FREQUENCY_16K:
     /* AIF1 Sample Rate = 16 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0033);
+    tmp = 0x0033;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
 
   case  AUDIO_FREQUENCY_32K:
     /* AIF1 Sample Rate = 32 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0063);
+    tmp = 0x0063;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
     
   case  AUDIO_FREQUENCY_48K:
     /* AIF1 Sample Rate = 48 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0083);
+    tmp = 0x0083;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
     
   case  AUDIO_FREQUENCY_96K:
     /* AIF1 Sample Rate = 96 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x00A3);
+    tmp = 0x00A3;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
     
   case  AUDIO_FREQUENCY_11K:
     /* AIF1 Sample Rate = 11.025 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0013);
+    tmp = 0x0013;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
     
   case  AUDIO_FREQUENCY_22K:
     /* AIF1 Sample Rate = 22.050 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0043);
+    tmp = 0x0043;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
     
   case  AUDIO_FREQUENCY_44K:
     /* AIF1 Sample Rate = 44.1 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0073);
+    tmp = 0x0073;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break; 
     
   default:
     /* AIF1 Sample Rate = 48 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0083);
+    tmp = 0x0083;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break; 
   }
 
   if(input_device == INPUT_DEVICE_DIGITAL_MIC1_MIC2)
   {
   /* AIF1 Word Length = 16-bits, AIF1 Format = DSP mode */
-  counter += CODEC_IO_Write(DeviceAddr, 0x300, 0x4018);    
+  tmp = 0x4018;
+  counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_CONTROL1, tmp);    
   }
   else
   {
   /* AIF1 Word Length = 16-bits, AIF1 Format = I2S (Default Register Value) */
-  counter += CODEC_IO_Write(DeviceAddr, 0x300, 0x4010);
+  tmp = 0x4010;
+  counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_CONTROL1, tmp);
   }
   
   /* slave mode */
-  counter += CODEC_IO_Write(DeviceAddr, 0x302, 0x0000);
+  tmp = 0x0000;
+  counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_MASTER_SLAVE, tmp);
   
   /* Enable the DSP processing clock for AIF1, Enable the core clock */
-  counter += CODEC_IO_Write(DeviceAddr, 0x208, 0x000A);
+  tmp = 0x000A;
+  counter += CODEC_IO_Write(DeviceAddr, WM8994_CLOCKING1, tmp);
   
   /* Enable AIF1 Clock, AIF1 Clock Source = MCLK1 pin */
-  counter += CODEC_IO_Write(DeviceAddr, 0x200, 0x0001);
+  tmp = 0x0001;
+  counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_CLOCKING1, tmp);
 
   if (output_device > 0)  /* Audio output selected */
   {
+    if (output_device == OUTPUT_DEVICE_HEADPHONE)
+    {      
+      /* Select DAC1 (Left) to Left Headphone Output PGA (HPOUT1LVOL) path */
+      tmp = 0x0100;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_OUTPUT_MIXER_1, tmp);
+      
+      /* Select DAC1 (Right) to Right Headphone Output PGA (HPOUT1RVOL) path */
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_OUTPUT_MIXER_2, tmp);    
+            
+      /* Startup sequence for Headphone */
+      if(ColdStartup)
+      {
+        tmp = 0x8100;
+        counter += CODEC_IO_Write(DeviceAddr,WM8994_WRITE_SEQ_CTRL1, tmp);
+        
+        ColdStartup=0;
+        /* Add Delay */
+        AUDIO_IO_Delay(300);
+      }
+      else /* Headphone Warm Start-Up */
+      { 
+        tmp = 0x8108;
+        counter += CODEC_IO_Write(DeviceAddr,WM8994_WRITE_SEQ_CTRL1, tmp);
+        /* Add Delay */
+        AUDIO_IO_Delay(50);
+      }
+
+      /* Soft un-Mute the AIF1 Timeslot 0 DAC1 path L&R */
+      tmp = 0x0000;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_FILTER1, tmp);
+    }
     /* Analog Output Configuration */
 
     /* Enable SPKRVOL PGA, Enable SPKMIXR, Enable SPKLVOL PGA, Enable SPKMIXL */
-    counter += CODEC_IO_Write(DeviceAddr, 0x03, 0x0300);
+    tmp = 0x0300;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_3, tmp);
 
     /* Left Speaker Mixer Volume = 0dB */
-    counter += CODEC_IO_Write(DeviceAddr, 0x22, 0x0000);
+    tmp = 0x0000;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_SPKMIXL_ATT, tmp);
 
     /* Speaker output mode = Class D, Right Speaker Mixer Volume = 0dB ((0x23, 0x0100) = class AB)*/
-    counter += CODEC_IO_Write(DeviceAddr, 0x23, 0x0000);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_SPKMIXR_ATT, tmp);
 
     /* Unmute DAC2 (Left) to Left Speaker Mixer (SPKMIXL) path,
     Unmute DAC2 (Right) to Right Speaker Mixer (SPKMIXR) path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x36, 0x0300);
+    tmp = 0x0300;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_SPEAKER_MIXER, tmp);
 
     /* Enable bias generator, Enable VMID, Enable SPKOUTL, Enable SPKOUTR */
-    counter += CODEC_IO_Write(DeviceAddr, 0x01, 0x3003);
+    tmp = 0x3003;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_1, tmp);
 
     /* Headphone/Speaker Enable */
 
     if (input_device == INPUT_DEVICE_DIGITAL_MIC1_MIC2)
     {
     /* Enable Class W, Class W Envelope Tracking = AIF1 Timeslots 0 and 1 */
-    counter += CODEC_IO_Write(DeviceAddr, 0x51, 0x0205);
+    tmp = 0x0205;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_CLASS_W, tmp);
     }
     else
     {
     /* Enable Class W, Class W Envelope Tracking = AIF1 Timeslot 0 */
-    counter += CODEC_IO_Write(DeviceAddr, 0x51, 0x0005);      
+    tmp = 0x0005;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_CLASS_W, tmp);      
     }
 
     /* Enable bias generator, Enable VMID, Enable HPOUT1 (Left) and Enable HPOUT1 (Right) input stages */
     /* idem for Speaker */
     power_mgnt_reg_1 |= 0x0303 | 0x3003;
-    counter += CODEC_IO_Write(DeviceAddr, 0x01, power_mgnt_reg_1);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_1, power_mgnt_reg_1);
 
     /* Enable HPOUT1 (Left) and HPOUT1 (Right) intermediate stages */
-    counter += CODEC_IO_Write(DeviceAddr, 0x60, 0x0022);
+    tmp = 0x0022;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_ANALOG_HP, tmp);
 
     /* Enable Charge Pump */
-    counter += CODEC_IO_Write(DeviceAddr, 0x4C, 0x9F25);
+    tmp = 0x9F25;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_CHARGE_PUMP1, tmp);
 
     /* Add Delay */
     AUDIO_IO_Delay(15);
 
     /* Select DAC1 (Left) to Left Headphone Output PGA (HPOUT1LVOL) path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x2D, 0x0001);
+    tmp = 0x0001;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_OUTPUT_MIXER_1, tmp);
 
     /* Select DAC1 (Right) to Right Headphone Output PGA (HPOUT1RVOL) path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x2E, 0x0001);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_OUTPUT_MIXER_2, tmp);
 
     /* Enable Left Output Mixer (MIXOUTL), Enable Right Output Mixer (MIXOUTR) */
     /* idem for SPKOUTL and SPKOUTR */
-    counter += CODEC_IO_Write(DeviceAddr, 0x03, 0x0030 | 0x0300);
+    tmp = 0x0030 | 0x0300;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_3, tmp);
 
     /* Enable DC Servo and trigger start-up mode on left and right channels */
-    counter += CODEC_IO_Write(DeviceAddr, 0x54, 0x0033);
+    tmp = 0x0033;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_DC_SERVO1, tmp);
 
     /* Add Delay */
-    AUDIO_IO_Delay(250);
+    AUDIO_IO_Delay(257);
 
     /* Enable HPOUT1 (Left) and HPOUT1 (Right) intermediate and output stages. Remove clamps */
-    counter += CODEC_IO_Write(DeviceAddr, 0x60, 0x00EE);
+    tmp = 0x00EE;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_ANALOG_HP, tmp);
 
     /* Unmutes */
 
     /* Unmute DAC 1 (Left) */
-    counter += CODEC_IO_Write(DeviceAddr, 0x610, 0x00C0);
+    tmp = 0x00C0;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_DAC1_LEFT_VOL, tmp);
 
     /* Unmute DAC 1 (Right) */
-    counter += CODEC_IO_Write(DeviceAddr, 0x611, 0x00C0);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_DAC1_RIGHT_VOL, tmp);
 
     /* Unmute the AIF1 Timeslot 0 DAC path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x420, 0x0000);
+    tmp = 0x0010;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_FILTER1, tmp);
 
     /* Unmute DAC 2 (Left) */
-    counter += CODEC_IO_Write(DeviceAddr, 0x612, 0x00C0);
+    tmp = 0x00C0;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_DAC2_LEFT_VOL, tmp);
 
     /* Unmute DAC 2 (Right) */
-    counter += CODEC_IO_Write(DeviceAddr, 0x613, 0x00C0);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_DAC2_RIGHT_VOL, tmp);
 
     /* Unmute the AIF1 Timeslot 1 DAC2 path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x422, 0x0000);
+    tmp = 0x0010;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_FILTER1, tmp);
     
     /* Volume Control */
     wm8994_SetVolume(DeviceAddr, Volume);
@@ -559,40 +647,46 @@ uint32_t wm8994_Init(uint16_t DeviceAddr, uint16_t OutputInputDevice, uint8_t Vo
     {
       /* Enable Microphone bias 1 generator, Enable VMID */
       power_mgnt_reg_1 |= 0x0013;
-      counter += CODEC_IO_Write(DeviceAddr, 0x01, power_mgnt_reg_1);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_1, power_mgnt_reg_1);
 
       /* ADC oversample enable */
-      counter += CODEC_IO_Write(DeviceAddr, 0x620, 0x0002);
+      tmp = 0x0002;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_OVERSAMPLING, tmp);
 
       /* AIF ADC2 HPF enable, HPF cut = voice mode 1 fc=127Hz at fs=8kHz */
-      counter += CODEC_IO_Write(DeviceAddr, 0x411, 0x3800);
+      tmp = 0x3800;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC2_FILTERS, tmp);
     }
     else if(input_device == INPUT_DEVICE_DIGITAL_MIC1_MIC2)
     {
       /* Enable Microphone bias 1 generator, Enable VMID */
       power_mgnt_reg_1 |= 0x0013;
-      counter += CODEC_IO_Write(DeviceAddr, 0x01, power_mgnt_reg_1);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_1, power_mgnt_reg_1);
 
       /* ADC oversample enable */
-      counter += CODEC_IO_Write(DeviceAddr, 0x620, 0x0002);
+      tmp = 0x0002;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_OVERSAMPLING, tmp);
     
       /* AIF ADC1 HPF enable, HPF cut = voice mode 1 fc=127Hz at fs=8kHz */
-      counter += CODEC_IO_Write(DeviceAddr, 0x410, 0x1800);
+      tmp = 0x1800;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC1_FILTERS, tmp);
       
       /* AIF ADC2 HPF enable, HPF cut = voice mode 1 fc=127Hz at fs=8kHz */
-      counter += CODEC_IO_Write(DeviceAddr, 0x411, 0x1800);      
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC2_FILTERS, tmp);      
     }    
     else if ((input_device == INPUT_DEVICE_INPUT_LINE_1) || (input_device == INPUT_DEVICE_INPUT_LINE_2))
     {
 
       /* Disable mute on IN1L, IN1L Volume = +0dB */
-      counter += CODEC_IO_Write(DeviceAddr, 0x18, 0x000B);
+      tmp = 0x000B;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_LEFT_LINE_IN12_VOL, tmp);
 
       /* Disable mute on IN1R, IN1R Volume = +0dB */
-      counter += CODEC_IO_Write(DeviceAddr, 0x1A, 0x000B);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_RIGHT_LINE_IN12_VOL, tmp);
 
       /* AIF ADC1 HPF enable, HPF cut = hifi mode fc=4Hz at fs=48kHz */
-      counter += CODEC_IO_Write(DeviceAddr, 0x410, 0x1800);
+      tmp = 0x1800;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC1_FILTERS, tmp);
     }
     /* Volume Control */
     wm8994_SetVolume(DeviceAddr, Volume);
@@ -650,13 +744,15 @@ uint32_t wm8994_Play(uint16_t DeviceAddr, uint16_t* pBuffer, uint16_t Size)
 uint32_t wm8994_Pause(uint16_t DeviceAddr)
 {  
   uint32_t counter = 0;
+  uint16_t tmp;
  
   /* Pause the audio file playing */
   /* Mute the output first */
   counter += wm8994_SetMute(DeviceAddr, AUDIO_MUTE_ON);
   
   /* Put the Codec in Power save mode */
-  counter += CODEC_IO_Write(DeviceAddr, 0x02, 0x01);
+  tmp = 0x01;
+  counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_2, tmp);
  
   return counter;
 }
@@ -693,6 +789,7 @@ uint32_t wm8994_Resume(uint16_t DeviceAddr)
 uint32_t wm8994_Stop(uint16_t DeviceAddr, uint32_t CodecPdwnMode)
 {
   uint32_t counter = 0;
+  uint16_t tmp;
 
   if (outputEnabled != 0)
   {
@@ -701,27 +798,29 @@ uint32_t wm8994_Stop(uint16_t DeviceAddr, uint32_t CodecPdwnMode)
 
     if (CodecPdwnMode == CODEC_PDWN_SW)
     {
-       /* Only output mute required*/
+      /* Only output mute required*/
     }
     else /* CODEC_PDWN_HW */
     {
       /* Mute the AIF1 Timeslot 0 DAC1 path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x420, 0x0200);
+      tmp = 0x0200;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_FILTER1, tmp);
 
       /* Mute the AIF1 Timeslot 1 DAC2 path */
-      counter += CODEC_IO_Write(DeviceAddr, 0x422, 0x0200);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_FILTER1, tmp);
 
       /* Disable DAC1L_TO_HPOUT1L */
-      counter += CODEC_IO_Write(DeviceAddr, 0x2D, 0x0000);
+      tmp = 0x0000;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_OUTPUT_MIXER_1, tmp);
 
       /* Disable DAC1R_TO_HPOUT1R */
-      counter += CODEC_IO_Write(DeviceAddr, 0x2E, 0x0000);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_OUTPUT_MIXER_2, tmp);
 
       /* Disable DAC1 and DAC2 */
-      counter += CODEC_IO_Write(DeviceAddr, 0x05, 0x0000);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_5, tmp);
 
       /* Reset Codec by writing in 0x0000 address register */
-      counter += CODEC_IO_Write(DeviceAddr, 0x0000, 0x0000);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_SW_RESET, tmp);
 
       outputEnabled = 0;
     }
@@ -740,6 +839,7 @@ uint32_t wm8994_SetVolume(uint16_t DeviceAddr, uint8_t Volume)
 {
   uint32_t counter = 0;
   uint8_t convertedvol = VOLUME_CONVERT(Volume);
+  uint16_t tmp;
 
   /* Output volume */
   if (outputEnabled != 0)
@@ -750,16 +850,17 @@ uint32_t wm8994_SetVolume(uint16_t DeviceAddr, uint8_t Volume)
       counter += wm8994_SetMute(DeviceAddr, AUDIO_MUTE_OFF);
 
       /* Left Headphone Volume */
-      counter += CODEC_IO_Write(DeviceAddr, 0x1C, 0x3F | 0x140);
+      tmp = 0x3F | 0x140;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_LEFT_OUTPUT_VOL, tmp);
 
       /* Right Headphone Volume */
-      counter += CODEC_IO_Write(DeviceAddr, 0x1D, 0x3F | 0x140);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_RIGHT_OUTPUT_VOL, tmp);
 
       /* Left Speaker Volume */
-      counter += CODEC_IO_Write(DeviceAddr, 0x26, 0x3F | 0x140);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_SPK_LEFT_VOL, tmp);
 
       /* Right Speaker Volume */
-      counter += CODEC_IO_Write(DeviceAddr, 0x27, 0x3F | 0x140);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_SPK_RIGHT_VOL, tmp);
     }
     else if (Volume == 0)
     {
@@ -772,16 +873,17 @@ uint32_t wm8994_SetVolume(uint16_t DeviceAddr, uint8_t Volume)
       counter += wm8994_SetMute(DeviceAddr, AUDIO_MUTE_OFF);
 
       /* Left Headphone Volume */
-      counter += CODEC_IO_Write(DeviceAddr, 0x1C, convertedvol | 0x140);
+      tmp = convertedvol | 0x140;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_LEFT_OUTPUT_VOL, tmp);
 
       /* Right Headphone Volume */
-      counter += CODEC_IO_Write(DeviceAddr, 0x1D, convertedvol | 0x140);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_RIGHT_OUTPUT_VOL, tmp);
 
       /* Left Speaker Volume */
-      counter += CODEC_IO_Write(DeviceAddr, 0x26, convertedvol | 0x140);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_SPK_LEFT_VOL, tmp);
 
       /* Right Speaker Volume */
-      counter += CODEC_IO_Write(DeviceAddr, 0x27, convertedvol | 0x140);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_SPK_RIGHT_VOL, tmp);
     }
   }
 
@@ -791,16 +893,17 @@ uint32_t wm8994_SetVolume(uint16_t DeviceAddr, uint8_t Volume)
     convertedvol = VOLUME_IN_CONVERT(Volume);
 
     /* Left AIF1 ADC1 volume */
-    counter += CODEC_IO_Write(DeviceAddr, 0x400, convertedvol | 0x100);
+    tmp = convertedvol | 0x100;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC1_LEFT_VOL, tmp);
 
     /* Right AIF1 ADC1 volume */
-    counter += CODEC_IO_Write(DeviceAddr, 0x401, convertedvol | 0x100);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC1_RIGHT_VOL, tmp);
 
     /* Left AIF1 ADC2 volume */
-    counter += CODEC_IO_Write(DeviceAddr, 0x404, convertedvol | 0x100);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC2_LEFT_VOL, tmp);
 
     /* Right AIF1 ADC2 volume */
-    counter += CODEC_IO_Write(DeviceAddr, 0x405, convertedvol | 0x100);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_ADC2_RIGHT_VOL, tmp);
   }
   return counter;
 }
@@ -815,6 +918,7 @@ uint32_t wm8994_SetVolume(uint16_t DeviceAddr, uint8_t Volume)
 uint32_t wm8994_SetMute(uint16_t DeviceAddr, uint32_t Cmd)
 {
   uint32_t counter = 0;
+  uint16_t tmp;
   
   if (outputEnabled != 0)
   {
@@ -822,18 +926,20 @@ uint32_t wm8994_SetMute(uint16_t DeviceAddr, uint32_t Cmd)
     if(Cmd == AUDIO_MUTE_ON)
     {
       /* Soft Mute the AIF1 Timeslot 0 DAC1 path L&R */
-      counter += CODEC_IO_Write(DeviceAddr, 0x420, 0x0200);
+      tmp = 0x0200;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_FILTER1, tmp);
 
       /* Soft Mute the AIF1 Timeslot 1 DAC2 path L&R */
-      counter += CODEC_IO_Write(DeviceAddr, 0x422, 0x0200);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_FILTER1, tmp);
     }
     else /* AUDIO_MUTE_OFF Disable the Mute */
     {
       /* Unmute the AIF1 Timeslot 0 DAC1 path L&R */
-      counter += CODEC_IO_Write(DeviceAddr, 0x420, 0x0000);
+      tmp = 0x0010;
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_FILTER1, tmp);
 
       /* Unmute the AIF1 Timeslot 1 DAC2 path L&R */
-      counter += CODEC_IO_Write(DeviceAddr, 0x422, 0x0000);
+      counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_FILTER1, tmp);
     }
   }
   return counter;
@@ -850,79 +956,92 @@ uint32_t wm8994_SetMute(uint16_t DeviceAddr, uint32_t Cmd)
 uint32_t wm8994_SetOutputMode(uint16_t DeviceAddr, uint8_t Output)
 {
   uint32_t counter = 0; 
-  
+  uint16_t tmp;
+
   switch (Output) 
   {
   case OUTPUT_DEVICE_SPEAKER:
     /* Enable DAC1 (Left), Enable DAC1 (Right), 
     Disable DAC2 (Left), Disable DAC2 (Right)*/
-    counter += CODEC_IO_Write(DeviceAddr, 0x05, 0x0C0C);
+    tmp = 0x0C0C;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_5, tmp);
     
     /* Enable the AIF1 Timeslot 0 (Left) to DAC 1 (Left) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x601, 0x0000);
+    tmp = 0x0000;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_LMR, tmp);
     
     /* Enable the AIF1 Timeslot 0 (Right) to DAC 1 (Right) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x602, 0x0000);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_RMR, tmp);
     
     /* Disable the AIF1 Timeslot 1 (Left) to DAC 2 (Left) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x604, 0x0002);
+    tmp = 0x0002;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_LMR, tmp);
     
     /* Disable the AIF1 Timeslot 1 (Right) to DAC 2 (Right) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x605, 0x0002);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_RMR, tmp);
     break;
     
   case OUTPUT_DEVICE_HEADPHONE:
     /* Disable DAC1 (Left), Disable DAC1 (Right), 
     Enable DAC2 (Left), Enable DAC2 (Right)*/
-    counter += CODEC_IO_Write(DeviceAddr, 0x05, 0x0303);
+    tmp = 0x0303;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_5, tmp);
     
     /* Enable the AIF1 Timeslot 0 (Left) to DAC 1 (Left) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x601, 0x0001);
+    tmp = 0x0001;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_LMR, tmp);
     
     /* Enable the AIF1 Timeslot 0 (Right) to DAC 1 (Right) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x602, 0x0001);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_RMR, tmp);
     
     /* Disable the AIF1 Timeslot 1 (Left) to DAC 2 (Left) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x604, 0x0000);
+    tmp = 0x0000;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_LMR, tmp);
     
     /* Disable the AIF1 Timeslot 1 (Right) to DAC 2 (Right) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x605, 0x0000);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_RMR, tmp);
     break;
     
   case OUTPUT_DEVICE_BOTH:
     /* Enable DAC1 (Left), Enable DAC1 (Right), 
     also Enable DAC2 (Left), Enable DAC2 (Right)*/
-    counter += CODEC_IO_Write(DeviceAddr, 0x05, 0x0303 | 0x0C0C);
+    tmp = 0x0303 | 0x0C0C;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_5, tmp);
     
     /* Enable the AIF1 Timeslot 0 (Left) to DAC 1 (Left) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x601, 0x0001);
+    tmp = 0x0001;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_LMR, tmp);
     
     /* Enable the AIF1 Timeslot 0 (Right) to DAC 1 (Right) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x602, 0x0001);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_RMR, tmp);
     
     /* Enable the AIF1 Timeslot 1 (Left) to DAC 2 (Left) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x604, 0x0002);
+    tmp = 0x0002;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_LMR, tmp);
     
     /* Enable the AIF1 Timeslot 1 (Right) to DAC 2 (Right) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x605, 0x0002);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_RMR, tmp);
     break;
     
   default:
     /* Disable DAC1 (Left), Disable DAC1 (Right), 
     Enable DAC2 (Left), Enable DAC2 (Right)*/
-    counter += CODEC_IO_Write(DeviceAddr, 0x05, 0x0303);
+    tmp = 0x0303;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_PWR_MANAGEMENT_5, tmp);
     
     /* Enable the AIF1 Timeslot 0 (Left) to DAC 1 (Left) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x601, 0x0001);
+    tmp = 0x0001;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_LMR, tmp);
     
     /* Enable the AIF1 Timeslot 0 (Right) to DAC 1 (Right) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x602, 0x0001);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC1_RMR, tmp);
     
     /* Disable the AIF1 Timeslot 1 (Left) to DAC 2 (Left) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x604, 0x0000);
+    tmp = 0x0000;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_LMR, tmp);
     
     /* Disable the AIF1 Timeslot 1 (Right) to DAC 2 (Right) mixer path */
-    counter += CODEC_IO_Write(DeviceAddr, 0x605, 0x0000);
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_DAC2_RMR, tmp);
     break;    
   }  
   return counter;
@@ -937,48 +1056,63 @@ uint32_t wm8994_SetOutputMode(uint16_t DeviceAddr, uint8_t Output)
 uint32_t wm8994_SetFrequency(uint16_t DeviceAddr, uint32_t AudioFreq)
 {
   uint32_t counter = 0;
+  uint16_t tmp;
  
   /*  Clock Configurations */
   switch (AudioFreq)
   {
   case  AUDIO_FREQUENCY_8K:
     /* AIF1 Sample Rate = 8 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0003);
+    tmp = 0x0003;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
     
   case  AUDIO_FREQUENCY_16K:
     /* AIF1 Sample Rate = 16 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0033);
+    tmp = 0x0033;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
+    break;
+
+  case  AUDIO_FREQUENCY_32K:
+    /* AIF1 Sample Rate = 32 (KHz), ratio=256 */ 
+    tmp = 0x0063;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
     
   case  AUDIO_FREQUENCY_48K:
     /* AIF1 Sample Rate = 48 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0083);
+    tmp = 0x0083;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
     
   case  AUDIO_FREQUENCY_96K:
     /* AIF1 Sample Rate = 96 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x00A3);
+    tmp = 0x00A3;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
     
   case  AUDIO_FREQUENCY_11K:
     /* AIF1 Sample Rate = 11.025 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0013);
+    tmp = 0x0013;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
     
   case  AUDIO_FREQUENCY_22K:
     /* AIF1 Sample Rate = 22.050 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0043);
+    tmp = 0x0043;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break;
     
   case  AUDIO_FREQUENCY_44K:
     /* AIF1 Sample Rate = 44.1 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0073);
+    tmp = 0x0073;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break; 
     
   default:
     /* AIF1 Sample Rate = 48 (KHz), ratio=256 */ 
-    counter += CODEC_IO_Write(DeviceAddr, 0x210, 0x0083);
+    tmp = 0x0083;
+    counter += CODEC_IO_Write(DeviceAddr, WM8994_AIF1_RATE, tmp);
     break; 
   }
   return counter;
@@ -992,9 +1126,11 @@ uint32_t wm8994_SetFrequency(uint16_t DeviceAddr, uint32_t AudioFreq)
 uint32_t wm8994_Reset(uint16_t DeviceAddr)
 {
   uint32_t counter = 0;
+  uint16_t tmp;
   
   /* Reset Codec by writing in 0x0000 address register */
-  counter = CODEC_IO_Write(DeviceAddr, 0x0000, 0x0000);
+  tmp = 0x0000;
+  counter = CODEC_IO_Write(DeviceAddr, WM8994_SW_RESET, tmp);
   outputEnabled = 0;
   inputEnabled=0;
 
@@ -1037,5 +1173,3 @@ static uint8_t CODEC_IO_Write(uint8_t Addr, uint16_t Reg, uint16_t Value)
 /**
   * @}
   */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

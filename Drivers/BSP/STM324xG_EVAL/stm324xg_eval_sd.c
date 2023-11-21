@@ -39,7 +39,7 @@
        SD detection interrupt mode by calling the function BSP_SD_ITConfig(). The interrupt 
        is generated as an external interrupt whenever the micro SD card is 
        plugged/unplugged in/from the evaluation board. The SD detection interrupt
-       is handeled by calling the function BSP_SD_DetectIT() which is called in the IRQ
+       is handled by calling the function BSP_SD_DetectIT() which is called in the IRQ
        handler file, the user callback is implemented in the function BSP_SD_DetectCallback().
      o The function BSP_SD_GetCardInfo() is used to get the micro SD card information 
        which is stored in the structure "HAL_SD_CardInfoTypedef".

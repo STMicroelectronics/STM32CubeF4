@@ -109,7 +109,7 @@ AUDIO_ErrorTypeDef AUDIO_Process(void)
 {
   uint32_t bytesread, elapsed_time; 
   static uint32_t prev_elapsed_time = 0xFFFFFFFF;
-  uint8_t str[10];
+  uint8_t str[14];
   AUDIO_ErrorTypeDef error_state = AUDIO_ERROR_NONE;  
   
   switch(audio_state)
@@ -281,7 +281,7 @@ void AUDIO_PlaybackProbeKey(JOYState_TypeDef state)
   */
 static AUDIO_ErrorTypeDef AUDIO_GetFileInfo(uint16_t file_idx, WAV_InfoTypedef *info)
 {
-  uint8_t str [FILE_NAME_SIZE + 20];  
+  uint8_t str [FILE_NAME_SIZE + 26];  
   uint8_t fname [FILE_NAME_SIZE];    
   uint32_t bytesread;
   uint32_t duration;

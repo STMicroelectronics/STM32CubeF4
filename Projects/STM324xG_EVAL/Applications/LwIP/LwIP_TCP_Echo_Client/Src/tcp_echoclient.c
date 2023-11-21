@@ -101,7 +101,7 @@ static err_t tcp_echoclient_connected(void *arg, struct tcp_pcb *tpcb, err_t err
   
   if (err == ERR_OK)   
   {
-    /* allocate structure es to maintain tcp connection informations */
+    /* allocate structure es to maintain tcp connection information */
     es = (struct echoclient *)mem_malloc(sizeof(struct echoclient));
   
     if (es != NULL)

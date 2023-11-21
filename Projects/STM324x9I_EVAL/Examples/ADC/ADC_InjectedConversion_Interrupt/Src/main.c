@@ -77,7 +77,7 @@ int main(void)
     Error_Handler(); 
   }
   
-  /*##-3- Wait one seconde before starting injected convertion ###############*/
+  /*##-3- Wait one seconde before starting injected conversion ###############*/
   HAL_Delay(1000);
   
   /*##-4- Start the conversion process and enable interrupt for injected channel #*/  

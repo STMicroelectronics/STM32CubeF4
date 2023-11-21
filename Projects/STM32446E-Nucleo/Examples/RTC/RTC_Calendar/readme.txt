@@ -102,7 +102,7 @@ System, RTC, Calendar, Backup Domain, Reset
     board and can be easily tailored to any other supported device 
     and development board.
 
-  - For This example to work properly, a 2.2 µF Capacitor must be present on the board in slot C26.
+  - For This example to work properly, a 2.2 ÂµF Capacitor must be present on the board in slot C26.
 
   - STM32F4xx-Nucleo Set-up
     - Use LED2 connected to PA.05 pin

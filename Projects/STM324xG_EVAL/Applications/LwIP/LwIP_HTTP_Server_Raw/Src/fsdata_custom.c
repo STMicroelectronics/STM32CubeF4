@@ -3386,7 +3386,7 @@ static const unsigned char data__STM32F4xxLED_html[] = {
 
 
 
-const struct fsdata_file file__STM32F4xx_files_logo_jpg[] = { {
+ struct fsdata_file file__STM32F4xx_files_logo_jpg[] = { {
 file_NULL,
 data__STM32F4xx_files_logo_jpg,
 data__STM32F4xx_files_logo_jpg + 28,
@@ -3394,7 +3394,7 @@ sizeof(data__STM32F4xx_files_logo_jpg) - 28,
 1,
 }};
 
-const struct fsdata_file file__STM32F4xx_files_ST_gif[] = { {
+ struct fsdata_file file__STM32F4xx_files_ST_gif[] = { {
 file__STM32F4xx_files_logo_jpg,
 data__STM32F4xx_files_ST_gif,
 data__STM32F4xx_files_ST_gif + 24,
@@ -3402,7 +3402,7 @@ sizeof(data__STM32F4xx_files_ST_gif) - 24,
 1,
 }};
 
-const struct fsdata_file file__STM32F4xx_files_stm32_jpg[] = { {
+ struct fsdata_file file__STM32F4xx_files_stm32_jpg[] = { {
 file__STM32F4xx_files_ST_gif,
 data__STM32F4xx_files_stm32_jpg,
 data__STM32F4xx_files_stm32_jpg + 28,
@@ -3410,7 +3410,7 @@ sizeof(data__STM32F4xx_files_stm32_jpg) - 28,
 1,
 }};
 
-const struct fsdata_file file__404_html[] = { {
+ struct fsdata_file file__404_html[] = { {
 file__STM32F4xx_files_stm32_jpg,
 data__404_html,
 data__404_html + 12,
@@ -3418,7 +3418,7 @@ sizeof(data__404_html) - 12,
 1,
 }};
 
-const struct fsdata_file file__index_html[] = { {
+ struct fsdata_file file__index_html[] = { {
 file__404_html,
 data__index_html,
 data__index_html + 12,
@@ -3426,7 +3426,7 @@ sizeof(data__index_html) - 12,
 1,
 }};
 
-const struct fsdata_file file__STM32F4xxADC_shtml[] = { {
+ struct fsdata_file file__STM32F4xxADC_shtml[] = { {
 file__index_html,
 data__STM32F4xxADC_shtml,
 data__STM32F4xxADC_shtml + 20,
@@ -3434,7 +3434,7 @@ sizeof(data__STM32F4xxADC_shtml) - 20,
 1,
 }};
 
-const struct fsdata_file file__STM32F4xxLED_html[] = { {
+ struct fsdata_file file__STM32F4xxLED_html[] = { {
 file__STM32F4xxADC_shtml,
 data__STM32F4xxLED_html,
 data__STM32F4xxLED_html + 20,

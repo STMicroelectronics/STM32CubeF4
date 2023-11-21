@@ -7,32 +7,15 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  * Copyright (c) 2016 STMicroelectronics.
+  * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */ 
+  */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32_ADAFRUIT_LCD_H
@@ -40,7 +23,7 @@
 
 #ifdef __cplusplus
  extern "C" {
-#endif 
+#endif
 
 /* Includes ------------------------------------------------------------------*/
 #include "../Components/st7735/st7735.h"
@@ -53,40 +36,40 @@
 /** @addtogroup STM32_ADAFRUIT
   * @{
   */
- 
+
 /** @addtogroup STM32_ADAFRUIT_LCD
   * @{
-  */ 
+  */
 
 
 /** @defgroup STM32_ADAFRUIT_LCD_Exported_Types
   * @{
   */
-   
-/** 
+
+/**
   * @brief  Draw Properties structures definition
-  */ 
-typedef struct 
-{ 
+  */
+typedef struct
+{
   uint32_t TextColor;
   uint32_t BackColor;
-  sFONT    *pFont; 
+  sFONT    *pFont;
 
 }LCD_DrawPropTypeDef;
 
-/** 
+/**
   * @brief  Point structures definition
-  */ 
-typedef struct 
+  */
+typedef struct
 {
   int16_t X;
   int16_t Y;
 
 }Point, * pPoint;
 
-/** 
+/**
   * @brief  Line mode structures definition
-  */ 
+  */
 typedef enum
 {
   CENTER_MODE             = 0x01,    /*!< Center mode */
@@ -97,26 +80,26 @@ typedef enum
 
 /**
   * @}
-  */ 
+  */
 
 /** @defgroup STM32_ADAFRUIT_LCD_Exported_Constants
   * @{
   */
-  
-#define __IO    volatile  
 
-/** 
-  * @brief  LCD status structure definition  
-  */     
+#define __IO    volatile
+
+/**
+  * @brief  LCD status structure definition
+  */
 #define LCD_OK         0x00
 #define LCD_ERROR      0x01
 #define LCD_TIMEOUT    0x02
 
-/** 
-  * @brief  LCD color  
+/**
+  * @brief  LCD color
   */
 #define LCD_COLOR_BLACK         0x0000
-#define LCD_COLOR_GREY          0xF7DE          
+#define LCD_COLOR_GREY          0xF7DE
 #define LCD_COLOR_BLUE          0x001F
 #define LCD_COLOR_RED           0xF800
 #define LCD_COLOR_GREEN         0x07E0
@@ -125,9 +108,9 @@ typedef enum
 #define LCD_COLOR_YELLOW        0xFFE0
 #define LCD_COLOR_WHITE         0xFFFF
 
-/** 
-  * @brief LCD default font 
-  */ 
+/**
+  * @brief LCD default font
+  */
 #define LCD_DEFAULT_FONT         Font8
 
 /**
@@ -136,11 +119,11 @@ typedef enum
 
 /** @defgroup STM32_ADAFRUIT_LCD_Exported_Functions
   * @{
-  */   
+  */
 uint8_t  BSP_LCD_Init(void);
 uint32_t BSP_LCD_GetXSize(void);
 uint32_t BSP_LCD_GetYSize(void);
- 
+
 uint16_t BSP_LCD_GetTextColor(void);
 uint16_t BSP_LCD_GetBackColor(void);
 void     BSP_LCD_SetTextColor(__IO uint16_t Color);
@@ -174,7 +157,7 @@ void     BSP_LCD_DisplayOn(void);
 /**
   * @}
   */
-  
+
 #ifdef __cplusplus
 }
 #endif
@@ -182,14 +165,13 @@ void     BSP_LCD_DisplayOn(void);
 #endif /* __STM32_ADAFRUIT_LCD_H */
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-  */ 
+  */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

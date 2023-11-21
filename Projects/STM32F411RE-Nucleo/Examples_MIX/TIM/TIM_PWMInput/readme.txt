@@ -48,7 +48,7 @@ The minimum frequency value to measure is (TIM3 counter clock / CCR MAX)
 TIM2 can be used to generate the external signal in case a function generator 
 is not available. TIM2 is configured in PWM Output Mode to produce a square wave on PA.00.
 Frequency and duty cycles can be changed by pressing the User Button (PC13).
-Six combinatins are available (see thables aFrequency[] and aDutyCycle[]).
+Six combinations are available (see thables aFrequency[] and aDutyCycle[]).
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from

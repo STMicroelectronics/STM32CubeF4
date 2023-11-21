@@ -43,7 +43,7 @@
 #define SC_USART_CK_AF                     GPIO_AF8_USART6
 
 
-/* Smartcard Inteface GPIO pins */
+/* Smartcard Interface GPIO pins */
 #define SC_3_5V_PIN                        GPIO_PIN_15
 #define SC_3_5V_GPIO_PORT                  GPIOH
 #define SC_3_5V_CLK_ENABLE()               __HAL_RCC_GPIOH_CLK_ENABLE()

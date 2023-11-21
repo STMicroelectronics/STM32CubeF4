@@ -254,7 +254,7 @@ DRESULT USBH_ioctl(BYTE lun, BYTE cmd, void *buff)
   case GET_SECTOR_SIZE :
     if(USBH_MSC_GetLUNInfo(&hUSB_Host, lun, &info) == USBH_OK)
     {
-      *(DWORD*)buff = info.capacity.block_size;
+      *(WORD*)buff = info.capacity.block_size;
       res = RES_OK;
     }
     else

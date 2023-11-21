@@ -1,4 +1,4 @@
-
+/* USER CODE BEGIN Header */
 /**
   *  Portions COPYRIGHT 2018 STMicroelectronics, All Rights Reserved
   *  Copyright (C) 2006-2015, ARM Limited, All Rights Reserved
@@ -23,7 +23,9 @@
   *
   ******************************************************************************
   */
+/* USER CODE END Header */
 
+#include "mbedtls/entropy.h"
 #include "mbedtls/entropy_poll.h"
 #include "mbedtls/platform.h"
 
@@ -34,7 +36,7 @@
 #include "stm32XXXXX_hal.h"
 #include <string.h>
 
-__IO uint32_t isInitialized = 0;
+static __IO uint32_t isInitialized = 0;
 
 static RNG_HandleTypeDef RNG_Handle;
 
@@ -65,27 +67,40 @@ static void RNG_Init(void)
 
 int mbedtls_hardware_poll( void *Data, unsigned char *Output, size_t Len, size_t *oLen )
 {
-  uint32_t index;
-  uint32_t random_value;
-  int ret;
+  __IO uint8_t random_value[4];
+  int ret = 0;
 
   RNG_Init();
 
   if (isInitialized == 0)
   {
-    ret = -1;
+    ret = MBEDTLS_ERR_ENTROPY_SOURCE_FAILED;
   }
   else
   {
-      for (index = 0; index < Len/4; index++)
+      *oLen = 0;
+      while ((*oLen < Len) && (ret == 0))
       {
-        if (HAL_RNG_GenerateRandomNumber(&RNG_Handle, &random_value) == HAL_OK)
+        if (HAL_RNG_GenerateRandomNumber(&RNG_Handle, (uint32_t *)random_value)) == HAL_OK)
         {
-          *oLen += 4;
-          memset(&(Output[index * 4]), (int)random_value, 4);
+          for (uint8_t i = 0; (i < sizeof(uint32_t)) && (*oLen < Len) ; i++)
+          {
+            Output[*oLen] = random_value[i];
+            *oLen += 1;
+          }
+        }
+        else
+        {
+          ret = MBEDTLS_ERR_ENTROPY_SOURCE_FAILED;
         }
       }
-      ret = 0;
+
+      /* Just be extra sure that we didn't do it wrong */
+      if ((__HAL_RNG_GET_FLAG(&RNG_Handle, (RNG_FLAG_CECS | RNG_FLAG_SECS))) != 0)
+      {
+        *oLen = 0;
+        ret = MBEDTLS_ERR_ENTROPY_SOURCE_FAILED;
+      }
   }
 
   return ret;

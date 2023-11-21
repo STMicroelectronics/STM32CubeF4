@@ -2,39 +2,20 @@
   ******************************************************************************
   * @file    mfxstm32l152.h
   * @author  MCD Application Team
-  * @version V2.0.0
-  * @date    24-June-2015
   * @brief   This file contains all the functions prototypes for the
   *          mfxstm32l152.c IO expander driver.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
+  * Copyright (c) 2015 STMicroelectronics.
+  * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  */ 
+  */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __MFXSTM32L152_H
@@ -42,8 +23,8 @@
 
 #ifdef __cplusplus
  extern "C" {
-#endif   
-   
+#endif
+
 /* Includes ------------------------------------------------------------------*/
 #include "../Common/ts.h"
 #include "../Common/io.h"
@@ -51,21 +32,21 @@
 
 /** @addtogroup BSP
   * @{
-  */ 
+  */
 
 /** @addtogroup Component
   * @{
   */
-    
+
 /** @defgroup MFXSTM32L152
   * @{
-  */    
+  */
 
 /* Exported types ------------------------------------------------------------*/
 
 /** @defgroup MFXSTM32L152_Exported_Types
   * @{
-  */ 
+  */
 typedef struct
 {
   uint8_t SYS_CTRL;
@@ -103,15 +84,15 @@ typedef struct
   */
 
 /* Exported constants --------------------------------------------------------*/
-  
+
 /** @defgroup MFXSTM32L152_Exported_Constants
   * @{
-  */ 
+  */
 
  /**
   * @brief  MFX COMMON defines
   */
-   
+
  /**
   * @brief  Register address: chip IDs (R)
   */
@@ -155,13 +136,13 @@ typedef struct
   * @brief  Reg Addr IRQs: the Main MCU must acknowledge it thanks to a writing access to the IRQ_ACK register
   */
 #define MFXSTM32L152_REG_ADR_IRQ_ACK            ((uint8_t)0x44)
-   
+
   /**
   * @brief  MFXSTM32L152_REG_ADR_ID choices
   */
 #define MFXSTM32L152_ID_1                    ((uint8_t)0x7B)
 #define MFXSTM32L152_ID_2                    ((uint8_t)0x79)
-   
+
   /**
   * @brief  MFXSTM32L152_REG_ADR_SYS_CTRL choices
   */
@@ -199,9 +180,9 @@ typedef struct
 #define MFXSTM32L152_IRQ_IDD                  ((uint8_t)0x02)  /* IDD function irq */
 #define MFXSTM32L152_IRQ_GPIO                 ((uint8_t)0x01)  /* General GPIO irq (only for SRC_EN and PENDING) */
 #define MFXSTM32L152_IRQ_ALL                  ((uint8_t)0xFF)  /* All global interrupts          */
-#define MFXSTM32L152_IRQ_TS                  (MFXSTM32L152_IRQ_TS_DET | MFXSTM32L152_IRQ_TS_NE |  MFXSTM32L152_IRQ_TS_TH | MFXSTM32L152_IRQ_TS_FULL | MFXSTM32L152_IRQ_TS_OVF ) 
+#define MFXSTM32L152_IRQ_TS                  (MFXSTM32L152_IRQ_TS_DET | MFXSTM32L152_IRQ_TS_NE |  MFXSTM32L152_IRQ_TS_TH | MFXSTM32L152_IRQ_TS_FULL | MFXSTM32L152_IRQ_TS_OVF )
 
-   
+
  /**
   * @brief  GPIO: 24 programmable input/output called MFXSTM32L152_GPIO[23:0] are provided
   */
@@ -280,7 +261,7 @@ typedef struct
 #define MFXSTM32L152_REG_ADR_IRQ_GPI_ACK2       ((uint8_t)0x55)  /* gpio [8:15] */
 #define MFXSTM32L152_REG_ADR_IRQ_GPI_ACK3       ((uint8_t)0x56)  /* agpio [0:7] */
 
-   
+
  /**
   * @brief  GPIO: IO Pins definition
   */
@@ -293,14 +274,14 @@ typedef struct
 #define MFXSTM32L152_GPIO_PIN_6                  ((uint32_t)0x0040)
 #define MFXSTM32L152_GPIO_PIN_7                  ((uint32_t)0x0080)
 
-#define MFXSTM32L152_GPIO_PIN_8                  ((uint32_t)0x0100) 
-#define MFXSTM32L152_GPIO_PIN_9                  ((uint32_t)0x0200) 
-#define MFXSTM32L152_GPIO_PIN_10                 ((uint32_t)0x0400) 
+#define MFXSTM32L152_GPIO_PIN_8                  ((uint32_t)0x0100)
+#define MFXSTM32L152_GPIO_PIN_9                  ((uint32_t)0x0200)
+#define MFXSTM32L152_GPIO_PIN_10                 ((uint32_t)0x0400)
 #define MFXSTM32L152_GPIO_PIN_11                 ((uint32_t)0x0800)
-#define MFXSTM32L152_GPIO_PIN_12                 ((uint32_t)0x1000) 
-#define MFXSTM32L152_GPIO_PIN_13                 ((uint32_t)0x2000) 
-#define MFXSTM32L152_GPIO_PIN_14                 ((uint32_t)0x4000) 
-#define MFXSTM32L152_GPIO_PIN_15                 ((uint32_t)0x8000) 
+#define MFXSTM32L152_GPIO_PIN_12                 ((uint32_t)0x1000)
+#define MFXSTM32L152_GPIO_PIN_13                 ((uint32_t)0x2000)
+#define MFXSTM32L152_GPIO_PIN_14                 ((uint32_t)0x4000)
+#define MFXSTM32L152_GPIO_PIN_15                 ((uint32_t)0x8000)
 
 #define MFXSTM32L152_GPIO_PIN_16               ((uint32_t)0x010000)
 #define MFXSTM32L152_GPIO_PIN_17               ((uint32_t)0x020000)
@@ -325,20 +306,20 @@ typedef struct
  /**
   * @brief  GPIO: constant
   */
-#define MFXSTM32L152_GPIO_DIR_IN                ((uint8_t)0x0)  
-#define MFXSTM32L152_GPIO_DIR_OUT               ((uint8_t)0x1)  
-#define MFXSTM32L152_IRQ_GPI_EVT_LEVEL          ((uint8_t)0x0)  
-#define MFXSTM32L152_IRQ_GPI_EVT_EDGE           ((uint8_t)0x1)  
+#define MFXSTM32L152_GPIO_DIR_IN                ((uint8_t)0x0)
+#define MFXSTM32L152_GPIO_DIR_OUT               ((uint8_t)0x1)
+#define MFXSTM32L152_IRQ_GPI_EVT_LEVEL          ((uint8_t)0x0)
+#define MFXSTM32L152_IRQ_GPI_EVT_EDGE           ((uint8_t)0x1)
 #define MFXSTM32L152_IRQ_GPI_TYPE_LLFE          ((uint8_t)0x0)  /* Low Level Falling Edge */
 #define MFXSTM32L152_IRQ_GPI_TYPE_HLRE          ((uint8_t)0x1)  /*High Level Raising Edge */
-#define MFXSTM32L152_GPI_WITHOUT_PULL_RESISTOR  ((uint8_t)0x0)  
-#define MFXSTM32L152_GPI_WITH_PULL_RESISTOR     ((uint8_t)0x1)  
-#define MFXSTM32L152_GPO_PUSH_PULL              ((uint8_t)0x0)  
-#define MFXSTM32L152_GPO_OPEN_DRAIN             ((uint8_t)0x1)  
-#define MFXSTM32L152_GPIO_PULL_DOWN             ((uint8_t)0x0)  
-#define MFXSTM32L152_GPIO_PULL_UP               ((uint8_t)0x1)   
-   
-   
+#define MFXSTM32L152_GPI_WITHOUT_PULL_RESISTOR  ((uint8_t)0x0)
+#define MFXSTM32L152_GPI_WITH_PULL_RESISTOR     ((uint8_t)0x1)
+#define MFXSTM32L152_GPO_PUSH_PULL              ((uint8_t)0x0)
+#define MFXSTM32L152_GPO_OPEN_DRAIN             ((uint8_t)0x1)
+#define MFXSTM32L152_GPIO_PULL_DOWN             ((uint8_t)0x0)
+#define MFXSTM32L152_GPIO_PULL_UP               ((uint8_t)0x1)
+
+
   /**
   * @brief  TOUCH SCREEN Registers
   */
@@ -440,7 +421,7 @@ typedef struct
   */
 #define MFXSTM32L152_REG_ADR_IDD_SHUNTS_ON_BOARD  ((uint8_t)0x98)
 
- 
+
 
 /** @defgroup IDD_Control_Register_Defines  IDD Control Register Defines
   * @{
@@ -521,24 +502,24 @@ typedef struct
   * @}
   */
 
- 
+
 /* Exported macro ------------------------------------------------------------*/
-   
+
 /** @defgroup MFXSTM32L152_Exported_Macros
   * @{
-  */ 
+  */
 
 /**
   * @}
-  */ 
+  */
 
 /* Exported functions --------------------------------------------------------*/
-  
+
 /** @defgroup MFXSTM32L152_Exported_Functions
   * @{
   */
 
-/** 
+/**
   * @brief MFXSTM32L152 Control functions
   */
 void     mfxstm32l152_Init(uint16_t DeviceAddr);
@@ -558,7 +539,7 @@ void     mfxstm32l152_SetIrqOutPinPolarity(uint16_t DeviceAddr, uint8_t Polarity
 void     mfxstm32l152_SetIrqOutPinType(uint16_t DeviceAddr, uint8_t Type);
 
 
-/** 
+/**
   * @brief MFXSTM32L152 IO functionalities functions
   */
 void     mfxstm32l152_IO_Start(uint16_t DeviceAddr, uint32_t IO_Pin);
@@ -578,7 +559,7 @@ void     mfxstm32l152_IO_SetIrqEvtMode(uint16_t DeviceAddr, uint32_t IO_Pin, uin
 void     mfxstm32l152_IO_EnablePinIT(uint16_t DeviceAddr, uint32_t IO_Pin);
 void     mfxstm32l152_IO_DisablePinIT(uint16_t DeviceAddr, uint32_t IO_Pin);
 
-/** 
+/**
   * @brief MFXSTM32L152 Touch screen functionalities functions
   */
 void     mfxstm32l152_TS_Start(uint16_t DeviceAddr);
@@ -617,7 +598,7 @@ void     mfxstm32l152_WriteReg(uint16_t DeviceAddr, uint8_t RegAddr, uint8_t Val
 
 
 
-/** 
+/**
   * @brief iobus prototypes (they should be defined in common/stm32_iobus.h)
   */
 void     MFX_IO_Init(void);
@@ -632,7 +613,7 @@ uint16_t MFX_IO_ReadMultiple(uint16_t addr, uint8_t reg, uint8_t *buffer, uint16
 
 /**
   * @}
-  */ 
+  */
 
 /* Touch screen driver structure */
 extern TS_DrvTypeDef mfxstm32l152_ts_drv;
@@ -652,7 +633,7 @@ extern IDD_DrvTypeDef mfxstm32l152_idd_drv;
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
@@ -660,9 +641,8 @@ extern IDD_DrvTypeDef mfxstm32l152_idd_drv;
 
 /**
   * @}
-  */ 
+  */
 
 /**
   * @}
-  */       
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+  */

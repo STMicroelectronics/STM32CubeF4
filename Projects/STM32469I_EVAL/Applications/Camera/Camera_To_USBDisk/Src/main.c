@@ -229,7 +229,7 @@ static void SavePicture(void)
   FRESULT res1, res2;     /* FatFs function common result code */
   uint32_t byteswritten;  /* File write count */
   static uint32_t counter = 0;
-  uint8_t str[30];
+  uint8_t str[15];
   uint8_t str_display[50];
   
   /* Suspend the camera capture */

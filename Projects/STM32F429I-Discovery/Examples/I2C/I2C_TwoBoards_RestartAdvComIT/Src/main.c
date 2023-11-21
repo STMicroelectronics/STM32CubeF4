@@ -109,7 +109,7 @@ static void SystemClock_Config(void);
 static void FlushBuffer8(uint8_t* pBuffer1, uint16_t BufferLength);
 static void Error_Handler(void);
 
-#if defined(__GNUC__) && defined(MASTER_BOARD) && defined(SW4STM32)
+#if defined(__GNUC__) && defined(MASTER_BOARD)
 extern void initialise_monitor_handles(void);	/*rtt*/
 #endif
 
@@ -122,7 +122,7 @@ extern void initialise_monitor_handles(void);	/*rtt*/
   */
 int main(void)
 {
-#if defined(__GNUC__) && defined(MASTER_BOARD) && defined(SW4STM32)
+#if defined(__GNUC__) && defined(MASTER_BOARD)
   initialise_monitor_handles();	/*rtt*/
 #endif
 

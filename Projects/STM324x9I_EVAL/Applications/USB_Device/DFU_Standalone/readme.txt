@@ -97,7 +97,7 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_HS" and "USE_USB_HS_IN_FS" when using USB High Speed (HS) Core in FS mode      
 
 It is possible to fine tune needed USB Device features by modifying defines values in USBD configuration
-file “usbd_conf.h” available under the project includes directory, in a way to fit the application
+file "usbd_conf.h" available under the project includes directory, in a way to fit the application
 requirements, such as:      
  - USBD_DFU_APP_DEFAULT_ADD, specifying the address from where user's application will be downloaded.
 

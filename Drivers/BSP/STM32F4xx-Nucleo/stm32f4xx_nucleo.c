@@ -50,11 +50,11 @@
   */ 
 
 /**
-  * @brief STM32F4xx NUCLEO BSP Driver version number V1.2.8
+  * @brief STM32F4xx NUCLEO BSP Driver version number V1.2.9
   */
 #define __STM32F4xx_NUCLEO_BSP_VERSION_MAIN   (0x01) /*!< [31:24] main version */
 #define __STM32F4xx_NUCLEO_BSP_VERSION_SUB1   (0x02) /*!< [23:16] sub1 version */
-#define __STM32F4xx_NUCLEO_BSP_VERSION_SUB2   (0x08) /*!< [15:8]  sub2 version */
+#define __STM32F4xx_NUCLEO_BSP_VERSION_SUB2   (0x09) /*!< [15:8]  sub2 version */
 #define __STM32F4xx_NUCLEO_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */ 
 #define __STM32F4xx_NUCLEO_BSP_VERSION        ((__STM32F4xx_NUCLEO_BSP_VERSION_MAIN << 24)\
                                              |(__STM32F4xx_NUCLEO_BSP_VERSION_SUB1 << 16)\
@@ -752,7 +752,7 @@ uint8_t BSP_JOY_Init(void)
 
 /**
   * @brief  DeInit joystick GPIOs.
-  * @note   JOY DeInit does not disable the Mfx, just set the Mfx pins in Off modee.
+  * @note   JOY DeInit does not disable the Mfx, just set the Mfx pins in Off mode.
   */
 void BSP_JOY_DeInit(void)
 {

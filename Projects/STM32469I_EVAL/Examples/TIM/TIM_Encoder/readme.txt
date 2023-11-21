@@ -42,7 +42,7 @@ determinate the rotation direction.
 
   To emulate a quadrature encoder, TIM3 is configured in toggle mode to generate
 2 quadrature signals on (PC6 and PC7) at 10KHz. Each 1s, signals change phase
-(+90°/-90°) to emulate a Forward/Backward rotation.  
+(+90Â°/-90Â°) to emulate a Forward/Backward rotation.  
 LED1 is configured to toggle accordingly every 1s. 
                
 SystemCoreClock is set to 180 MHz for STM32F4xx Devices.

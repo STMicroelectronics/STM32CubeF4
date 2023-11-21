@@ -38,7 +38,7 @@ How To use this driver:
       - OUTPUT_DEVICE_BOTH       : both Headphones are used as outputs for the audio stream
                                  at the same time.
       Note. On STM32469I-EVAL SAI_DMA is configured in CIRCULAR mode. Due to this the application
-        does NOT need to call BSP_AUDIO_OUT_ChangeBuffer() to assure straming.
+        does NOT need to call BSP_AUDIO_OUT_ChangeBuffer() to assure streaming.
    + Call the function BSP_EVAL_AUDIO_OUT_Play(
                                   pBuffer: pointer to the audio data file address
                                   Size   : size of the buffer to be sent in Bytes

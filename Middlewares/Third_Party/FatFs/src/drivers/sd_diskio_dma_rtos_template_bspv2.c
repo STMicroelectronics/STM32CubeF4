@@ -20,7 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "ff_gen_drv.h"
-#include "sd_diskio.h"
+#include "sd_diskio_dma_rtos.h"
 
 #include <string.h>
 
@@ -142,7 +142,7 @@ static DSTATUS SD_CheckStatus(BYTE lun)
 {
   Stat = STA_NOINIT;
 
-  if(BSP_SD_GetCardState(BSP_SD_INSTANCE) == BSP_ERROR_NONE)
+  if(BSP_SD_GetCardState(BSP_SD_INSTANCE) == SD_TRANSFER_OK)
   {
     Stat &= ~STA_NOINIT;
   }
@@ -225,6 +225,7 @@ DSTATUS SD_status(BYTE lun)
   */
 DRESULT SD_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
 {
+  int32_t ret;
   DRESULT res = RES_ERROR;
   uint32_t timer;
 
@@ -233,14 +234,6 @@ DRESULT SD_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
 #else
   uint16_t event;
   osStatus_t status;
-#endif
-
-#if defined(ENABLE_SCRATCH_BUFFER)
-  int32_t ret;
-#endif
-
-#if (ENABLE_SD_DMA_CACHE_MAINTENANCE == 1)
-  uint32_t alignedAddr;
 #endif
 
   /*
@@ -253,12 +246,12 @@ DRESULT SD_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
   }
 
 #if defined(ENABLE_SCRATCH_BUFFER)
-  if (!((uint32_t)buff & 0x3))
+  /* Check if buffer currently used is aligned on 32 bytes address */
+  if (!((uint32_t)buff & 0x1F))
   {
 #endif
-  if(BSP_SD_ReadBlocks_DMA(BSP_SD_INSTANCE, (uint32_t*)buff,
-                           (uint32_t) (sector),
-                           count) == BSP_ERROR_NONE)
+  ret = BSP_SD_ReadBlocks_DMA(BSP_SD_INSTANCE, (uint32_t*)buff, (uint32_t) (sector), count);
+  if (ret == BSP_ERROR_NONE)
   {
 #if (osCMSIS < 0x20000U)
     /* wait for a message from the queue or a timeout */
@@ -288,8 +281,7 @@ DRESULT SD_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
                the SCB_InvalidateDCache_by_Addr() requires a 32-Byte aligned address,
                adjust the address and the D-Cache size to invalidate accordingly.
              */
-            alignedAddr = (uint32_t)buff & ~0x1F;
-            SCB_InvalidateDCache_by_Addr((uint32_t*)alignedAddr, count*BLOCKSIZE + ((uint32_t)buff - alignedAddr));
+            SCB_InvalidateDCache_by_Addr((uint32_t*)buff, count*BLOCKSIZE);
 #endif
             break;
           }
@@ -300,8 +292,9 @@ DRESULT SD_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
 #else
     }
 #endif
-  }
+   }
 #if defined(ENABLE_SCRATCH_BUFFER)
+  }
   else {
     /* Slow path, fetch each sector a part and memcpy to destination buffer */
     int i;
@@ -309,7 +302,7 @@ DRESULT SD_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
     for (i = 0; i < count; i++)
     {
       ret = BSP_SD_ReadBlocks_DMA(BSP_SD_INSTANCE, (uint32_t*)scratch, (uint32_t)sector++, 1);
-      if (ret == BSP_ERROR_NONE )
+      if (ret == BSP_ERROR_NONE)
       {
         /* wait until the read is successful or a timeout occurs */
 #if (osCMSIS < 0x20000U)
@@ -370,8 +363,6 @@ DRESULT SD_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
       if ((i == count) && (ret == BSP_ERROR_NONE ))
         res = RES_OK;
     }
-
-  }
 #endif
   return res;
 }
@@ -387,6 +378,7 @@ DRESULT SD_read(BYTE lun, BYTE *buff, DWORD sector, UINT count)
 #if _USE_WRITE == 1
 DRESULT SD_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
 {
+  int32_t ret;
   DRESULT res = RES_ERROR;
   uint32_t timer;
 
@@ -395,10 +387,6 @@ DRESULT SD_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
 #else
   uint16_t event;
   osStatus_t status;
-#endif
-
-#if defined(ENABLE_SCRATCH_BUFFER)
-  int32_t ret;
 #endif
 
   /*
@@ -411,23 +399,21 @@ DRESULT SD_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
   }
 
 #if defined(ENABLE_SCRATCH_BUFFER)
-  if (!((uint32_t)buff & 0x3))
+  /* Check if buffer currently used is aligned on 32 bytes address */
+  if (!((uint32_t)buff & 0x1F))
   {
 #endif
 #if (ENABLE_SD_DMA_CACHE_MAINTENANCE == 1)
-  uint32_t alignedAddr;
   /*
     the SCB_CleanDCache_by_Addr() requires a 32-Byte aligned address
     adjust the address and the D-Cache size to clean accordingly.
   */
-  alignedAddr = (uint32_t)buff & ~0x1F;
-  SCB_CleanDCache_by_Addr((uint32_t*)alignedAddr, count*BLOCKSIZE + ((uint32_t)buff - alignedAddr));
+  SCB_CleanDCache_by_Addr((uint32_t*)buff, count*BLOCKSIZE);
 #endif
 
 
-  if(BSP_SD_WriteBlocks_DMA(BSP_SD_INSTANCE, (uint32_t*)buff,
-                           (uint32_t) (sector),
-                           count) == BSP_ERROR_NONE)
+  ret = BSP_SD_WriteBlocks_DMA(BSP_SD_INSTANCE, (uint32_t*)buff, (uint32_t) (sector), count);
+  if (ret == BSP_ERROR_NONE)
   {
 #if (osCMSIS < 0x20000U)
     /* Get the message from the queue */
@@ -484,7 +470,7 @@ DRESULT SD_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
       buff += BLOCKSIZE;
 
       ret = BSP_SD_WriteBlocks_DMA(BSP_SD_INSTANCE, (uint32_t*)scratch, (uint32_t)sector++, 1);
-      if (ret == BSP_ERROR_NONE )
+      if (ret == BSP_ERROR_NONE)
       {
         /* wait until the read is successful or a timeout occurs */
 #if (osCMSIS < 0x20000U)
@@ -493,14 +479,14 @@ DRESULT SD_write(BYTE lun, const BYTE *buff, DWORD sector, UINT count)
 
         if (event.status == osEventMessage)
         {
-          if (event.value.v == READ_CPLT_MSG)
+          if (event.value.v == WRITE_CPLT_MSG)
           {
             timer = osKernelSysTick();
             /* block until SDIO IP is ready or a timeout occur */
             while(osKernelSysTick() - timer <SD_TIMEOUT)
 #else
           status = osMessageQueueGet(SDQueueID, (void *)&event, NULL, SD_TIMEOUT);
-          if ((status == osOK) && (event == READ_CPLT_MSG))
+          if ((status == osOK) && (event == WRITE_CPLT_MSG))
           {
             timer = osKernelGetTickCount();
             /* block until SDIO IP is ready or a timeout occur */

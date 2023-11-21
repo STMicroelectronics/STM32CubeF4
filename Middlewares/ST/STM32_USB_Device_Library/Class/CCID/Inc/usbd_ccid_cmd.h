@@ -55,7 +55,7 @@ extern "C" {
   an unimplemented slot, then the Slot Error register shall be set to 5 (index of bSlot field) */
 
 /*
- * CCID Class specification revsion 1.1
+ * CCID Class specification revision 1.1
  */
 
 /* Following Parameters used in PC_to_RDR_XfrBlock */

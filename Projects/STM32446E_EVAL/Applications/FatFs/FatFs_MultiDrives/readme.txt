@@ -53,9 +53,9 @@ access to FAT volume, when using FatFs APIs. Otherwise, user can check if the
 written text file is available on the uSD card.
 
 It is possible to fine tune needed FatFs features by modifying defines values 
-in FatFs configuration file “ffconf.h” available under the project includes 
+in FatFs configuration file "ffconf.h" available under the project includes 
 directory, in a way to fit the application requirements. In this case, two drives
-are used, so the Max drive number is set to: _VOLUMES = 2 in “ffconf.h” file.
+are used, so the Max drive number is set to: _VOLUMES = 2 in "ffconf.h" file.
 
 STM32 Eval boards LEDs can be used to monitor the application status:
   - LED1 is ON when the application runs successfully.

@@ -41,7 +41,7 @@ LED3, and LED4 toggle in this forever loop.
 
 In this example, HCLK is configured at 100 MHz.
 The configuration of the Clock is done in the system_stm32f4xx.c by calling SetSysClk().
-A specefic flashloader is required for the programming of the PSRAM memory.
+A specific flashloader is required for the programming of the PSRAM memory.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)
       based on variable incremented in SysTick ISR. This implies that if HAL_Delay() is called from
@@ -78,9 +78,9 @@ Memory, FMC, PSRAM, PreInit, Execute, Initialization, Access
 
   - A specific region for the PSRAM memory has been added in the scatter file 
     (STM32F413xx/STM32F423xx for IAR toolchain, 
-    STM32F413H-DISCO.sct for Keil toolchain and linker file for SW4STM32)
+    STM32F413H-DISCO.sct for Keil toolchain and linker file for STM32CubeIDE)
     
-The PSRAM external flash loader is not integrated with supported toolchains, it�s only supported with STM32
+The PSRAM external flash loader is not integrated with supported toolchains, itâ€™s only supported with STM32
 ST-Link Utility V4.0.1
 To load the example, use STM32 ST-Link Utility to program both internal Flash and external PSRAM memory:
 1- Open STM32 ST-Link Utility V4.1.0, click on "External Loader" from the bar menu then check 

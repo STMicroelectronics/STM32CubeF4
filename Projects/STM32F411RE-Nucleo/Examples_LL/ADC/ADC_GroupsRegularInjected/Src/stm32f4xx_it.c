@@ -174,7 +174,7 @@ void ADC_IRQHandler(void)
 {
   /* Check whether ADC group injected end of unitary conversion caused        */
   /* the ADC interruption.                                                    */
-  /* Note: On this STM32 serie, there is no flag of group injected            */
+  /* Note: On this STM32 series, there is no flag of group injected            */
   /*       end of unitary conversion. Therefore, flag of group injected       */
   /*       end of sequence conversions is used (equivalent when there is      */
   /*       only 1 rank in group injected sequencer).                          */

@@ -98,7 +98,7 @@ int main(void)
 
     /* Create FAT volume */
 
-    /* Make sure that the SD detecion IT has a lower priority than the Systick */
+    /* Make sure that the SD detection IT has a lower priority than the Systick */
     HAL_NVIC_SetPriority(SysTick_IRQn, 0x0E ,0);
 
     if(BSP_SD_IsDetected())

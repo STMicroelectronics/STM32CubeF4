@@ -223,7 +223,7 @@ static void SystemClock_Config(void)
   */
 static void Display_DemoDescription(void)
 {
-  uint8_t desc[50];
+  uint8_t desc[58];
   
   BSP_LCD_SetFont(&LCD_DEFAULT_FONT);
   

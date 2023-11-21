@@ -168,7 +168,7 @@ static void LCD_Config(void)
   LTDC_LayerCfgTypeDef pLayerCfg;
   LTDC_LayerCfgTypeDef pLayerCfg1;
 
-  /* Initializaton of ILI9341 component*/
+  /* Initialization of ILI9341 component*/
   ili9341_Init();
   
 /* LTDC Initialization -------------------------------------------------------*/

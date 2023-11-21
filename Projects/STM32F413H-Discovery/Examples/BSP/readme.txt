@@ -23,6 +23,10 @@
 
 This example provides a description of how to use the different BSP drivers. 
 
+This example provides 2 project configurations:
+- USE_STM32F413H_DISCOVERY_REVE : Board contains the FT3x67 Touch Screen component.
+- USE_STM32F413H_DISCOVERY : Board contains the FT6x06 Touch Screen component.
+
 At the beginning of the main program the HAL_Init() function is called to reset 
 all the peripherals, initialize the Flash interface and the systick.
 Then the SystemClock_Config() function is used to configure the system clock

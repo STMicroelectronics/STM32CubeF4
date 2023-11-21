@@ -1003,7 +1003,7 @@ __weak uint8_t BSP_AUDIO_IN_ConfigDigitalMic(uint32_t InputDevice, void *Params)
   /* Default configuration of DFSDM filters and channels */
   return(BSP_AUDIO_IN_ConfigMicDefault(InputDevice));
   /* Note: This function can be called at application level and default configuration
-           can be ovewritten to fit user's need */
+           can be overwritten to fit user's need */
 } 
 
 /**

@@ -62,7 +62,7 @@ void Menu_Init(void)
   osThreadDef(Menu_Thread, MSC_MenuThread, osPriorityHigh, 0, 8 * configMINIMAL_STACK_SIZE);
   osThreadCreate(osThread(Menu_Thread), NULL);
   
-  /* Define used semaphore fot Joystick*/
+  /* Define used semaphore for Joystick*/
   osSemaphoreDef(JOY_SEM);
   
   /* Create the semaphore used by the two threads. */

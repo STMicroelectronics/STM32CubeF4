@@ -76,16 +76,16 @@ uint32_t Storage_OpenReadFile(uint8_t Xpoz, uint16_t Ypoz, const char *BmpName)
     /* Get the number of bytes which can be stored inside the buffer */
     nbbytetoread = MIN(size,nbline*pbmpheader->w*2);
   
-    /* Adapt the total size of the bitmap, stored inside the header, to this chunck */
+    /* Adapt the total size of the bitmap, stored inside the header, to this chunk */
     pbmpheader->fsize = pbmpheader->offset + nbbytetoread;
   
-    /* Adapt the number of line, stored inside the header, to this chunck */
+    /* Adapt the number of line, stored inside the header, to this chunk */
     pbmpheader->h = nbbytetoread/(pbmpheader->w*2);
     
     /* Start reading at the end of the file */
     f_lseek(&bmpfile, pbmpheader->offset + size - nbbytetoread);
     
-    /* Store this chunck (or the entire part if possible) of the file inside a buffer */
+    /* Store this chunk (or the entire part if possible) of the file inside a buffer */
     f_read(&bmpfile, aBuffer + pbmpheader->offset, nbbytetoread, &BytesRead);
   
     /* Draw the bitmap */

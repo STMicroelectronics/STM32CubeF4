@@ -45,11 +45,11 @@
   * @{
   */
 /**
- * @brief STM324x9I EVAL BSP Driver version number V3.0.2
+ * @brief STM324x9I EVAL BSP Driver version number V3.0.3
    */
 #define __STM324x9I_EVAL_BSP_VERSION_MAIN   (0x03) /*!< [31:24] main version */
 #define __STM324x9I_EVAL_BSP_VERSION_SUB1   (0x00) /*!< [23:16] sub1 version */
-#define __STM324x9I_EVAL_BSP_VERSION_SUB2   (0x02) /*!< [15:8]  sub2 version */
+#define __STM324x9I_EVAL_BSP_VERSION_SUB2   (0x03) /*!< [15:8]  sub2 version */
 #define __STM324x9I_EVAL_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */ 
 #define __STM324x9I_EVAL_BSP_VERSION         ((__STM324x9I_EVAL_BSP_VERSION_MAIN << 24)\
                                              |(__STM324x9I_EVAL_BSP_VERSION_SUB1 << 16)\
@@ -433,7 +433,7 @@ uint8_t BSP_TS3510_IsDetected(void)
   {
     error = (uint32_t)HAL_I2C_GetError(&heval_I2c);
 
-    /* I2C error occured */
+    /* I2C error occurred */
     I2Cx_Error(TS3510_I2C_ADDRESS);
     
     if(error == HAL_I2C_ERROR_AF)
@@ -607,7 +607,7 @@ static HAL_StatusTypeDef I2Cx_ReadMultiple(uint8_t Addr, uint16_t Reg, uint16_t 
   /* Check the communication status */
   if(status != HAL_OK)
   {
-    /* I2C error occured */
+    /* I2C error occurred */
     I2Cx_Error(Addr);
   }
   return status;    

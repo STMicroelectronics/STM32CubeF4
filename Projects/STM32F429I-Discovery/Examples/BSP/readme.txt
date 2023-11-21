@@ -87,11 +87,13 @@ I2S, Microphone, Headphones
 @par Hardware and Software environment  
 
   - This example runs on STM32F429xx devices.
-    
-  - This example has been tested with STMicroelectronics STM32F429I-Discovery RevC
-    boards and can be easily tailored to any other supported device 
-    and development board.
+  
+  - This example has been tested with STMicroelectronics STM32F429I-Discovery RevC and RevE
+    boards and can be easily tailored to any other supported device and development board.
 
+  - The default example configuration has been running on STMicroelectronics STM32F429I-Discovery RevC board,
+    and in order to run it on STMicroelectronics STM32F429I-Discovery RevD or RevE boards, please ensure 
+    to add "USE_STM32F429I_DISCOVERY_REVD" define in the toolchain's pre-processor options.
 
 @par How to use it ? 
 

@@ -76,7 +76,7 @@ compiler preprocessor (already done in the preconfigured projects provided with 
       - "USE_USB_FS" when using USB Full Speed (FS) Core 
 
 It is possible to fine tune needed USB Device features by modifying defines values in USBD configuration
-file “usbd_conf.h” available under the project includes directory, in a way to fit the application
+file "usbd_conf.h" available under the project includes directory, in a way to fit the application
 requirements, such as:      
  - USBD_AUDIO_FREQ, specifying the sampling rate conversion from original audio file sampling rate to the
    sampling rate supported by the device.   

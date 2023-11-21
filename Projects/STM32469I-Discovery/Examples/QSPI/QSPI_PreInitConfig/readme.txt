@@ -81,7 +81,7 @@ Memory, QUADSPI, Erase, Write, DMA, section, memory-mapped mode, PreInit configu
 
   - A specific region for the QSPI memory has been added in the scatter file 
    (STM32F469xx_flash.icf for IAR toolchain, STM32469I-DISCOVERY.sct for Keil toolchain 
-   and STM32F469NIHx_FLASH.ld for SW4STM32 toolchain) in order to map functions in this memory
+   and STM32F469NIHx_FLASH.ld for STM32CubeIDE toolchain) in order to map functions in this memory
 
 @par How to use it ? 
 

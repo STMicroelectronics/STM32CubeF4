@@ -55,7 +55,7 @@ the configuration of the needed I2C resources according to the used hardware (CL
 GPIO, DMA and NVIC). You may update this function to change I2C configuration.
 
 The I2C communication is then initiated.
-The project is splitted in two parts the Master Board and the Slave Board
+The project is split in two parts the Master Board and the Slave Board
 - Master Board
   The HAL_I2C_Master_Receive_DMA() and the HAL_I2C_Master_Transmit_DMA() functions 
   allow respectively the reception and the transmission of a predefined data buffer

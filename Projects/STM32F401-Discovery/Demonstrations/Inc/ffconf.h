@@ -173,7 +173,7 @@
 /  option to 1 and f_getfree() function at first time after volume mount will
 /  force a full FAT scan.
 /
-/  0: Load all informations in the FSINFO if available.
+/  0: Load all information in the FSINFO if available.
 /  1: Do not trust free cluster count in the FSINFO.
 */
 

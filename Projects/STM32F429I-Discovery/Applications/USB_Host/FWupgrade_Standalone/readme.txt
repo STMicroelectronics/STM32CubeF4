@@ -99,7 +99,7 @@ In order to make the program work, you must do the following :
  
 1. Load the binary image of the user program to the root directory of a USB key. You can
 use the provided binary images under the "USB_Host/FWupgrade_Standalone/Binary" folder. 
-The binary should be renamed to “image.bin”.
+The binary should be renamed to "image.bin".
 
 2. Program the firmware upgrade application into the internal Flash memory.
 a) Open the project (under USB_Host/FWupgrade_Standalone) with your preferred toolchain.
@@ -110,8 +110,8 @@ b) Compile and load the project into the target memory and run the project.
 1. Key button pressed: The firmware upgrade application is executed.
 2. Key button not pressed: A test on the user application start address will be
 performed and one of the below processes is executed.
-– User vector table available: User application is executed.
-– User vector table not available: firmware upgrade application is executed.
+- User vector table available: User application is executed.
+- User vector table not available: firmware upgrade application is executed.
 
 + During the firmware upgrade application execution, there is a continuous check on the Key
 button pressed state time. Depending on the state time of the Key button, one of the
@@ -124,50 +124,50 @@ UPLOAD command will be executed immediately after completed execution of the DOW
 
 + LEDs status
 * Red LED blinks in infinite loop 
-	– Error: USB key disconnected.
+	- Error: USB key disconnected.
 
 * Red LED blinks in infinite loop
-	– Error: Download done and USB key disconnected.
+	- Error: Download done and USB key disconnected.
 
 * Red LED blinks in infinite loop
-	– Error: binary file not available
+	- Error: binary file not available
 
 * Red LED blinks in infinite loop
-	– Error: Buffer size limit, Exceed 32Kbyte
+	- Error: Buffer size limit, Exceed 32Kbyte
 	
 * Red LED blinks in infinite loop
-	– Error: No available Flash memory size to load the binary file.
+	- Error: No available Flash memory size to load the binary file.
 	
 * Red LED blinks in infinite loop
-	– Error: Flash erase error.
+	- Error: Flash erase error.
         
 * Red LED blinks in infinite loop and Green LED On
-	– Error: Flash programming error.
+	- Error: Flash programming error.
         
 * Red LED blinks in infinite loop and Green LED ON
-	– USB key read out protection ON.
+	- USB key read out protection ON.
         
 * Green LED and Red LED ON
-	– UPLOAD condition verified and the user should release the Key button.
+	- UPLOAD condition verified and the user should release the Key button.
 	
 * Red LED ON
-	– DOWNLOAD ongoing.
+	- DOWNLOAD ongoing.
 	
 * Green LED ON 
-	– DOWNLOAD done.
+	- DOWNLOAD done.
 
 * Red LED ON 
-	– UPLOAD ongoing.
+	- UPLOAD ongoing.
 
 * Green LED ON 
-	– UPLOAD done.
+	- UPLOAD done.
 
 * Green LED ON
-	– DOWNLOAD and UPLOAD done with success; and the MCU waiting until you
+	- DOWNLOAD and UPLOAD done with success; and the MCU waiting until you
       press the Key button before execute the JUMP command.
 
 * Green LED and Red LED blink in infinite loop
-	– JUMP command done. new Biary after FW upgrade is launched.
+	- JUMP command done. new Biary after FW upgrade is launched.
 	
 + User Program Condition
 The user application (binary file) to be loaded into the Flash memory using the firmware

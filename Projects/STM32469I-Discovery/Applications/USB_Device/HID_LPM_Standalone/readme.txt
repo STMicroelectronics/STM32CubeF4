@@ -38,7 +38,7 @@ On Host L1 resume, STM32 will wakeup from STOP and USB resumes operations.
 You can test L1 suspend/resume, by running the USBCV3.0 chapter9 for USB2.0 devices 
 and select (in debug mode) test "TD9.21: LPM L1 Suspend Resume Test".
 Please note that for running USBCV3.0, you'll need a PC with a USB3.0 (xHCI)
-host controller (please refer to USBCV3.0 documentation for more informations).
+host controller (please refer to USBCV3.0 documentation for more information).
 
 This application is a part of the USB Device Library package using STM32Cube firmware. It describes how to 
 implement the USB Link Power Management (LPM) feature and how it can be used with the selective suspend 
@@ -53,9 +53,9 @@ internally a 48-MHz clock which is coming from a specific output of two PLLs PLL
 In the High Speed (HS) mode the USB clock (60 MHz) is driven by the ULPI.
 
 The 48 MHz clock for the USB FS can be derived from one of the two following sources:
-  – PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
+  â€“ PLL clock (clocked by the HSE): If the USB uses the PLL as clock source, the PLL clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLVCO/PLLQ).
-  – PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI clock must be programmed
+  â€“ PLLSAI clock (clocked by the HSE): If the USB uses the PLLSAI as clock source, the PLLSAI clock must be programmed
     to output 48 MHz frequency (USBCLK = PLLSAIVCO/PLLSAIP).
  
 The function GetPointerData() is responsible to move the mouse cursor automatically,

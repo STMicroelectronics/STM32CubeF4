@@ -165,13 +165,10 @@ static void SystemClock_Config(void)
   {
     while(1) { ; }
   }
+
+  /* Enable the Flash prefetch */
+  __HAL_FLASH_PREFETCH_BUFFER_ENABLE();
   
-  /* STM32F405x/407x/415x/417x Revision Z devices: prefetch is supported  */
-  if (HAL_GetREVID() == 0x1001)
-  {
-    /* Enable the Flash prefetch */
-    __HAL_FLASH_PREFETCH_BUFFER_ENABLE();
-  }
 }
 
 /**

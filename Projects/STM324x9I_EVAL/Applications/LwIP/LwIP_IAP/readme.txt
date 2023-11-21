@@ -43,7 +43,7 @@ will be ensured by LEDs:
 1- LwIP/LwIP_IAP/Binary directory contains the following binaries: 
 
 - STM324x9I_EVAL_HTTP_Server.bin: run a http server application which can be executed to:
-* provide informations about STM32F4 and LwIP stack.
+* provide information about STM32F4 and LwIP stack.
 * allow to control the four LEDs located in the STM324x9I_EVAL board
 * show the ADC3 channel 7 analog input converted value
 
@@ -55,7 +55,7 @@ If a DHCP server is available, a dynamic IP address can be allocated by enabling
 the DHCP process (#define LWIP_DHCP in lwipopts.h).
 
 If a DHCP server is not available, after timeout connection, the device only gets a static 
-IP address(the switch from static to dynamic IP adress is not available in this application).
+IP address(the switch from static to dynamic IP address is not available in this application).
 
 Note: In this application the Ethernet Link ISR need the HAL time base to configure 
 the Ethernet MAC, so the Ethernet Link interrupt priority must be set lower (numerically greater) 

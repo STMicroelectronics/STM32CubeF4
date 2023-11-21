@@ -32,7 +32,7 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-uint8_t EndFrame = 0;
+__IO uint8_t EndFrame = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);

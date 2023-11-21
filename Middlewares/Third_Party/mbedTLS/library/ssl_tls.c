@@ -2,6 +2,7 @@
  *  SSLv3/TLSv1 shared functions
  *
  *  Copyright (C) 2006-2015, ARM Limited, All Rights Reserved
+ *  Portions Copyright (c) STMicroelectronics, All Rights Reserved
  *  SPDX-License-Identifier: Apache-2.0
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -589,20 +590,20 @@ static void ssl_calc_finished_ssl( mbedtls_ssl_context *, unsigned char *, int )
 #endif
 
 #if defined(MBEDTLS_SSL_PROTO_TLS1) || defined(MBEDTLS_SSL_PROTO_TLS1_1)
-static void ssl_calc_verify_tls( mbedtls_ssl_context *, unsigned char * );
+static void ssl_calc_verify_tls( mbedtls_ssl_context *, unsigned char[36] );
 static void ssl_calc_finished_tls( mbedtls_ssl_context *, unsigned char *, int );
 #endif
 
 #if defined(MBEDTLS_SSL_PROTO_TLS1_2)
 #if defined(MBEDTLS_SHA256_C)
 static void ssl_update_checksum_sha256( mbedtls_ssl_context *, const unsigned char *, size_t );
-static void ssl_calc_verify_tls_sha256( mbedtls_ssl_context *,unsigned char * );
+static void ssl_calc_verify_tls_sha256( mbedtls_ssl_context *,unsigned char[32] );
 static void ssl_calc_finished_tls_sha256( mbedtls_ssl_context *,unsigned char *, int );
 #endif
 
 #if defined(MBEDTLS_SHA512_C)
 static void ssl_update_checksum_sha384( mbedtls_ssl_context *, const unsigned char *, size_t );
-static void ssl_calc_verify_tls_sha384( mbedtls_ssl_context *, unsigned char * );
+static void ssl_calc_verify_tls_sha384( mbedtls_ssl_context *, unsigned char[64] );
 static void ssl_calc_finished_tls_sha384( mbedtls_ssl_context *, unsigned char *, int );
 #endif
 #endif /* MBEDTLS_SSL_PROTO_TLS1_2 */
@@ -1217,7 +1218,7 @@ void ssl_calc_verify_tls_sha256( mbedtls_ssl_context *ssl, unsigned char hash[32
 #endif /* MBEDTLS_SHA256_C */
 
 #if defined(MBEDTLS_SHA512_C)
-void ssl_calc_verify_tls_sha384( mbedtls_ssl_context *ssl, unsigned char hash[48] )
+void ssl_calc_verify_tls_sha384( mbedtls_ssl_context *ssl, unsigned char hash[64] )
 {
     mbedtls_sha512_context sha512;
 
@@ -6261,7 +6262,7 @@ static void ssl_calc_finished_tls_sha384(
     int len = 12;
     const char *sender;
     mbedtls_sha512_context sha512;
-    unsigned char padbuf[48];
+    unsigned char padbuf[64];
 
     mbedtls_ssl_session *session = ssl->session_negotiate;
     if( !session )

@@ -73,7 +73,7 @@ static void ADC_Configuration(void)
   sConfig.Offset = 0;
   HAL_ADC_ConfigChannel(&hadc, &sConfig);
 
-  /* Enable EOC interupt */
+  /* Enable EOC interrupt */
   HAL_ADC_Start(&hadc);
 
 }

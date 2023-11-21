@@ -32,8 +32,6 @@
 
 #define ETH_DMA_TRANSMIT_TIMEOUT                (20U)
 
-#define ETH_RX_BUFFER_SIZE            1000    /* Packets of this app's primary service protocol are smaller
-                                               * than this. Typical size is 1536. */
 #define ETH_RX_BUFFER_CNT           10     /* This app buffers receive packets of its primary service
                                                * protocol for processing later. */
 #define ETH_TX_BUFFER_MAX             ((ETH_TX_DESC_CNT) * 2) /* HAL_ETH_Transmit(_IT) may attach two
@@ -57,7 +55,7 @@
        so that updated value will be generated in stm32xxxx_hal_conf.h
 
   2.a. Rx Buffers number: ETH_RX_BUFFER_CNT must be greater than ETH_RX_DESC_CNT.
-  2.b. Rx Buffers must have the same size: ETH_RX_BUFFER_SIZE, this value must
+  2.b. Rx Buffers must have the same size: ETH_RX_BUF_SIZE, this value must
        passed to ETH DMA in the init field (heth.Init.RxBuffLen)
 */
 typedef enum
@@ -69,7 +67,7 @@ typedef enum
 typedef struct
 {
   struct pbuf_custom pbuf_custom;
-  uint8_t buff[(ETH_RX_BUFFER_SIZE + 31) & ~31] __ALIGNED(32);
+  uint8_t buff[(ETH_RX_BUF_SIZE + 31) & ~31] __ALIGNED(32);
 } RxBuff_t;
 ETH_DMADescTypeDef  DMARxDscrTab[ETH_RX_DESC_CNT]; /* Ethernet Rx DMA Descriptors */
 
@@ -121,7 +119,7 @@ static void low_level_init(struct netif *netif)
   EthHandle.Init.MediaInterface = HAL_ETH_MII_MODE;
   EthHandle.Init.RxDesc = DMARxDscrTab;
   EthHandle.Init.TxDesc = DMATxDscrTab;
-  EthHandle.Init.RxBuffLen = ETH_RX_BUFFER_SIZE;
+  EthHandle.Init.RxBuffLen = ETH_RX_BUF_SIZE;
 
   /* configure ethernet peripheral (GPIOs, clocks, MAC, DMA) */
   HAL_ETH_Init(&EthHandle);
@@ -551,7 +549,7 @@ void HAL_ETH_RxAllocateCallback(uint8_t **buff)
     /* Initialize the struct pbuf.
     * This must be performed whenever a buffer's allocated because it may be
     * changed by lwIP or the app, e.g., pbuf_free decrements ref. */
-    pbuf_alloced_custom(PBUF_RAW, 0, PBUF_REF, p, *buff, ETH_RX_BUFFER_SIZE);
+    pbuf_alloced_custom(PBUF_RAW, 0, PBUF_REF, p, *buff, ETH_RX_BUF_SIZE);
   }
   else
   {

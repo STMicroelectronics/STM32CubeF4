@@ -1,4 +1,4 @@
-"ssl_server.exe" PC utility is a part of mbedTLS-2.4.0 examples, it’s built using  MinGW.
+"ssl_server.exe" PC utility is a part of mbedTLS-2.4.0 examples, it's built using  MinGW.
 more details can be found in the link below:
 https://tls.mbed.org/kb/compiling-and-building/compiling-mbedtls-in-mingw
 

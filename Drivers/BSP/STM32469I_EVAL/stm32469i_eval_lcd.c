@@ -385,7 +385,7 @@ void BSP_LCD_Reset(void)
 
     HAL_Delay(20); /* wait 20 ms */
 
-    /* Desactivate XRES */
+    /* Deactivate XRES */
     HAL_GPIO_WritePin(GPIOK, GPIO_PIN_7, GPIO_PIN_SET);
     
     /* Wait for 10ms after releasing XRES before sending commands */

@@ -199,7 +199,7 @@ int main(void)
       /* Start ADC group regular conversion */
       /* Note: Hardware constraint (refer to description of the functions         */
       /*       below):                                                            */
-      /*       On this STM32 serie, setting of these features are not             */
+      /*       On this STM32 series, setting of these features are not             */
       /*       conditioned to ADC state.                                          */
       /*       However, in order to be compliant with other STM32 series          */
       /*       and to show the best practice usages, ADC state is checked.        */

@@ -245,7 +245,7 @@ uint8_t BSP_QSPI_Write(uint8_t* pData, uint32_t WriteAddr, uint32_t Size)
     current_size = Size;
   }
 
-  /* Initialize the adress variables */
+  /* Initialize the address variables */
   current_addr = WriteAddr;
   end_addr = WriteAddr + Size;
 
@@ -1012,7 +1012,7 @@ static uint8_t QSPI_AutoPollingMemReady(QSPI_HandleTypeDef *hqspi, uint32_t Time
 
 /**
   * @brief  This function reads the ID of the QSPI Memory and fills the info struct
-  * @param  pqspi_info: pointer to the Info Typedef strcture
+  * @param  pqspi_info: pointer to the Info Typedef structure
   */
 static uint8_t QSPI_ReadID(QSPI_InfoTypeDef *pqspi_info)
 {

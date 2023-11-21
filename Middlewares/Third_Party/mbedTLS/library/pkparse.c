@@ -2,6 +2,7 @@
  *  Public Key layer for parsing key files and structures
  *
  *  Copyright (C) 2006-2015, ARM Limited, All Rights Reserved
+ *  Portions Copyright (c) STMicroelectronics, All Rights Reserved
  *  SPDX-License-Identifier: Apache-2.0
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -1328,7 +1329,7 @@ int mbedtls_pk_parse_key( mbedtls_pk_context *pk,
 #endif /* MBEDTLS_PKCS12_C || MBEDTLS_PKCS5_C */
 
     if( ( ret = pk_parse_key_pkcs8_unencrypted_der( pk, key, keylen ) ) == 0 )
-        return( 0 );
+        return( ret );
 
     mbedtls_pk_free( pk );
     mbedtls_pk_init( pk );

@@ -30,7 +30,7 @@ At the command prompt, enter:
   C:\>echotool IP_address /p udp /r 7 /l 7 /n 15 /t 2 /d Testing LwIP UDP echo server
 
 where:
-    - IP_address is the actual board’s IP address. By default, the following 
+    - IP_address is the actual board's IP address. By default, the following 
     static IP address is used: 192.168.0.10
     - /p transport layer protocol used for communication (UDP)
     - /r is the actual remote port on the echo server (echo port)
@@ -49,7 +49,7 @@ If a DHCP server is available, a dynamic IP address can be allocated by enabling
 the DHCP process (#define LWIP_DHCP in lwipopts.h).
 
 If a DHCP server is not available, after timeout connection, the device only gets a static 
-IP address(the switch from static to dynamic IP adress is not available in this application).
+IP address(the switch from static to dynamic IP address is not available in this application).
 
 Note: In this application the Ethernet Link ISR need the HAL time base to configure 
 the Ethernet MAC, so the Ethernet Link interrupt priority must be set lower (numerically greater) 

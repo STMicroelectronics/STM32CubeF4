@@ -50,7 +50,7 @@ It is worth noting that the application manages any error occurred during the
 access to FAT volume, when using FatFs APIs.
 
 It is possible to fine tune needed FatFs features by modifying defines values 
-in FatFs configuration file “ffconf.h” available under the project includes 
+in FatFs configuration file "ffconf.h" available under the project includes 
 directory, in a way to fit the application requirements. 
  
 STM32 Eval boards LEDs can be used to monitor the application status:

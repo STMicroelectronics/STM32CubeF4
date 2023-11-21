@@ -272,7 +272,7 @@ void Configure_ADC(void)
   
   /* Note: Hardware constraint (refer to description of the functions         */
   /*       below):                                                            */
-  /*       On this STM32 serie, setting of these features are not             */
+  /*       On this STM32 series, setting of these features are not             */
   /*       conditioned to ADC state.                                          */
   /*       However, in order to be compliant with other STM32 series          */
   /*       and to show the best practice usages, ADC state is checked.        */
@@ -312,7 +312,7 @@ void Configure_ADC(void)
   
   /* Note: Hardware constraint (refer to description of the functions         */
   /*       below):                                                            */
-  /*       On this STM32 serie, setting of these features are not             */
+  /*       On this STM32 series, setting of these features are not             */
   /*       conditioned to ADC state.                                          */
   /*       However, ADC state is checked anyway with standard requirements    */
   /*       (refer to description of this function).                           */
@@ -339,7 +339,7 @@ void Configure_ADC(void)
   
   /* Note: Hardware constraint (refer to description of the functions         */
   /*       below):                                                            */
-  /*       On this STM32 serie, setting of these features are not             */
+  /*       On this STM32 series, setting of these features are not             */
   /*       conditioned to ADC state.                                          */
   /*       However, ADC state is checked anyway with standard requirements    */
   /*       (refer to description of this function).                           */
@@ -361,7 +361,7 @@ void Configure_ADC(void)
     /* the end of conversion.                                                 */
     // LL_ADC_REG_SetFlagEndOfConversion(ADC1, LL_ADC_REG_FLAG_EOC_SEQUENCE_CONV);
     
-    /* Note: On this STM32 serie, ADC group regular sequencer is              */
+    /* Note: On this STM32 series, ADC group regular sequencer is              */
     /*       fully configurable: sequencer length and each rank               */
     /*       affectation to a channel are configurable.                       */
     /*       Refer to description of function                                 */
@@ -376,7 +376,7 @@ void Configure_ADC(void)
   
   /* Note: Hardware constraint (refer to description of the functions         */
   /*       below):                                                            */
-  /*       On this STM32 serie, setting of these features are not             */
+  /*       On this STM32 series, setting of these features are not             */
   /*       conditioned to ADC state.                                          */
   /*       However, ADC state is checked anyway with standard requirements    */
   /*       (refer to description of this function).                           */
@@ -396,7 +396,7 @@ void Configure_ADC(void)
     // LL_ADC_INJ_SetTrigAuto(ADC1, LL_ADC_INJ_TRIG_INDEPENDENT);
     
     /* Set ADC group injected sequencer */
-    /* Note: On this STM32 serie, ADC group injected sequencer is             */
+    /* Note: On this STM32 series, ADC group injected sequencer is             */
     /*       fully configurable: sequencer length and each rank               */
     /*       affectation to a channel are configurable.                       */
     /*       Refer to description of function                                 */
@@ -417,7 +417,7 @@ void Configure_ADC(void)
   
   /* Note: Hardware constraint (refer to description of the functions         */
   /*       below):                                                            */
-  /*       On this STM32 serie, setting of these features are not             */
+  /*       On this STM32 series, setting of these features are not             */
   /*       conditioned to ADC state.                                          */
   /*       However, in order to be compliant with other STM32 series          */
   /*       and to show the best practice usages, ADC state is checked.        */
@@ -434,7 +434,7 @@ void Configure_ADC(void)
   
   /*## Configuration of ADC transversal scope: analog watchdog ###############*/
   
-  /* Note: On this STM32 serie, there is only 1 analog watchdog available.    */
+  /* Note: On this STM32 series, there is only 1 analog watchdog available.    */
   
   /* Set ADC analog watchdog: channels to be monitored */
   // LL_ADC_SetAnalogWDMonitChannels(ADC1, LL_ADC_AWD_DISABLE);
@@ -446,7 +446,7 @@ void Configure_ADC(void)
   
   /*## Configuration of ADC transversal scope: oversampling ##################*/
   
-  /* Note: Feature not available on this STM32 serie */
+  /* Note: Feature not available on this STM32 series */
   
   
   /*## Configuration of ADC interruptions ####################################*/
@@ -484,7 +484,7 @@ void Activate_ADC(void)
   
   /* Note: Hardware constraint (refer to description of the functions         */
   /*       below):                                                            */
-  /*       On this STM32 serie, setting of these features are not             */
+  /*       On this STM32 series, setting of these features are not             */
   /*       conditioned to ADC state.                                          */
   /*       However, in order to be compliant with other STM32 series          */
   /*       and to show the best practice usages, ADC state is checked.        */
@@ -534,7 +534,7 @@ void ConversionStartPoll_ADC_GrpRegular(void)
   /* Start ADC group regular conversion */
   /* Note: Hardware constraint (refer to description of the functions         */
   /*       below):                                                            */
-  /*       On this STM32 serie, setting of these features are not             */
+  /*       On this STM32 series, setting of these features are not             */
   /*       conditioned to ADC state.                                          */
   /*       However, in order to be compliant with other STM32 series          */
   /*       and to show the best practice usages, ADC state is checked.        */

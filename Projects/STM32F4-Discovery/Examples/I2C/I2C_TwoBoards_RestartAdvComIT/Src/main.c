@@ -109,7 +109,7 @@ static void SystemClock_Config(void);
 static void FlushBuffer8(uint8_t* pBuffer1, uint16_t BufferLength);
 static void Error_Handler(void);
 
-#if defined(__GNUC__) && defined(MASTER_BOARD) && defined(SW4STM32)
+#if defined(__GNUC__) && defined(MASTER_BOARD)
 extern void initialise_monitor_handles(void);	/*rtt*/
 #endif
 
@@ -122,7 +122,7 @@ extern void initialise_monitor_handles(void);	/*rtt*/
   */
 int main(void)
 {
-#if defined(__GNUC__) && defined(MASTER_BOARD) && defined(SW4STM32)
+#if defined(__GNUC__) && defined(MASTER_BOARD)
   initialise_monitor_handles();	/*rtt*/
 #endif
 
@@ -402,8 +402,8 @@ static void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
   HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5);
 
-  /* STM32F405x/407x/415x/417x Revision Z devices: prefetch is supported  */
-  if (HAL_GetREVID() == 0x1001)
+  /* STM32F405x/407x/415x/417x Revision Z and upper devices: prefetch is supported  */
+  if (HAL_GetREVID() >= 0x1001)
   {
     /* Enable the Flash prefetch */
     __HAL_FLASH_PREFETCH_BUFFER_ENABLE();

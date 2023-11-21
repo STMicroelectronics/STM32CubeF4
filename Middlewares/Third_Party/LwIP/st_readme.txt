@@ -46,6 +46,11 @@
   *
   ******************************************************************************
   @endverbatim
+
+### 28-August-2023 ###
+========================
+  + Add LICENSE.md file at the root directory.
+
 ### 15-March-2019 ###
 ========================
   + Upgrade to use LwIP V2.1.2 version

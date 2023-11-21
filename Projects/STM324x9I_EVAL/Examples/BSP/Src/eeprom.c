@@ -43,7 +43,7 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 
 /* Private define ------------------------------------------------------------*/
 #define EEPROM_FEATURES_NUM     2
-#define BUFFER_SIZE1            (countof(Tx1Buffer)-1 + 8)
+#define BUFFER_SIZE1            (countof(Tx1Buffer)-1 + 10)
 #define EEPROM_WRITE_ADDRESS1      0x49
 #define EEPROM_READ_ADDRESS1       0x49
 

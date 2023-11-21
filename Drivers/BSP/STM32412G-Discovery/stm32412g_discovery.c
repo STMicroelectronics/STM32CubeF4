@@ -50,11 +50,11 @@ typedef struct
   * @{
   */
 /**
- * @brief STM32412G DISCOVERY BSP Driver version number V2.0.2
+ * @brief STM32412G DISCOVERY BSP Driver version number V2.0.3
    */
 #define __STM32412G_DISCOVERY_BSP_VERSION_MAIN   (0x02) /*!< [31:24] main version */
 #define __STM32412G_DISCOVERY_BSP_VERSION_SUB1   (0x00) /*!< [23:16] sub1 version */
-#define __STM32412G_DISCOVERY_BSP_VERSION_SUB2   (0x02) /*!< [15:8]  sub2 version */
+#define __STM32412G_DISCOVERY_BSP_VERSION_SUB2   (0x03) /*!< [15:8]  sub2 version */
 #define __STM32412G_DISCOVERY_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */
 #define __STM32412G_DISCOVERY_BSP_VERSION        ((__STM32412G_DISCOVERY_BSP_VERSION_MAIN << 24)\
                                                  |(__STM32412G_DISCOVERY_BSP_VERSION_SUB1 << 16)\
@@ -455,8 +455,7 @@ JOYState_TypeDef BSP_JOY_GetState(void)
   * @brief  Configures COM port.
   * @param  COM: COM port to be configured.
   *          This parameter can be one of the following values:
-  *          COM1 
-  *          COM2 
+  *          @arg COM1
   * @param  huart: Pointer to a UART_HandleTypeDef structure that contains the
   *                configuration information for the specified USART peripheral.
   */
@@ -494,8 +493,7 @@ void BSP_COM_Init(COM_TypeDef COM, UART_HandleTypeDef *huart)
   * @brief  DeInit COM port.
   * @param  COM: COM port to be configured.
   *          This parameter can be one of the following values:
-  *          COM1 
-  *          COM2 
+  *          @arg COM1
   * @param  huart: Pointer to a UART_HandleTypeDef structure that contains the
   *                configuration information for the specified USART peripheral.
   */
@@ -815,7 +813,7 @@ static void FMC_BANK1_Init(void)
   sram_timing.DataLatency           = 2;
   sram_timing.AccessMode            = FSMC_ACCESS_MODE_A;
   
-  /* Timing for WRITTING*/
+  /* Timing for WRITING*/
   sram_timing_write.AddressSetupTime      = 1;
   sram_timing_write.AddressHoldTime       = 1;
   sram_timing_write.DataSetupTime         = 7;

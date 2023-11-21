@@ -52,7 +52,7 @@ access to FAT volume, when using FatFs APIs. Otherwise, user can check if the
 written text file is available on the USB disk.
 
 It is possible to fine tune needed FatFs features by modifying defines values 
-in FatFs configuration file “ffconf.h” available under the project includes 
+in FatFs configuration file "ffconf.h" available under the project includes 
 directory, in a way to fit the application requirements. 
 
 STM32F412G-Discovery's LEDs can be used to monitor the application status:
@@ -87,7 +87,7 @@ FreeRTOS, RTOS
   - FatFs/FatFs_USBDisk_RTOS/Inc/usbh_diskio_dma.h              FatFS usbh diskio driver header file
   - FatFs/FatFs_USBDisk_RTOS/Inc/ffconf.h                       FAT file system module configuration file   
   - FatFs/FatFs_USBDisk_RTOS/Inc/usbh_conf.h                    USB Host low level driver configuration file
-  - FatFs/FatFs_USBDisk_RTOS/Inc/FreeRTOSConfig.h               FreeRTOS configurtion file
+  - FatFs/FatFs_USBDisk_RTOS/Inc/FreeRTOSConfig.h               FreeRTOS configuration file
   - FatFs/FatFs_USBDisk_RTOS/Src/stm32f4xx_it.c                 Interrupt handlers
   - FatFs/FatFs_USBDisk_RTOS/Src/main.c                         Main program
   - FatFs/FatFs_USBDisk_RTOS/Src/usbh_diskio_dma.c              FatFS usbh diskio driver implementation

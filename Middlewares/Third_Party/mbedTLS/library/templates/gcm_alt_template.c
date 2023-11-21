@@ -41,8 +41,8 @@
 #define IV_LENGTH        12U   /* implementations restrict support to 96 bits */
 
 #if !defined(STM32_AAD_ANY_LENGTH_SUPPORT)
-#define AAD_WORD_ALIGN   4U   /* implementations restrict AAD support on a    */
-                              /* buffer multiple of 32 bits                   */
+#define AAD_WORD_ALIGN   4U   /* implementations may restrict AAD support on  */
+                              /* a buffer multiple of 32 bits                 */
 #endif
 
 /* Private macro -------------------------------------------------------------*/
@@ -272,9 +272,6 @@ int mbedtls_gcm_update( mbedtls_gcm_context *ctx,
                 unsigned char *output )
 {
     int ret = 0;
-#if !defined(STM32_AAD_ANY_LENGTH_SUPPORT)
-    size_t rest_length = 0;
-#endif
 
     GCM_VALIDATE_RET( ctx != NULL );
     GCM_VALIDATE_RET( length == 0 || input != NULL );
@@ -303,12 +300,6 @@ int mbedtls_gcm_update( mbedtls_gcm_context *ctx,
 
     ctx->len += length;
 
-#if !defined(STM32_AAD_ANY_LENGTH_SUPPORT)
-    /* compute remaining data (data buffer in word) */
-    if ((length % AAD_WORD_ALIGN) != 0U)
-        rest_length = length % AAD_WORD_ALIGN;
-#endif
-
     if( ctx->mode == MBEDTLS_GCM_DECRYPT )
     {
          if ( HAL_CRYP_Decrypt( &ctx->hcryp_gcm,
@@ -320,21 +311,6 @@ int mbedtls_gcm_update( mbedtls_gcm_context *ctx,
             ret = MBEDTLS_ERR_PLATFORM_HW_ACCEL_FAILED;
             goto exit;
          }
-#if !defined(STM32_AAD_ANY_LENGTH_SUPPORT)
-         /* manage last bytes */
-         if (rest_length !=0 )
-         {
-             if (HAL_CRYP_Decrypt(&ctx->hcryp_gcm,
-                                  (uint32_t *)(input + (length/AAD_WORD_ALIGN)),
-                                  rest_length,
-                                  (uint32_t *)(output + (length/AAD_WORD_ALIGN)),
-                                  ST_CRYP_TIMEOUT) != HAL_OK)
-             {
-                 ret = MBEDTLS_ERR_PLATFORM_HW_ACCEL_FAILED;
-                 goto exit;
-             }
-         }
-#endif
     }
     else
     {
@@ -347,21 +323,6 @@ int mbedtls_gcm_update( mbedtls_gcm_context *ctx,
             ret = MBEDTLS_ERR_PLATFORM_HW_ACCEL_FAILED;
             goto exit;
          }
- #if !defined(STM32_AAD_ANY_LENGTH_SUPPORT)
-          /* manage last bytes */
-         if (rest_length !=0 )
-         {
-             if (HAL_CRYP_Encrypt(&ctx->hcryp_gcm,
-                                  (uint32_t *)(input + (length/AAD_WORD_ALIGN)),
-                                  rest_length,
-                                  (uint32_t *)(output + (length/AAD_WORD_ALIGN)),
-                                  ST_CRYP_TIMEOUT) != HAL_OK)
-             {
-                 ret = MBEDTLS_ERR_PLATFORM_HW_ACCEL_FAILED;
-                 goto exit;
-             }
-         }
-#endif
     }
 
     /* allow multi-context of CRYP : save context */

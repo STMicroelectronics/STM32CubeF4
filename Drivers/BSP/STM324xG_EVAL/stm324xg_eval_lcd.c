@@ -31,7 +31,7 @@
      o Initialize the LCD using the BSP_LCD_Init() function.
   
   + Display on LCD
-     o Clear the hole LCD using yhe BSP_LCD_Clear() function or only one specified 
+     o Clear the hole LCD using the BSP_LCD_Clear() function or only one specified 
        string line using the BSP_LCD_ClearStringLine() function.
      o Display a character on the specified line and column using the BSP_LCD_DisplayChar()
        function or a complete string line using the BSP_LCD_DisplayStringAtLine() function.

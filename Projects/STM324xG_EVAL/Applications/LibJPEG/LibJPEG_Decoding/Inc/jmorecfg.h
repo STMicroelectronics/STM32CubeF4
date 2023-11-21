@@ -277,7 +277,7 @@ typedef int boolean;
 #undef  C_MULTISCAN_FILES_SUPPORTED /* Multiple-scan JPEG files? */
 #undef  C_PROGRESSIVE_SUPPORTED	    /* Progressive JPEG? (Requires MULTISCAN)*/
 #undef  DCT_SCALING_SUPPORTED	    /* Input rescaling via DCT? (Requires DCT_ISLOW)*/
-#undef  ENTROPY_OPT_SUPPORTED	    /* Optimization of entropy coding parms? */
+#undef  ENTROPY_OPT_SUPPORTED	    /* Optimization of entropy coding params? */
 /* Note: if you selected 12-bit data precision, it is dangerous to turn off
  * ENTROPY_OPT_SUPPORTED.  The standard Huffman tables are only good for 8-bit
  * precision, so jchuff.c normally uses entropy optimization to compute

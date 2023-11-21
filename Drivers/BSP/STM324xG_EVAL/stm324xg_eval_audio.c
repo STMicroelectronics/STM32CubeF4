@@ -89,7 +89,7 @@ Driver architecture:
 /* Includes ------------------------------------------------------------------*/
 #include "stm324xg_eval_audio.h"
 #include "stm324xg_eval_io.h" /* IOExpander driver is included in order to allow 
-                                 CS43L22 codec reset pin managment on the evaluation board */
+                                 CS43L22 codec reset pin management on the evaluation board */
 /** @addtogroup BSP
   * @{
   */
@@ -107,7 +107,7 @@ Driver architecture:
 /** @defgroup STM324xG_EVAL_AUDIO_Private_Defines STM324xG EVAL AUDIO Private Defines
   * @{
   */
-/* These PLL parameters are valide when the f(VCO clock) = 1Mhz */
+/* These PLL parameters are valid when the f(VCO clock) = 1Mhz */
 const uint32_t I2SFreq[8] = {8000, 11025, 16000, 22050, 32000, 44100, 48000, 96000};
 const uint32_t I2SPLLN[8] = {256, 429, 213, 429, 426, 271, 258, 344};
 const uint32_t I2SPLLR[8] = {5, 4, 4, 4, 4, 6, 3, 1};

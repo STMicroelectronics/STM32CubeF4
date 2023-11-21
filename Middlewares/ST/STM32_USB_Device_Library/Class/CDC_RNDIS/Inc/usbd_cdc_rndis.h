@@ -493,14 +493,18 @@ extern USBD_ClassTypeDef USBD_CDC_RNDIS;
   */
 uint8_t USBD_CDC_RNDIS_SetRxBuffer(USBD_HandleTypeDef *pdev, uint8_t *pbuff);
 uint8_t USBD_CDC_RNDIS_ReceivePacket(USBD_HandleTypeDef *pdev);
-uint8_t USBD_CDC_RNDIS_TransmitPacket(USBD_HandleTypeDef *pdev);
 
 uint8_t USBD_CDC_RNDIS_RegisterInterface(USBD_HandleTypeDef *pdev,
                                          USBD_CDC_RNDIS_ItfTypeDef *fops);
-
+#ifdef USE_USBD_COMPOSITE
+uint8_t USBD_CDC_RNDIS_TransmitPacket(USBD_HandleTypeDef *pdev, uint8_t ClassId);
+uint8_t USBD_CDC_RNDIS_SetTxBuffer(USBD_HandleTypeDef *pdev,
+                                   uint8_t *pbuff, uint32_t length, uint8_t ClassId);
+#else
+uint8_t USBD_CDC_RNDIS_TransmitPacket(USBD_HandleTypeDef *pdev);
 uint8_t USBD_CDC_RNDIS_SetTxBuffer(USBD_HandleTypeDef *pdev,
                                    uint8_t *pbuff, uint32_t length);
-
+#endif /* USE_USBD_COMPOSITE */
 uint8_t USBD_CDC_RNDIS_SendNotification(USBD_HandleTypeDef *pdev,
                                         USBD_CDC_NotifCodeTypeDef Notif,
                                         uint16_t bVal, uint8_t *pData);

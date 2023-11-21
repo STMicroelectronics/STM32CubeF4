@@ -1,5 +1,5 @@
 /**
-  @page FMC_SRAM_DataMemory SRAM functionnalities example
+  @page FMC_SRAM_DataMemory SRAM functionalities example
   
   @verbatim
   ******************** (C) COPYRIGHT 2017 STMicroelectronics *******************

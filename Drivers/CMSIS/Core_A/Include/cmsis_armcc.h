@@ -1,11 +1,11 @@
 /**************************************************************************//**
  * @file     cmsis_armcc.h
  * @brief    CMSIS compiler specific macros, functions, instructions
- * @version  V1.0.2
- * @date     10. January 2018
+ * @version  V1.0.5
+ * @date     05. May 2021
  ******************************************************************************/
 /*
- * Copyright (c) 2009-2018 Arm Limited. All rights reserved.
+ * Copyright (c) 2009-2021 Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -86,6 +86,9 @@
 #ifndef   __PACKED
   #define __PACKED                               __attribute__((packed))
 #endif
+#ifndef   __COMPILER_BARRIER
+  #define __COMPILER_BARRIER()                   __memory_changed()
+#endif
 
 /* ##########################  Core Instruction Access  ######################### */
 /**
@@ -111,29 +114,17 @@
 /**
   \brief   Instruction Synchronization Barrier
  */
-#define __ISB() do {\
-                   __schedule_barrier();\
-                   __isb(0xF);\
-                   __schedule_barrier();\
-                } while (0U)
+#define __ISB()                           __isb(0xF)
 
 /**
   \brief   Data Synchronization Barrier
  */
-#define __DSB() do {\
-                   __schedule_barrier();\
-                   __dsb(0xF);\
-                   __schedule_barrier();\
-                } while (0U)
+#define __DSB()                           __dsb(0xF)
 
 /**
   \brief   Data Memory Barrier
  */
-#define __DMB() do {\
-                   __schedule_barrier();\
-                   __dmb(0xF);\
-                   __schedule_barrier();\
-                } while (0U)
+#define __DMB()                           __dmb(0xF)
 
 /**
   \brief   Reverse byte order (32 bit)
@@ -304,6 +295,34 @@ __attribute__((section(".revsh_text"))) __STATIC_INLINE __ASM int16_t __REVSH(in
 #define __USAT                            __usat
 
 /* ###########################  Core Function Access  ########################### */
+
+/**
+  \brief   Enable IRQ Interrupts
+  \details Enables IRQ interrupts by clearing the I-bit in the CPSR.
+           Can only be executed in Privileged modes.
+ */
+/* intrinsic void __enable_irq(); */
+
+/**
+  \brief   Disable IRQ Interrupts
+  \details Disables IRQ interrupts by setting the I-bit in the CPSR.
+  Can only be executed in Privileged modes.
+ */
+/* intrinsic void __disable_irq(void); */
+
+/**
+  \brief   Enable FIQ
+  \details Enables FIQ interrupts by clearing the F-bit in the CPSR.
+           Can only be executed in Privileged modes.
+ */
+#define __enable_fault_irq                __enable_fiq
+
+/**
+  \brief   Disable FIQ
+  \details Disables FIQ interrupts by setting the F-bit in the CPSR.
+           Can only be executed in Privileged modes.
+ */
+#define __disable_fault_irq               __disable_fiq
 
 /**
   \brief   Get FPSCR (Floating Point Status/Control)
@@ -533,10 +552,10 @@ __STATIC_INLINE __ASM void __FPU_Enable(void)
   ENDIF
 
         //Initialise FPSCR to a known state
-        VMRS    R2,FPSCR
-        LDR     R3,=0x00086060 //Mask off all bits that do not have to be preserved. Non-preserved bits can/should be zero.
-        AND     R2,R2,R3
-        VMSR    FPSCR,R2
+        VMRS    R1,FPSCR
+        LDR     R2,=0x00086060 //Mask off all bits that do not have to be preserved. Non-preserved bits can/should be zero.
+        AND     R1,R1,R2
+        VMSR    FPSCR,R1
 
         BX      LR
 }

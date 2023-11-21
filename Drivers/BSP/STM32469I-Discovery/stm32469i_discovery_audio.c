@@ -40,7 +40,7 @@ How To use this driver:
       - OUTPUT_DEVICE_BOTH       : both Headphones are used as outputs for the audio stream
                                  at the same time.
       Note. On STM32469I-Discovery SAI_DMA is configured in CIRCULAR mode. Due to this the application
-        does NOT need to call BSP_AUDIO_OUT_ChangeBuffer() to assure straming.
+        does NOT need to call BSP_AUDIO_OUT_ChangeBuffer() to assure streaming.
    + Call the function BSP_Discovery_AUDIO_OUT_Play(
                                   pBuffer: pointer to the audio data file address
                                   Size   : size of the buffer to be sent in Bytes
@@ -242,7 +242,7 @@ uint8_t BSP_AUDIO_OUT_Init(uint16_t OutputDevice,
 
   if(ret == AUDIO_OK)
   {
-    /* Retieve audio codec identifier */
+    /* Retrieve audio codec identifier */
     if (cs43l22_drv.ReadID(AUDIO_I2C_ADDRESS) == CS43L22_ID)
     {  
       /* Initialize the audio driver structure */

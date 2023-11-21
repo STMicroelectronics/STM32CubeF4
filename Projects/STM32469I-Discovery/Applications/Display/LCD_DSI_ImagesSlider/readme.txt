@@ -28,7 +28,7 @@ Thanks to Tearing Effect and Partial refresh features that allow user to provoke
 a refresh whenever he wants and on the specified region he desires, the refresh 
 of LCD is more rapid than any time before.
 
-At the beginning, the quadspi is intialized to put images in. Then TS and LCD DSI 
+At the beginning, the quadspi is initialized to put images in. Then TS and LCD DSI 
 are initialized then a first image is displayed.
 
 Two mode of images draw are possible through this application; vertical draw or

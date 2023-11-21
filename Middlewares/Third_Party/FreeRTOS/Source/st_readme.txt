@@ -25,6 +25,11 @@
 
 =======
 
+### 18-August-2023 ###
+=========================
+  + LICENSE update
+      - Add a LICENSE.md file at the root of the directory
+
 ### 31-August-2020 ###
 =========================
   + Bug fix for G0 compilation error due to IRQn_Type mismatch between G0 and other families

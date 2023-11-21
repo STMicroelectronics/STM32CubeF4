@@ -65,7 +65,7 @@ mbedtls_gcm_context;
 /* Exported constants --------------------------------------------------------*/
 /* Uncomment if ADD (Additional Authentication Data) may have not a length    */
 /* over a multiple of 32 bits  (Hw implementation dependance)                 */
-//#define STM32_AAD_ANY_LENGTH_SUPPORT
+#define STM32_AAD_ANY_LENGTH_SUPPORT
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions --------------------------------------------------------*/
 

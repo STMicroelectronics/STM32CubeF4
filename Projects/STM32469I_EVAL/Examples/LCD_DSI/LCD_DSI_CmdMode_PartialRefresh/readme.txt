@@ -30,7 +30,7 @@ in Command mode using partial refresh method. One buffer is used for display and
 Layer0 is initialized to display a brief description of the example. It will be
 used for images display also.
 
-In this example, the display area is splitted in tow part right and left. When the
+In this example, the display area is split in tow part right and left. When the
 end of refresh event occurred, a part of display area is refreshed/displayed while
 the other part is prepared to be displayed in next end of refresh.
 

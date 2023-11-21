@@ -60,7 +60,7 @@ The User push-button is used to initiate a communication between Master device t
 User can initiate a new communication after each previous transfer completed.
 
 The I2C communication is then initiated.
-The project is splitted in two parts the Master Board and the Slave Board
+The project is split in two parts the Master Board and the Slave Board
 - Master Board
   The HAL_I2C_Master_Sequential_Transmit_IT() and the HAL_I2C_Master_Sequential_Receive_IT() functions 
   allow respectively the transmission and the reception of a predefined data buffer
@@ -130,9 +130,13 @@ Depending of IDE, to watch content of Terminal I/O note that
  - When resorting to MDK-ARM KEIL IDE:
  Command Code is displayed on debugger as follows: View --> Serial Viewer --> Debug (printf) Viewer
  
-- When resorting to AC6 SW4STM32 IDE:
- In Debug configuration window\ Startup, in addition to "monitor reset halt" add the command "monitor arm semihosting enable"
+ - When resorting to STM32CubeIDE:
  Command Code is displayed on debugger as follows: Window--> Show View--> Console.
+ 
+ In Debug configuration : 
+ 
+    - Window\Debugger, select the Debug probe : ST-LINK(OpenOCD)
+    - Window\Startup,add the command "monitor arm semihosting enable"
 
 - When resorting to Atollic TrueSTUIDIO IDE: debug --> view--> others-->SWV console
 
@@ -193,9 +197,13 @@ Also only on Master board side, Terminal I/O can be used to watch the Request Co
  - When resorting to MDK-ARM KEIL IDE:
  Command Code is displayed on debugger as follows: View --> Serial Viewer --> Debug (printf) Viewer
  
-- When resorting to AC6 SW4STM32 IDE:
- In Debug configuration window\ Startup, in addition to "monitor reset halt" add the command "monitor arm semihosting enable"
- Command Code is displayed on debugger as follows: Window--> Show View--> Console.
+ - When resorting to STM32CubeIDE:
+ Command Code is displayed on debugger as follows: Window--> Show View--> Console. 
+ 
+ In Debug configuration : 
+
+  - Window\Debugger, select the Debug probe : ST-LINK(OpenOCD)
+  - Window\Startup,add the command "monitor arm semihosting enable"
 
 @note I2Cx instance used and associated resources can be updated in "main.h"
        file depending hardware configuration used.

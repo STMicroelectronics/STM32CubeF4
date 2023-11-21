@@ -166,8 +166,8 @@ void USR_MOUSE_ProcessData(HID_MOUSE_Info_TypeDef *data)
 
 /**
   * @brief  Handles mouse scroll to update the mouse position on display window.
-  * @param  x: USB HID Mouse X co-ordinate
-  * @param  y: USB HID Mouse Y co-ordinate
+  * @param  x: USB HID Mouse X coordinate
+  * @param  y: USB HID Mouse Y coordinate
   * @retval None
   */
 static void HID_MOUSE_UpdatePosition(int8_t x, int8_t y)

@@ -383,7 +383,7 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef * pdev)
 
   HAL_PCDEx_SetRxFiFo(&hpcd, 0x200);
   HAL_PCDEx_SetTxFiFo(&hpcd, 0, 0x40);
-  HAL_PCDEx_SetTxFiFo(&hpcd, 1, 0x80);
+  HAL_PCDEx_SetTxFiFo(&hpcd, 1, 0x100);
 #endif
 
   return USBD_OK;

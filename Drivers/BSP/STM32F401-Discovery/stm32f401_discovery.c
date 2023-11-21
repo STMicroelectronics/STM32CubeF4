@@ -46,11 +46,11 @@
   */ 
   
 /**
-  * @brief STM32F401 DISCO BSP Driver version number V2.2.4
+  * @brief STM32F401 DISCO BSP Driver version number V2.2.5
   */
 #define __STM32F401_DISCO_BSP_VERSION_MAIN   (0x02) /*!< [31:24] main version */
 #define __STM32F401_DISCO_BSP_VERSION_SUB1   (0x02) /*!< [23:16] sub1 version */
-#define __STM32F401_DISCO_BSP_VERSION_SUB2   (0x04) /*!< [15:8]  sub2 version */
+#define __STM32F401_DISCO_BSP_VERSION_SUB2   (0x05) /*!< [15:8]  sub2 version */
 #define __STM32F401_DISCO_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */ 
 #define __STM32F401_DISCO_BSP_VERSION         ((__STM32F401_DISCO_BSP_VERSION_MAIN << 24)\
                                              |(__STM32F401_DISCO_BSP_VERSION_SUB1 << 16)\
@@ -339,10 +339,10 @@ static uint8_t I2Cx_ReadData(uint16_t Addr, uint8_t Reg)
   */
 static void I2Cx_Error(void)
 {
-  /* De-initialize the I2C comunication BUS */
+  /* De-initialize the I2C communication BUS */
   HAL_I2C_DeInit(&I2cHandle);
   
-  /* Re- Initiaize the I2C comunication BUS */
+  /* Re- Initiaize the I2C communication BUS */
   I2Cx_Init();
 }
 
@@ -443,10 +443,10 @@ static uint8_t SPIx_WriteRead(uint8_t Byte)
   */
 static void SPIx_Error (void)
 {
-  /* De-initialize the SPI comunication BUS */
+  /* De-initialize the SPI communication BUS */
   HAL_SPI_DeInit(&SpiHandle);
   
-  /* Re-Initiaize the SPI comunication BUS */
+  /* Re-Initiaize the SPI communication BUS */
   SPIx_Init();
 }
 

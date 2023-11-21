@@ -271,19 +271,19 @@ void SystemInit_ExtMemCtl(void)
    /* Enable GPIOD, GPIOE, GPIOF and GPIOG interface clock */
   RCC->AHB1ENR   |= 0x00000078;
   
-  /* Connect PDx pins to FMC Alternate function */
-  GPIOD->AFR[0]  = 0x00CC00CC;
+  /* Connect PDx pins to FSMC Alternate function */
+  GPIOD->AFR[0]  = 0x00CCC0CC;
   GPIOD->AFR[1]  = 0xCCCCCCCC;
   /* Configure PDx pins in Alternate function mode */  
-  GPIOD->MODER   = 0xAAAA0A0A;
+  GPIOD->MODER   = 0xAAAA0A8A;
   /* Configure PDx pins speed to 100 MHz */  
-  GPIOD->OSPEEDR = 0xFFFF0F0F;
+  GPIOD->OSPEEDR = 0xFFFF0FCF;
   /* Configure PDx pins Output type to push-pull */  
   GPIOD->OTYPER  = 0x00000000;
   /* No pull-up, pull-down for PDx pins */ 
   GPIOD->PUPDR   = 0x00000000;
 
-  /* Connect PEx pins to FMC Alternate function */
+  /* Connect PEx pins to FSMC Alternate function */
   GPIOE->AFR[0]  = 0xC00CC0CC;
   GPIOE->AFR[1]  = 0xCCCCCCCC;
   /* Configure PEx pins in Alternate function mode */ 
@@ -295,7 +295,7 @@ void SystemInit_ExtMemCtl(void)
   /* No pull-up, pull-down for PEx pins */ 
   GPIOE->PUPDR   = 0x00000000;
 
-  /* Connect PFx pins to FMC Alternate function */
+  /* Connect PFx pins to FSMC Alternate function */
   GPIOF->AFR[0]  = 0x00CCCCCC;
   GPIOF->AFR[1]  = 0xCCCC0000;
   /* Configure PFx pins in Alternate function mode */   
@@ -307,13 +307,13 @@ void SystemInit_ExtMemCtl(void)
   /* No pull-up, pull-down for PFx pins */ 
   GPIOF->PUPDR   = 0x00000000;
 
-  /* Connect PGx pins to FMC Alternate function */
+  /* Connect PGx pins to FSMC Alternate function */
   GPIOG->AFR[0]  = 0x00CCCCCC;
   GPIOG->AFR[1]  = 0x000000C0;
   /* Configure PGx pins in Alternate function mode */ 
-  GPIOG->MODER   = 0x00080AAA;
+  GPIOG->MODER   = 0x00085AAA;
   /* Configure PGx pins speed to 100 MHz */ 
-  GPIOG->OSPEEDR = 0x000C0FFF;
+  GPIOG->OSPEEDR = 0x000CAFFF;
   /* Configure PGx pins Output type to push-pull */  
   GPIOG->OTYPER  = 0x00000000;
   /* No pull-up, pull-down for PGx pins */ 
@@ -324,8 +324,8 @@ void SystemInit_ExtMemCtl(void)
   RCC->AHB3ENR         |= 0x00000001;
   
   /* Configure and enable Bank1_SRAM2 */
-  FSMC_Bank1->BTCR[2]  = 0x00001091;
-  FSMC_Bank1->BTCR[3]  = 0x00110212;
+  FSMC_Bank1->BTCR[2]  = 0x00001011;
+  FSMC_Bank1->BTCR[3]  = 0x00000201;
   FSMC_Bank1E->BWTR[2] = 0x0FFFFFFF;
 }
 #endif /* DATA_IN_ExtSRAM */
@@ -339,4 +339,4 @@ void SystemInit_ExtMemCtl(void)
   
 /**
   * @}
-  */    
+  */

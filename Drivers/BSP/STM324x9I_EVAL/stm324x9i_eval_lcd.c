@@ -1192,7 +1192,7 @@ __weak void BSP_LCD_ClockConfig(LTDC_HandleTypeDef *hltdc, void *Params)
     */
     if(*(uint32_t *)Params == LCD_MAX_PCLK)
     {
-      /* In case of single layer the bandwidth is arround 160MBytesPerSec ==> theorical PCLK of 40MHz */
+      /* In case of single layer the bandwidth is around 160MBytesPerSec ==> theoretical PCLK of 40MHz */
       /* AMPIRE640480 typical PCLK is 25.16 MHz so the PLLSAI is configured to provide this clock */ 
       /* AMPIRE640480 LCD clock configuration */
       /* PLLSAI_VCO Input = HSE_VALUE/PLL_M = 1 Mhz */
@@ -1203,7 +1203,7 @@ __weak void BSP_LCD_ClockConfig(LTDC_HandleTypeDef *hltdc, void *Params)
     }
     else
     {
-      /* In case of double layers the bandwidth is arround 72MBytesPerSec => 18MHz (<25,16MHz) */
+      /* In case of double layers the bandwidth is around 72MBytesPerSec => 18MHz (<25,16MHz) */
       /* so the PLLSAI is configured to provide this clock */
       /* AMPIRE640480 LCD clock configuration */
       /* PLLSAI_VCO Input = HSE_VALUE/PLL_M = 1 Mhz */

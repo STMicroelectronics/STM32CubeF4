@@ -28,7 +28,7 @@ This is a typical application on how to use the STM32F4xx USB OTG Device periphe
 behaves as a USB-to-RS232 bridge following the Virtual COM Port (VCP) implementation.
  - On one side, the STM32 exchanges data with a PC host through USB interface in Device mode.
  - On the other side, the STM32 exchanges data with other devices (same host, other host,
-   other devices�) through the UART interface (RS232).
+   other devicesâ€¦) through the UART interface (RS232).
 
 At the beginning of the main program the HAL_Init() function is called to reset all the peripherals,
 initialize the Flash interface and the systick. The user is provided with the SystemClock_Config()

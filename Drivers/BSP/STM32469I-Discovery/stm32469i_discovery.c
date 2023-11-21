@@ -45,11 +45,11 @@
   * @{
   */
 /**
- * @brief STM32469I Discovery BSP Driver version number V2.1.1
+ * @brief STM32469I Discovery BSP Driver version number V2.1.2
    */
 #define __STM32469I_DISCOVERY_BSP_VERSION_MAIN   (0x02) /*!< [31:24] main version */
 #define __STM32469I_DISCOVERY_BSP_VERSION_SUB1   (0x01) /*!< [23:16] sub1 version */
-#define __STM32469I_DISCOVERY_BSP_VERSION_SUB2   (0x01) /*!< [15:8]  sub2 version */
+#define __STM32469I_DISCOVERY_BSP_VERSION_SUB2   (0x02) /*!< [15:8]  sub2 version */
 #define __STM32469I_DISCOVERY_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */
 #define __STM32469I_DISCOVERY_BSP_VERSION        ((__STM32469I_DISCOVERY_BSP_VERSION_MAIN << 24)\
                                                  |(__STM32469I_DISCOVERY_BSP_VERSION_SUB1 << 16)\
@@ -602,7 +602,7 @@ static HAL_StatusTypeDef I2C1_ReadMultiple(uint8_t Addr,
   /* Check the communication status */
   if(status != HAL_OK)
   {
-    /* I2C error occured */
+    /* I2C error occurred */
     I2C1_Error(Addr);
   }
   return status;
@@ -627,7 +627,7 @@ static HAL_StatusTypeDef I2C2_ReadMultiple(uint8_t Addr,
   /* Check the communication status */
   if(status != HAL_OK)
   {
-    /* I2C2 error occured */
+    /* I2C2 error occurred */
     I2C2_Error(Addr);
   }
   return status;
@@ -710,19 +710,19 @@ static HAL_StatusTypeDef I2C1_IsDeviceReady(uint16_t DevAddress, uint32_t Trials
   */
 static void I2C1_Error(uint8_t Addr)
 {
-  /* De-initialize the I2C comunication bus */
+  /* De-initialize the I2C communication bus */
   HAL_I2C_DeInit(&heval_I2c1);
 
-  /* Re-Initiaize the I2C comunication bus */
+  /* Re-Initiaize the I2C communication bus */
   I2C1_Init();
 }
 
 static void I2C2_Error(uint8_t Addr)
 {
-  /* De-initialize the I2C2 comunication bus */
+  /* De-initialize the I2C2 communication bus */
   HAL_I2C_DeInit(&heval_I2c2);
 
-  /* Re-Initiaize the I2C2 comunication bus */
+  /* Re-Initiaize the I2C2 communication bus */
   I2C2_Init();
 }
 
