@@ -19,9 +19,9 @@ This repository has been created using the `git submodule` command. Please refer
 
 The **STM32CubeF4 MCU Package** projects are directly running on the STM32F4 series boards. You can find in each Projects/*Board name* directories a set of software projects (Applications/Demonstration/Examples).
 
-## Some middleware libraries are unavailable in this repository
+## Some middleware libraries and projects are unavailable in this repository
 
-In this repository, the middleware libraries listed below **along with** the projects (demos, applications, and examples) using them, are **not available** as they (the middleware libraries) are subject to some restrictive license terms requiring the user's approval via a "click thru" procedure.
+In this repository, the middleware libraries listed below **along with** [this](Projects/README.md#list-of-unavailable-projects) list of projects (demos, applications, and examples) using them, are **not available** as they (the middleware libraries) are subject to some restrictive license terms requiring the user's approval via a "click thru" procedure.
 * `./Middlewares/ST/STM32_Audio`
 * `./Middlewares/ST/STemWin`
 * `./Middlewares/ST/TouchGFX`
