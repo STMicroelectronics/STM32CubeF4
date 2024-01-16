@@ -8,6 +8,7 @@ In this repository, some middleware libraries **along with** the projects (demos
 * `./Projects/STM32446E_EVAL/Applications/STemWin`
 * `./Projects/STM32446E_EVAL/Applications/USB_Device/AUDIO_Standalone`
 * `./Projects/STM32446E_EVAL/Demonstrations/STemWin`
+* `./Projects/STM32446E_EVAL/Examples/BSP`
 * `./Projects/STM32446E_EVAL/Examples/SAI/SAI_Audio`
 * `./Projects/STM32469I-Discovery/Applications/Audio/Audio_playback_and_record`
 * `./Projects/STM32469I-Discovery/Applications/STemWin`
