@@ -100,7 +100,7 @@ uint8_t NT35510_Init(uint32_t ColorCoding, uint32_t orientation)
   const uint8_t nt35510_reg16[] = {0x55, 0xAA, 0x52, 0x08, 0x00, 0xF0};
   const uint8_t nt35510_reg17[] = {0xFC, 0x00, 0xB1};
   const uint8_t nt35510_reg18[] = {0xB6, 0x03};
-  const uint8_t nt35510_reg19[] = {0xB5, 0x51};
+  const uint8_t nt35510_reg19[] = {0xB5, 0x50};
   const uint8_t nt35510_reg20[] = {0x00, 0x00, 0xB7};
   const uint8_t nt35510_reg21[] = {0x01, 0x02, 0x02, 0x02, 0xB8};
   const uint8_t nt35510_reg22[] = {0x00, 0x00, 0x00, 0xBC};
