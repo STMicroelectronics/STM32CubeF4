@@ -38,6 +38,7 @@ uint8_t ubNumberOfFiles = 0;
 uint32_t uwBmplen = 0;
 extern LTDC_HandleTypeDef  hltdc_eval;
 extern DSI_HandleTypeDef hdsi_eval;
+extern LCD_Driver_TypeDef Lcd_Driver_Type;
 DSI_VidCfgTypeDef hdsivideo_handle;
 
 /* Internal Buffer defined in SDRAM memory */
@@ -48,6 +49,7 @@ static void LCD_Config(void);
 static void SystemClock_Config(void);
 static void Error_Handler(void);
 static uint8_t LCD_Init(void);
+static LCD_Driver_TypeDef LCD_ReadType(LCD_Driver_TypeDef Lcd_type);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -299,26 +301,38 @@ static uint8_t LCD_Init(void)
   
   HAL_DSI_Init(&(hdsi_eval), &(dsiPllInit));
   
+  /* Start DSI */
+  HAL_DSI_Start(&(hdsi_eval));
+  
+  /* Enable the DSI BTW for read operations */
+  HAL_DSI_ConfigFlowControl(&hdsi_eval, DSI_FLOW_CONTROL_BTA);
+  Lcd_Driver_Type = LCD_ReadType(Lcd_Driver_Type);
+
+  BSP_LCD_Reset();
+  HAL_DSI_Stop(&hdsi_eval);
   /* The following values are same for portrait and landscape orientations */
-#if defined (USE_STM32469I_DISCO_REVC)
-  VSA  = NT35510_480X800_VSYNC;
-  VBP  = NT35510_480X800_VBP;
-  VFP  = NT35510_480X800_VFP;
-  HSA  = NT35510_480X800_HSYNC;
-  HBP  = NT35510_480X800_HBP;
-  HFP  = NT35510_480X800_HFP;
-  HACT = NT35510_800X480_WIDTH;
-  VACT = NT35510_800X480_HEIGHT;
-#else
-  VSA  = OTM8009A_480X800_VSYNC;        /* 1 */
-  VBP  = OTM8009A_480X800_VBP;          /* 15 */
-  VFP  = OTM8009A_480X800_VFP;          /* 16 */
-  HSA  = OTM8009A_480X800_HSYNC;        /* 2 */
-  HBP  = OTM8009A_480X800_HBP;          /* 20 */
-  HFP  = OTM8009A_480X800_HFP;          /* 20 */ 
-  HACT = OTM8009A_800X480_WIDTH;        /* 800 */
-  VACT = OTM8009A_800X480_HEIGHT;       /* 480 */   
-#endif
+  if(Lcd_Driver_Type == LCD_CTRL_NT35510)
+  {
+    VSA  = NT35510_480X800_VSYNC;
+    VBP  = NT35510_480X800_VBP;
+    VFP  = NT35510_480X800_VFP;
+    HSA  = NT35510_480X800_HSYNC;
+    HBP  = NT35510_480X800_HBP;
+    HFP  = NT35510_480X800_HFP;
+    HACT = NT35510_800X480_WIDTH;
+    VACT = NT35510_800X480_HEIGHT;
+  }
+  else
+  {
+    VSA  = OTM8009A_480X800_VSYNC;        /* 1 */
+    VBP  = OTM8009A_480X800_VBP;          /* 15 */
+    VFP  = OTM8009A_480X800_VFP;          /* 16 */
+    HSA  = OTM8009A_480X800_HSYNC;        /* 2 */
+    HBP  = OTM8009A_480X800_HBP;          /* 20 */
+    HFP  = OTM8009A_480X800_HFP;          /* 20 */
+    HACT = OTM8009A_800X480_WIDTH;        /* 800 */
+    VACT = OTM8009A_800X480_HEIGHT;       /* 480 */
+  }
 
   hdsivideo_handle.VirtualChannelID = LCD_OTM8009A_ID;
   hdsivideo_handle.ColorCoding = LCD_DSI_PIXEL_DATA_FMT_RBG888;
@@ -426,27 +440,32 @@ static uint8_t LCD_Init(void)
   
 /************************End LTDC Initialization*******************************/
   
-#if defined (USE_STM32469I_DISCO_REVC)
-/***********************NT35510 Initialization********************************/  
-  
-  /* Initialize the NT35510 LCD Display IC Driver (3K138 LCD IC Driver)
-   *  depending on configuration set in 'hdsivideo_handle'.
-   */
-  NT35510_Init(NT35510_FORMAT_RGB888, LCD_ORIENTATION_LANDSCAPE);
+  /* Checking the ID to determine the type of component */
+  if(Lcd_Driver_Type == LCD_CTRL_NT35510)
+  {
+    /***********************NT35510 Initialization********************************/ 
 
-/***********************End NT35510 Initialization****************************/
-#else
-/***********************OTM8009A Initialization********************************/  
-  
-  /* Initialize the OTM8009A LCD Display IC Driver (KoD LCD IC Driver)
-   *  depending on configuration set in 'hdsivideo_handle'.
-   */
-  OTM8009A_Init(OTM8009A_FORMAT_RGB888, OTM8009A_ORIENTATION_LANDSCAPE);
+    /* Initialize the NT35510 LCD Display IC Driver (3K138 LCD IC Driver)
+    *  depending on configuration set in 'hdsivideo_handle'.
+    */
+    NT35510_Init(NT35510_FORMAT_RGB888, LCD_ORIENTATION_LANDSCAPE);
+  }
+  /***********************End NT35510 Initialization****************************/
+  else if(Lcd_Driver_Type == LCD_CTRL_OTM8009A)
+  {
+    /***********************OTM8009A Initialization********************************/
 
-/***********************End OTM8009A Initialization****************************/
-#endif
-  
-  return LCD_OK; 
+    /* Initialize the OTM8009A LCD Display IC Driver (KoD LCD IC Driver)
+    *  depending on configuration set in 'hdsivideo_handle'.
+    */
+    OTM8009A_Init(OTM8009A_FORMAT_RGB888, OTM8009A_ORIENTATION_LANDSCAPE);
+  }
+  /***********************End OTM8009A Initialization****************************/
+  else
+  {
+    return LCD_ERROR;
+  }
+  return LCD_OK;
 }
 
 /**
@@ -560,6 +579,36 @@ void assert_failed(uint8_t* file, uint32_t line)
   }
 }
 #endif
+
+/**
+  * @brief  Check if the component ID is correct.
+  * @param  Lcd_type Driver Type Control NT35510 or OTM8009A
+  */
+static LCD_Driver_TypeDef LCD_ReadType(LCD_Driver_TypeDef Lcd_type)
+{
+  uint16_t read_id;
+  /* Read the NT35510 ID */
+  read_id = NT35510_ReadID();
+  if(read_id == NT35510_ID)
+  {
+    Lcd_type= LCD_CTRL_NT35510;
+  }
+  else
+  {
+    /* Read the OTM8009A ID */
+    read_id = OTM8009A_ReadID();
+    if(read_id == OTM8009A_ID)
+    {
+      Lcd_type= LCD_CTRL_OTM8009A;
+    }
+    else
+    {
+      Lcd_type= LCD_CTRL_NONE;
+    }
+  }
+
+  return Lcd_type;
+}
 
 /**
   * @}

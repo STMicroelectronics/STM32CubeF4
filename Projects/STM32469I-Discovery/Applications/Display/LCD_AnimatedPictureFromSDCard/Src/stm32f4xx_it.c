@@ -141,17 +141,6 @@ void SysTick_Handler(void)
 }
 
 /**
-  * @brief  This function handles SDIO global interrupt request.
-  * @param  None
-  * @retval None
-  */
-void SDIO_IRQHandler(void)
-{
-  /* Process All SDIO Interrupt Sources */
-  BSP_SD_IRQHandler();
-}
-
-/**
 * @brief  This function handles DMA2 Stream 3 interrupt request.
 * @param  None
 * @retval None

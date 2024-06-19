@@ -63,7 +63,6 @@ EndBSPDependencies */
   * @}
   */
 
-
 /** @defgroup USBH_AUDIO_CORE_Private_Defines
   * @{
   */
@@ -72,14 +71,12 @@ EndBSPDependencies */
   * @}
   */
 
-
 /** @defgroup USBH_AUDIO_CORE_Private_Macros
   * @{
   */
 /**
   * @}
   */
-
 
 /** @defgroup USBH_AUDIO_CORE_Private_Variables
   * @{
@@ -88,7 +85,6 @@ EndBSPDependencies */
 /**
   * @}
   */
-
 
 /** @defgroup USBH_AUDIO_CORE_Private_FunctionPrototypes
   * @{
@@ -1578,7 +1574,7 @@ static USBH_StatusTypeDef USBH_AUDIO_SetEndpointControls(USBH_HandleTypeDef *pho
 
   wValue = SAMPLING_FREQ_CONTROL << 8U;
   wIndex = Ep;
-  wLength = 3U; /*length of the frequency parameter*/
+  wLength = 3U; /* length of the frequency parameter */
 
   phost->Control.setup.b.bmRequestType = USB_H2D | USB_REQ_RECIPIENT_ENDPOINT | \
                                          USB_REQ_TYPE_CLASS;
@@ -1589,7 +1585,6 @@ static USBH_StatusTypeDef USBH_AUDIO_SetEndpointControls(USBH_HandleTypeDef *pho
   phost->Control.setup.b.wLength.w = wLength;
 
   return (USBH_CtlReq(phost, (uint8_t *)buff, wLength));
-
 }
 
 /**
@@ -1902,6 +1897,10 @@ USBH_StatusTypeDef USBH_AUDIO_SetFrequency(USBH_HandleTypeDef *phost,
         AUDIO_Handle->headphone.frame_length = (SampleRate * BitPerSample * NbrChannels) / 8000U;
         AUDIO_Handle->play_state = AUDIO_PLAYBACK_SET_EP;
         Status = USBH_OK;
+      }
+      else
+      {
+        USBH_ErrLog("Sample Rate not supported by the Audio Device");
       }
     }
   }

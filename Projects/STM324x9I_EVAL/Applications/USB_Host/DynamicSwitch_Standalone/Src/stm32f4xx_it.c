@@ -155,36 +155,6 @@ void OTG_HS_IRQHandler(void)
 }
 
 /**
-  * @brief  This function handles DMA2 Stream 3 interrupt request.
-  * @param  None
-  * @retval None
-  */
-void DMA2_Stream3_IRQHandler(void)
-{
-  BSP_SD_DMA_Rx_IRQHandler();
-}
-
-/**
-  * @brief  This function handles DMA2 Stream 6 interrupt request.
-  * @param  None
-  * @retval None
-  */
-void DMA2_Stream6_IRQHandler(void)
-{
-  BSP_SD_DMA_Tx_IRQHandler();
-}
-
-/**
-  * @brief  This function handles SDIO interrupt request.
-  * @param  None
-  * @retval None
-  */
-void SDIO_IRQHandler(void)
-{
-  BSP_SD_IRQHandler();
-}
-
-/**
   * @brief  This function handles External line 2 interrupt request.
   * @param  None
   * @retval None

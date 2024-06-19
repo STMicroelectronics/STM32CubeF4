@@ -60,7 +60,49 @@ Page</a> : STM32Cube USB Wiki Page</li>
 <section id="update-history" class="col-sm-12 col-lg-8">
 <h1>Update History</h1>
 <div class="collapse">
-<input type="checkbox" id="collapse-section18" checked aria-hidden="true"><label for="collapse-section18" aria-hidden="true">V3.5.1 / 10-January-2023</label>
+<input type="checkbox" id="collapse-section19" checked aria-hidden="true"><label for="collapse-section19" aria-hidden="true">V3.5.2 / 11-December-2023</label>
+<div>
+<h2 id="main-changes">Main Changes</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Headline</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Core</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">minor enhancement; Avoid infinite loop in case device descriptor length is wrongly set to zero</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>MSC Class</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Add support of multi-LUN storage devices</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Report error for non-ready media</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Audio Class</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Report error for unsupported audio sample rate</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>CDC Class</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ensure that only short packet or ZLP can stop receiving</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="collapse">
+<input type="checkbox" id="collapse-section18" aria-hidden="true"><label for="collapse-section18" aria-hidden="true">V3.5.1 / 10-January-2023</label>
 <div>
 <h2 id="main-changes">Main Changes</h2>
 <table>
@@ -104,7 +146,7 @@ Page</a> : STM32Cube USB Wiki Page</li>
 <td style="text-align: left;"><strong>Core</strong></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">fix potential corruption of Endpoints MaxPacketSize</td>
+<td style="text-align: left;">Fix potential corruption of Endpoints MaxPacketSize</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>HID Class</strong></td>

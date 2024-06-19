@@ -15,7 +15,7 @@
   *
   ******************************************************************************
   */
-  
+
 #include "mbedtls_config.h"
 
 #ifdef MBEDTLS_ENTROPY_HARDWARE_ALT
@@ -23,28 +23,72 @@
 #include "main.h"
 #include <string.h>
 
+#include "mbedtls/entropy.h"
 #include "mbedtls/entropy_poll.h"
 
-extern RNG_HandleTypeDef RngHandle;
+static __IO uint32_t isInitialized = 0;
 
-int mbedtls_hardware_poll( void *Data, unsigned char *Output, size_t Len, size_t *oLen )
+static RNG_HandleTypeDef RNG_Handle;
+
+static void RNG_Init(void);
+/* RNG init function */
+static void RNG_Init(void)
 {
-  uint32_t index;
-  uint32_t randomValue;
-		
-  for (index = 0; index < Len/4; index++)
+  if (isInitialized == 0)
   {
-    if (HAL_RNG_GenerateRandomNumber(&RngHandle, &randomValue) == HAL_OK)
+    RNG_Handle.Instance = RNG;
+    /* DeInitialize the RNG peripheral */
+    if (HAL_RNG_DeInit(&RNG_Handle) != HAL_OK)
     {
-      *oLen += 4;
-      memset(&(Output[index * 4]), (int)randomValue, 4);
+      return;
     }
-    else
+    /* Initialize the RNG peripheral */
+    if (HAL_RNG_Init(&RNG_Handle) != HAL_OK)
     {
-      Error_Handler();
+      return;
+    }
+    isInitialized = 1;
+  }
+}
+
+int mbedtls_hardware_poll(void *Data, unsigned char *Output, size_t Len, size_t *oLen)
+{
+  __IO uint8_t random_value[4];
+  int ret = 0;
+
+  RNG_Init();
+
+  if (isInitialized == 0)
+  {
+    ret = MBEDTLS_ERR_ENTROPY_SOURCE_FAILED;
+  }
+  else
+  {
+    *oLen = 0;
+    while ((*oLen < Len) && (ret == 0))
+    {
+      if (HAL_RNG_GenerateRandomNumber(&RNG_Handle, (uint32_t *)random_value) == HAL_OK)
+      {
+        for (uint8_t i = 0; (i < sizeof(uint32_t)) && (*oLen < Len) ; i++)
+        {
+          Output[*oLen] = random_value[i];
+          *oLen += 1;
+        }
+      }
+      else
+      {
+        ret = MBEDTLS_ERR_ENTROPY_SOURCE_FAILED;
+      }
+    }
+
+    /* Just be extra sure that we didn't do it wrong */
+    if (__HAL_RNG_GET_FLAG(&RNG_Handle, (RNG_FLAG_CECS | RNG_FLAG_SECS)) != 0)
+    {
+      *oLen = 0;
+      ret = MBEDTLS_ERR_ENTROPY_SOURCE_FAILED;
     }
   }
-  
-  return 0;
+
+  return ret;
 }
 #endif /*MBEDTLS_ENTROPY_HARDWARE_ALT*/

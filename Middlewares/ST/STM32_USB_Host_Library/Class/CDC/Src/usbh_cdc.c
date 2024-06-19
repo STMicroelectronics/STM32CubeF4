@@ -751,7 +751,7 @@ static void CDC_ProcessReception(USBH_HandleTypeDef *phost)
       {
         length = USBH_LL_GetLastXferSize(phost, CDC_Handle->DataItf.InPipe);
 
-        if (((CDC_Handle->RxDataLength - length) > 0U) && (length > CDC_Handle->DataItf.InEpSize))
+        if (((CDC_Handle->RxDataLength - length) > 0U) && (length == CDC_Handle->DataItf.InEpSize))
         {
           CDC_Handle->RxDataLength -= length;
           CDC_Handle->pRxData += length;

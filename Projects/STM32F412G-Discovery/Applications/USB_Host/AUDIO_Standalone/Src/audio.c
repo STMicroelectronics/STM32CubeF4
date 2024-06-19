@@ -296,7 +296,7 @@ static AUDIO_ErrorTypeDef AUDIO_GetFileInfo(uint16_t file_idx,
 {
   uint32_t bytesread;
   uint32_t duration;
-  uint8_t str[FILEMGR_FILE_NAME_SIZE + 20];
+  uint8_t str[FILEMGR_FILE_NAME_SIZE + 30];
 
   if (f_open
       (&WavFile, (char *)FileList.file[file_idx].name,

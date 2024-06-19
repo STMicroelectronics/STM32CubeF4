@@ -512,6 +512,7 @@ static uint8_t USBD_DFU_EP0_RxReady(USBD_HandleTypeDef *pdev)
 
   return (uint8_t)USBD_OK;
 }
+
 /**
   * @brief  USBD_DFU_EP0_TxReady
   *         handle EP0 TRx Ready event
@@ -525,7 +526,7 @@ static uint8_t  USBD_DFU_EP0_TxReady(USBD_HandleTypeDef *pdev)
   uint32_t addr;
   USBD_DFU_HandleTypeDef *hdfu = (USBD_DFU_HandleTypeDef *)pdev->pClassDataCmsit[pdev->classId];
   USBD_DFU_MediaTypeDef *DfuInterface = (USBD_DFU_MediaTypeDef *)pdev->pUserData[pdev->classId];
-#if (USBD_DFU_VENDOR_CMD_ENABLED == 1U)
+#if (USBD_DFU_VENDOR_CMD_ENABLED == 1U) || (USBD_DFU_VENDOR_CHECK_ENABLED == 1U)
   uint32_t VendorStatus = 0U;
 #endif /* USBD_DFU_VENDOR_CMD_ENABLED */
 
@@ -619,7 +620,6 @@ static uint8_t  USBD_DFU_EP0_TxReady(USBD_HandleTypeDef *pdev)
             hdfu->dev_status[4] = hdfu->dev_state;
             return (uint8_t)USBD_FAIL;
           }
-
         }
 #if (USBD_DFU_VENDOR_CMD_ENABLED == 1U)
         else
@@ -647,13 +647,57 @@ static uint8_t  USBD_DFU_EP0_TxReady(USBD_HandleTypeDef *pdev)
       }
       else
       {
+#if (USBD_DFU_VENDOR_CMD_ENABLED == 1U)
+        if (hdfu->wlength > 0U)
+        {
+#if (USBD_DFU_VENDOR_CHECK_ENABLED == 1U)
+          if (DfuInterface->VendorCheck(hdfu->buffer.d8, IS_DFU_DOWNLOAD, &VendorStatus) != USBD_OK)
+          {
+            /* Update the state machine */
+            hdfu->dev_state = DFU_STATE_ERROR;
+            hdfu->dev_status[0] = (uint8_t)VendorStatus;
+            hdfu->dev_status[1] = 0U;
+            hdfu->dev_status[2] = 0U;
+            hdfu->dev_status[3] = 0U;
+            hdfu->dev_status[4] = hdfu->dev_state;
+            return (uint8_t)USBD_FAIL;
+          }
+#endif /* USBD_DFU_VENDOR_CHECK_ENABLED */
+
+          /* Vendor specific DFU CMD */
+          if (DfuInterface->VendorDownloadCMD(hdfu->buffer.d8, hdfu->wblock_num,
+                                              hdfu->wlength, &VendorStatus) != USBD_OK)
+          {
+            /* Update the state machine */
+            hdfu->dev_state =  DFU_STATE_ERROR;
+            hdfu->dev_status[0] = (uint8_t)VendorStatus;
+            hdfu->dev_status[1] = 0U;
+            hdfu->dev_status[2] = 0U;
+            hdfu->dev_status[3] = 0U;
+            hdfu->dev_status[4] = hdfu->dev_state;
+            return (uint8_t)USBD_FAIL;
+          }
+        }
+        else
+        {
+          /* Reset the block number */
+          hdfu->wblock_num = 0U;
+
+          /* Call the error management function (command will be NAKed) */
+          req.bmRequest = 0U;
+          req.wLength = 1U;
+          USBD_CtlError(pdev, &req);
+        }
+#else
         /* Reset the global length and block number */
         hdfu->wlength = 0U;
         hdfu->wblock_num = 0U;
+
         /* Call the error management function (command will be NAKed) */
         req.bmRequest = 0U;
         req.wLength = 1U;
         USBD_CtlError(pdev, &req);
+#endif /* USBD_DFU_VENDOR_CMD_ENABLED */
       }
     }
     /* Regular Download Command */
@@ -856,10 +900,10 @@ static void DFU_Download(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req)
 {
   USBD_DFU_HandleTypeDef *hdfu = (USBD_DFU_HandleTypeDef *)pdev->pClassDataCmsit[pdev->classId];
 
-#if (USBD_DFU_VENDOR_CMD_ENABLED == 1U)
+#if (USBD_DFU_VENDOR_CHECK_ENABLED == 1U)
   USBD_DFU_MediaTypeDef *DfuInterface = (USBD_DFU_MediaTypeDef *)pdev->pUserData[pdev->classId];
   uint32_t VendorStatus = 0U;
-#endif /* USBD_DFU_VENDOR_CMD_ENABLED */
+#endif /* USBD_DFU_VENDOR_CHECK_ENABLED */
 
   if (hdfu == NULL)
   {

@@ -136,7 +136,7 @@ static void send_data(struct tcp_pcb *pcb, struct http_state *hs)
   {
     len = hs->left;
   }
-  err = tcp_write(pcb, hs->file, len, 0);
+  err = tcp_write(pcb, hs->file, len, TCP_WRITE_FLAG_COPY);
   if (err == ERR_OK)
   {
     hs->file += len;

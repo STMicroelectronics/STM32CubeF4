@@ -63,6 +63,7 @@ typedef enum
   MSC_WRITE,
   MSC_UNRECOVERED_ERROR,
   MSC_PERIODIC_CHECK,
+  MSC_USER_NOTIFY
 }
 MSC_StateTypeDef;
 
@@ -121,6 +122,7 @@ typedef struct _MSC_Process
   BOT_HandleTypeDef    hbot;
   MSC_LUNTypeDef       unit[MAX_SUPPORTED_LUN];
   uint16_t             current_lun;
+  uint16_t             lun;
   uint16_t             rw_lun;
   uint32_t             timer;
 }

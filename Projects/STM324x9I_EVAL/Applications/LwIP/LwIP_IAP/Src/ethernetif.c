@@ -44,7 +44,7 @@
 /* Private variables ---------------------------------------------------------*/
 /*
 @Note: This interface is implemented to operate in zero-copy mode only:
-        - Rx Buffers will be allocated from LwIP stack memory heap,
+        - Rx Buffers will be allocated from LwIP stack Rx memory pool,
           then passed to ETH HAL driver.
         - Tx Buffers will be allocated from LwIP stack memory heap,
           then passed to ETH HAL driver.
@@ -157,7 +157,12 @@ static void low_level_init(struct netif *netif)
   DP83848_RegisterBusIO(&DP83848, &DP83848_IOCtx);
 
   /* Initialize the DP83848 ETH PHY */
-  DP83848_Init(&DP83848);
+  if(DP83848_Init(&DP83848) != DP83848_STATUS_OK)
+  {
+    netif_set_link_down(netif);
+    netif_set_down(netif);
+    return;
+  }
 
   ethernet_link_check_state(netif);
 }

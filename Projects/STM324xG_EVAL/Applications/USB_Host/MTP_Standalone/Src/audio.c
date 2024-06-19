@@ -281,7 +281,7 @@ void AUDIO_PlaybackProbeKey(JOYState_TypeDef state)
   */
 static AUDIO_ErrorTypeDef AUDIO_GetFileInfo(uint16_t file_idx, WAV_InfoTypedef *info)
 {
-  uint8_t str [FILE_NAME_SIZE + 26];  
+  uint8_t str [FILE_NAME_SIZE + 30];
   uint8_t fname [FILE_NAME_SIZE];    
   uint32_t bytesread;
   uint32_t duration;

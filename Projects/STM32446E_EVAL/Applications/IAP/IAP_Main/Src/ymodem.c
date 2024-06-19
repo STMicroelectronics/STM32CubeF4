@@ -355,7 +355,7 @@ COM_StatusTypeDef Ymodem_Receive ( uint32_t *p_size )
 
                     /* Test the size of the image to be sent */
                     /* Image size is greater than Flash size */
-                    if (*p_size > (USER_FLASH_SIZE + 1))
+                    if (filesize > (USER_FLASH_SIZE + 1))
                     {
                       /* End session */
                       tmp = CA;

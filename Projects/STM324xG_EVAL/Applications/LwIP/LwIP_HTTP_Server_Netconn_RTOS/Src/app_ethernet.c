@@ -26,6 +26,7 @@
 #ifdef USE_LCD
 #include "lcd_log.h"
 #endif
+#include "lwip/netifapi.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -106,7 +107,7 @@ void DHCP_Thread(void const * argument)
         BSP_LED_Off(LED1);
         BSP_LED_Off(LED2);
 #endif
-        dhcp_start(netif);
+        netifapi_dhcp_start(netif);
       }
       break;
     case DHCP_WAIT_ADDRESS:
@@ -136,7 +137,7 @@ void DHCP_Thread(void const * argument)
             IP_ADDR4(&ipaddr, IP_ADDR0 ,IP_ADDR1 , IP_ADDR2 , IP_ADDR3 );
             IP_ADDR4(&netmask, NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3);
             IP_ADDR4(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
-            netif_set_addr(netif, ip_2_ip4(&ipaddr), ip_2_ip4(&netmask), ip_2_ip4(&gw));
+            netifapi_netif_set_addr(netif, ip_2_ip4(&ipaddr), ip_2_ip4(&netmask), ip_2_ip4(&gw));
 
 #ifdef USE_LCD
             sprintf((char *)iptxt, "%s", ip4addr_ntoa(netif_ip4_addr(netif)));

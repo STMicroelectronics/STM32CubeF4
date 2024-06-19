@@ -169,21 +169,21 @@ static void http_server_serve(struct netconn *conn)
         if (strncmp((char const *)buf,"GET /STM32F4xx_files/ST.gif",27)==0)
         {
           fs_open(&file, "/STM32F4xx_files/ST.gif"); 
-          netconn_write(conn, (const unsigned char*)(file.data), (size_t)file.len, NETCONN_NOCOPY);
+          netconn_write(conn, (const unsigned char*)(file.data), (size_t)file.len, NETCONN_COPY);
           fs_close(&file);
         }   
         /* Check if request to get stm32.jpeg */
         else if (strncmp((char const *)buf,"GET /STM32F4xx_files/stm32.jpg",30)==0)
         {
           fs_open(&file, "/STM32F4xx_files/stm32.jpg"); 
-          netconn_write(conn, (const unsigned char*)(file.data), (size_t)file.len, NETCONN_NOCOPY);
+          netconn_write(conn, (const unsigned char*)(file.data), (size_t)file.len, NETCONN_COPY);
           fs_close(&file);
         }
         else if (strncmp((char const *)buf,"GET /STM32F4xx_files/logo.jpg", 29) == 0)                                           
         {
           /* Check if request to get ST logo.jpg */
           fs_open(&file, "/STM32F4xx_files/logo.jpg"); 
-          netconn_write(conn, (const unsigned char*)(file.data), (size_t)file.len, NETCONN_NOCOPY);
+          netconn_write(conn, (const unsigned char*)(file.data), (size_t)file.len, NETCONN_COPY);
           fs_close(&file);
         }
         else if(strncmp(buf, "GET /STM32F4xxTASKS.html", 24) == 0)
@@ -195,14 +195,14 @@ static void http_server_serve(struct netconn *conn)
         {
           /* Load STM32F4xx page */
           fs_open(&file, "/STM32F4xx.html"); 
-          netconn_write(conn, (const unsigned char*)(file.data), (size_t)file.len, NETCONN_NOCOPY);
+          netconn_write(conn, (const unsigned char*)(file.data), (size_t)file.len, NETCONN_COPY);
           fs_close(&file);
         }
         else 
         {
           /* Load Error page */
           fs_open(&file, "/404.html"); 
-          netconn_write(conn, (const unsigned char*)(file.data), (size_t)file.len, NETCONN_NOCOPY);
+          netconn_write(conn, (const unsigned char*)(file.data), (size_t)file.len, NETCONN_COPY);
           fs_close(&file);
         }
       }      

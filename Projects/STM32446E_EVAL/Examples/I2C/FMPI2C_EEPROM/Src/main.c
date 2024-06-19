@@ -138,7 +138,7 @@ int main(void)
     }
 
     /* Check if the EEPROM is ready for a new operation */
-    while (HAL_FMPI2C_IsDeviceReady(&I2cHandle, EEPROM_ADDRESS, EEPROM_MAX_TRIALS, I2Cx_TIMEOUT_MAX) == HAL_TIMEOUT);
+    while (HAL_FMPI2C_IsDeviceReady(&I2cHandle, EEPROM_ADDRESS, EEPROM_MAX_TRIALS, I2Cx_TIMEOUT_MAX) != HAL_OK);
 
     /* Wait for the end of the transfer */
     while (HAL_FMPI2C_GetState(&I2cHandle) != HAL_FMPI2C_STATE_READY)

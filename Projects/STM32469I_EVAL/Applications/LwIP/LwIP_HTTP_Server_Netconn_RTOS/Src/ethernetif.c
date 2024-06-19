@@ -26,11 +26,14 @@
 #include "ethernetif.h"
 #include "../Components/dp83848/dp83848.h"
 #include <string.h>
+#include "lwip/netifapi.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* The time to block waiting for input. */
 #define TIME_WAITING_FOR_INPUT                 ( osWaitForever )
+/* Time to block waiting for transmissions to finish */
+#define ETHIF_TX_TIMEOUT                       (2000U)
 /* Stack size of the interface thread */
 #define INTERFACE_THREAD_STACK_SIZE            ( 512 )
 
@@ -47,7 +50,7 @@
 /* Private variables ---------------------------------------------------------*/
 /*
 @Note: This interface is implemented to operate in zero-copy mode only:
-        - Rx Buffers will be allocated from LwIP stack memory heap,
+        - Rx Buffers will be allocated from LwIP stack Rx memory pool,
           then passed to ETH HAL driver.
         - Tx Buffers will be allocated from LwIP stack memory heap,
           then passed to ETH HAL driver.
@@ -181,7 +184,12 @@ static void low_level_init(struct netif *netif)
   DP83848_RegisterBusIO(&DP83848, &DP83848_IOCtx);
 
   /* Initialize the DP83848 ETH PHY */
-  DP83848_Init(&DP83848);
+  if(DP83848_Init(&DP83848) != DP83848_STATUS_OK)
+  {
+    netif_set_link_down(netif);
+    netif_set_down(netif);
+    return;
+  }
 
   PHYLinkState = DP83848_GetLinkState(&DP83848);
 
@@ -276,13 +284,29 @@ static err_t low_level_output(struct netif *netif, struct pbuf *p)
 
   pbuf_ref(p);
 
-  HAL_ETH_Transmit_IT(&EthHandle, &TxConfig);
-
-  while(osSemaphoreWait(TxPktSemaphore, TIME_WAITING_FOR_INPUT)!=osOK)
+  do
   {
-  }
-
-  HAL_ETH_ReleaseTxPacket(&EthHandle);
+    if(HAL_ETH_Transmit_IT(&EthHandle, &TxConfig) == HAL_OK)
+    {
+      errval = ERR_OK;
+    }
+    else
+    {
+      if(HAL_ETH_GetError(&EthHandle) & HAL_ETH_ERROR_BUSY)
+      {
+        /* Wait for descriptors to become available */
+        osSemaphoreWait( TxPktSemaphore, ETHIF_TX_TIMEOUT);
+        HAL_ETH_ReleaseTxPacket(&EthHandle);
+        errval = ERR_BUF;
+      }
+      else
+      {
+        /* Other error */
+        pbuf_free(p);
+        errval =  ERR_IF;
+      }
+    }
+  }while(errval == ERR_BUF);
 
   return errval;
 }
@@ -652,8 +676,8 @@ void ethernet_link_thread( void const * argument )
     if(netif_is_link_up(netif) && (PHYLinkState <= DP83848_STATUS_LINK_DOWN))
     {
       HAL_ETH_Stop_IT(&EthHandle);
-      netif_set_down(netif);
-      netif_set_link_down(netif);
+      netifapi_netif_set_down(netif);
+      netifapi_netif_set_link_down(netif);
     }
     else if(!netif_is_link_up(netif) && (PHYLinkState > DP83848_STATUS_LINK_DOWN))
     {
@@ -691,8 +715,8 @@ void ethernet_link_thread( void const * argument )
         MACConf.Speed = speed;
         HAL_ETH_SetMACConfig(&EthHandle, &MACConf);
         HAL_ETH_Start_IT(&EthHandle);
-        netif_set_up(netif);
-        netif_set_link_up(netif);
+        netifapi_netif_set_up(netif);
+        netifapi_netif_set_link_up(netif);
       }
     }
 

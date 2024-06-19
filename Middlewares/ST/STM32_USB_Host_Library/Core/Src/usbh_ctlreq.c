@@ -444,6 +444,12 @@ static USBH_StatusTypeDef USBH_ParseCfgDesc(USBH_HandleTypeDef *phost, uint8_t *
 
   pdesc = (USBH_DescHeader_t *)(void *)buf;
 
+  /* Make sure that the Configuration descriptor's bLength is equal to USB_CONFIGURATION_DESC_SIZE */
+  if (pdesc->bLength != USB_CONFIGURATION_DESC_SIZE)
+  {
+    pdesc->bLength = USB_CONFIGURATION_DESC_SIZE;
+  }
+
   /* Parse configuration descriptor */
   cfg_desc->bLength             = *(uint8_t *)(buf + 0U);
   cfg_desc->bDescriptorType     = *(uint8_t *)(buf + 1U);
@@ -453,12 +459,6 @@ static USBH_StatusTypeDef USBH_ParseCfgDesc(USBH_HandleTypeDef *phost, uint8_t *
   cfg_desc->iConfiguration      = *(uint8_t *)(buf + 6U);
   cfg_desc->bmAttributes        = *(uint8_t *)(buf + 7U);
   cfg_desc->bMaxPower           = *(uint8_t *)(buf + 8U);
-
-  /* Make sure that the Configuration descriptor's bLength is equal to USB_CONFIGURATION_DESC_SIZE */
-  if (cfg_desc->bLength != USB_CONFIGURATION_DESC_SIZE)
-  {
-    cfg_desc->bLength = USB_CONFIGURATION_DESC_SIZE;
-  }
 
   if (length > USB_CONFIGURATION_DESC_SIZE)
   {

@@ -177,6 +177,16 @@ The STM32F4xx allows computing and verifying the IP, UDP, TCP and ICMP checksums
 
 /*
    ------------------------------------
+   ---------- LWIP_NETIF_API options ----------
+   ------------------------------------
+*/
+/**
+ * LWIP_NETIF_API==1: Enable NETIF API
+ */
+#define LWIP_NETIF_API                     1
+
+/*
+   ------------------------------------
    ---------- httpd options ----------
    ------------------------------------
 */

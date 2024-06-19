@@ -49,7 +49,7 @@ a lot of data that needs to be copied, this should be set high. */
 #define MEMP_NUM_TCP_PCB_LISTEN 5
 /* MEMP_NUM_TCP_SEG: the number of simultaneously queued TCP
    segments. */
-#define MEMP_NUM_TCP_SEG        8
+#define MEMP_NUM_TCP_SEG        TCP_SND_QUEUELEN
 /* MEMP_NUM_SYS_TIMEOUT: the number of simulateously active
    timeouts. */
 #define MEMP_NUM_SYS_TIMEOUT    10
@@ -75,11 +75,6 @@ a lot of data that needs to be copied, this should be set high. */
 
 /* TCP sender buffer space (bytes). */
 #define TCP_SND_BUF             (4*TCP_MSS)
-
-/*  TCP_SND_QUEUELEN: TCP sender buffer space (pbufs). This must be at least
-  as much as (2 * TCP_SND_BUF/TCP_MSS) for things to work. */
-
-#define TCP_SND_QUEUELEN        (2* TCP_SND_BUF/TCP_MSS)
 
 /* TCP receive window. */
 #define TCP_WND                 (2*TCP_MSS)
@@ -173,6 +168,16 @@ The STM32F4xx allows computing and verifying the IP, UDP, TCP and ICMP checksums
  * LWIP_SOCKET==1: Enable Socket API (require to use sockets.c)
  */
 #define LWIP_SOCKET                     0
+
+/*
+   ------------------------------------
+   ---------- LWIP_NETIF_API options ----------
+   ------------------------------------
+*/
+/**
+ * LWIP_NETIF_API==1: Enable NETIF API
+ */
+#define LWIP_NETIF_API                     1
 
 /*
    ------------------------------------

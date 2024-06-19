@@ -36,6 +36,7 @@
 extern LTDC_HandleTypeDef hltdc_eval;
 static DMA2D_HandleTypeDef   hdma2d;
 extern DSI_HandleTypeDef hdsi_eval;
+extern LCD_Driver_TypeDef Lcd_Driver_Type;
 
 /* Private define ------------------------------------------------------------*/
 #define VSYNC           1  
@@ -81,6 +82,7 @@ static uint8_t LCD_Init(void);
 void LCD_LayertInit(uint16_t LayerIndex, uint32_t Address);
 void LTDC_Init(void);
 static void LCD_BriefDisplay(void);
+static LCD_Driver_TypeDef LCD_ReadType(LCD_Driver_TypeDef Lcd_type);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -394,13 +396,24 @@ static uint8_t LCD_Init(void)
   /* Start DSI */
   HAL_DSI_Start(&(hdsi_eval));
     
-#if defined (USE_STM32469I_DISCO_REVC)
-  /* Initialize the NT35510 LCD Display IC Driver (3K138 LCD IC Driver) */
-  NT35510_Init(NT35510_FORMAT_RGB888, LCD_ORIENTATION_LANDSCAPE);
-#else
-  /* Initialize the OTM8009A LCD Display IC Driver (KoD LCD IC Driver)*/
-  OTM8009A_Init(OTM8009A_COLMOD_RGB888, LCD_ORIENTATION_LANDSCAPE);
-#endif
+  /* Enable the DSI BTW for read operations */
+  HAL_DSI_ConfigFlowControl(&hdsi_eval, DSI_FLOW_CONTROL_BTA);
+  Lcd_Driver_Type = LCD_ReadType(Lcd_Driver_Type);
+  HAL_DSI_Stop(&hdsi_eval);
+  
+  BSP_LCD_Reset();
+  HAL_DSI_Start(&hdsi_eval);
+  /* Check the type of component */
+  if(Lcd_Driver_Type == LCD_CTRL_NT35510)
+  {
+    /* Initialize the NT35510 LCD Display IC Driver (3K138 LCD IC Driver) */
+    NT35510_Init(NT35510_FORMAT_RGB888, LCD_ORIENTATION_LANDSCAPE);
+  }
+  else
+  {
+    /* Initialize the OTM8009A LCD Display IC Driver (KoD LCD IC Driver)*/
+    OTM8009A_Init(OTM8009A_COLMOD_RGB888, LCD_ORIENTATION_LANDSCAPE);
+  }
   
    /* Reconfigure the DSI for HS Command mode */
   LPCmd.LPGenShortWriteNoP    = DSI_LP_GSW0P_DISABLE;
@@ -577,6 +590,35 @@ void assert_failed(uint8_t *file, uint32_t line)
 }
 #endif
 
+/**
+  * @brief  Check if the component ID is correct.
+  * @param  Lcd_type Driver Type Control NT35510 or OTM8009A
+  */
+static LCD_Driver_TypeDef LCD_ReadType(LCD_Driver_TypeDef Lcd_type)
+{
+  uint16_t read_id;
+  /* Read the NT35510 ID */
+  read_id = NT35510_ReadID();
+  if(read_id == NT35510_ID)
+  {
+    Lcd_type= LCD_CTRL_NT35510;
+  }
+  else
+  {
+    /* Read the OTM8009A ID */
+    read_id = OTM8009A_ReadID();
+    if(read_id == OTM8009A_ID)
+    {
+      Lcd_type= LCD_CTRL_OTM8009A;
+    }
+    else
+    {
+      Lcd_type= LCD_CTRL_NONE;
+    }
+  }
+
+  return Lcd_type;
+}
 /**
   * @}
   */

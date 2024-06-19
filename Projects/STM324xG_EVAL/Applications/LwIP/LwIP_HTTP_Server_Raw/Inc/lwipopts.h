@@ -188,6 +188,9 @@ The STM32F4x7 allows computing and verifying the IP, UDP, TCP and ICMP checksums
    ------------------------------------
 */
 
+/** Set this to TCP_WRITE_FLAG_COPY to copy data from flash memory */
+#define HTTP_IS_DATA_VOLATILE(hs) TCP_WRITE_FLAG_COPY
+
 /** Set this to 1 to support CGI */
 #define LWIP_HTTPD_CGI            1
 

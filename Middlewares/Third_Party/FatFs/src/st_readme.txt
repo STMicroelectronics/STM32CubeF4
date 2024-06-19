@@ -22,6 +22,34 @@
 ### V2.1.5/18-08-2023 ###
 ============================
 + Add LICENSE.md file at the root directory.
++ Fix in disk_initialize() function, the "is_initialized" flag to be set 1 after checking the driver's return value.
+  - src\diskio.c
+
++ Fix read/write sector size cast type in USBH_ioctl().
+  - src\drivers\usbh_diskio_template.c
+  - src\drivers\usbh_diskio_dma_template.c
+
++ Fix declaration of the "ret" parameter in SD_read()
+  - src\drivers\sd_diskio_dma_rtos_template_bspv1.c
+
++ Set “ReadStatus” variable to zero before calling BSP_SD_ReadBlocks_DMA()
+  - src\drivers\sd_diskio_dma_template_bspv1.c
+
++ Fix typo error in SD_Write() where READ_CPLT_MSG is used instead of WRITE_CPLT_MSG
+  - src\drivers\sd_diskio_dma_rtos_template_bspv1.c
+  - src\drivers\sd_diskio_dma_rtos_template_bspv2.c
+
++ Use local variable to store function call return values
+  - src\drivers\sd_diskio_dma_template_bspv1.c
+  - src\drivers\sd_diskio_dma_template_bspv2.c
+  - src\drivers\sd_diskio_dma_rtos_template_bspv1.c
+  - src\drivers\sd_diskio_dma_rtos_template_bspv2.c
+
++ Use 32-byte aligned scratch buffer, in SD_read() and SD_write, to match CPU cache alignment.
+  - src\drivers\sd_diskio_dma_template_bspv1.c
+  - src\drivers\sd_diskio_dma_template_bspv2.c
+  - src\drivers\sd_diskio_dma_rtos_template_bspv1.c
+  - src\drivers\sd_diskio_dma_rtos_template_bspv2.c
 
 ### V2.1.4/18-10-2019 ###
 ============================
