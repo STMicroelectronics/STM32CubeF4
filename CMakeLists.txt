@@ -5,7 +5,7 @@ set(stm32f4_internal_dir ${CMAKE_CURRENT_LIST_DIR} CACHE INTERNAL "")
 function(unspun_add_stm32f4_hal target_name hal_config_folder hal_sources hal_includes)
 
     set(DRIVER_FOLDER ${stm32f4_internal_dir}/Drivers/STM32F4xx_HAL_Driver)
-    set(MIDDLEWARE_FOLDER ${stm32f4_internal_dir}/Middlewares/ST)
+    set(MIDDLEWARE_FOLDER ${stm32f4_internal_dir}/Middlewares)
     set(CMSIS_FOLDER ${stm32f4_internal_dir}/Drivers/CMSIS)
     set(CMSIS_DEVICE_FOLDER ${CMSIS_FOLDER}/Device/ST/STM32F4xx)
     set(HAL_CONFIG_FILE ${hal_config_folder}/stm32f4xx_hal_conf.h)
@@ -603,22 +603,60 @@ function(unspun_add_stm32f4_hal target_name hal_config_folder hal_sources hal_in
             message(STATUS "Adding USB CDC device library")
             target_sources(${target_name}
                 PRIVATE
-                ${MIDDLEWARE_FOLDER}/STM32_USB_Device_Library/Core/Src/usbd_core.c
-                ${MIDDLEWARE_FOLDER}/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c
-                ${MIDDLEWARE_FOLDER}/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c
                 )
             target_include_directories(${target_name}
                 PUBLIC
-                ${MIDDLEWARE_FOLDER}/STM32_USB_Device_Library/Core/Inc
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Device_Library/Core/Inc
             )
             target_sources(${target_name}
                 PRIVATE
-                ${MIDDLEWARE_FOLDER}/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c
             )
             target_include_directories(${target_name}
                 PUBLIC
-                ${MIDDLEWARE_FOLDER}/STM32_USB_Device_Library/Class/CDC/Inc
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Device_Library/Class/CDC/Inc
             )  
+        endif()
+
+        # USB Device, HDC class + FatFs library
+        if("ENABLE_FATFS_USB_DISKIO" IN_LIST ARGN)
+            message(STATUS "Adding USB MSC host library")
+            target_sources(${target_name}
+                PRIVATE
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.c
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.c
+                )
+            target_include_directories(${target_name}
+                PUBLIC
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Host_Library/Core/Inc
+            )
+            target_sources(${target_name}
+                PRIVATE
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.c
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.c
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.c
+            )
+            target_include_directories(${target_name}
+                PUBLIC
+                ${MIDDLEWARE_FOLDER}/ST/STM32_USB_Host_Library/Class/MSC/Inc
+            )
+
+            message(STATUS "Adding FatFs library")
+            target_sources(${target_name}
+                PRIVATE
+                ${MIDDLEWARE_FOLDER}/Third_Party/FatFs/src/diskio.c
+                ${MIDDLEWARE_FOLDER}/Third_Party/FatFs/src/ff_gen_drv.c
+                ${MIDDLEWARE_FOLDER}/Third_Party/FatFs/src/ff.c
+                )
+            target_include_directories(${target_name}
+                PUBLIC
+                ${MIDDLEWARE_FOLDER}/Third_Party/FatFs/src
+            )
         endif()
     endif()
     # ---------END MODULE DEFINITIONS--------------
