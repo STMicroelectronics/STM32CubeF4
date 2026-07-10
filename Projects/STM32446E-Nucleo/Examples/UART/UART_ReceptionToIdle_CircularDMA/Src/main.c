@@ -392,8 +392,11 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
     pBufferReadyForReception = ptemp;
   }
   /* Update old_pos as new reference of position in User Rx buffer that
-     indicates position to which data have been processed */
-  old_pos = Size;
+     indicates position to which data have been processed.
+     Size can be equal to RX_BUFFER_SIZE (not wrapped to 0) when the
+     Transfer Complete event reports a full circular buffer, so it must be
+     wrapped here to stay a valid index into aRXBufferUser. */
+  old_pos = Size % RX_BUFFER_SIZE;
 
 }
 
