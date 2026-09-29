@@ -78,5 +78,16 @@ In order to make the program work, you must do the following :
  - Rebuild all files and load your image into target memory
  - Run the example
 
+@par Application note: Analog liquid level sensor (Fire water tank monitoring)
+This ADC example can be adapted for analog‑output liquid level sensor:
+1. Raw ADC to voltage(12‑bit resolution): Voltage = Raw_ADC * 3.3 / 4095
+2. Water level percentage calculation:
+WaterLevel_Percent = (V_read - V_empty) / (V_full - V_empty) * 100%
+
+- V_empty: sensor output voltage when tank is empty
+- V_full: sensor output voltage when tank is full
+
+@note Hardware requirement: Sensor and STM32 must share common GND, otherwise ADC readings will drift.
 
  */
+
