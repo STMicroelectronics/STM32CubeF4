@@ -63,8 +63,8 @@ int main(void)
      */
   HAL_Init();
 
-  /* Enable HSI oscillator and configure the PLL to reach the max system frequency (180 MHz)
-     when using HSI oscillator as PLL clock source. */
+  /* Enable HSE oscillator and configure the PLL to reach the max system frequency (180 MHz)
+     when using HSE oscillator as PLL clock source. */
   SystemClock_Config();
   
 
@@ -125,7 +125,7 @@ static void SwitchSystemClock(void)
   else if (__HAL_RCC_GET_PLL_OSCSOURCE() == RCC_PLLSOURCE_HSE)
   {
     /* PLL source is HSE  oscillator */
-    /* Set SYSCLK frequency to 16000000 Hz, coming from the PLL which is clocked by HSI */
+    /* Set SYSCLK frequency to 180000000 Hz, coming from the PLL which is clocked by HSI */
     SystemClockHSI_Config();
   }
 
@@ -287,8 +287,8 @@ static void SystemClockHSE_Config(void)
   *         source.
   *         The system Clock is configured as follows :
   *            System Clock source            = PLL (HSI)
-  *            SYSCLK(Hz)                     = 16000000
-  *            HCLK(Hz)                       = 16000000
+  *            SYSCLK(Hz)                     = 180000000
+  *            HCLK(Hz)                       = 180000000
   *            AHB Prescaler                  = 1
   *            APB1 Prescaler                 = 4
   *            APB2 Prescaler                 = 2
@@ -299,7 +299,6 @@ static void SystemClockHSE_Config(void)
   *            PLL_Q                          = 7
   *            PLL_R                          = 2
   *            VDD(V)                         = 3.3
-  *            PLLMUL                         = 9
   *            Flash Latency(WS)              = 5
   * @param  None
   * @retval None

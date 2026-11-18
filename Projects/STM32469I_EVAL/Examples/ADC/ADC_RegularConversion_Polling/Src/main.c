@@ -84,7 +84,7 @@ int main(void)
   AdcHandle.Init.Resolution            = ADC_RESOLUTION_12B;            /* 12-bit resolution for converted data */
   AdcHandle.Init.DataAlign             = ADC_DATAALIGN_RIGHT;           /* Right-alignment for converted data */
   AdcHandle.Init.ScanConvMode          = DISABLE;                       /* Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1) */
-  AdcHandle.Init.EOCSelection          = DISABLE;                       /* EOC flag picked-up to indicate conversion end */
+  AdcHandle.Init.EOCSelection          = ADC_EOC_SEQ_CONV;              /* EOC flag picked-up to indicate conversion end */
   AdcHandle.Init.ContinuousConvMode    = DISABLE;                       /* Continuous mode disabled to have only 1 conversion at each conversion trig */
   AdcHandle.Init.NbrOfConversion       = 1;                             /* Parameter discarded because sequencer is disabled */
   AdcHandle.Init.DiscontinuousConvMode = DISABLE;                       /* Parameter discarded because sequencer is disabled */
@@ -123,7 +123,7 @@ int main(void)
 
   /*##-4- Wait for the end of conversion #####################################*/
   /*  Before starting a new conversion, you need to check the current state of
-       the peripheral; if it’s busy you need to wait for the end of current
+       the peripheral; if itâ€™s busy you need to wait for the end of current
        conversion before starting a new one.
        For simplicity reasons, this example is just waiting till the end of the
        conversion, but application may perform other tasks while conversion

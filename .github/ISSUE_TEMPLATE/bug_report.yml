@@ -1,0 +1,51 @@
+name: "\U0001F41B Bug Report"
+description: Report a bug in the project
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us improve the quality of our software! Please provide as much detail as possible.
+  - type: input
+    id: bug_summary
+    attributes:
+      label: Bug Summary
+      description: Briefly describe the bug.
+      placeholder: "The application crashes when..."
+    validations:
+      required: true
+  - type: textarea
+    id: bug_details
+    attributes:
+      label: Detailed Description
+      description: Provide a detailed description of the bug, including steps to reproduce it.
+    validations:
+      required: true
+  - type: input
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: Describe the expected behavior
+  - type: input
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: A clear and concise description of what actually happens.
+      placeholder: Describe what actually happened
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Describe the environment in which the bug occurs (e.g., board, compiler, IDE, version).
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is the bug?
+      options:
+        - Critical
+        - Major
+        - Normal
+        - Minor

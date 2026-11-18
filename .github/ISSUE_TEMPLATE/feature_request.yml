@@ -1,0 +1,29 @@
+name: "\U0001F4A1 Feature Request"
+description: Suggest a new feature or enhancement
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We appreciate your interest in improving the quality of our software! Please provide details about the feature.
+  - type: input
+    id: feature_summary
+    attributes:
+      label: Feature Summary
+      description: Briefly describe the feature or enhancement.
+      placeholder: "Add support for..."
+    validations:
+      required: true
+  - type: textarea
+    id: feature_details
+    attributes:
+      label: Detailed Description
+      description: Provide a detailed description of the feature, including potential benefits.
+    validations:
+      required: true
+  - type: input
+    id: use_case
+    attributes:
+      label: Use Case
+      description: Describe how this feature will be used and who will benefit from it.

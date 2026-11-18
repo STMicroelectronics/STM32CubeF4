@@ -67,13 +67,13 @@ void MPU_Config(void)
 
   /* Configure RAM region as Region N°0, 8kB of size and R/W region */
   MPU_InitStruct.Enable = MPU_REGION_ENABLE;
-  MPU_InitStruct.BaseAddress = RAM_ADDRESS_START;
-  MPU_InitStruct.Size = RAM_SIZE;
+  MPU_InitStruct.BaseAddress = EXAMPLE_RAM_ADDRESS_START;
+  MPU_InitStruct.Size = EXAMPLE_RAM_SIZE;
   MPU_InitStruct.AccessPermission = portMPU_REGION_READ_WRITE;
   MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
   MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
   MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
-  MPU_InitStruct.Number = RAM_REGION_NUMBER;
+  MPU_InitStruct.Number = EXAMPLE_RAM_REGION_NUMBER;
   MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
   MPU_InitStruct.SubRegionDisable = 0x00;
   MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
@@ -81,17 +81,17 @@ void MPU_Config(void)
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
   
   /* Configure FLASH region as REGION N°1, 1MB of size and R/W region */
-  MPU_InitStruct.BaseAddress = FLASH_ADDRESS_START;
-  MPU_InitStruct.Size = FLASH_SIZE;
-  MPU_InitStruct.Number = FLASH_REGION_NUMBER;
+  MPU_InitStruct.BaseAddress = EXAMPLE_FLASH_ADDRESS_START;
+  MPU_InitStruct.Size = EXAMPLE_FLASH_SIZE;
+  MPU_InitStruct.Number = EXAMPLE_FLASH_REGION_NUMBER;
   
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
 
   /* Configure Peripheral region as REGION N°2, 0.5GB of size, R/W and Execute
   Never region */
-  MPU_InitStruct.BaseAddress = PERIPH_ADDRESS_START;
-  MPU_InitStruct.Size = PERIPH_SIZE;
-  MPU_InitStruct.Number = PERIPH_REGION_NUMBER;
+  MPU_InitStruct.BaseAddress = EXAMPLE_PERIPH_ADDRESS_START;
+  MPU_InitStruct.Size = EXAMPLE_PERIPH_SIZE;
+  MPU_InitStruct.Number = EXAMPLE_PERIPH_REGION_NUMBER;
   MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_DISABLE;
   
   HAL_MPU_ConfigRegion(&MPU_InitStruct);

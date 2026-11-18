@@ -215,7 +215,7 @@ static void ADC_Config(void)
   AdcHandle3.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   AdcHandle3.Init.NbrOfConversion = 1;
   AdcHandle3.Init.DMAContinuousRequests = DISABLE;
-  AdcHandle3.Init.EOCSelection = DISABLE;
+  AdcHandle3.Init.EOCSelection = ADC_EOC_SEQ_CONV;
   AdcHandle3.Init.Resolution            = ADC_RESOLUTION_12B;
 
   if (HAL_ADC_Init(&AdcHandle3) != HAL_OK)
@@ -249,7 +249,7 @@ static void ADC_Config(void)
   AdcHandle2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   AdcHandle2.Init.NbrOfConversion = 1;
   AdcHandle2.Init.DMAContinuousRequests = DISABLE;
-  AdcHandle2.Init.EOCSelection = DISABLE;
+  AdcHandle2.Init.EOCSelection = ADC_EOC_SEQ_CONV;
   AdcHandle2.Init.Resolution            = ADC_RESOLUTION_12B;
 
   if (HAL_ADC_Init(&AdcHandle2) != HAL_OK)
@@ -283,7 +283,7 @@ static void ADC_Config(void)
   AdcHandle1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   AdcHandle1.Init.NbrOfConversion = 1;
   AdcHandle1.Init.DMAContinuousRequests = ENABLE;
-  AdcHandle1.Init.EOCSelection = DISABLE;
+  AdcHandle1.Init.EOCSelection = ADC_EOC_SEQ_CONV;
   AdcHandle1.Init.Resolution            = ADC_RESOLUTION_12B;
   
 

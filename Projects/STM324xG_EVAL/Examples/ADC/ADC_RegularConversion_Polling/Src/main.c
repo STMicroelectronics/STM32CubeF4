@@ -80,7 +80,7 @@ int main(void)
   AdcHandle.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
   AdcHandle.Init.NbrOfConversion       = 1;
   AdcHandle.Init.DMAContinuousRequests = DISABLE;
-  AdcHandle.Init.EOCSelection          = DISABLE;
+  AdcHandle.Init.EOCSelection          = ADC_EOC_SEQ_CONV;
       
   if(HAL_ADC_Init(&AdcHandle) != HAL_OK)
   {
@@ -110,7 +110,7 @@ int main(void)
   
   /*##-4- Wait for the end of conversion #####################################*/  
    /*  Before starting a new conversion, you need to check the current state of 
-        the peripheral; if it’s busy you need to wait for the end of current
+        the peripheral; if itâ€™s busy you need to wait for the end of current
         conversion before starting a new one.
         For simplicity reasons, this example is just waiting till the end of the 
         conversion, but application may perform other tasks while conversion 

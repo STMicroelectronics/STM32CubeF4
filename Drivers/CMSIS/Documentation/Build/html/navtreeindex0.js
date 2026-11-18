@@ -1,4 +1,0 @@
-var NAVTREEINDEX0 =
-{
-
-};

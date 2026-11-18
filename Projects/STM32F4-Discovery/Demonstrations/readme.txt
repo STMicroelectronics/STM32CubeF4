@@ -26,12 +26,12 @@ all the peripherals, initialize the Flash interface and the systick.
 Then the SystemClock_Config() function is used to configure the system clock
 (SYSCLK) to run at 168 MHz.
            
-- Connect the STM32F4-Discovery RevB & RevC board to a PC with a 'USB type A to Mini-B' cable
+- Connect the STM32F4-Discovery RevB or RevC or RevD or RevF board to a PC with a 'USB type A to Mini-B' cable
 through USB connector CN1 to power the board. Then red LED1 (COM) and
 LED2 (PWR) light up.
 - All 4 LEDs between B1 and B2 are blinking as chenillard.
 - Press User Button B1 (User) then MEMS sensor (LIS302DL for revB or LIS3DSCH 
-for revC or LIS3DSH for revD) is enabled, move the board and observe the four Leds blinking according 
+for revC or LIS3DSH for revD or II2SDLPC for revF) is enabled, move the board and observe the four Leds blinking according 
 to the motion direction.
 - Connect the board to a PC with a second USB'type A to micro-B cable through USB 
 connector CN5, this convert it to a standard mouse. Move the STM32F4-Discovery
@@ -49,7 +49,7 @@ board and see the mouse moves according to the motion direction.
 
 @par Keywords
 
-Demonstrations, MEMS sensor, LIS302DL, LIS3DSCH, USB, standard mouse, mouse moves
+Demonstrations, MEMS sensor, LIS302DL, LIS3DSCH, II2SDLPC, USB, standard mouse, mouse moves
 
 @par Directory contents
  
@@ -71,10 +71,10 @@ Demonstrations, MEMS sensor, LIS302DL, LIS3DSCH, USB, standard mouse, mouse move
 
   - This Demo runs on STM32F407xx Devices.
   
-  - This example has been tested with STMicroelectronics STM32F4-Discovery RevB & RevC & RevD (MB997B & MB997C & MB997D) 
+  - This example has been tested with STMicroelectronics STM32F4-Discovery RevB & RevC & RevD & RevF (MB997B & MB997C & MB997D & MB997F) 
     and can be easily tailored to any other supported device and development board.
 
-  - STM32F4-Discovery RevB & RevC & RevD Set-up
+  - STM32F4-Discovery RevB & RevC & RevD & RevF Set-up
     - Connect the STM32F4-DISCO board through 'USB micro A-Male 
       A-Male' cable to the connector CN5.
 

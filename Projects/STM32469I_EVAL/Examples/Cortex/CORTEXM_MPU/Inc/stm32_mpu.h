@@ -25,19 +25,19 @@
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
-#define RAM_ADDRESS_START                        (0x20000000UL)
-#define RAM_SIZE                                 MPU_REGION_SIZE_8KB
-#define PERIPH_ADDRESS_START                     (0x40000000)
-#define PERIPH_SIZE                              MPU_REGION_SIZE_512KB
-#define FLASH_ADDRESS_START                      (0x08000000)
-#define FLASH_SIZE                               MPU_REGION_SIZE_1MB
-#define portMPU_REGION_READ_WRITE                MPU_REGION_FULL_ACCESS
-#define portMPU_REGION_PRIVILEGED_READ_ONLY      MPU_REGION_PRIV_RO
-#define portMPU_REGION_READ_ONLY                 MPU_REGION_PRIV_RO_URO
-#define portMPU_REGION_PRIVILEGED_READ_WRITE     MPU_REGION_PRIV_RW
-#define RAM_REGION_NUMBER                        MPU_REGION_NUMBER0
-#define FLASH_REGION_NUMBER                      MPU_REGION_NUMBER1
-#define PERIPH_REGION_NUMBER                     MPU_REGION_NUMBER2
+#define EXAMPLE_RAM_ADDRESS_START                        (0x20000000UL)
+#define EXAMPLE_RAM_SIZE                                 MPU_REGION_SIZE_8KB
+#define EXAMPLE_PERIPH_ADDRESS_START                     (0x40000000)
+#define EXAMPLE_PERIPH_SIZE                              MPU_REGION_SIZE_512KB
+#define EXAMPLE_FLASH_ADDRESS_START                      (0x08000000)
+#define EXAMPLE_FLASH_SIZE                               MPU_REGION_SIZE_1MB
+#define portMPU_REGION_READ_WRITE                        MPU_REGION_FULL_ACCESS
+#define portMPU_REGION_PRIVILEGED_READ_ONLY              MPU_REGION_PRIV_RO
+#define portMPU_REGION_READ_ONLY                         MPU_REGION_PRIV_RO_URO
+#define portMPU_REGION_PRIVILEGED_READ_WRITE             MPU_REGION_PRIV_RW
+#define EXAMPLE_RAM_REGION_NUMBER                        MPU_REGION_NUMBER0
+#define EXAMPLE_FLASH_REGION_NUMBER                      MPU_REGION_NUMBER1
+#define EXAMPLE_PERIPH_REGION_NUMBER                     MPU_REGION_NUMBER2
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */

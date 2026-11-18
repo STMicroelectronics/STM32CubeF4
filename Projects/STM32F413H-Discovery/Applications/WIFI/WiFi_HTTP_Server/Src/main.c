@@ -355,7 +355,7 @@ static uint32_t TEMP_SENSOR_Init(void)
   AdcHandle.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
   AdcHandle.Init.NbrOfConversion       = 1;
   AdcHandle.Init.DMAContinuousRequests = DISABLE;
-  AdcHandle.Init.EOCSelection          = DISABLE;
+  AdcHandle.Init.EOCSelection          = ADC_EOC_SEQ_CONV;
   
   if (HAL_ADC_Init(&AdcHandle)== HAL_OK)
   {

@@ -185,7 +185,7 @@ static int8_t CustomHID_Init(void)
   AdcHandle.Init.DataAlign = ADC_DATAALIGN_RIGHT;
   AdcHandle.Init.NbrOfConversion = 1;
   AdcHandle.Init.DMAContinuousRequests = ENABLE;
-  AdcHandle.Init.EOCSelection = DISABLE;
+  AdcHandle.Init.EOCSelection = ADC_EOC_SEQ_CONV;
   HAL_ADC_Init(&AdcHandle);
 
   /* Configure ADC regular channel */

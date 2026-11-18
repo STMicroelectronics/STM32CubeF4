@@ -50,8 +50,6 @@ the PLL oscillator source is checked using __HAL_RCC_GET_PLL_OSCSOURCE() macro:
 
 In this example the SYSCLK is outputted on the MCO2 pin PC.09(pin 19 (D1) on CN6 connector).
 
- @note The selected clock to output onto MCO must not exceed 100 MHz (the maximum I/O speed).
-
 One LED is toggled with a timing defined by the HAL_Delay() API.
 
 @note Care must be taken when using HAL_Delay(), this function provides accurate delay (in milliseconds)

@@ -1,0 +1,24 @@
+name: "\U0001F4AC  Question"
+description: Ask a question about the project
+title: "[Question]: "
+labels: [question]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question? We're here to help! Please provide details about your inquiry.
+  - type: input
+    id: question_summary
+    attributes:
+      label: Question Summary
+      description: Briefly describe your question.
+      placeholder: "How do I..."
+    validations:
+      required: true
+  - type: textarea
+    id: question_details
+    attributes:
+      label: Detailed Description
+      description: Provide a detailed description of your question, including any relevant context.
+    validations:
+      required: true
